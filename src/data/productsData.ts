@@ -199,7 +199,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     name: 'Sandtex Matt (Smooth & Tough Exterior) 20L',
     desc: 'Legendary exterior coating delivering wet & coastal protection for humid regions. Actively curbs algae and fungi growth while allowing masonry breathing ventilation. Only 1 coat required.',
     tag: 'Exterior Defense',
-    coverage: '10-12 m²/L',
+    coverage: '2.5-3.5 m²/L',
     image: './Sandtex MATT.png',
     fallback: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800',
     tdsSpec: {
@@ -223,7 +223,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
       packSize: '20 Liters',
       finish: 'Flat Matt Texture',
       volumeSolids: '35-38%',
-      theoreticalCoverage: '10-12 m²/L',
+      theoreticalCoverage: '2.5-3.5 m²/L',
       dryingInfo: {
         touchDry: '30 min',
         hardDry: '3-4 hrs',
@@ -231,7 +231,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
       },
       applicationInfo: {
         method: 'Stir deep. Apply by brush, exterior-grade roller, or spray machine.',
-        coverage: '10-12 sq.m/L depending on substrate profile.'
+        coverage: '2.5-3.5 sq.m/L depending on substrate profile.'
       },
       thinning: {
         brushRoller: 'Stir well. Apply directly.',
@@ -245,9 +245,9 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
   },
   {
     name: 'Sandtex Trade Smooth 20L',
-    desc: 'Premium professional grade emulsion paint with excellent coverage and smooth finish. Designed for superior substrate concealment on interior and exterior walls.',
-    tag: 'Contractor Favorite',
-    coverage: '10-12 m²/L',
+    desc: 'Highly robust, smooth, tough exterior developer paint. Delivers a long-lasting, superior-quality weather barrier favored by elite Nigerian real estate developers for its tremendous yield specs.',
+    tag: 'Professional Elite',
+    coverage: '14-16 m²/L',
     image: './Sandtex Trade Smooth.png',
     fallback: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&q=80&w=800',
     tdsSpec: {
@@ -272,7 +272,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
       packSize: '20L',
       finish: 'Smooth Flat Matt',
       volumeSolids: '32-36%',
-      theoreticalCoverage: '10-12 m²/L',
+      theoreticalCoverage: '14-16 m²/L',
       dryingInfo: {
         touchDry: '15-20 min',
         hardDry: '1.5 - 2 hrs',
@@ -280,7 +280,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
       },
       applicationInfo: {
         method: 'Stir properly. Apply by standard long-pile roller or brush.',
-        coverage: '10-12 sq.m per litre per coat under standard conditions.'
+        coverage: '14-16 sq.m per litre per coat under standard conditions.'
       },
       thinning: {
         brushRoller: 'Do not thin. Ready to use.',
@@ -293,10 +293,58 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
+    name: 'Sandtex Finebuild 20L',
+    desc: 'Ready-mixed textured base coating specifically engineered to mask fine plaster cracks and uneven rendering. Durable fungi-resistant textured coat which stabilizes masonry pores.',
+    tag: 'Surface Preparation',
+    coverage: '1-1.5 m²/L',
+    image: './Sandtex Finebuild.png',
+    fallback: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
+    tdsSpec: {
+      title: 'SANDTEX FINEBUILD TEXTURED PRIMER COAT',
+      description: 'Ready-mixed textured base coating specifically engineered to mask fine plaster cracks and uneven rendering on exterior and interior masonry. Builds a durable, fungi-resistant textured coat that stabilizes masonry pores and creates a strong mechanical key for topcoats.',
+      typicalUses: [
+        'Exterior and interior walls with hairline cracks or uneven plaster rendering',
+        'Masonry, concrete blockwork, and sand-cement renders requiring surface levelling before painting'
+      ],
+      keyBenefits: [
+        'Effectively bridges and masks fine plaster cracks',
+        'Fungi and mold-resistant formulation',
+        'Stabilizes porous masonry for improved topcoat adhesion',
+        'Reduces topcoat consumption by filling surface irregularities'
+      ],
+      composition: {
+        pigment: 'Fine aggregate sand and lightfast extender pigments',
+        binder: 'Acrylic copolymer emulsion',
+        solvent: 'Water'
+      },
+      packSize: '20 Liters',
+      finish: 'Coarse Textured Matt',
+      volumeSolids: '55-62%',
+      theoreticalCoverage: '1-1.5 m²/L',
+      dryingInfo: {
+        touchDry: '1-2 hrs',
+        hardDry: '8-12 hrs',
+        opacity: '1 coat'
+      },
+      applicationInfo: {
+        method: 'Stir well. Apply by stiff brush, textured roller, or spray. Work into surface in circular motions to fill cracks.',
+        coverage: '1-1.5 sq.m/L depending on surface texture and crack severity.'
+      },
+      thinning: {
+        brushRoller: 'Do not thin. Apply directly.',
+        spray: 'Thin up to 10% with clean water if spraying'
+      },
+      safetyStorage: {
+        storage: 'Store cool and dry. Keep container sealed upright. Protect from frost.',
+        careline: 'Chemical & Allied Products Plc Careline: 08159493070'
+      }
+    }
+  },
+  {
     name: 'Sandtex Gloss 4L',
     desc: 'Oil-based high-gloss enamel protecting wood and metal gates. Yields an ultra-reflective mirror finish, blocking rust development and timber decay on exposed surfaces.',
     tag: 'Wood & Metal Shield',
-    coverage: '14-16 m²/L',
+    coverage: '16-18 m²/L',
     image: './Sandtex GLOSS.png',
     fallback: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?auto=format&fit=crop&q=80&w=800',
     tdsSpec: {
@@ -320,7 +368,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
       packSize: '4 Liters',
       finish: 'High-Gloss Mirror',
       volumeSolids: '45-48%',
-      theoreticalCoverage: '14-16 m²/L',
+      theoreticalCoverage: '16-18 m²/L',
       dryingInfo: {
         touchDry: '4-6 hrs',
         hardDry: '16-24 hrs',
@@ -328,7 +376,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
       },
       applicationInfo: {
         method: 'Stir well. Apply by premium natural brush or solvent-grade roller.',
-        coverage: '14-16 sq.m/L under normal parameters.'
+        coverage: '16-18 sq.m/L under normal parameters.'
       },
       thinning: {
         brushRoller: 'Thin with white spirit up to 5% only if needed',
