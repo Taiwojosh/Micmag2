@@ -1,6 +1,6 @@
 export const CAPLUX_PRODUCTS = [
   {
-    name: 'screeding filler',
+    name: 'Screeding Filler',
     desc: 'Ready-to-use professional grade acrylic screeding putty. Delivers a highly uniform, ultra-smooth base to eliminate hairline cracks and plaster imperfections before topcoat application.',
     tag: 'Screeding & Fills',
     coverage: '1.5 - 2.5 m²/kg',
@@ -47,7 +47,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Alkali Resisting Primer 20L',
+    name: 'Alkali Resisting Primer 20L',
     desc: 'High-performance water-borne primer sealer engineered to shield topcoats from masonry alkalinity. Ideal for fresh plaster and concrete blocks to prevent peeling.',
     tag: 'Salt Protection',
     coverage: '10 - 12 m²/L',
@@ -93,7 +93,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Red Oxide Anti-Rust Primer 4L',
+    name: 'Red Oxide Anti-Rust Primer 4L',
     desc: 'Premium solvent-borne anti-corrosion primer for ferrous steel. Infused with superior synthetic alkyd binders to lock out coastal air humidity and sea-spray rust.',
     tag: 'Anti-Rust Metal',
     coverage: '12 - 14 m²/L',
@@ -139,7 +139,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Plaster Sealer 20L',
+    name: 'Plaster Primer 20L',
     desc: 'High-binding, deep-penetrating water base sealer designed to lock powdery masonry substrates and seal porous blockwork surfaces for higher paint yields.',
     tag: 'Substrate Sealer',
     coverage: '8 - 10 m²/L',
@@ -186,7 +186,7 @@ export const CAPLUX_PRODUCTS = [
   },
 
   {
-    name: 'Caplux Solvent Stabilizing Sealer 20L',
+    name: 'Solvent Stabilizing Sealer 20L',
     desc: 'Elite solvent-borne binder for highly powdery, degraded or chalky brickwork and aged weather-exposed facades. Consolidates crumbly renders to prevent peeling.',
     tag: 'Substrate Binders',
     coverage: '6 - 8 m²/L',
@@ -233,7 +233,7 @@ export const CAPLUX_PRODUCTS = [
   },
 
   {
-    name: 'Caplux Undercoat 4L',
+    name: 'Undercoat 4L',
     desc: 'Low-odor, water-borne undercoat premium prep paint. Perfect for high-density public hallways, school classrooms, and luxury hotel rooms.',
     tag: 'Premium Prep',
     coverage: '12 - 14 m²/L',

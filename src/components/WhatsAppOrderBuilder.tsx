@@ -21,12 +21,12 @@ const PAINT_MODELS: PaintModel[] = [
   { name: 'Sandtex Finebuild 20L', brand: 'sandtex', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
   { name: 'Sandtex Gloss 4L', brand: 'sandtex', hasColor: true, sizes: ['4 Liters'], defaultSize: '4 Liters' },
   // Caplux
-  { name: 'screeding filler', brand: 'caplux', hasColor: false, sizes: ['20 kg Bag'], defaultSize: '20 kg Bag' },
-  { name: 'Caplux Alkali Resisting Primer 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'Caplux Red Oxide Anti-Rust Primer 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
-  { name: 'Caplux Plaster Sealer 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'Caplux Solvent Stabilizing Sealer 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'Caplux Undercoat 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
+  { name: 'Screeding Filler', brand: 'caplux', hasColor: false, sizes: ['20 kg Bag'], defaultSize: '20 kg Bag' },
+  { name: 'Alkali Resisting Primer 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
+  { name: 'Red Oxide Anti-Rust Primer 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
+  { name: 'Plaster Primer 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
+  { name: 'Solvent Stabilizing Sealer 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
+  { name: 'Undercoat 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
 ];
 
 interface ColorOption {

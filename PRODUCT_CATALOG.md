@@ -69,13 +69,13 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 ## SECTION 2: Caplux Prep & Protection Systems
 
-### 1. screeding filler
+### 1. Screeding Filler
 * **Category:** Screeding & Fills
 * **General Description:** Ready-to-use professional grade acrylic screeding putty. Delivers a highly uniform, ultra-smooth base to eliminate hairline cracks and plaster imperfections before topcoat application.
 * **Coverage:** 1.5 - 2.5 m²/kg
 
 
-### 2. Caplux Alkali Resisting Primer 20L
+### 2. Alkali Resisting Primer 20L
 * **Category:** Salt Protection & Alkaline Barrier
 * **General Description:** High-performance water-borne primer sealer engineered to shield topcoats from masonry alkalinity. Ideal for fresh plaster and concrete blocks to prevent peeling.
 * **Coverage:** 10 - 12 m²/L
@@ -83,7 +83,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 ---
 
-### 3. Caplux Red Oxide Anti-Rust Primer 4L
+### 3. Red Oxide Anti-Rust Primer 4L
 * **Category:** Anti-Rust Metal Undercoat
 * **General Description:** Premium solvent-borne anti-corrosion primer for ferrous steel. Infused with superior synthetic alkyd binders to lock out coastal air humidity and sea-spray rust.
 * **Coverage:** 12 - 14 m²/L
@@ -91,43 +91,21 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 ---
 
-### 4. Caplux Plaster Sealer 20L
+### 4. Plaster Primer 20L
 * **Category:** Substrate Sealer / Binder
 * **General Description:** High-binding, deep-penetrating water base sealer designed to lock powdery masonry substrates and seal porous blockwork surfaces for higher paint yields.
 * **Coverage:** 8 - 10 m²/L
 
 ---
 
-### 5. Caplux Wood Primer White 4L
-* **Category:** Wood Undercoat & Primer
-* **General Description:** Oil-based primer sealer formulated for soft and hardwoods. Seals wood micropores, blocks tannin bleeding, and creates a dense protective layer.
-* **Coverage:** 11 - 13 m²/L
-
-
----
-
-### 6. Caplux Gypsum (POP) Primer 20L
-* **Category:** POP Ceiling Preparation
-* **General Description:** Specialist primer formulated exclusively for gypsum boards and sophisticated POP ceilings. Seals porous POP surfaces without swelling drywall joints.
-* **Coverage:** 9 - 11 m²/L
-
----
-
-### 7. Caplux Solvent Stabilizing Sealer 20L
+### 5. Solvent Stabilizing Sealer 20L
 * **Category:** Substrate Binders / Deep Stabilization
 * **General Description:** Elite solvent-borne binder for highly powdery, degraded or chalky brickwork and aged weather-exposed facades. Consolidates crumbly renders to prevent peeling.
 * **Coverage:** 6 - 8 m²/L
 
 ---
 
-### 8. Caplux Fine Textured Primer 20L
-* **Category:** Anti-Crack Primers / Rough Undercoats
-* **General Description:** Fine sand-aggregate water-based textured primer. Excellent for bridging minor plaster cracks and creating a powerful mechanical grip for exterior coatings.
-* **Coverage:** 2.5 - 3.5 m²/L
-
-
-
-### 9. Caplux Undercoat 4L
+### 6. Undercoat 4L
 * **Category:** Premium Prep / Interior Undercoat
 * **General Description:** Low-odor, water-borne undercoat premium prep paint. Perfect for high-density public hallways, school classrooms, and luxury hotel rooms.
 * **Coverage:** 12 - 14 m²/L
