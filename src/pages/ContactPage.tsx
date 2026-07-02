@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, Clock, ArrowUpRight, MessageSquare, Compass, ShieldCheck } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
+import { usePageMeta } from '../utils/usePageMeta';
 
 interface OfficeBranch {
   id: string;
@@ -80,6 +81,11 @@ const offices: OfficeBranch[] = [
 const springTransition = { type: "spring", stiffness: 100, damping: 15 };
 
 export default function ContactPage() {
+  usePageMeta({
+    title: 'Contact Us',
+    description: 'Get in touch with Micmag Homes & Fittings. Visit our Lagos stores in Oworonshoki, Sangotedo, and Alakija, or reach us by phone and WhatsApp.',
+    ogTitle: 'Contact Micmag Homes & Fittings | Lagos Paint & Fittings Stores',
+  });
   return (
     <motion.div
       initial={{ opacity: 0 }}

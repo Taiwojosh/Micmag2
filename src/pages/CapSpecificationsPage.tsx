@@ -3,8 +3,14 @@ import { motion } from 'motion/react';
 import { ArrowLeft, BookOpen, Award, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SandtexAdvantage from '../components/SandtexAdvantage';
+import { usePageMeta } from '../utils/usePageMeta';
 
 export default function CapSpecificationsPage() {
+  usePageMeta({
+    title: 'CAP Plc Technical Specifications',
+    description: 'Explore official CAP Plc Technical Data Sheets, paint yield calculators, and certified builder specifications for Sandtex and Caplux products.',
+    ogTitle: 'Sandtex & Caplux Technical Specifications | Micmag',
+  });
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}

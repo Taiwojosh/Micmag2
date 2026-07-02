@@ -19,6 +19,7 @@ import {
 import { PAINT_PRODUCTS, FITTINGS_PRODUCTS, PaintProduct, FittingProduct } from '../data/productsData';
 import { CAPLUX_PRODUCTS } from '../data/capluxProducts';
 import { openWhatsApp } from '../utils/whatsapp';
+import { usePageMeta } from '../utils/usePageMeta';
 import ProductDetailModal from '../components/ProductDetailModal';
 
 // Unified format for catalog products
@@ -31,7 +32,7 @@ interface StandardProduct {
   coverage?: string;
   image: string;
   fallback: string;
-  rawItem: any;
+  rawItem: PaintProduct | FittingProduct | (typeof import('../data/capluxProducts'))['CAPLUX_PRODUCTS'][number];
 }
 
 interface CartItem {
@@ -42,9 +43,15 @@ interface CartItem {
 
 export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState('');
+
+  usePageMeta({
+    title: 'Products & Collections',
+    description: 'Browse Micmag’s full catalog of Sandtex premium paints, Caplux surface preparation systems, and luxury European bathroom fittings. Available in Lagos.',
+    ogTitle: 'Micmag Products — Sandtex Paints, Caplux Primers & European Fittings',
+  });
   const [selectedBrand, setSelectedBrand] = useState<'all' | 'sandtex' | 'caplux' | 'micmag'>('all');
   const [selectedTag, setSelectedTag] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<'name-asc' | 'name-desc' | 'brand'>('name-asc');
+  const [sortBy, setSortBy] = useState<'name-asc' | 'name-desc' | 'brand'>('brand');
   
   // Cart / Inquiry Basket State
   const [cart, setCart] = useState<CartItem[]>([]);

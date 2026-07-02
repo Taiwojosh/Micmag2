@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Mail, Linkedin, ShieldCheck, Award, Briefcase, Users, CheckCircle2 } from 'lucide-react';
+import { usePageMeta } from '../utils/usePageMeta';
 
 interface TeamMember {
   name: string;
@@ -72,6 +73,11 @@ const teamMembers: TeamMember[] = [
 const springTransition = { type: "spring", stiffness: 100, damping: 15 };
 
 export default function TeamPage() {
+  usePageMeta({
+    title: 'Our Team',
+    description: 'Meet the Micmag technical and leadership team. Specialists in architectural coatings, surface preparation, and premium European fittings across Lagos.',
+    ogTitle: 'Micmag Team | Technical & Leadership Specialists',
+  });
   return (
     <motion.div
       initial={{ opacity: 0 }}
