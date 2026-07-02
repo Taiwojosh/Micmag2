@@ -405,13 +405,7 @@ export const FITTINGS_PRODUCTS: FittingProduct[] = [
     image: './micmag-architectural-castings.jpg',
     fallback: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800'
   },
-  {
-    name: 'Bampi Plumbing Systems',
-    desc: 'High-quality European polymer internal plumbing systems featuring soundproof drainage pipes and concealed cisterns with leak-proof push-fit technology.',
-    tag: 'Internal Plumbing',
-    image: './micmag-sanitary-ware.jpg',
-    fallback: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
-  },
+
   {
     name: 'Armani/Roca Luxury Collection',
     desc: 'Exclusive designer bathroom finishes featuring integrated wooden and marble vanities and standalone soaking tubs. Seamless integration for an uncompromising editorial finish in your living space.',

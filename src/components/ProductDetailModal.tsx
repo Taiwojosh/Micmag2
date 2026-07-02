@@ -277,9 +277,7 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
 
               {/* PANEL 2: SPECIFICATIONS & DESCRIPTION */}
             <div className="flex-shrink-0 w-[290px] sm:w-[350px] md:w-[380px] h-full flex flex-col gap-4 overflow-y-auto pr-4 border-r-2 border-dashed border-neutral-200">
-              <span className="block font-mono text-[9.5px] font-black text-brand-red uppercase tracking-widest">
-                02 &bull; OVERVIEW & DETAILS
-              </span>
+
 
               <div>
                 <h2 className="font-display font-black text-xl text-[#1c1917] tracking-tight leading-tight">

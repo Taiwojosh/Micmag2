@@ -130,35 +130,28 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 ---
 
-### 3. Bampi Plumbing Systems
-* **Division:** Internal Plumbing & Soundproof Piping
-* **Description:** High-quality European polymer internal plumbing systems featuring soundproof drainage pipes and concealed cisterns with leak-proof push-fit technology.
-* **Design Philosophy:** Minimizes architectural acoustics and drainage noise within luxury walls. The concealed dual-flush cisterns are engineered with high-strength polymer membranes to eliminate water leakage risk.
-
----
-
-### 4. Armani/Roca Luxury Collection
+### 3. Armani/Roca Luxury Collection
 * **Division:** Designer Bathrooms / Editorial Suites
 * **Description:** Exclusive designer bathroom finishes featuring integrated wooden and marble vanities and standalone soaking tubs. Seamless integration for an uncompromising editorial finish in your living space.
 * **Design Philosophy:** Combining the design codes of Giorgio Armani with Roca's engineering prowess to construct a highly intimate, elegant, and harmonious bathroom environment.
 
 ---
 
-### 5. Grohe Showers & Faucets
+### 4. Grohe Showers & Faucets
 * **Division:** Premium Brassware & German Smart Showers
 * **Description:** Innovative German-engineered smart showers, thermostat mixers, and touchless basin faucets. Combining water-saving EcoJoy technology with exceptional chrome and gold finish durability.
 * **Design Philosophy:** Merges modern touch/digital interfaces with hard-wearing protective plating. Built to prevent limescale buildup and maintain precise thermal levels for comfort and economy.
 
 ---
 
-### 6. Geberit Concealed Systems
+### 5. Geberit Concealed Systems
 * **Division:** Internal Plumbing & Swiss Wall cisterns
 * **Description:** Sleek, Swiss-designed behind-the-wall concealed cisterns and premium flush actuator plates. Famous for ultra-quiet acoustic insulation and zero leak-risk polymer construction.
 * **Design Philosophy:** Engineered for structural integration, completely hidden within drywall frames. Features a robust single-piece blow-molded tank to eliminate any risk of leak damage.
 
 ---
 
-### 7. Duravit Designer Ceramics
+### 6. Duravit Designer Ceramics
 * **Division:** European Ceramics & Designer Bathrooms
 * **Description:** Prestige German basins, standalone soaking tubs, and wall-hung WCs created by top designers. Features dirt-repellent WonderGliss glazes and hygiene-maximizing rimless flush technology.
 * **Design Philosophy:** Strives for a perfect blend of comfort, high technology, and visual design. Maximizes bathroom hygiene through smooth glazes and optimized, wash-down flush mechanics.
