@@ -127,7 +127,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 
 
-### 9. Caplux Eco-Base Undercoat 20L
+### 9. Caplux Undercoat 4L
 * **Category:** Premium Prep / Interior Undercoat
 * **General Description:** Low-odor, water-borne undercoat premium prep paint. Perfect for high-density public hallways, school classrooms, and luxury hotel rooms.
 * **Coverage:** 12 - 14 m²/L

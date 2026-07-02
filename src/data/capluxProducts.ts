@@ -369,7 +369,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Eco-Base Undercoat 20L',
+    name: 'Caplux Undercoat 4L',
     desc: 'Low-odor, water-borne undercoat premium prep paint. Perfect for high-density public hallways, school classrooms, and luxury hotel rooms.',
     tag: 'Premium Prep',
     coverage: '12 - 14 m²/L',
@@ -393,7 +393,7 @@ export const CAPLUX_PRODUCTS = [
         binder: 'Bio-based vinyl copolymer',
         solvent: 'Clean mineral water'
       },
-      packSize: '20 Liters',
+      packSize: '4 Liters',
       finish: 'Smooth Pure-White Flat Matt',
       volumeSolids: '35-38%',
       theoreticalCoverage: '12 - 14 sq.m per litre per coat',

@@ -327,69 +327,6 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
               )}
             </div>
 
-            {/* PANEL 3: INSTRUCTIONS & RELATED ITEMS */}
-            <div className="flex-shrink-0 w-[290px] sm:w-[350px] md:w-[380px] h-full flex flex-col gap-4 overflow-y-auto pr-4">
-              <span className="block font-mono text-[9.5px] font-black text-brand-red uppercase tracking-widest">
-                03 &bull; INSTRUCTIONS & EXTRA ITEMS
-              </span>
-
-              {/* Typical timeline for Services */}
-              {type === 'service' && (
-                <div className="space-y-2">
-                  <span className="block font-mono text-[9px] font-black text-[#1a6b3c] uppercase tracking-widest">
-                    TYPICAL SERVICE TIMELINE
-                  </span>
-                  <div className="relative border-l-2 border-[#e7e5e4] pl-4 ml-2 space-y-3 text-left">
-                    <div>
-                      <div className="absolute left-[-6px] w-2 h-2 rounded-full bg-[#1a6b3c] border border-[#1c1917]" />
-                      <span className="block font-mono text-[8px] text-[#78716c] uppercase">Day 1</span>
-                      <span className="font-sans text-xs font-bold text-[#1c1917]">Initial WhatsApp consultation & briefing</span>
-                    </div>
-                    <div>
-                      <div className="absolute left-[-6px] w-2 h-2 rounded-full bg-[#1a6b3c] border border-[#1c1917]" />
-                      <span className="block font-mono text-[8px] text-[#78716c] uppercase">Day 2-3</span>
-                      <span className="font-sans text-xs font-bold text-[#1c1917]">Site visit + physical measurements</span>
-                    </div>
-                    <div>
-                      <div className="absolute left-[-6px] w-2 h-2 rounded-full bg-[#1a6b3c] border border-[#1c1917]" />
-                      <span className="block font-mono text-[8px] text-[#78716c] uppercase">Day 4-7</span>
-                      <span className="font-sans text-xs font-bold text-[#1c1917]">Proposal design & rendering</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Related Products strip */}
-              {type === 'product' && (
-                <div className="space-y-2 flex-shrink-0">
-                  <span className="block font-mono text-[9px] font-black text-[#78716c] uppercase tracking-widest">
-                    YOU MIGHT ALSO NEED
-                  </span>
-                  <div className="flex gap-2.5 overflow-x-auto pb-1 scrollbar-none">
-                    {relatedProducts.map((p) => (
-                      <button
-                        key={p.id}
-                        onClick={() => {
-                          if (onSwapItem) {
-                            onSwapItem(p, 'product');
-                          }
-                        }}
-                        className="flex-shrink-0 w-28 bg-white border-2 border-[#1c1917] rounded-xl p-1.5 text-left hover:shadow-[2px_2px_0px_0px_#ea6c00] transition-all cursor-pointer shadow-[1px_1px_0px_0px_rgba(0,0,0,0.08)]"
-                      >
-                        <img src={p.image} alt={p.name} className="w-full h-12 object-contain bg-[#f5f5f4] rounded-lg border border-[#e7e5e4] p-1" onError={(e) => e.currentTarget.src = p.fallback} />
-                        <span className="block font-sans font-extrabold text-[9px] text-[#1c1917] mt-1 truncate leading-tight">
-                          {p.name}
-                        </span>
-                        <span className="block font-mono text-[7px] text-[#78716c] font-black uppercase">
-                          VIEW DETAILS &rarr;
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
           </div>
         </div>
 
@@ -415,9 +352,6 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
               <option value="">Select Location *</option>
               <option value="Lagos Mainland">Lagos Mainland</option>
               <option value="Lagos Island">Lagos Island</option>
-              <option value="Abuja FCT">Abuja FCT</option>
-              <option value="Port Harcourt">Port Harcourt</option>
-              <option value="Other Nigeria State">Other State</option>
             </select>
 
             {/* Submit Enquiry on WhatsApp */}

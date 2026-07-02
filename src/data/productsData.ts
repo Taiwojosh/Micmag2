@@ -297,7 +297,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     desc: 'Ready-mixed textured base coating specifically engineered to mask fine plaster cracks and uneven rendering. Durable fungi-resistant textured coat which stabilizes masonry pores.',
     tag: 'Surface Preparation',
     coverage: '1-1.5 m²/L',
-    image: './Sandtex Finebuild.png',
+    image: './Sandtex FineBuild.png',
     fallback: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
     tdsSpec: {
       title: 'SANDTEX FINEBUILD TEXTURED PRIMER COAT',
