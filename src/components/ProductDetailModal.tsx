@@ -51,19 +51,19 @@ export default function ProductDetailModal({
   const relatedProducts: RelatedProduct[] = [
     {
       id: 'vme',
-      name: 'Sandtex VME',
+      name: 'Sandtex VME (Vinyl Matt Emulsion) 20L/4L',
       image: './Sandtex VME.png',
       fallback: 'https://images.unsplash.com/photo-1590487988256-9ed24133863e?auto=format&fit=crop&q=80&w=800'
     },
     {
       id: 'select-vme',
-      name: 'Sandtex Select VME',
+      name: 'Sandtex Select VME 20L',
       image: './Sandtex select VME.png',
       fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800'
     },
     {
       id: 'satin',
-      name: 'Sandtex Satin',
+      name: 'Sandtex Satin 20L/4L',
       image: './satin1.png',
       fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800'
     }

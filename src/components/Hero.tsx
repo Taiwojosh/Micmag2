@@ -59,49 +59,49 @@ const SANDTEX_SLIDES = [
     color: "#b45309"
   },
   {
-    name: "Sandtex Premium Satin",
+    name: "Sandtex Satin 20L/4L",
     tag: "Interior & Exterior Semi-Gloss",
     image: "./satin1.png",
     description: "Elite washable emulsion for luxury spaces",
     color: "#ea6c00"
   },
   {
-    name: "Sandtex Select VME",
+    name: "Sandtex Select VME 20L",
     tag: "Interior & Exterior Matt",
     image: "./Sandtex select VME.png",
     description: "Ready-mix premium wall & ceiling finish with high yield",
     color: "#d32f2f"
   },
   {
-    name: "Sandtex Smooth & Tough Matt",
+    name: "Sandtex Matt (Smooth & Tough Exterior) 20L",
     tag: "Ultimate Exterior Shield",
     image: "./Sandtex MATT.png",
     description: "Anti-fungal weather preservation for aggressive coastal rain",
     color: "#ea6c00"
   },
   {
-    name: "Sandtex Trade Smooth",
+    name: "Sandtex Trade Smooth 20L",
     tag: "Professional Elite Masonry",
     image: "./Sandtex Trade Smooth.png",
     description: "Tremendous yield exterior paint favored by top developers",
     color: "#b45309"
   },
   {
-    name: "Sandtex Classic VME",
+    name: "Sandtex VME (Vinyl Matt Emulsion) 20L/4L",
     tag: "Interior Contract Classic",
     image: "./Sandtex VME.png",
     description: "Standard grade vinyl matt with superior opacity",
     color: "#ea6c00"
   },
   {
-    name: "Sandtex FineBuild",
+    name: "Sandtex Finebuild 20L",
     tag: "Textured Primer Build",
     image: "./Sandtex FineBuild.png",
     description: "Bridges hairline cracks & stabilizes porous walls",
     color: "#78716c"
   },
   {
-    name: "Sandtex Brilliant Gloss",
+    name: "Sandtex Gloss 4L",
     tag: "Multi-surface Gloss Enamel",
     image: "./Sandtex GLOSS.png",
     description: "Heavy-duty lead-free polyurethane gloss for metals & wood",
@@ -301,7 +301,7 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
             </span>
             <span className="text-[8px] font-serif font-bold uppercase tracking-widest" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
-              AUTHORIZED SANDTEX® DISTRIBUTOR
+              OFFICIAL SANDTEX® PARTNER
             </span>
           </motion.div>
 

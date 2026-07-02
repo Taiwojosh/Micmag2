@@ -153,7 +153,7 @@ export default function WhyMicmag() {
         <div className="flex flex-wrap justify-center items-center gap-4 mt-16">
           <TrustPill text="Official Sandtex® Partner" />
           <TrustPill text="Elite Caplux® Coatings Dealer" />
-          <TrustPill text="Genuine Manufacturer Warranty" />
+          <TrustPill text="Genuine CAP Warranty" />
         </div>
 
         {/* Trust block at bottom */}

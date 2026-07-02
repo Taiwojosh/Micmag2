@@ -17,21 +17,21 @@ import {
 // Configured to calculate standard material volume needs instead of volatile naira prices
 const CALC_METRICS = {
   gloss: {
-    name: 'Sandtex Gloss',
+    name: 'Sandtex Gloss 4L',
     competitorCoverage: 9, // m²/L average
     sandtexCoverage: 17, // m²/L average
     savingPercent: 47,
     unit: 'Liters'
   },
   emulsion: {
-    name: 'Sandtex VME Emulsion',
+    name: 'Sandtex VME (Vinyl Matt Emulsion) 20L/4L',
     competitorCoverage: 6.5, // m²/L average
     sandtexCoverage: 9, // m²/L average
     savingPercent: 28,
     unit: 'Liters'
   },
   satin: {
-    name: 'Sandtex Satin',
+    name: 'Sandtex Satin 20L/4L',
     competitorCoverage: 8, // m²/L average
     sandtexCoverage: 13, // m²/L average
     savingPercent: 39,

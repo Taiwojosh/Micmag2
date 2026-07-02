@@ -1,6 +1,6 @@
 export const CAPLUX_PRODUCTS = [
   {
-    name: 'Caplux Putty',
+    name: 'Caplux Premium Acrylic Putty 20kg',
     desc: 'Ready-to-use professional grade acrylic screeding putty. Delivers a highly uniform, ultra-smooth base to eliminate hairline cracks and plaster imperfections before topcoat application.',
     tag: 'Screeding & Fills',
     coverage: '1.5 - 2.5 m²/kg',
@@ -47,7 +47,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Alkali',
+    name: 'Caplux Alkali Resisting Primer 20L',
     desc: 'High-performance water-borne primer sealer engineered to shield topcoats from masonry alkalinity. Ideal for fresh plaster and concrete blocks to prevent peeling.',
     tag: 'Salt Protection',
     coverage: '10 - 12 m²/L',
@@ -93,7 +93,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Red Oxide',
+    name: 'Caplux Red Oxide Anti-Rust Primer 4L',
     desc: 'Premium solvent-borne anti-corrosion primer for ferrous steel. Infused with superior synthetic alkyd binders to lock out coastal air humidity and sea-spray rust.',
     tag: 'Anti-Rust Metal',
     coverage: '12 - 14 m²/L',
@@ -139,7 +139,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Sealer',
+    name: 'Caplux Plaster Sealer 20L',
     desc: 'High-binding, deep-penetrating water base sealer designed to lock powdery masonry substrates and seal porous blockwork surfaces for higher paint yields.',
     tag: 'Substrate Sealer',
     coverage: '8 - 10 m²/L',
@@ -185,7 +185,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Wood Primer',
+    name: 'Caplux Wood Primer White 4L',
     desc: 'Oil-based primer sealer formulated for soft and hardwoods. Seals wood micropores, blocks tannin bleeding, and creates a dense protective layer.',
     tag: 'Wood Undercoat',
     coverage: '11 - 13 m²/L',
@@ -231,7 +231,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux POP',
+    name: 'Caplux Gypsum (POP) Primer 20L',
     desc: 'Specialist primer formulated exclusively for gypsum boards and sophisticated POP ceilings. Seals porous POP surfaces without swelling drywall joints.',
     tag: 'POP Ceiling Prep',
     coverage: '9 - 11 m²/L',
@@ -277,7 +277,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Stabilizing',
+    name: 'Caplux Solvent Stabilizing Sealer 20L',
     desc: 'Elite solvent-borne binder for highly powdery, degraded or chalky brickwork and aged weather-exposed facades. Consolidates crumbly renders to prevent peeling.',
     tag: 'Substrate Binders',
     coverage: '6 - 8 m²/L',
@@ -323,7 +323,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Textured Base',
+    name: 'Caplux Fine Textured Primer 20L',
     desc: 'Fine sand-aggregate water-based textured primer. Excellent for bridging minor plaster cracks and creating a powerful mechanical grip for exterior coatings.',
     tag: 'Anti-Crack Primers',
     coverage: '2.5 - 3.5 m²/L',
@@ -369,7 +369,7 @@ export const CAPLUX_PRODUCTS = [
     }
   },
   {
-    name: 'Caplux Eco Undercoat',
+    name: 'Caplux Eco-Base Undercoat 20L',
     desc: 'Low-odor, water-borne undercoat premium prep paint. Perfect for high-density public hallways, school classrooms, and luxury hotel rooms.',
     tag: 'Premium Prep',
     coverage: '12 - 14 m²/L',

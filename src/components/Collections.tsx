@@ -11,7 +11,7 @@ import { openWhatsApp } from '../utils/whatsapp';
 
 const PAINT_PRODUCTS = [
   {
-    name: 'VME (Vinyl Matt Emulsion) 20L/4L',
+    name: 'Sandtex VME (Vinyl Matt Emulsion) 20L/4L',
     desc: 'High-opacity, contract-grade vinyl matt emulsion direct from CAP Plc. Delivers a gorgeous rich matt finish with exceptional wet-on-wet spread and superior durability. Available in over 120 colors.',
     tag: 'Interior Classic',
     coverage: '8-10 m²/L',
@@ -59,7 +59,7 @@ const PAINT_PRODUCTS = [
     }
   },
   {
-    name: 'Select VME 20L',
+    name: 'Sandtex Select VME 20L',
     desc: 'Premium ready-mix matt finish with outstanding hiding power, durability, and color retention. Suitable for beautiful smooth finishes on interior and exterior walls and ceilings.',
     tag: 'Interior & Exterior Matt',
     coverage: '8 m²/L per coat',
@@ -108,7 +108,7 @@ const PAINT_PRODUCTS = [
     }
   },
   {
-    name: 'Satin 20L/4L',
+    name: 'Sandtex Satin 20L/4L',
     desc: 'Elite satin emulsion delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.',
     tag: 'Interior & Exterior',
     coverage: '12-14 m²/L',
@@ -156,7 +156,7 @@ const PAINT_PRODUCTS = [
     }
   },
   {
-    name: 'Matt (Smooth & Tough Exterior) 20L',
+    name: 'Sandtex Matt (Smooth & Tough Exterior) 20L',
     desc: 'Legendary exterior coating delivering wet & coastal protection for humid regions. Actively curbs algae and fungi growth while allowing masonry breathing ventilation. Only 1 coat required.',
     tag: 'Exterior Shield',
     coverage: '2.5-3.5 m²/L',
@@ -204,7 +204,7 @@ const PAINT_PRODUCTS = [
     }
   },
   {
-    name: 'Trade Smooth 20L',
+    name: 'Sandtex Trade Smooth 20L',
     desc: 'Highly robust, smooth, tough exterior developer paint. Delivers a long-lasting, superior-quality weather barrier favored by elite Nigerian real estate developers for its tremendous yield specs.',
     tag: 'Professional Elite',
     coverage: '14-16 m²/L',
@@ -252,7 +252,7 @@ const PAINT_PRODUCTS = [
     }
   },
   {
-    name: 'Finebuild 20L',
+    name: 'Sandtex Finebuild 20L',
     desc: 'Ready-mixed textured base coating specifically engineered to mask fine plaster cracks and uneven rendering. Durable fungi-resistant textured coat which stabilizes masonry pores.',
     tag: 'Surface Preparation',
     coverage: '1-1.5 m²/L',
@@ -300,7 +300,7 @@ const PAINT_PRODUCTS = [
     }
   },
   {
-    name: 'Gloss 4L',
+    name: 'Sandtex Gloss 4L',
     desc: 'Brilliant non-yellowing high-gloss protective enamel for gates, wooden balustrades, skirting, and steel frame trims. Contains no added lead for ultimate workplace and environmental safety.',
     tag: 'Multi-surface Gloss',
     coverage: '16-18 m²/L',
@@ -351,30 +351,30 @@ const PAINT_PRODUCTS = [
 
 const FITTINGS_PRODUCTS = [
   {
-    name: 'Stucco Lustro Effect',
-    desc: 'Classic Venetian marble plaster coating for luxury accent walls. Delivers a highly polished, glass-like reflective finish with delicate color depth for premium offices and residences.',
-    tag: 'Decorative Plasters',
+    name: 'Ideal Standard Sanitary Ware',
+    desc: 'World-renowned European sanitary ware, ceramic basins, and premium water closets. Engineered with elegant curves, durable glossy glaze, and state-of-the-art dual-flush engineering. Available in WCs, Basins, and Bidets.',
+    tag: 'European Ceramics',
     image: './micmag-sanitary-ware.jpg',
     fallback: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
   },
   {
-    name: 'Premium Screeding & Skimcoat',
-    desc: 'Elite acrylic-modified wall putty for perfect mirror-flat substrate preparation. Fills hairline cracks, locks porosity, and guarantees extreme adhesion for both Sandtex and Caplux topcoats.',
-    tag: 'Wall Putty & Prep',
+    name: 'Vado Mixers & Showers',
+    desc: 'Solid brass basin mixers and rain showers with integrated aerated flow technologies. Available in elegant chrome and matte black finishes for an elite bathroom experience.',
+    tag: 'Premium Brassware',
     image: './micmag-architectural-castings.jpg',
     fallback: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800'
   },
   {
-    name: 'Metallic & Pearl Effect Paints',
-    desc: 'High-end water-borne metallic topcoats reflecting subtle gold, copper, or pearl luster under ambient lighting. Ideal for exclusive hotel lobbies, feature columns, and luxury master bedrooms.',
-    tag: 'Specialty Effects',
+    name: 'Bampi Plumbing Systems',
+    desc: 'High-quality European polymer internal plumbing systems featuring soundproof drainage pipes and concealed cisterns with leak-proof push-fit technology.',
+    tag: 'Internal Plumbing',
     image: './micmag-sanitary-ware.jpg',
     fallback: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
   },
   {
-    name: 'Epoxy Floor Coatings',
-    desc: 'Heavy-duty self-leveling resin-based protective flooring system. Designed to block oil stains, chemical corrosion, and heavy vehicle traffic in garages, warehouses, and industrial depots.',
-    tag: 'Floor Finishes',
+    name: 'Armani/Roca Luxury Collection',
+    desc: 'Exclusive designer bathroom finishes featuring integrated wooden and marble vanities and standalone soaking tubs. Seamless integration for an uncompromising editorial finish in your living space.',
+    tag: 'Designer Bathrooms',
     image: './micmag-architectural-castings.jpg',
     fallback: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800'
   }

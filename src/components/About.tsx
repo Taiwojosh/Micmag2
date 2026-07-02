@@ -97,7 +97,7 @@ export default function About() {
               Exquisite Decorative Finishes & Legendary Paint Coatings
             </h2>
             <p className="text-sm md:text-base leading-relaxed text-brand-mid font-light text-left" style={{ color: '#000082' }}>
-              As an authorized partner of <strong className="text-brand-charcoal text-bold font-medium">Sandtex</strong>, Micmag merges exquisite interior design aesthetics with legendary coating technology. We specialize in bespoke architectural color consulting, high-end textured plasters, luxury Matt emulsions, and precision automated tinting services—offering architects, interior designers, and premium property developers a flawless synthesis of visual elegance and weatherproofing engineering.
+              As an Official Sandtex® Partner, Micmag merges exquisite interior design aesthetics with legendary coating technology. We specialize in bespoke architectural color consulting, high-end textured plasters, luxury Matt emulsions, and precision automated tinting services—offering architects, interior designers, and premium property developers a flawless synthesis of visual elegance and weatherproofing engineering.
             </p>
 
           </motion.div>
