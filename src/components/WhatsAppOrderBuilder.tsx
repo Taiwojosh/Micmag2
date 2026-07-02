@@ -27,6 +27,7 @@ const PAINT_MODELS: PaintModel[] = [
   { name: 'Plaster Primer 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
   { name: 'Stabilizing Solution Sealer 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
   { name: 'Undercoat 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
+  { name: 'Biocidal Wash 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
 ];
 
 interface ColorOption {

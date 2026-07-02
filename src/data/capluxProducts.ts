@@ -277,5 +277,51 @@ export const CAPLUX_PRODUCTS = [
         careline: 'CAP Plc Careline support line: 08159493070'
       }
     }
+  },
+  {
+    name: 'Biocidal Wash 4L',
+    desc: 'Professional-grade sterilization wash designed to actively kill and prevent algae, mold, lichen, and fungal spores on interior and exterior masonry before paint application.',
+    tag: 'Fungi Sterilization',
+    coverage: '6 - 8 m²/L',
+    image: './Caplux biocidal wash.jpg',
+    fallback: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
+    tdsSpec: {
+      title: 'BIOCIDAL WASH 4L',
+      description: 'High-efficacy fungicidal treatment wash formulated to sanitize infected brickwork, stucco, concrete, and timber surfaces before priming and topcoating.',
+      typicalUses: [
+        'Exterior walls plagued by black mold, moss, or algae growth',
+        'Humid interior bathrooms and kitchens showing mildew staining before repaint'
+      ],
+      keyBenefits: [
+        'Destroys fungal spores at root level',
+        'Long-term residual protection prevents regrowth under new paint',
+        'Safe to use on concrete, timber, brick, and renders',
+        'Easy brush-on or spray application'
+      ],
+      composition: {
+        pigment: 'Unpigmented clear solution',
+        binder: 'Biocide active compounds',
+        solvent: 'Water'
+      },
+      packSize: '4 Liters',
+      finish: 'Clear Liquid',
+      volumeSolids: 'N/A (Solution)',
+      theoreticalCoverage: '6 - 8 sq.m per Liters depending on surface profile',
+      dryingInfo: {
+        touchDry: '30 Minutes',
+        hardDry: '2 - 4 Hours (surface must be fully dry before priming)',
+        opacity: '1 application wash'
+      },
+      applicationInfo: {
+        method: 'Apply by brush, roller, or low-pressure spray. Allow to react for 24 hours, scrape/wash off dead growth, then rinse.'
+      },
+      thinning: {
+        brushRoller: 'Apply direct, or thin 1:1 with clean water for mild infections.'
+      },
+      safetyStorage: {
+        storage: 'Keep container locked and upright in shade. Do not inhale spray mist. Wear protective gloves.',
+        careline: 'Chemical & Allied Products Plc: 08159493070'
+      }
+    }
   }
 ];

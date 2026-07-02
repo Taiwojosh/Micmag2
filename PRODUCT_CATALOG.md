@@ -110,6 +110,13 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 * **General Description:** Low-odor, water-borne undercoat premium prep paint. Perfect for high-density public hallways, school classrooms, and luxury hotel rooms.
 * **Coverage:** 12 - 14 m²/L
 
+---
+
+### 7. Biocidal Wash 4L
+* **Category:** Fungi Sterilization / Algae Treatment
+* **General Description:** Professional-grade sterilization wash designed to actively kill and prevent algae, mold, lichen, and fungal spores on interior and exterior masonry before paint application.
+* **Coverage:** 6 - 8 m²/L
+
 
 ---
 ---
