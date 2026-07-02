@@ -17,7 +17,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   // Oworonshoki HQ
   {
-    name: "AJIKE FAKANDE",
+    name: "Mrs. AJIKE FAKANDE",
     role: "Team Lead",
     specialty: "Architectural Specification & Formulations",
     bio: "Leads technical assessment, formulation matching, and high-performance paint specifications for corporate developers and client onboarding at the Oworonshoki HQ.",
