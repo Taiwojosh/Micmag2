@@ -98,7 +98,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 ---
 
-### 5. Solvent Stabilizing Sealer 20L
+### 5. Stabilizing Solution Sealer 4L
 * **Category:** Substrate Binders / Deep Stabilization
 * **General Description:** Elite solvent-borne binder for highly powdery, degraded or chalky brickwork and aged weather-exposed facades. Consolidates crumbly renders to prevent peeling.
 * **Coverage:** 6 - 8 m²/L

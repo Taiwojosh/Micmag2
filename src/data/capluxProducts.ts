@@ -186,7 +186,7 @@ export const CAPLUX_PRODUCTS = [
   },
 
   {
-    name: 'Solvent Stabilizing Sealer 20L',
+    name: 'Stabilizing Solution Sealer 4L',
     desc: 'Elite solvent-borne binder for highly powdery, degraded or chalky brickwork and aged weather-exposed facades. Consolidates crumbly renders to prevent peeling.',
     tag: 'Substrate Binders',
     coverage: '6 - 8 m²/L',
@@ -210,7 +210,7 @@ export const CAPLUX_PRODUCTS = [
         binder: 'Aromatic thermosetting acrylic polymer',
         solvent: 'Aromatic hydrocarbons'
       },
-      packSize: '20 Liters',
+      packSize: '4 Liters',
       finish: 'Invisible Dry Finish (Clear/Amber)',
       volumeSolids: '25-28%',
       theoreticalCoverage: '6 - 8 sq.m per litre based on deterioration severity',
