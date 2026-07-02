@@ -53,7 +53,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 ---
 
 ### 6. Sandtex Finebuild 20L
-* **Category:** Surface Preparation / Textured Primer
+* **Category:** Exterior Defense
 * **General Description:** Ready-mixed textured base coating specifically engineered to mask fine plaster cracks and uneven rendering. Durable fungi-resistant textured coat which stabilizes masonry pores.
 * **Coverage:** 1-1.5 m²/L
 
@@ -69,7 +69,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 ## SECTION 2: Caplux Prep & Protection Systems
 
-### 1. Caplux Premium Acrylic Putty 20kg
+### 1. screeding filler
 * **Category:** Screeding & Fills
 * **General Description:** Ready-to-use professional grade acrylic screeding putty. Delivers a highly uniform, ultra-smooth base to eliminate hairline cracks and plaster imperfections before topcoat application.
 * **Coverage:** 1.5 - 2.5 m²/kg

@@ -1,6 +1,6 @@
 export const CAPLUX_PRODUCTS = [
   {
-    name: 'Caplux Premium Acrylic Putty 20kg',
+    name: 'screeding filler',
     desc: 'Ready-to-use professional grade acrylic screeding putty. Delivers a highly uniform, ultra-smooth base to eliminate hairline cracks and plaster imperfections before topcoat application.',
     tag: 'Screeding & Fills',
     coverage: '1.5 - 2.5 m²/kg',
