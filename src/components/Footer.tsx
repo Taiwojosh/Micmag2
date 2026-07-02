@@ -115,7 +115,7 @@ export default function Footer() {
               {/* Physical Address Footnote */}
               <div className="pt-2 border-t border-neutral-800/60 text-[11px] text-neutral-400 flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#d32f2f] mt-0.5 flex-shrink-0" />
-                <p>Offices in Oworonshoki (HQ), Sangotedo, Alakija, Ikorodu, Ogbombo, and Bojije. Nationwide container site drops directly coordinated daily.</p>
+                <p>Offices in Oworonshoki (HQ), Sangotedo, Alakija, Ikorodu, Ogbombo, and Bogije. Nationwide container site drops directly coordinated daily.</p>
               </div>
 
             </div>

@@ -50,7 +50,7 @@ const BRANCHES = [
   },
   { 
     id: 'alakija', 
-    name: 'Alakija Trade Store', 
+    name: 'Alakija Store', 
     node: 'Alakija Core Store', 
     address: 'Merkato plaza, Alakija Festac, Lagos-Badagry expressway, Lagos', 
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
@@ -65,7 +65,7 @@ const BRANCHES = [
   },
   { 
     id: 'ikorodu', 
-    name: 'Ikorodu Mainland Store', 
+    name: 'Ikorodu Store', 
     node: 'Ikorodu Store', 
     address: 'Lawret Plaza, Itamaga Roundabout, Ikorodu', 
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
@@ -94,10 +94,10 @@ const BRANCHES = [
     micmagActive: false
   },
   {
-    id: 'bojije',
-    name: 'Bojije Store',
-    node: 'Ibeju-Lekki Outlet',
-    address: 'Bojije Bus Stop, Lekki-Epe Expressway, Ibeju-Lekki, Lagos',
+    id: 'bogije',
+    name: 'Bogije Store',
+    node: 'Bogije Outlet',
+    address: 'Bogije Bus Stop, Lekki-Epe Expressway, Ibeju-Lekki, Lagos',
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 706 792 4965',
     tag: 'Contractor Volume Depot',
@@ -124,7 +124,7 @@ export default function ServiceLocations() {
   // Filter logic
   const filteredBranches = BRANCHES.filter(b => {
     if (activeTab === 'island') {
-      return b.id === 'sangotedo' || b.id === 'ogombo' || b.id === 'bojije';
+      return b.id === 'sangotedo' || b.id === 'ogombo' || b.id === 'bogije';
     }
     if (activeTab === 'mainland') {
       return b.id === 'oworonshoki' || b.id === 'alakija' || b.id === 'ikorodu';

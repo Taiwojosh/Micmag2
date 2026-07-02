@@ -38,7 +38,7 @@ const offices: OfficeBranch[] = [
   },
   { 
     id: 'alakija', 
-    name: 'Alakija Trade Store', 
+    name: 'Alakija Store', 
     address: 'Merkato plaza, Alakija Festac, Lagos-Badagry expressway, Lagos', 
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
     phone: '+234 706 792 4965',
@@ -67,9 +67,9 @@ const offices: OfficeBranch[] = [
     services: ['Paint Custom Tinting', 'Caplux Wall Putty Ready Supply', 'Fast Site Logistics']
   },
   {
-    id: 'bojije',
-    name: 'Bojije Volume Depot',
-    address: 'Bojije Bus Stop, Lekki-Epe Expressway, Ibeju-Lekki, Lagos',
+    id: 'bogije',
+    name: 'Bogije Store',
+    address: 'Bogije Bus Stop, Lekki-Epe Expressway, Ibeju-Lekki, Lagos',
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 706 792 4965',
     tag: 'Contractor Volume Depot',

@@ -7,10 +7,10 @@ import { openWhatsApp } from '../utils/whatsapp';
 const BRANCHES = [
   'Oworonshoki (Headquarters Depot)',
   'Sangotedo (Island Store)',
-  'Alakija (Festac Trade Store)',
-  'Ikorodu (Mainland Store)',
+  'Alakija Store',
+  'Ikorodu Store',
   'Ogbombo Store',
-  'Bojije Store',
+  'Bogije Store',
 ];
 
 export default function LeadForm() {

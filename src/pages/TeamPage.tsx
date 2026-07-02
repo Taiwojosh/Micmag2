@@ -82,7 +82,7 @@ const teamMembers: TeamMember[] = [
     name: "JOHN NICHOLAS",
     role: "Sales Executive",
     specialty: "Trade Accounts & Sales Advisory",
-    bio: "Coordinates trade client relations, contractor pricing programs, and custom coating advice at the Alakija Trade Store.",
+    bio: "Coordinates trade client relations, contractor pricing programs, and custom coating advice at the Alakija Store.",
     email: "nicholas.john7070@gmail.com",
     branch: "Alakija",
     bgGradient: "from-indigo-500/10 to-indigo-600/10",
@@ -114,7 +114,7 @@ export default function TeamPage() {
     },
     {
       id: 'alakija',
-      name: 'Alakija Trade Store',
+      name: 'Alakija Store',
       subtitle: 'Festac & Badagry Expressway Direct Contractor Outlet',
       members: teamMembers.filter(m => m.branch === 'Alakija')
     }
