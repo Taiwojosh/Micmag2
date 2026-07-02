@@ -56,6 +56,16 @@ const teamMembers: TeamMember[] = [
     bgGradient: "from-purple-500/10 to-purple-600/10",
     textColor: "text-purple-700"
   },
+  {
+    name: "IFEOLUWA TAIWO",
+    role: "Digital Strategist",
+    specialty: "Digital Operations & Brand Growth",
+    bio: "Directs digital campaigns, e-commerce integrations, online client acquisition channels, and technical media strategies for Micmag.",
+    email: "ifemicmag@gmail.com",
+    branch: "Oworonshoki HQ",
+    bgGradient: "from-emerald-500/10 to-emerald-600/10",
+    textColor: "text-emerald-700"
+  },
   // Sangotedo Branch
   {
     name: "AGASHI TEVASE ROSEMARY",
