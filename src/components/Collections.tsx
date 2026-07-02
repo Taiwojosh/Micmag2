@@ -572,7 +572,7 @@ export default function Collections() {
               <div className="space-y-1">
                 <h4 className="text-xs font-bold text-amber-950 flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-amber-600 inline-block animate-pulse" />
-                  Currently Viewing: Micmag Specialty & Prep Coatings (Premium Solutions)
+                  Currently Viewing: Premium Sanitary & Fittings Collection (Luxury European Brands)
                 </h4>
 
               </div>

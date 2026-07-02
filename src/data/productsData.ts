@@ -418,5 +418,26 @@ export const FITTINGS_PRODUCTS: FittingProduct[] = [
     tag: 'Designer Bathrooms',
     image: './micmag-architectural-castings.jpg',
     fallback: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    name: 'Grohe Showers & Faucets',
+    desc: 'Innovative German-engineered smart showers, thermostat mixers, and touchless basin faucets. Combining water-saving EcoJoy technology with exceptional chrome and gold finish durability.',
+    tag: 'Premium Brassware',
+    image: './micmag-architectural-castings.jpg',
+    fallback: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    name: 'Geberit Concealed Systems',
+    desc: 'Sleek, Swiss-designed behind-the-wall concealed cisterns and premium flush actuator plates. Famous for ultra-quiet acoustic insulation and zero leak-risk polymer construction.',
+    tag: 'Internal Plumbing',
+    image: './micmag-sanitary-ware.jpg',
+    fallback: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    name: 'Duravit Designer Ceramics',
+    desc: 'Prestige German basins, standalone soaking tubs, and wall-hung WCs created by top designers. Features dirt-repellent WonderGliss glazes and hygiene-maximizing rimless flush technology.',
+    tag: 'European Ceramics',
+    image: './micmag-sanitary-ware.jpg',
+    fallback: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
   }
 ];

@@ -1,9 +1,9 @@
 export const CAPLUX_PRODUCTS = [
   {
-    name: 'Screeding Filler',
+    name: 'Screeding Filler 20L',
     desc: 'Ready-to-use professional grade acrylic screeding putty. Delivers a highly uniform, ultra-smooth base to eliminate hairline cracks and plaster imperfections before topcoat application.',
     tag: 'Screeding & Fills',
-    coverage: '1.5 - 2.5 m²/kg',
+    coverage: '1.5 - 2.5 m²/L',
     image: './Screeding Filler.jpg',
     fallback: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
     tdsSpec: {
@@ -24,10 +24,10 @@ export const CAPLUX_PRODUCTS = [
         binder: 'Acrylic copolymer emulsion',
         solvent: 'Water'
       },
-      packSize: '20 Kilograms',
+      packSize: '20 Liters',
       finish: 'Smooth Fine White Matt',
       volumeSolids: '48% - 52%',
-      theoreticalCoverage: '1.5 - 2.5 sq.m per kg depending on render irregularities',
+      theoreticalCoverage: '1.5 - 2.5 sq.m per Liters depending on render irregularities',
       dryingInfo: {
         touchDry: '2 Hours',
         hardDry: '12 - 24 Hours (recoat/sand after full cure)',
@@ -35,7 +35,7 @@ export const CAPLUX_PRODUCTS = [
       },
       applicationInfo: {
         method: 'Apply directly with steel spatula or taping trowel.',
-        coverage: '1.5 - 2.5 sq.m/kg.'
+        coverage: '1.5 - 2.5 sq.m/L.'
       },
       thinning: {
         brushRoller: 'Do not thin. Apply straight from container.'

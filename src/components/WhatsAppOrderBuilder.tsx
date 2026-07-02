@@ -21,7 +21,7 @@ const PAINT_MODELS: PaintModel[] = [
   { name: 'Sandtex Finebuild 20L', brand: 'sandtex', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
   { name: 'Sandtex Gloss 4L', brand: 'sandtex', hasColor: true, sizes: ['4 Liters'], defaultSize: '4 Liters' },
   // Caplux
-  { name: 'Screeding Filler', brand: 'caplux', hasColor: false, sizes: ['20 kg Bag'], defaultSize: '20 kg Bag' },
+  { name: 'Screeding Filler 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
   { name: 'Alkali Resisting Primer 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
   { name: 'Red Oxide Anti-Rust Primer 4L', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
   { name: 'Plaster Primer 20L', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },

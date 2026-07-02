@@ -329,7 +329,7 @@ export default function ProductsPage() {
                   { id: 'all', label: 'All Catalogues' },
                   { id: 'sandtex', label: 'Sandtex Paint System' },
                   { id: 'caplux', label: 'Caplux Preparation' },
-                  { id: 'micmag', label: 'Micmag Specialty & Prep' }
+                  { id: 'micmag', label: 'Sanitary & Fittings' }
                 ].map(b => (
                   <button
                     key={b.id}

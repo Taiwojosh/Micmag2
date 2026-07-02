@@ -69,10 +69,10 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 ## SECTION 2: Caplux Prep & Protection Systems
 
-### 1. Screeding Filler
+### 1. Screeding Filler 20L
 * **Category:** Screeding & Fills
 * **General Description:** Ready-to-use professional grade acrylic screeding putty. Delivers a highly uniform, ultra-smooth base to eliminate hairline cracks and plaster imperfections before topcoat application.
-* **Coverage:** 1.5 - 2.5 m²/kg
+* **Coverage:** 1.5 - 2.5 m²/L
 
 
 ### 2. Alkali Resisting Primer 4L
@@ -114,7 +114,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 ---
 ---
 
-## SECTION 3: Interior Designs & Fittings
+## SECTION 3: Luxury European Bathroom Sanitary Ware & Fittings
 
 ### 1. Ideal Standard Sanitary Ware
 * **Division:** European Ceramics / Executive Bathrooms
@@ -141,3 +141,24 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 * **Division:** Designer Bathrooms / Editorial Suites
 * **Description:** Exclusive designer bathroom finishes featuring integrated wooden and marble vanities and standalone soaking tubs. Seamless integration for an uncompromising editorial finish in your living space.
 * **Design Philosophy:** Combining the design codes of Giorgio Armani with Roca's engineering prowess to construct a highly intimate, elegant, and harmonious bathroom environment.
+
+---
+
+### 5. Grohe Showers & Faucets
+* **Division:** Premium Brassware & German Smart Showers
+* **Description:** Innovative German-engineered smart showers, thermostat mixers, and touchless basin faucets. Combining water-saving EcoJoy technology with exceptional chrome and gold finish durability.
+* **Design Philosophy:** Merges modern touch/digital interfaces with hard-wearing protective plating. Built to prevent limescale buildup and maintain precise thermal levels for comfort and economy.
+
+---
+
+### 6. Geberit Concealed Systems
+* **Division:** Internal Plumbing & Swiss Wall cisterns
+* **Description:** Sleek, Swiss-designed behind-the-wall concealed cisterns and premium flush actuator plates. Famous for ultra-quiet acoustic insulation and zero leak-risk polymer construction.
+* **Design Philosophy:** Engineered for structural integration, completely hidden within drywall frames. Features a robust single-piece blow-molded tank to eliminate any risk of leak damage.
+
+---
+
+### 7. Duravit Designer Ceramics
+* **Division:** European Ceramics & Designer Bathrooms
+* **Description:** Prestige German basins, standalone soaking tubs, and wall-hung WCs created by top designers. Features dirt-repellent WonderGliss glazes and hygiene-maximizing rimless flush technology.
+* **Design Philosophy:** Strives for a perfect blend of comfort, high technology, and visual design. Maximizes bathroom hygiene through smooth glazes and optimized, wash-down flush mechanics.
