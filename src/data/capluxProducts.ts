@@ -184,98 +184,7 @@ export const CAPLUX_PRODUCTS = [
       }
     }
   },
-  {
-    name: 'Caplux Wood Primer White 4L',
-    desc: 'Oil-based primer sealer formulated for soft and hardwoods. Seals wood micropores, blocks tannin bleeding, and creates a dense protective layer.',
-    tag: 'Wood Undercoat',
-    coverage: '11 - 13 m²/L',
-    image: './Caplux Undercoat.png',
-    fallback: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800',
-    tdsSpec: {
-      title: 'CAPLUX WHITE OIL-BASED WOOD PRIMER',
-      description: 'Premium oil-based wood primer for architectural timber, frames, and trim details. Locks wood knots and seals timber grain.',
-      typicalUses: [
-        'Interior wooden cabinet frames, door frames, baseboards',
-        'Exterior wooden cladding structures, pergolas, banisters'
-      ],
-      keyBenefits: [
-        'Stops wood sap and tannin bleeding which ruins paint colors',
-        'Provides a hard, easily sandable uniform surface layer',
-        'Deep water resistance prevents timber rotting and swelling',
-        'Exceptional opacity levels out timber texture variations'
-      ],
-      composition: {
-        pigment: 'Titanium dioxide and fine wood sealers',
-        binder: 'High-build synthetic oil-alkyd',
-        solvent: 'Petroleum distillates'
-      },
-      packSize: '4 Liters',
-      finish: 'Matt White Shell',
-      volumeSolids: '52-55%',
-      theoreticalCoverage: '11 - 13 sq.m per litre per coat',
-      dryingInfo: {
-        touchDry: '30 Minutes',
-        hardDry: '16 Hours for sanding and topcoating',
-        opacity: '1 coat is standard'
-      },
-      applicationInfo: {
-        method: 'Apply along timber grain lines using natural bristle brushes.'
-      },
-      thinning: {
-        brushRoller: 'Usually ready-for-use. Thin 5% turpentine if wood is dry.'
-      },
-      safetyStorage: {
-        storage: 'Flammable. Store upright. Ensure ample cross-ventilation during application.',
-        careline: 'CAP Plc helpline: 08159493070'
-      }
-    }
-  },
-  {
-    name: 'Caplux Gypsum (POP) Primer 20L',
-    desc: 'Specialist primer formulated exclusively for gypsum boards and sophisticated POP ceilings. Seals porous POP surfaces without swelling drywall joints.',
-    tag: 'POP Ceiling Prep',
-    coverage: '9 - 11 m²/L',
-    image: './Caplux Undercoat.png',
-    fallback: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800',
-    tdsSpec: {
-      title: 'CAPLUX SPECIALIST POP CEILING PRIMER',
-      description: 'Water-based primer co-polymer formulated with ultra-fine pigments to establish immediate opacity on high-porosity gypsum ceiling castings.',
-      typicalUses: [
-        'Gypsum plaster casting sheets, luxury POP ceilings, bulkheads',
-        'Drywall partitions and screeded boards'
-      ],
-      keyBenefits: [
-        'Perfect adhesion on smooth ceiling details',
-        'Does not swell joint tapes or corner beads',
-        'Prevents color variance between joints and drywall surfaces',
-        'Allows ceiling to breathe'
-      ],
-      composition: {
-        pigment: 'Delicate micronized calcium silicates and TiO2',
-        binder: 'Fine acrylic latex resin',
-        solvent: 'Water'
-      },
-      packSize: '20 Liters',
-      finish: 'Ultra-Matt Chalk White',
-      volumeSolids: '32-34%',
-      theoreticalCoverage: '9 - 11 sq.m per litre per coat',
-      dryingInfo: {
-        touchDry: '15-20 Minutes',
-        hardDry: '2 Hours (extremely rapid dry system)',
-        opacity: '1-2 coats depending on skim depth'
-      },
-      applicationInfo: {
-        method: 'Apply with sheepskin roller. Ensure ceiling is clean from gypsum mold-release dust.'
-      },
-      thinning: {
-        brushRoller: 'Do not thin. Apply direct.'
-      },
-      safetyStorage: {
-        storage: 'Store cool and dry. Keep out of reach of children.',
-        careline: 'CAP Plc customer support Careline: 08159493070'
-      }
-    }
-  },
+
   {
     name: 'Caplux Solvent Stabilizing Sealer 20L',
     desc: 'Elite solvent-borne binder for highly powdery, degraded or chalky brickwork and aged weather-exposed facades. Consolidates crumbly renders to prevent peeling.',
@@ -322,52 +231,7 @@ export const CAPLUX_PRODUCTS = [
       }
     }
   },
-  {
-    name: 'Caplux Fine Textured Primer 20L',
-    desc: 'Fine sand-aggregate water-based textured primer. Excellent for bridging minor plaster cracks and creating a powerful mechanical grip for exterior coatings.',
-    tag: 'Anti-Crack Primers',
-    coverage: '2.5 - 3.5 m²/L',
-    image: './Caplux Plaster Primer.png.jpg',
-    fallback: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
-    tdsSpec: {
-      title: 'CAPLUX FINE TEXTURED BASE SEALER',
-      description: 'Premium textured masonry primer containing specialized fine quartz micro-sand. Bridges plaster spiderweb thermal cracks and builds a rugged grip layer.',
-      typicalUses: [
-        'Uneven external cement plasters, concrete walls with coarse rendering',
-        'Creating a mechanical texture "tooth" for heavy exterior protective coatings'
-      ],
-      keyBenefits: [
-        'Bridges hairline cracks and masks substrate visual defects',
-        'Excellent adhesion blocks topcoat paint sliding or sagging',
-        'Algae-resistant and weather-locked durability polymer core',
-        'Heavy-duty protection layer'
-      ],
-      composition: {
-        pigment: 'Quartz aggregates and lightfast extender pigments',
-        binder: 'High-build acrylic emulsion',
-        solvent: 'Water'
-      },
-      packSize: '20 Liters',
-      finish: 'Fine Sandy Textured Matt',
-      volumeSolids: '42-45%',
-      theoreticalCoverage: '2.5 - 3.5 sq.m per litre',
-      dryingInfo: {
-        touchDry: '1.5 Hours',
-        hardDry: '8 - 12 Hours before topcoating',
-        opacity: '1 coat is fully sufficient'
-      },
-      applicationInfo: {
-        method: 'Apply with medium sand-roller or structured fiber block brushes.'
-      },
-      thinning: {
-        brushRoller: 'Do not thin. Stir actively before and during application.'
-      },
-      safetyStorage: {
-        storage: 'Store upright under shade. Do not allow to freeze.',
-        careline: 'CAP Plc Helpline Support careline: 08159493070'
-      }
-    }
-  },
+
   {
     name: 'Caplux Undercoat 4L',
     desc: 'Low-odor, water-borne undercoat premium prep paint. Perfect for high-density public hallways, school classrooms, and luxury hotel rooms.',

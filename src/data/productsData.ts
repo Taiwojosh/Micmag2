@@ -196,14 +196,14 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
-    name: 'Sandtex Matt (Smooth & Tough Exterior) 20L',
+    name: 'Sandtex Matt 20L',
     desc: 'Legendary exterior coating delivering wet & coastal protection for humid regions. Actively curbs algae and fungi growth while allowing masonry breathing ventilation. Only 1 coat required.',
     tag: 'Exterior Defense',
     coverage: '2.5-3.5 m²/L',
     image: './Sandtex MATT.png',
     fallback: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800',
     tdsSpec: {
-      title: 'SANDTEX MATT (SMOOTH & TOUGH EXTERIOR)',
+      title: 'SANDTEX MATT 20L',
       description: 'High-performance contract-grade exterior protective masonry paint. Engineered with premium lightfast pigments and biocidal agents to repel tropical mildew, mold, and coastal chalking.',
       typicalUses: [
         'Exterior wall facades, columns, concrete blockwork, sand-cement rendering',
@@ -295,7 +295,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
   {
     name: 'Sandtex Finebuild 20L',
     desc: 'Ready-mixed textured base coating specifically engineered to mask fine plaster cracks and uneven rendering. Durable fungi-resistant textured coat which stabilizes masonry pores.',
-    tag: 'Surface Preparation',
+    tag: 'Exterior Defense',
     coverage: '1-1.5 m²/L',
     image: './Sandtex FineBuild.png',
     fallback: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
