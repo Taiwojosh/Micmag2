@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Micmag Homes \u0026 Fittings",
+  "description": "Luxury interior architecture and home fixtures website.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
