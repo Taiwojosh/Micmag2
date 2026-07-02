@@ -7,7 +7,7 @@ const REASONS = [
   {
     icon: <ShieldCheck className="w-8 h-8 text-[#d32f2f]" />,
     title: '100% Genuine Certified Stock',
-    desc: 'Every container of Sandtex and Caplux paint is direct from the manufacturer. Fully backed by standard guarantees and stored under secure conditions in Lagos.',
+    desc: 'Every container of Sandtex paints and Caplux prep products is sourced directly from the manufacturer. Fully backed by standard guarantees and stored under secure conditions in Lagos.',
     badge: 'Authentic Warranty'
   },
   {

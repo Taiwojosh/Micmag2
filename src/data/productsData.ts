@@ -51,7 +51,7 @@ export interface FittingProduct {
 
 export const PAINT_PRODUCTS: PaintProduct[] = [
   {
-    name: 'VME (Vinyl Matt Emulsion) 20L/4L',
+    name: 'Sandtex VME',
     desc: 'High-opacity, contract-grade vinyl matt emulsion direct from CAP Plc. Delivers a gorgeous rich matt finish with exceptional wet-on-wet spread and superior durability. Available in over 120 colors.',
     tag: 'Interior Classic',
     coverage: '8-10 m²/L',
@@ -99,7 +99,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
-    name: 'Select VME 20L',
+    name: 'Sandtex Select VME',
     desc: 'Premium ready-mix matt finish with outstanding hiding power, durability, and color retention. Suitable for beautiful smooth finishes on interior and exterior walls and ceilings.',
     tag: 'Interior & Exterior Matt',
     coverage: '8 m²/L per coat',
@@ -148,7 +148,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
-    name: 'Satin 20L/4L',
+    name: 'Sandtex Satin',
     desc: 'Elite satin emulsion delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.',
     tag: 'Interior & Exterior',
     coverage: '12-14 m²/L',
@@ -196,7 +196,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
-    name: 'Matt (Smooth & Tough Exterior) 20L',
+    name: 'Sandtex Matt',
     desc: 'Legendary exterior coating delivering wet & coastal protection for humid regions. Actively curbs algae and fungi growth while allowing masonry breathing ventilation. Only 1 coat required.',
     tag: 'Exterior Defense',
     coverage: '10-12 m²/L',
@@ -244,7 +244,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
-    name: 'Trade Smooth Emulsion 20L',
+    name: 'Sandtex Trade Smooth',
     desc: 'Premium professional grade emulsion paint with excellent coverage and smooth finish. Designed for superior substrate concealment on interior and exterior walls.',
     tag: 'Contractor Favorite',
     coverage: '10-12 m²/L',
@@ -293,7 +293,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
-    name: 'Gloss Paint 4L',
+    name: 'Sandtex Gloss',
     desc: 'Oil-based high-gloss enamel protecting wood and metal gates. Yields an ultra-reflective mirror finish, blocking rust development and timber decay on exposed surfaces.',
     tag: 'Wood & Metal Shield',
     coverage: '14-16 m²/L',

@@ -343,7 +343,7 @@ export default function Hero() {
                 }}
                 className="w-full sm:w-[225px] h-[46px] sm:h-[48px] text-[10px] sm:text-[11px] inline-flex items-center justify-center gap-2 rounded-[60px] font-bold tracking-[0.15em] uppercase transition-all duration-300 shadow-lg cursor-pointer hover:bg-brand-charcoal hover:text-white border-none group"
               >
-                <span className="!text-[#000082] group-hover:!text-white" style={{ paddingLeft: '19px' }}>Book Design Consultation</span>
+                <span className="!text-[#000082] group-hover:!text-white" style={{ paddingLeft: '19px' }}>Consultation</span>
                 <ChevronRight className="w-4 h-4 flex-shrink-0 !text-[#000082] group-hover:!text-white" />
               </Link>
             </motion.div>

@@ -13,19 +13,18 @@ interface PaintModel {
 
 const PAINT_MODELS: PaintModel[] = [
   // Sandtex
-  { name: 'VME (Vinyl Matt Emulsion)', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '4 Liters'], defaultSize: '20 Liters' },
-  { name: 'Select VME Emulsion', brand: 'sandtex', hasColor: true, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'Satin Emulsion (Pearl Sheen)', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '4 Liters'], defaultSize: '20 Liters' },
-  { name: 'Trade Smooth Masonry', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '5 Liters'], defaultSize: '20 Liters' },
-  { name: 'FineBuild Exterior Finish', brand: 'sandtex', hasColor: true, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'High Gloss Alkyd Enamel', brand: 'sandtex', hasColor: true, sizes: ['4 Liters', '1 Liter'], defaultSize: '4 Liters' },
+  { name: 'Sandtex VME', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '4 Liters'], defaultSize: '20 Liters' },
+  { name: 'Sandtex Select VME', brand: 'sandtex', hasColor: true, sizes: ['20 Liters'], defaultSize: '20 Liters' },
+  { name: 'Sandtex Satin', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '4 Liters'], defaultSize: '20 Liters' },
+  { name: 'Sandtex Trade Smooth', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '5 Liters'], defaultSize: '20 Liters' },
+  { name: 'Sandtex Gloss', brand: 'sandtex', hasColor: true, sizes: ['4 Liters', '1 Liter'], defaultSize: '4 Liters' },
   // Caplux
-  { name: 'Caplux Premium Acrylic Putty', brand: 'caplux', hasColor: false, sizes: ['20 kg Bag'], defaultSize: '20 kg Bag' },
-  { name: 'Caplux Alkali Resisting Primer', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'Caplux Red Oxide Metal Primer', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
-  { name: 'Caplux Gypsum (POP) Primer', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'Caplux Solvent Stabilizing Sealer', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'Caplux Eco-Base Undercoat', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
+  { name: 'Caplux Putty', brand: 'caplux', hasColor: false, sizes: ['20 kg Bag'], defaultSize: '20 kg Bag' },
+  { name: 'Caplux Alkali', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
+  { name: 'Caplux Red Oxide', brand: 'caplux', hasColor: false, sizes: ['4 Liters'], defaultSize: '4 Liters' },
+  { name: 'Caplux POP', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
+  { name: 'Caplux Stabilizing', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
+  { name: 'Caplux Eco Undercoat', brand: 'caplux', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },
 ];
 
 interface ColorOption {

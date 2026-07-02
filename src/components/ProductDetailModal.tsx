@@ -51,19 +51,19 @@ export default function ProductDetailModal({
   const relatedProducts: RelatedProduct[] = [
     {
       id: 'vme',
-      name: 'VME (Vinyl Matt Emulsion) 20L',
+      name: 'Sandtex VME',
       image: './Sandtex VME.png',
       fallback: 'https://images.unsplash.com/photo-1590487988256-9ed24133863e?auto=format&fit=crop&q=80&w=800'
     },
     {
       id: 'select-vme',
-      name: 'Select VME 20L',
+      name: 'Sandtex Select VME',
       image: './Sandtex select VME.png',
       fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800'
     },
     {
       id: 'satin',
-      name: 'Satin 20L/4L',
+      name: 'Sandtex Satin',
       image: './satin1.png',
       fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800'
     }
@@ -275,10 +275,10 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
               )}
             </div>
 
-            {/* PANEL 2: SPECIFICATIONS & DESCRIPTION */}
+              {/* PANEL 2: SPECIFICATIONS & DESCRIPTION */}
             <div className="flex-shrink-0 w-[290px] sm:w-[350px] md:w-[380px] h-full flex flex-col gap-4 overflow-y-auto pr-4 border-r-2 border-dashed border-neutral-200">
               <span className="block font-mono text-[9.5px] font-black text-brand-red uppercase tracking-widest">
-                02 &bull; OVERVIEW & SPECIFICATIONS
+                02 &bull; OVERVIEW & DETAILS
               </span>
 
               <div>
@@ -302,51 +302,6 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
                   </span>
                 )}
               </div>
-
-              {/* SPECIFICATION CHIP GRID */}
-              {type === 'product' && (
-                <div className="grid grid-cols-2 gap-2 mt-2">
-                  {/* Chip 1 */}
-                  <div className="bg-white border-2 border-[#1c1917] rounded-xl p-2.5 shadow-[2px_2px_0px_0px_#1c1917]">
-                    <span className="block font-mono text-[8.5px] font-black text-[#78716c] uppercase tracking-widest leading-none">
-                      SURFACE FIT
-                    </span>
-                    <span className="block font-sans font-black text-[#1c1917] text-[11px] mt-1 truncate">
-                      {isPaint ? 'Exterior & Interior Masonry' : 'Ceramic & Glazed Vitreous'}
-                    </span>
-                  </div>
-
-                  {/* Chip 2 */}
-                  <div className="bg-white border-2 border-[#1c1917] rounded-xl p-2.5 shadow-[2px_2px_0px_0px_#1c1917]">
-                    <span className="block font-mono text-[8.5px] font-black text-[#78716c] uppercase tracking-widest leading-none">
-                      FINISH LOOK
-                    </span>
-                    <span className="block font-sans font-black text-[#1c1917] text-[11px] mt-1 truncate">
-                      {isPaint ? 'Smooth Matt / Satin' : 'Ultra-Smooth Polish'}
-                    </span>
-                  </div>
-
-                  {/* Chip 3 */}
-                  <div className="bg-white border-2 border-[#1c1917] rounded-xl p-2.5 shadow-[2px_2px_0px_0px_#1c1917]">
-                    <span className="block font-mono text-[8.5px] font-black text-[#78716c] uppercase tracking-widest leading-none">
-                      COVERAGE
-                    </span>
-                    <span className="block font-sans font-black text-[#1c1917] text-[11px] mt-1 truncate">
-                      {item.coverage || '8-14 m² / Litre'}
-                    </span>
-                  </div>
-
-                  {/* Chip 4 */}
-                  <div className="bg-white border-2 border-[#1c1917] rounded-xl p-2.5 shadow-[2px_2px_0px_0px_#1c1917]">
-                    <span className="block font-mono text-[8.5px] font-black text-[#78716c] uppercase tracking-widest leading-none">
-                      PACK VOLUME
-                    </span>
-                    <span className="block font-sans font-black text-[#1c1917] text-[11px] mt-1 truncate">
-                      {isPaint ? '20 Liters / 4 Liters' : 'Standard Architectural Unit'}
-                    </span>
-                  </div>
-                </div>
-              )}
 
               {/* Service inclusions */}
               {type === 'service' && (
@@ -401,31 +356,6 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
                       <span className="font-sans text-xs font-bold text-[#1c1917]">Proposal design & rendering</span>
                     </div>
                   </div>
-                </div>
-              )}
-
-              {/* Application Instructions accordion */}
-              {type === 'product' && (
-                <div className="border-2 border-[#1c1917] rounded-xl overflow-hidden shadow-[2px_2px_0px_0px_#1c1917] flex-shrink-0">
-                  <button
-                    onClick={() => setAccordionOpen(!accordionOpen)}
-                    className="w-full flex items-center justify-between px-3 py-2 bg-[#f5f5f4] font-mono text-[10px] font-black text-[#1c1917] hover:bg-neutral-100 transition-colors"
-                  >
-                    <span>{accordionOpen ? '▼' : '▶'} APPLICATION INSTRUCTIONS</span>
-                  </button>
-                  <AnimatePresence>
-                    {accordionOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden bg-white px-3 py-2 border-t border-[#1c1917] font-sans text-[11px] text-[#1c1917] leading-relaxed space-y-1.5"
-                      >
-                        <p><strong>Surface Prep:</strong> Ensure the surface is perfectly sound, clean, and completely dry. Clean out debris, moss, and any loose flaking paints. Fresh plaster must cure for 28 days minimum.</p>
-                        <p><strong>Method:</strong> Stir deep before application. Apply with synthetic long-nap rollers or airless paint sprays. Maintain continuous wet-on-wet spread for optimal finish.</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
               )}
 

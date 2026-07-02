@@ -249,7 +249,7 @@ export default function ServiceLocations() {
                                   <span>Express Coatings Depot</span>
                                 </div>
                                 <p className="text-[11px] text-zinc-500 leading-normal font-light">
-                                  This branch operates as an express depot for premium <strong>Sandtex</strong> and <strong>Caplux</strong> building paint coatings. Showrooms open late 2026.
+                                  This branch operates as an express depot for premium <strong>Sandtex</strong> paints and <strong>Caplux</strong> surface preparation formulations. Showrooms open late 2026.
                                 </p>
                               </>
                             )}
@@ -295,7 +295,7 @@ export default function ServiceLocations() {
                             <button 
                               onClick={(e) => {
                                 e.stopPropagation();
-                                const text = `Hello Micmag team! I want to visit your ${branch.name} to inspect SANDTEX paint and CAPLUX formulation color samples.`;
+                                const text = `Hello Micmag team! I want to visit your ${branch.name} to inspect SANDTEX paints and CAPLUX surface preparation preps.`;
                                 openWhatsApp(branch.phone, text);
                               }}
                               className="w-full bg-[#25d366] hover:bg-[#20ba5a] text-white p-3.5 rounded-full text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 font-mono cursor-pointer"
@@ -429,7 +429,7 @@ export default function ServiceLocations() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => {
-                      const text = `Hello Micmag team! I want to visit your ${selectedBranch.name} to inspect SANDTEX paint and CAPLUX formulation color samples.`;
+                      const text = `Hello Micmag team! I want to visit your ${selectedBranch.name} to inspect SANDTEX paints and CAPLUX surface preparation preps.`;
                       openWhatsApp(selectedBranch.phone, text);
                     }}
                     className="w-full bg-[#25d366] hover:bg-[#20ba5a] text-white p-3.5 text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer font-bold"

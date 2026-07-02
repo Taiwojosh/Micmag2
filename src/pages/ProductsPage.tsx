@@ -236,7 +236,7 @@ export default function ProductsPage() {
               Trade Portal
             </span>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-none">
-             Catalog
+             Catalogue
             </h1>
             <p className="max-w-xl text-neutral-300 text-xs sm:text-sm leading-relaxed font-light">
               Add products directly to your technical cart, estimate overall building coverage, and export your itemized list straight to our central distribution desk.
@@ -308,18 +308,18 @@ export default function ProductsPage() {
               </div>
             </div>
 
-            {/* Brand Catalog Filter */}
+            {/* Brand Catalogue Filter */}
             <div className="bg-white border border-neutral-200 p-5 rounded-lg space-y-4 shadow-sm">
               <div className="flex items-center justify-between border-b border-neutral-100 pb-2">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400">
-                  Brand Catalogs
+                  Brand Catalogues
                 </span>
                 <SlidersHorizontal className="w-3.5 h-3.5 text-neutral-400" />
               </div>
               
               <div className="space-y-1.5">
                 {[
-                  { id: 'all', label: 'All Catalogs' },
+                  { id: 'all', label: 'All Catalogues' },
                   { id: 'sandtex', label: 'Sandtex Paint System' },
                   { id: 'caplux', label: 'Caplux Preparation' },
                   { id: 'micmag', label: 'Micmag Specialty & Prep' }
@@ -387,7 +387,7 @@ export default function ProductsPage() {
               >
                 <option value="name-asc">Alphabetical (A - Z)</option>
                 <option value="name-desc">Alphabetical (Z - A)</option>
-                <option value="brand">Sort by Brand Catalog</option>
+                <option value="brand">Sort by Brand Catalogue</option>
               </select>
             </div>
 
@@ -435,7 +435,8 @@ export default function ProductsPage() {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35 }}
-                    className="bg-white border border-neutral-200 rounded-lg overflow-hidden flex flex-col justify-between h-full shadow-sm hover:shadow-md hover:border-neutral-300 transition-all group"
+                    onClick={() => setActiveModalItem(p.rawItem)}
+                    className="bg-white border border-neutral-200 rounded-lg overflow-hidden flex flex-col justify-between h-full shadow-sm hover:shadow-md hover:border-neutral-300 transition-all group cursor-pointer"
                   >
                     
                     {/* Visual Asset Section */}
@@ -459,7 +460,7 @@ export default function ProductsPage() {
                               ? 'bg-amber-600' 
                               : 'bg-[#000082]'
                         }`}>
-                          {p.brand === 'sandtex' ? 'Sandtex Trade' : p.brand === 'caplux' ? 'Caplux' : 'Micmag'}
+                          {p.brand === 'sandtex' ? 'Sandtex' : p.brand === 'caplux' ? 'Caplux' : 'Micmag'}
                         </span>
                       </div>
                       
@@ -492,53 +493,17 @@ export default function ProductsPage() {
                         </p>
                       </div>
 
-                      {/* Technical specifications info row */}
-                      <div className="pt-3 border-t border-neutral-100 space-y-2">
-                        
-                        {p.coverage && (
-                          <div className="flex justify-between items-center text-[10.5px]">
-                            <span className="text-neutral-400 font-light">Theoretical Yield:</span>
-                            <span className="font-mono font-bold text-neutral-800">{p.coverage}</span>
-                          </div>
-                        )}
-                        
-                        <div className="flex justify-between items-center text-[10.5px]">
-                          <span className="text-neutral-400 font-light">Trade Price Status:</span>
-                          <span className="font-bold text-green-600 uppercase tracking-wide">Approved Trade Rates</span>
-                        </div>
-
-                        <div className="flex justify-between items-center text-[10.5px]">
-                          <span className="text-neutral-400 font-light">Stock Status:</span>
-                          <span className="font-bold text-neutral-700 flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                            HQ Ready
-                          </span>
-                        </div>
-
-                      </div>
-
                     </div>
 
                     {/* Interactive Action Row */}
-                    <div className="p-5 pt-0 grid grid-cols-2 gap-2">
+                    <div className="p-5 pt-0">
                       
-                      {p.rawItem.tdsSpec ? (
-                        <button
-                          onClick={() => setActiveModalItem(p.rawItem)}
-                          className="bg-neutral-50 border border-neutral-200 hover:bg-neutral-100 text-neutral-700 py-2.5 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1 cursor-pointer"
-                        >
-                          <FileText className="w-3.5 h-3.5" />
-                          <span>Specs (TDS)</span>
-                        </button>
-                      ) : (
-                        <div className="bg-neutral-50 text-neutral-400 border border-neutral-200/50 py-2.5 rounded text-[9px] font-bold uppercase tracking-wider text-center flex items-center justify-center">
-                          <span>Solid Quality</span>
-                        </div>
-                      )}
-
                       <button
-                        onClick={() => handleAddToBasket(p)}
-                        className="bg-[#000082] hover:bg-[#000650] text-white py-2.5 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleAddToBasket(p);
+                        }}
+                        className="w-full bg-[#000082] hover:bg-[#000650] text-white py-2.5 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm cursor-pointer"
                       >
                         <ShoppingBag className="w-3.5 h-3.5" />
                         <span>Inquire</span>
@@ -605,7 +570,7 @@ export default function ProductsPage() {
                       onClick={() => setIsCartOpen(false)}
                       className="text-xs font-bold text-[#000082] uppercase hover:underline cursor-pointer"
                     >
-                      Browse Catalogs
+                      Browse Catalogue
                     </button>
                   </div>
                 ) : (
@@ -762,11 +727,11 @@ export default function ProductsPage() {
                 {/* Brand Selection */}
                 <div className="space-y-3">
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400 block border-b border-neutral-100 pb-1.5">
-                    Brand Catalogs
+                    Brand Catalogues
                   </span>
                   <div className="grid grid-cols-2 gap-2">
                     {[
-                      { id: 'all', label: 'All Catalogs' },
+                      { id: 'all', label: 'All Catalogues' },
                       { id: 'sandtex', label: 'Sandtex Paint' },
                       { id: 'caplux', label: 'Caplux Prep' },
                       { id: 'micmag', label: 'Micmag Sanitary' }
@@ -830,7 +795,7 @@ export default function ProductsPage() {
                     {[
                       { id: 'name-asc', label: 'Alphabetical (A - Z)' },
                       { id: 'name-desc', label: 'Alphabetical (Z - A)' },
-                      { id: 'brand', label: 'Sort by Brand Catalog' }
+                      { id: 'brand', label: 'Sort by Brand Catalogue' }
                     ].map(opt => (
                       <button
                         key={opt.id}

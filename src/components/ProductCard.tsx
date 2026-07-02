@@ -100,35 +100,6 @@ export default function ProductCard({
           </svg>
           <span className="font-sans font-black tracking-wide">Enquire on WhatsApp</span>
         </button>
-
-        {/* Auxiliary actions in a clean, space-efficient horizontal grid layout */}
-        <div className={`grid gap-2 ${product.tdsSpec && onViewTDS ? 'grid-cols-2' : 'grid-cols-1'}`}>
-          {/* VIEW DETAILS */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails(product);
-            }}
-            className="w-full flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-white text-[#1c1917] border-2 border-[#1c1917] shadow-[2.5px_2.5px_0px_0px_#1c1917] font-sans text-[10.5px] font-black uppercase tracking-wider transition-all hover:bg-neutral-50 hover:shadow-[3.5px_3.5px_0px_0px_#1c1917] hover:-translate-y-[0.5px] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#1c1917] cursor-pointer"
-          >
-            <Search className="w-3.5 h-3.5 text-[#1c1917]" />
-            <span>Details</span>
-          </button>
-
-          {/* TECHNICAL SPEC (TDS) */}
-          {product.tdsSpec && onViewTDS && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onViewTDS(product);
-              }}
-              className="w-full flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-[#FAF9F6] text-[#78716c] border-2 border-[#78716c] hover:border-[#1c1917] hover:text-[#1c1917] transition-all font-sans text-[10.5px] font-black uppercase tracking-wider cursor-pointer"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>TDS Spec</span>
-            </button>
-          )}
-        </div>
       </div>
     </div>
   );

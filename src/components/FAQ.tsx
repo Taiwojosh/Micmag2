@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 const faqs = [
   {
     question: 'What is the relationship between Micmag and Sandtex?',
-    answer: 'Micmag is an authorized premium dealer of Sandtex (Portland Paints) and CAPLUX paints and industrial coatings. We serve as the specialized trade hub and direct distributor for both legendary brands across Nigeria.'
+    answer: 'Micmag is an authorized premium dealer of Sandtex (Portland Paints) coatings and CAPLUX surface preparation preps and industrial primers. We serve as the specialized trade hub and direct distributor for both legendary brands across Nigeria.'
   },
   {
     question: 'How do I choose the right paint for my surface?',
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: 'Where can I get Micmag Service?',
-    answer: 'Currently, the full physical color catalogs, textured paint boards, and custom tinting stations are active at our Oworonshoki Headquarters. Our other regional outlets operate as fully stocked distribution depots and express collection points for the complete Sandtex and Caplux paint ranges.'
+    answer: 'Currently, the full physical color catalogs, textured paint boards, and custom tinting stations are active at our Oworonshoki Headquarters. Our other regional outlets operate as fully stocked distribution depots and express collection points for the complete Sandtex paint and Caplux surface prep ranges.'
   }
 ];
 

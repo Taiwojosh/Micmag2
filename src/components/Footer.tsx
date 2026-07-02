@@ -37,7 +37,7 @@ export default function Footer() {
               </div>
               
               <p className="text-[12.5px] leading-relaxed text-neutral-400 font-light max-w-sm">
-                Micmag Homes & Fittings is Lagos' leading dealer of genuine architectural materials. From the climate-resilience of <strong>SANDTEX</strong> paint, to the premium formulations of <strong>CAPLUX</strong> industrial and decorative coatings, we are committed to uncompromising physical quality.
+                Micmag Homes & Fittings is Lagos' leading dealer of genuine architectural materials. From the climate-resilience of <strong>SANDTEX</strong> paints, to the high-integrity <strong>CAPLUX</strong> surface preparation preps and industrial primers, we are committed to uncompromising physical quality.
               </p>
 
               {/* Verified Badge */}
