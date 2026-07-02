@@ -711,37 +711,42 @@ export default function ProductsPage() {
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="fixed inset-x-0 bottom-0 max-h-[85vh] bg-white rounded-t-2xl z-[130] shadow-2xl flex flex-col lg:hidden text-left overflow-hidden border-t border-neutral-200"
+              className="fixed inset-x-0 bottom-0 max-h-[85vh] bg-white rounded-t-[24px] z-[130] shadow-[0_-8px_30px_rgb(0,0,0,0.12)] flex flex-col lg:hidden text-left overflow-hidden border-t border-neutral-100"
             >
+              {/* Bottom Sheet Grab Handle Indicator */}
+              <div className="w-full flex justify-center py-2 shrink-0 bg-neutral-50">
+                <span className="w-12 h-1.5 rounded-full bg-neutral-300" />
+              </div>
+
               {/* Header */}
-              <div className="px-5 py-4 border-b border-neutral-100 flex items-center justify-between bg-neutral-50 shrink-0">
+              <div className="px-5 pb-4 border-b border-neutral-100 flex items-center justify-between bg-neutral-50 shrink-0">
                 <div className="flex items-center gap-2">
                   <SlidersHorizontal className="w-4 h-4 text-[#000082]" />
-                  <span className="text-xs font-black uppercase tracking-wider text-neutral-900">
-                    Filter &amp; Sort Products
+                  <span className="text-xs font-black uppercase tracking-wider text-neutral-900 font-sans">
+                    Filter &amp; Sort
                   </span>
                 </div>
                 <button
                   onClick={() => setShowMobileFilters(false)}
-                  className="p-1 rounded-full hover:bg-neutral-200 text-neutral-500 hover:text-neutral-900 transition-colors cursor-pointer"
+                  className="p-1.5 rounded-full bg-neutral-100 text-neutral-500 hover:text-neutral-950 hover:bg-neutral-200 transition-colors cursor-pointer"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Scrollable content */}
-              <div className="p-5 overflow-y-auto space-y-6 flex-grow">
+              <div className="p-6 overflow-y-auto space-y-7 flex-grow">
                 {/* Brand Selection */}
                 <div className="space-y-3">
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400 block border-b border-neutral-100 pb-1.5">
                     Brand Catalogues
                   </span>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-2.5">
                     {[
-                      { id: 'all', label: 'All Catalogues' },
-                      { id: 'sandtex', label: 'Sandtex Paint' },
-                      { id: 'caplux', label: 'Caplux Prep' },
-                      { id: 'micmag', label: 'Micmag Sanitary' }
+                      { id: 'all', label: 'All Brands', color: 'bg-neutral-400' },
+                      { id: 'sandtex', label: 'Sandtex Paint', color: 'bg-[#d32f2f]' },
+                      { id: 'caplux', label: 'Caplux Prep', color: 'bg-amber-600' },
+                      { id: 'micmag', label: 'Sanitary & Fittings', color: 'bg-[#000082]' }
                     ].map(b => (
                       <button
                         key={b.id}
@@ -749,12 +754,13 @@ export default function ProductsPage() {
                           setSelectedBrand(b.id as any);
                           setSelectedTag('all'); // Reset tag
                         }}
-                        className={`text-left px-3.5 py-3 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all flex items-center justify-between border cursor-pointer ${
+                        className={`text-left px-3.5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all flex items-center gap-2 border cursor-pointer ${
                           selectedBrand === b.id
-                            ? 'bg-[#000082] text-white border-[#000082] shadow-sm'
-                            : 'bg-neutral-50 border-neutral-200 text-neutral-600'
+                            ? 'bg-[#000082]/5 text-[#000082] border-[#000082] ring-1 ring-[#000082] font-black'
+                            : 'bg-neutral-50 border-neutral-200/80 text-neutral-600'
                         }`}
                       >
+                        <span className={`w-2 h-2 rounded-full ${b.color} shrink-0`} />
                         <span className="truncate">{b.label}</span>
                       </button>
                     ))}
@@ -769,10 +775,10 @@ export default function ProductsPage() {
                   <div className="flex flex-wrap gap-1.5">
                     <button
                       onClick={() => setSelectedTag('all')}
-                      className={`px-3 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
+                      className={`px-3.5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
                         selectedTag === 'all'
-                          ? 'bg-[#000082] text-white border-[#000082]'
-                          : 'bg-neutral-50 border-neutral-200 text-neutral-600'
+                          ? 'bg-[#000082] text-white border-[#000082] font-black'
+                          : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
                       }`}
                     >
                       All Categories
@@ -781,10 +787,10 @@ export default function ProductsPage() {
                       <button
                         key={tag}
                         onClick={() => setSelectedTag(tag)}
-                        className={`px-3 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
+                        className={`px-3.5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
                           selectedTag === tag
-                            ? 'bg-[#000082] text-white border-[#000082]'
-                            : 'bg-neutral-50 border-neutral-200 text-neutral-600'
+                            ? 'bg-[#000082] text-white border-[#000082] font-black'
+                            : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
                         }`}
                       >
                         {tag}
@@ -807,14 +813,14 @@ export default function ProductsPage() {
                       <button
                         key={opt.id}
                         onClick={() => setSortBy(opt.id as any)}
-                        className={`text-left px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border cursor-pointer ${
+                        className={`text-left px-4 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border cursor-pointer ${
                           sortBy === opt.id
-                            ? 'bg-[#000082] text-white border-[#000082] shadow-sm'
-                            : 'bg-neutral-50 border-neutral-200 text-neutral-600'
+                            ? 'bg-[#000082]/5 text-[#000082] border-[#000082] ring-1 ring-[#000082] font-black'
+                            : 'bg-neutral-50 border-neutral-200/80 text-neutral-600'
                         }`}
                       >
                         <span>{opt.label}</span>
-                        {sortBy === opt.id && <Check className="w-4 h-4 text-brand-yellow" />}
+                        {sortBy === opt.id && <Check className="w-4 h-4 text-[#000082]" />}
                       </button>
                     ))}
                   </div>
@@ -822,7 +828,7 @@ export default function ProductsPage() {
               </div>
 
               {/* Footer controls inside drawer */}
-              <div className="bg-neutral-50 border-t border-neutral-200 p-4 shrink-0 grid grid-cols-2 gap-3.5">
+              <div className="bg-neutral-50 border-t border-neutral-200/60 p-5 shrink-0 grid grid-cols-2 gap-3">
                 <button
                   onClick={() => {
                     setSelectedBrand('all');
@@ -830,13 +836,13 @@ export default function ProductsPage() {
                     setSearchQuery('');
                     setShowMobileFilters(false);
                   }}
-                  className="bg-white border border-neutral-300 text-neutral-600 py-3.5 rounded-lg text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-neutral-100 transition-colors"
+                  className="bg-white border border-neutral-300 text-neutral-600 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-neutral-100 transition-colors shadow-sm"
                 >
                   Clear All
                 </button>
                 <button
                   onClick={() => setShowMobileFilters(false)}
-                  className="bg-[#000082] text-white py-3.5 rounded-lg text-xs font-bold uppercase tracking-wider shadow cursor-pointer hover:bg-[#0000a0] transition-colors"
+                  className="bg-[#000082] text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer hover:bg-[#000650] transition-colors"
                 >
                   Apply Filters
                 </button>
