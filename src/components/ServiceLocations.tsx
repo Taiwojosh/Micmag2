@@ -80,9 +80,9 @@ const BRANCHES = [
   },
   {
     id: 'ogombo',
-    name: 'Ogbombo Store',
+    name: 'Ogombo Store',
     node: 'Ajah Outlet',
-    address: 'Ogbombo Road, off New Lagos Coastal Road, Abraham Adesanya, Ajah, Lagos',
+    address: 'Ogombo Road, off New Lagos Coastal Road, Abraham Adesanya, Ajah, Lagos',
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 809 423 4865',
     tag: 'Lekki-Ajah Point',
