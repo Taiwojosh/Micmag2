@@ -101,7 +101,7 @@ export default function AdminPage() {
 
   const updateLeadStatus = async (id: string, newStatus: string) => {
     try {
-      const res = await fetch(`/api/leads/${id}`, {
+      const res = await fetch(`/api/leads?id=${encodeURIComponent(id)}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ export default function AdminPage() {
 
   const saveLeadNote = async (id: string) => {
     try {
-      const res = await fetch(`/api/leads/${id}`, {
+      const res = await fetch(`/api/leads?id=${encodeURIComponent(id)}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export default function AdminPage() {
   const deleteLead = async (id: string) => {
     if (!window.confirm('Are you sure you want to permanently delete this lead from records?')) return;
     try {
-      const res = await fetch(`/api/leads/${id}`, {
+      const res = await fetch(`/api/leads?id=${encodeURIComponent(id)}`, {
         method: 'DELETE',
         headers: {
           'x-admin-passcode': passcode

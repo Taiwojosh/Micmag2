@@ -9,7 +9,7 @@ const BRANCHES = [
   'Sangotedo (Island Store)',
   'Alakija Store',
   'Ikorodu Store',
-  'Ogbombo Store',
+  'Ogombo Store',
   'Bogije Store',
 ];
 

@@ -2,6 +2,9 @@ import express from "express";
 import path from "path";
 import fs from "fs";
 import { createServer as createViteServer } from "vite";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 async function startServer() {
   const app = express();
@@ -20,7 +23,7 @@ async function startServer() {
   app.post("/api/leads", (req, res) => {
     try {
       const { customerName, customerEmail, contactNumber, inquiryType, targetBranch, message } = req.body;
-      
+
       if (!customerName || !contactNumber || !targetBranch) {
         return res.status(400).json({ error: "Missing required fields: customerName, contactNumber, targetBranch" });
       }
@@ -44,13 +47,14 @@ async function startServer() {
       leads.push(newLead);
       fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2), 'utf8');
 
-      // Optional helper: Forward directly to Google Sheets Webhook / Apps Script Web App in the background
+      // Forward to Google Apps Script Web App — handles Sheet logging + email notifications
       const googleSheetsUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
       if (googleSheetsUrl) {
         fetch(googleSheetsUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            id: newLead.id,
             submittedAt: newLead.submittedAt,
             customerName: newLead.customerName,
             customerEmail: newLead.customerEmail,
@@ -59,9 +63,11 @@ async function startServer() {
             targetBranch: newLead.targetBranch,
             message: newLead.message
           })
-        }).catch(err => {
-          console.error("Optional Google Sheets forwarding failed gracefully:", err.message);
-        });
+        })
+          .then(() => console.log("Lead forwarded to Google Sheets successfully."))
+          .catch(err => console.error("Google Sheets forwarding failed gracefully:", err.message));
+      } else {
+        console.warn("GOOGLE_SHEETS_WEBHOOK_URL is not set. Lead saved locally only.");
       }
 
       res.status(201).json({ success: true, lead: newLead });
@@ -76,7 +82,7 @@ async function startServer() {
     try {
       const passcode = req.headers["x-admin-passcode"] || req.query.passcode;
       const configuredPasscode = process.env.ADMIN_PASSCODE || "micmag2026";
-      
+
       if (passcode !== configuredPasscode) {
         return res.status(401).json({ error: "Invalid admin passcode provided." });
       }
