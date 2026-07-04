@@ -16,41 +16,41 @@ interface OfficeBranch {
 }
 
 const offices: OfficeBranch[] = [
-  { 
-    id: 'oworonshoki', 
-    name: 'Oworonshoki (HQ)', 
-    address: '12 Oduduwa road (Oworo road) car wash bus stop, Oworonshoki, Lagos', 
-    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
+  {
+    id: 'oworonshoki',
+    name: 'Oworonshoki (HQ)',
+    address: '12 Oduduwa road (Oworo road) car wash bus stop, Oworonshoki, Lagos',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 705 294 0445',
     tag: 'Main Store & Consult Desk',
     customGoogleMapsUrl: 'https://www.google.com/maps/dir//SANDTEX+Paints-Gbagada-Oworo,+Anthony,+MarylandIkoyi,Lekki,+Iyanaworo+12+Oduduwa+road+Oworo+road+By+Akewusola+street+Ifako,+Gbagada,+Lagos/@6.5209062,3.3517324,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x103b8dfde48be55f:0xc4e217eac09c6c35!2m2!1d3.3972302!2d6.5542592?entry=ttu',
     services: ['Architectural Color Consulting', 'Bespoke Textured Finishes Display', 'Professional Custom Tinting', 'On-Site Technical Inspections']
   },
-  { 
-    id: 'sangotedo', 
-    name: 'Sangotedo Outlet', 
-    address: 'KM 46, Lekki-Epe expressway, opposite hot bread, sangotedo Lagos', 
-    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
+  {
+    id: 'sangotedo',
+    name: 'Sangotedo Outlet',
+    address: 'KM 46, Lekki-Epe expressway, opposite hot bread, sangotedo Lagos',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 810 714 4064',
     tag: 'Paint & Texture Depot',
     customGoogleMapsUrl: 'https://www.google.com/maps',
     services: ['Climate-Resilient Textures', 'Caplux Screeding Fillers', 'Professional Color Cards']
   },
-  { 
-    id: 'alakija', 
-    name: 'Alakija Store', 
-    address: 'Merkato plaza, Alakija Festac, Lagos-Badagry expressway, Lagos', 
-    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
+  {
+    id: 'alakija',
+    name: 'Alakija Store',
+    address: 'Merkato plaza, Alakija Festac, Lagos-Badagry expressway, Lagos',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 706 792 4965',
     tag: 'Direct Contractor Store',
     customGoogleMapsUrl: 'https://www.google.com/maps',
     services: ['Bulk Sourcing Store', 'Caplux Primers', 'Site Logistics Delivery']
   },
-  { 
-    id: 'ikorodu', 
-    name: 'Ikorodu Outlet', 
-    address: 'Lawret Plaza, Itamaga Roundabout, Ikorodu', 
-    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
+  {
+    id: 'ikorodu',
+    name: 'Ikorodu Outlet',
+    address: 'Lawret Plaza, Itamaga Roundabout, Ikorodu',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 805 696 5188',
     tag: 'Direct Trade Outlet',
     customGoogleMapsUrl: 'https://www.google.com/maps',
@@ -58,8 +58,8 @@ const offices: OfficeBranch[] = [
   },
   {
     id: 'ogombo',
-    name: 'Ogbombo Point',
-    address: 'Ogbombo Road, off New Lagos Coastal Road, Abraham Adesanya, Ajah, Lagos',
+    name: 'Ogombo Point',
+    address: 'Ogombo Road, off New Lagos Coastal Road, Abraham Adesanya, Ajah, Lagos',
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 809 423 4865',
     tag: 'Lekki-Ajah Point',
@@ -111,10 +111,10 @@ export default function ContactPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-5 md:px-[5%] py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
+
         {/* Left Column: Location Cards & General Inquiries */}
         <div className="lg:col-span-7 space-y-10 text-left">
-          
+
           <div className="space-y-4">
             <h2 className="font-serif text-2xl md:text-3xl font-bold text-brand-charcoal">
               Regional Outlets &amp; Logistics Hubs
@@ -161,7 +161,7 @@ export default function ContactPage() {
                     <Phone className="w-3.5 h-3.5 shrink-0 text-[#000082]" />
                     <span>{office.phone}</span>
                   </a>
-                  
+
                   {office.id === 'oworonshoki' && (
                     <a
                       href={office.customGoogleMapsUrl}
