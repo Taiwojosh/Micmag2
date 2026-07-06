@@ -177,13 +177,17 @@ const fadeUpVariant = {
   animate: { opacity: 1, y: 0, transition: springTransition }
 };
 
-const HERO_VIDEOS = [
-  "./a_video_for_the_landing_page_o.mp4",
-  "./A_video_of_a_Nigerian_middle_a.mp4"
+const HERO_BACKGROUND_MEDIA = [
+  { type: 'video', src: './a_video_for_the_landing_page_o.mp4' },
+  { type: 'image', src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1600' },
+  { type: 'image', src: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=1600' },
+  { type: 'video', src: './A_video_of_a_Nigerian_middle_a.mp4' },
+  { type: 'image', src: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1600' },
+  { type: 'image', src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1600' }
 ];
 
 export default function Hero() {
-  const [videoIndex, setVideoIndex] = useState(0);
+  const [bgIndex, setBgIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const [slideIndex, setSlideIndex] = useState(0);
@@ -193,6 +197,8 @@ export default function Hero() {
   const currentIndex = slideIndex;
   const currentSlideItem = currentSlides[currentIndex];
   const isPaintImage = currentSlideItem.image.includes('.png') || currentSlideItem.name.includes('Sandtex');
+
+  const currentBg = HERO_BACKGROUND_MEDIA[bgIndex];
 
   // Auto-cycle slideshows
   useEffect(() => {
@@ -213,38 +219,70 @@ export default function Hero() {
     setSlideIndex((prev) => (prev + 1) % currentSlides.length);
   };
 
+  // Background Media Transitions: Timer for images
   useEffect(() => {
-    if (videoRef.current) {
+    if (currentBg.type === 'image') {
+      const timer = setTimeout(() => {
+        setBgIndex((prev) => (prev + 1) % HERO_BACKGROUND_MEDIA.length);
+      }, 6000); // stay on images for 6 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [bgIndex, currentBg.type]);
+
+  // Video End Transitions
+  const handleVideoEnded = () => {
+    setBgIndex((prev) => (prev + 1) % HERO_BACKGROUND_MEDIA.length);
+  };
+
+  // Play video on mount or swap
+  useEffect(() => {
+    if (currentBg.type === 'video' && videoRef.current) {
       videoRef.current.load();
       videoRef.current.play().catch((err) => {
-        console.warn("Video autoPlay failed or was interrupted:", err);
+        console.warn("Video autoPlay failed:", err);
       });
     }
-  }, [videoIndex]);
-
-  const handleVideoEnded = () => {
-    setVideoIndex((prevIndex) => (prevIndex + 1) % HERO_VIDEOS.length);
-  };
+  }, [bgIndex, currentBg.type]);
 
   return (
     <section 
       id="hero" 
       className="relative min-h-[100svh] md:min-h-[92vh] flex items-center pt-24 md:pt-32 pb-16 md:pb-24 px-5 md:px-[5%] overflow-hidden bg-[#faf9f5] border-b border-neutral-200"
     >
-      {/* Background Video (Seamlessly loops through custom playlist) */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        playsInline
-        onEnded={handleVideoEnded}
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0 opacity-75 object-center md:object-[right_top]"
-      >
-        <source src={HERO_VIDEOS[videoIndex]} type="video/mp4" />
-      </video>
+      {/* Background Media Container (Seamless Cross-Fading) */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        {/* Background Video */}
+        <video
+          ref={videoRef}
+          key={currentBg.type === 'video' ? currentBg.src : 'inactive-video'}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnded}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            currentBg.type === 'video' ? 'opacity-75' : 'opacity-0'
+          }`}
+        >
+          {currentBg.type === 'video' && <source src={currentBg.src} type="video/mp4" />}
+        </video>
+
+        {/* Background Images */}
+        {HERO_BACKGROUND_MEDIA.map((media, idx) => (
+          media.type === 'image' && (
+            <img
+              key={media.src}
+              src={media.src}
+              alt="Luxury Interior Spec"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                currentBg.type === 'image' && bgIndex === idx ? 'opacity-65' : 'opacity-0'
+              }`}
+            />
+          )
+        ))}
+      </div>
 
       {/* Background Overlay to ensure readability and match aesthetic */}
-      <div className="absolute inset-0 bg-[#faf9f5]/50 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[#faf9f5]/55 pointer-events-none z-0" />
 
       {/* Structural Architectural background patterns - Animated scale */}
       <motion.div 

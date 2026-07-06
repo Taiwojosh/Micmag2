@@ -10,10 +10,10 @@
   --color-micmag-green: #1a6b3c;
   --color-micmag-red: #d32f2f;
   
-  --color-brand-charcoal: #000082; /* Deep blue replacing near-black */
+  --color-brand-charcoal: #1c1917; /* Rich premium charcoal */
   --color-brand-cream: #fafaf9; /* Warm off-white surface */
   --color-brand-sand: #e7e5e4; /* Hairline dividers / sand tone */
-  --color-brand-mid: #000082; /* Elegant deep blue replacing warm grey */
+  --color-brand-mid: #57534e; /* Warm elegant gray */
   
   --font-serif: "Playfair Display", Georgia, serif; /* Premium luxury display serif */
   --font-sans: "Plus Jakarta Sans", sans-serif; /* Scannable geometric sans for body & UI */
@@ -22,7 +22,7 @@
 }
 
 :root {
-  --charcoal: #000082;
+  --charcoal: #1c1917;
   --red: #b45309;
   --red-deep: #78350f;
   --yellow: #ea6c00;
@@ -30,7 +30,7 @@
   --white: #ffffff;
   --cream: #fafaf9;
   --sand: #e7e5e4;
-  --mid: #000082;
+  --mid: #57534e;
 }
 
 body {
@@ -101,12 +101,12 @@ body {
 }
 
 .bg-brand-blue {
-  background-color: #000082 !important;
+  background-color: var(--color-brand-charcoal) !important;
 }
 
-/* Apply blue to text elements by default, but allow inheritance if explicitly colored by parent classes */
+/* Apply brand charcoal to text elements by default, but allow inheritance if explicitly colored by parent classes */
 p, h1, h2, h3, h4, h5, h6 {
-  color: #000082;
+  color: var(--color-brand-charcoal);
 }
 
 .text-white p, .text-white h1, .text-white h2, .text-white h3, .text-white h4, .text-white h5, .text-white h6,
@@ -145,7 +145,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .text-neutral-800:not(.bg-neutral-900 *):not(.bg-brand-charcoal *):not(.bg-black *):not(.bg-brand-blue *):not(.bg-\[\#15161b\] *):not(.bg-\[\#181920\] *):not(.bg-\[\#101114\] *),
 .text-neutral-700:not(.bg-neutral-900 *):not(.bg-brand-charcoal *):not(.bg-black *):not(.bg-brand-blue *):not(.bg-\[\#15161b\] *):not(.bg-\[\#181920\] *):not(.bg-\[\#101114\] *),
 .text-black:not(.bg-neutral-900 *):not(.bg-brand-charcoal *):not(.bg-black *):not(.bg-brand-blue *):not(.bg-\[\#15161b\] *):not(.bg-\[\#181920\] *):not(.bg-\[\#101114\] *) {
-  color: #000082 !important;
+  color: var(--color-brand-charcoal) !important;
 }
 
 .text-white {
