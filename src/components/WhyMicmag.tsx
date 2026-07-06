@@ -85,7 +85,7 @@ export default function WhyMicmag() {
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.15] font-black text-brand-charcoal">
               Uncompromising Standards <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-[#d32f2f] to-amber-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-orange-500 to-amber-500">
                 For Uncompromising Projects
               </span>
             </h2>
