@@ -93,10 +93,10 @@ export default function About() {
             transition={springTransition}
             className="lg:col-span-7 flex flex-col justify-center space-y-6"
           >
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.12] font-black text-brand-charcoal" style={{ color: '#000082' }}>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.12] font-black text-brand-charcoal">
               Exquisite Decorative Finishes & Legendary Paint Coatings
             </h2>
-            <p className="text-sm md:text-base leading-relaxed text-brand-mid font-light text-left" style={{ color: '#000082' }}>
+            <p className="text-sm md:text-base leading-relaxed text-brand-mid font-light text-left">
               As an Official Sandtex® Partner, Micmag merges exquisite interior design aesthetics with legendary coating technology. We specialize in bespoke architectural color consulting, high-end textured plasters, luxury Matt emulsions, and precision automated tinting services—offering architects, interior designers, and premium property developers a flawless synthesis of visual elegance and weatherproofing engineering.
             </p>
 
@@ -112,11 +112,11 @@ export default function About() {
             className="lg:col-span-12 xl:col-span-5 flex justify-center relative w-full"
           >
             <div className="absolute -inset-2 bg-gradient-to-tr from-[#d32f2f]/10 to-amber-500/15 rounded-2xl filter blur-lg opacity-60" />
-            <div className="relative w-full bg-white border-2 border-[#1c1917] rounded-2xl p-6 md:p-8 shadow-[6px_6px_0px_0px_#000082] space-y-6 text-left">
+            <div className="relative w-full bg-white border-2 border-[#1c1917] rounded-2xl p-6 md:p-8 shadow-[6px_6px_0px_0px_#b45309] space-y-6 text-left">
               <span className="text-[10px] font-mono tracking-widest text-[#d32f2f] uppercase font-bold block bg-red-50 py-1 px-2.5 rounded border border-red-100 w-max">
                 Material Integrity
               </span>
-              <h3 className="font-serif text-xl font-black text-[#000082]" style={{ color: '#000082' }}>
+              <h3 className="font-serif text-xl font-black text-brand-charcoal">
                 Engineered Performance
               </h3>
               <div className="space-y-4">

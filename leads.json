@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "1783129973891",
+    "customerName": "Test User",
+    "customerEmail": "test@example.com",
+    "contactNumber": "08031234567",
+    "inquiryType": "SANDTEX Paints",
+    "targetBranch": "Oworonshoki HQ",
+    "message": "Test lead from dev environment.",
+    "status": "New",
+    "note": "",
+    "submittedAt": "2026-07-04T01:52:53.891Z"
+  }
+]

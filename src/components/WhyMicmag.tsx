@@ -97,7 +97,7 @@ export default function WhyMicmag() {
             transition={springTransition}
             className="lg:col-span-12 xl:col-span-5"
           >
-            <p className="text-xs md:text-sm leading-relaxed text-brand-mid font-light" style={{ color: '#000082' }}>
+            <p className="text-xs md:text-sm leading-relaxed text-brand-mid font-light">
               We understand that material failure is not an option. Our sourcing, verification, and careful shipping ensure absolute quality of your materials.
             </p>
           </motion.div>
@@ -116,7 +116,7 @@ export default function WhyMicmag() {
               key={idx}
               variants={cardVariant}
               whileHover={{ y: -8 }}
-              className="p-8 border-2 border-[#1c1917] rounded-2xl bg-white flex flex-col justify-between space-y-6 group text-left shadow-[4px_4px_0px_0px_#1e3a5f] hover:shadow-[6px_6px_0px_0px_#1e3a5f] transition-all duration-150"
+              className="p-8 border-2 border-[#1c1917] rounded-2xl bg-white flex flex-col justify-between space-y-6 group text-left shadow-[4px_4px_0px_0px_#b45309] hover:shadow-[6px_6px_0px_0px_#b45309] transition-all duration-150"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">

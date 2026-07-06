@@ -310,7 +310,7 @@ export default function Hero() {
             className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.04] font-black text-brand-charcoal tracking-tight"
           >
             Prestige Interiors. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-orange-500 to-indigo-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-orange-500 to-amber-500">
               Uncompromising Craft.
             </span>
           </motion.h1>
@@ -330,6 +330,7 @@ export default function Hero() {
             variants={fadeUpVariant}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
           >
+            {/* Primary CTA — amber brand fill */}
             <motion.div
               whileHover={{ scale: 1.05, translateY: -3 }}
               whileTap={{ scale: 0.98 }}
@@ -337,17 +338,15 @@ export default function Hero() {
             >
               <Link
                 to="/contact"
-                style={{ 
-                  backgroundColor: '#dde0ff',
-                  borderStyle: 'none'
-                }}
-                className="w-full sm:w-[225px] h-[46px] sm:h-[48px] text-[10px] sm:text-[11px] inline-flex items-center justify-center gap-2 rounded-[60px] font-bold tracking-[0.15em] uppercase transition-all duration-300 shadow-lg cursor-pointer hover:bg-brand-charcoal hover:text-white border-none group"
+                className="w-full sm:w-[225px] h-[48px] text-[11px] inline-flex items-center justify-center gap-2 rounded-[60px] font-bold tracking-[0.15em] uppercase transition-all duration-300 shadow-lg cursor-pointer group"
+                style={{ backgroundColor: '#b45309', color: '#ffffff' }}
               >
-                <span className="!text-[#000082] group-hover:!text-white" style={{ paddingLeft: '19px' }}>Consultation</span>
-                <ChevronRight className="w-4 h-4 flex-shrink-0 !text-[#000082] group-hover:!text-white" />
+                <span>Book Consultation</span>
+                <ChevronRight className="w-4 h-4 flex-shrink-0" />
               </Link>
             </motion.div>
             
+            {/* Secondary CTA — charcoal outline */}
             <motion.div
               whileHover={{ scale: 1.05, translateY: -3 }}
               whileTap={{ scale: 0.98 }}
@@ -355,10 +354,11 @@ export default function Hero() {
             >
               <Link
                 to="/collections"
-                style={{ borderStyle: 'none' }}
-                className="w-full sm:w-[225px] h-[46px] sm:h-[48px] text-[10px] sm:text-[11px] inline-flex items-center justify-center text-brand-charcoal rounded-[60px] font-bold tracking-[0.15em] uppercase hover:bg-brand-charcoal hover:text-white transition-colors duration-300 shadow-sm cursor-pointer bg-white border-none group"
+                className="w-full sm:w-[225px] h-[48px] text-[11px] inline-flex items-center justify-center gap-2 rounded-[60px] font-bold tracking-[0.15em] uppercase transition-all duration-300 shadow-sm cursor-pointer border-2 hover:bg-brand-charcoal hover:text-white"
+                style={{ borderColor: '#1c1917', color: '#1c1917', backgroundColor: 'transparent' }}
               >
-                <span className="!text-[#000082] group-hover:!text-white">Catalogue</span>
+                <span>View Catalogue</span>
+                <ChevronRight className="w-4 h-4 flex-shrink-0" />
               </Link>
             </motion.div>
           </motion.div>

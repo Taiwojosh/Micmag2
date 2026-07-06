@@ -196,7 +196,7 @@ export default function LeadForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ type: "spring", stiffness: 70, damping: 17 }}
-          className="bg-white p-8 md:p-12 rounded-2xl border-2 border-[#1c1917] shadow-[6px_6px_0px_0px_#1e3a5f] flex flex-col justify-between"
+          className="bg-white p-8 md:p-12 rounded-2xl border-2 border-[#1c1917] shadow-[6px_6px_0px_0px_#b45309] flex flex-col justify-between"
         >
           <div className="space-y-6 text-left">
             <h3 className="font-serif text-2xl md:text-3xl font-black text-brand-charcoal">
