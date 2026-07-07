@@ -149,7 +149,7 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
   },
   {
     name: 'Sandtex Satin 20L/4L',
-    desc: 'Elite satin emulsion delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.',
+    desc: 'Elite satin delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.',
     tag: 'Interior Silk',
     coverage: '12-14 m²/L',
     image: './satin1.png',

@@ -30,7 +30,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 ### 3. Sandtex Satin 20L/4L
 * **Category:** Interior Silk / Soft-Sheen
-* **General Description:** Elite satin emulsion delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.
+* **General Description:** Elite satin delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.
 * **Coverage:** 12-14 m²/L
 
 

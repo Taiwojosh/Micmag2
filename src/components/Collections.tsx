@@ -109,7 +109,7 @@ const PAINT_PRODUCTS = [
   },
   {
     name: 'Sandtex Satin 20L/4L',
-    desc: 'Elite satin emulsion delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.',
+    desc: 'Elite satin delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.',
     tag: 'Interior Silk',
     coverage: '12-14 m²/L',
     image: './satin1.png',
@@ -418,10 +418,10 @@ export default function Collections() {
 
   const handleSelectProductForQuote = (productName: string, brand: 'sandtex' | 'micmag' | 'caplux') => {
     const inquiryType = brand === 'sandtex' ? 'SANDTEX Paints' : brand === 'caplux' ? 'Caplux Surface Prep' : 'CAPLUX Paints & Primers';
-    const customMessage = brand === 'caplux' 
+    const customMessage = brand === 'caplux'
       ? `Hello! I would like to receive pricing and detailed specifications representing "${productName}" from your Caplux Surface Prep catalog. Please consult with me on availability and schedules.`
       : `Hello! I would like to receive pricing and detailed specifications representing "${productName}". Please consult with me on availability and schedules.`;
-    
+
     // Dispatch custom event to auto-populate LeadForm
     window.dispatchEvent(new CustomEvent('applyPaintEstimate', {
       detail: {
@@ -452,9 +452,9 @@ export default function Collections() {
   return (
     <section id="products" className="py-24 px-5 md:px-[5%] bg-[#F5F4F0]/60 border-b border-neutral-200">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Dynamic Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -481,54 +481,50 @@ export default function Collections() {
               Narrow Your Interest:
             </span>
           )}
-          <div 
+          <div
             className="flex overflow-x-auto lg:grid lg:grid-cols-4 gap-2.5 w-full no-scrollbar pb-3 lg:pb-0 -mx-5 px-5 lg:mx-0 lg:px-0 scroll-smooth snap-x snap-mandatory"
-            style={{ 
-              scrollbarWidth: 'none', 
+            style={{
+              scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               WebkitOverflowScrolling: 'touch'
             }}
           >
             <button
               onClick={() => setCatalogFilter('all')}
-              className={`flex-shrink-0 whitespace-nowrap snap-center min-w-[130px] lg:min-w-0 lg:w-full px-4 py-3.5 text-[10.5px] font-sans font-bold uppercase transition-all duration-300 cursor-pointer text-center ${
-                catalogFilter === 'all'
+              className={`flex-shrink-0 whitespace-nowrap snap-center min-w-[130px] lg:min-w-0 lg:w-full px-4 py-3.5 text-[10.5px] font-sans font-bold uppercase transition-all duration-300 cursor-pointer text-center ${catalogFilter === 'all'
                   ? 'bg-neutral-900 border border-neutral-900 text-[#f4efe5] shadow-md scale-102 font-black'
                   : 'bg-white border border-neutral-200 text-brand-mid hover:text-brand-charcoal hover:border-neutral-400 shadow-sm'
-              }`}
+                }`}
               style={{ borderRadius: '25px' }}
             >
               All Products
             </button>
             <button
               onClick={() => { setCatalogFilter('sandtex'); }}
-              className={`flex-shrink-0 whitespace-nowrap snap-center min-w-[130px] lg:min-w-0 lg:w-full px-4 py-3.5 text-[10.5px] font-sans font-bold uppercase transition-all duration-300 cursor-pointer text-center ${
-                catalogFilter === 'sandtex'
+              className={`flex-shrink-0 whitespace-nowrap snap-center min-w-[130px] lg:min-w-0 lg:w-full px-4 py-3.5 text-[10.5px] font-sans font-bold uppercase transition-all duration-300 cursor-pointer text-center ${catalogFilter === 'sandtex'
                   ? 'bg-sandtex-red border border-sandtex-red text-white shadow-md scale-102 font-black'
                   : 'bg-white border border-neutral-200 text-brand-mid hover:text-sandtex-red hover:border-sandtex-red shadow-sm'
-              }`}
+                }`}
               style={{ borderRadius: '25px' }}
             >
-               Sandtex Paints
+              Sandtex Paints
             </button>
             <button
               onClick={() => { setCatalogFilter('caplux'); }}
-              className={`flex-shrink-0 whitespace-nowrap snap-center min-w-[130px] lg:min-w-0 lg:w-full px-4 py-3.5 text-[10.5px] font-sans font-bold uppercase transition-all duration-300 cursor-pointer text-center ${
-                catalogFilter === 'caplux'
+              className={`flex-shrink-0 whitespace-nowrap snap-center min-w-[130px] lg:min-w-0 lg:w-full px-4 py-3.5 text-[10.5px] font-sans font-bold uppercase transition-all duration-300 cursor-pointer text-center ${catalogFilter === 'caplux'
                   ? 'bg-sandtex-orange border border-sandtex-orange text-white shadow-md scale-102 font-black'
                   : 'bg-white border border-neutral-200 text-brand-mid hover:text-sandtex-orange hover:border-sandtex-orange shadow-sm'
-              }`}
+                }`}
               style={{ borderRadius: '25px' }}
             >
               Caplux Surface Prep
             </button>
             <button
               onClick={() => { setCatalogFilter('micmag'); }}
-              className={`flex-shrink-0 whitespace-nowrap snap-center min-w-[130px] lg:min-w-0 lg:w-full px-4 py-3.5 text-[10.5px] font-sans font-bold uppercase transition-all duration-300 cursor-pointer text-center ${
-                catalogFilter === 'micmag'
+              className={`flex-shrink-0 whitespace-nowrap snap-center min-w-[130px] lg:min-w-0 lg:w-full px-4 py-3.5 text-[10.5px] font-sans font-bold uppercase transition-all duration-300 cursor-pointer text-center ${catalogFilter === 'micmag'
                   ? 'bg-micmag-blue border border-micmag-blue text-white shadow-md scale-102 font-black'
                   : 'bg-white border border-neutral-200 text-brand-mid hover:text-micmag-blue hover:border-micmag-blue shadow-sm'
-              }`}
+                }`}
               style={{ borderRadius: '25px', borderWidth: '1.701754px' }}
             >
               Specialty & Prep
@@ -591,12 +587,12 @@ export default function Collections() {
           <div className="mb-20">
             <div className="flex items-center justify-between mb-8 pb-3 border-b border-neutral-200">
               <h3 className="font-serif text-2xl font-extrabold text-brand-charcoal flex items-center gap-2">
-                 Premium SANDTEX Coatings
+                Premium SANDTEX Coatings
               </h3>
 
             </div>
 
-            <motion.div 
+            <motion.div
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
@@ -605,23 +601,23 @@ export default function Collections() {
             >
               {loading
                 ? Array.from({ length: isCollectionsPage ? 6 : (catalogFilter === 'all' ? 1 : 3) }).map((_, i) => (
-                    <div key={i} className="bg-white rounded-[4px] p-8 border border-neutral-200 shadow-sm space-y-4">
-                      <Skeleton className="w-10 h-10" />
-                      <Skeleton className="w-3/4 h-6" />
-                      <Skeleton className="w-full h-16" />
-                    </div>
-                  ))
+                  <div key={i} className="bg-white rounded-[4px] p-8 border border-neutral-200 shadow-sm space-y-4">
+                    <Skeleton className="w-10 h-10" />
+                    <Skeleton className="w-3/4 h-6" />
+                    <Skeleton className="w-full h-16" />
+                  </div>
+                ))
                 : (isCollectionsPage ? PAINT_PRODUCTS : PAINT_PRODUCTS.slice(0, catalogFilter === 'all' ? 1 : 3)).map((p, idx) => (
-                    <ProductCard
-                      key={idx}
-                      product={p}
-                      brand="sandtex"
-                      onWhatsApp={(name) => handleWhatsAppInquiry(name, 'sandtex')}
-                      onQuote={(name) => handleSelectProductForQuote(name, 'sandtex')}
-                      onViewTDS={(product) => setActiveTds({ ...product, brand: 'sandtex' })}
-                      onViewDetails={(product) => setModalState({ isOpen: true, activeItem: product, type: 'product' })}
-                    />
-                  ))}
+                  <ProductCard
+                    key={idx}
+                    product={p}
+                    brand="sandtex"
+                    onWhatsApp={(name) => handleWhatsAppInquiry(name, 'sandtex')}
+                    onQuote={(name) => handleSelectProductForQuote(name, 'sandtex')}
+                    onViewTDS={(product) => setActiveTds({ ...product, brand: 'sandtex' })}
+                    onViewDetails={(product) => setModalState({ isOpen: true, activeItem: product, type: 'product' })}
+                  />
+                ))}
             </motion.div>
           </div>
         )}
@@ -636,7 +632,7 @@ export default function Collections() {
 
             </div>
 
-            <motion.div 
+            <motion.div
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
@@ -645,23 +641,23 @@ export default function Collections() {
             >
               {loading
                 ? Array.from({ length: isCollectionsPage ? 9 : (catalogFilter === 'all' ? 1 : 3) }).map((_, i) => (
-                    <div key={i} className="bg-white rounded-[4px] p-8 border border-neutral-200 shadow-sm space-y-4">
-                      <Skeleton className="w-10 h-10" />
-                      <Skeleton className="w-3/4 h-6" />
-                      <Skeleton className="w-full h-16" />
-                    </div>
-                  ))
+                  <div key={i} className="bg-white rounded-[4px] p-8 border border-neutral-200 shadow-sm space-y-4">
+                    <Skeleton className="w-10 h-10" />
+                    <Skeleton className="w-3/4 h-6" />
+                    <Skeleton className="w-full h-16" />
+                  </div>
+                ))
                 : (isCollectionsPage ? CAPLUX_PRODUCTS : CAPLUX_PRODUCTS.slice(0, catalogFilter === 'all' ? 1 : 3)).map((p, idx) => (
-                    <ProductCard
-                      key={idx}
-                      product={p}
-                      brand="caplux"
-                      onWhatsApp={(name) => handleWhatsAppInquiry(name, 'caplux')}
-                      onQuote={(name) => handleSelectProductForQuote(name, 'caplux')}
-                      onViewTDS={(product) => setActiveTds({ ...product, brand: 'caplux' })}
-                      onViewDetails={(product) => setModalState({ isOpen: true, activeItem: product, type: 'product' })}
-                    />
-                  ))}
+                  <ProductCard
+                    key={idx}
+                    product={p}
+                    brand="caplux"
+                    onWhatsApp={(name) => handleWhatsAppInquiry(name, 'caplux')}
+                    onQuote={(name) => handleSelectProductForQuote(name, 'caplux')}
+                    onViewTDS={(product) => setActiveTds({ ...product, brand: 'caplux' })}
+                    onViewDetails={(product) => setModalState({ isOpen: true, activeItem: product, type: 'product' })}
+                  />
+                ))}
             </motion.div>
           </div>
         )}
@@ -676,7 +672,7 @@ export default function Collections() {
 
             </div>
 
-            <motion.div 
+            <motion.div
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
@@ -685,23 +681,23 @@ export default function Collections() {
             >
               {loading
                 ? Array.from({ length: isCollectionsPage ? 4 : (catalogFilter === 'all' ? 1 : 3) }).map((_, i) => (
-                    <div key={i} className="bg-brand-charcoal rounded-[4px] p-8 shadow-sm space-y-4">
-                      <Skeleton className="w-10 h-10 bg-white/20" />
-                      <Skeleton className="w-3/4 h-6 bg-white/20" />
-                      <Skeleton className="w-full h-16 bg-white/20" />
-                    </div>
-                  ))
+                  <div key={i} className="bg-brand-charcoal rounded-[4px] p-8 shadow-sm space-y-4">
+                    <Skeleton className="w-10 h-10 bg-white/20" />
+                    <Skeleton className="w-3/4 h-6 bg-white/20" />
+                    <Skeleton className="w-full h-16 bg-white/20" />
+                  </div>
+                ))
                 : (isCollectionsPage ? FITTINGS_PRODUCTS : FITTINGS_PRODUCTS.slice(0, catalogFilter === 'all' ? 1 : 3)).map((f, idx) => (
-                    <ProductCard
-                      key={idx}
-                      product={f}
-                      brand="micmag"
-                      onWhatsApp={(name) => handleWhatsAppInquiry(name, 'micmag')}
-                      onQuote={(name) => handleSelectProductForQuote(name, 'micmag')}
-                      onViewTDS={(product) => setActiveTds({ ...product, brand: 'micmag' })}
-                      onViewDetails={(product) => setModalState({ isOpen: true, activeItem: product, type: 'product' })}
-                    />
-                  ))}
+                  <ProductCard
+                    key={idx}
+                    product={f}
+                    brand="micmag"
+                    onWhatsApp={(name) => handleWhatsAppInquiry(name, 'micmag')}
+                    onQuote={(name) => handleSelectProductForQuote(name, 'micmag')}
+                    onViewTDS={(product) => setActiveTds({ ...product, brand: 'micmag' })}
+                    onViewDetails={(product) => setModalState({ isOpen: true, activeItem: product, type: 'product' })}
+                  />
+                ))}
             </motion.div>
 
             {!isCollectionsPage && (
@@ -726,7 +722,7 @@ export default function Collections() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {/* 1. Interior Design Card */}
-                <div 
+                <div
                   onClick={() => setModalState({
                     isOpen: true,
                     activeItem: {
@@ -805,7 +801,7 @@ export default function Collections() {
                 </div>
 
                 {/* 2. Coming Soon (Carpentry) Card (Section 1f coming soon card with lock icon) */}
-                <div 
+                <div
                   className="bg-white border-2 border-dashed border-[#a8a29e] rounded-2xl p-5 opacity-70 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.08)] text-left flex flex-col justify-between h-full relative"
                 >
                   <div className="absolute top-4 right-4 text-[#a8a29e]">
@@ -893,7 +889,7 @@ export default function Collections() {
                 {/* Scrollable Content Pane */}
                 <div className="flex-1 overflow-y-auto">
                   <div className="max-w-4xl mx-auto p-6 md:p-10 space-y-8 font-sans leading-relaxed text-[13.5px] text-neutral-800">
-                    
+
                     {/* Short meta description */}
                     <div className="bg-red-50/40 rounded-[4px] border border-red-100 p-5 shadow-sm">
                       <p className="font-serif italic text-brand-charcoal text-[0.94rem] leading-relaxed">
@@ -903,7 +899,7 @@ export default function Collections() {
 
                     {/* 2-Column Specs Layout */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
-                      
+
                       {/* Left Column: Basic Spec Table */}
                       <div className="space-y-6">
                         <div>
