@@ -14,9 +14,9 @@ interface PaintModel {
 
 const PAINT_MODELS: PaintModel[] = [
   // Sandtex
-  { name: 'Sandtex VME', subtitle: 'Vinyl Matt Emulsion (Interior standard)', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '4 Liters'], defaultSize: '20 Liters' },
+  { name: 'Sandtex VME', subtitle: 'Vinyl Matt Emulsion (Interior & Exterior)', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '4 Liters'], defaultSize: '20 Liters' },
   { name: 'Sandtex Select VME', subtitle: 'Vinyl Matt Emulsion (Ready-Mix)', brand: 'sandtex', hasColor: true, sizes: ['20 Liters'], defaultSize: '20 Liters' },
-  { name: 'Sandtex Satin', subtitle: 'Interior & Exterior Semi-Gloss', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '4 Liters'], defaultSize: '20 Liters' },
+  { name: 'Sandtex Satin', subtitle: 'Interior Semi-Gloss', brand: 'sandtex', hasColor: true, sizes: ['20 Liters', '4 Liters'], defaultSize: '20 Liters' },
   { name: 'Sandtex Matt', subtitle: 'Smooth & Tough Exterior Emulsion', brand: 'sandtex', hasColor: true, sizes: ['20 Liters'], defaultSize: '20 Liters' },
   { name: 'Sandtex Trade Smooth', subtitle: 'Professional Elite Masonry', brand: 'sandtex', hasColor: true, sizes: ['20 Liters'], defaultSize: '20 Liters' },
   { name: 'Sandtex Finebuild', subtitle: 'Textured Primer Build', brand: 'sandtex', hasColor: false, sizes: ['20 Liters'], defaultSize: '20 Liters' },

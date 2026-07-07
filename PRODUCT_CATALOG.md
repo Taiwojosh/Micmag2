@@ -12,7 +12,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 ## SECTION 1: Sandtex Premium Paints & Emulsions
 
 ### 1. Sandtex VME (Vinyl Matt Emulsion) 20L/4L
-* **Category:** Interior Classic / Contract Grade
+* **Category:** Interior & Exterior Classic / Contract Grade
 * **General Description:** High-opacity, contract-grade vinyl matt emulsion direct from CAP Plc. Delivers a gorgeous rich matt finish with exceptional wet-on-wet spread and superior durability. Available in over 120 colors.
 * **Coverage:** 8-10 m²/L
 
@@ -29,7 +29,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 ---
 
 ### 3. Sandtex Satin 20L/4L
-* **Category:** Interior & Exterior Silk / Soft-Sheen
+* **Category:** Interior Silk / Soft-Sheen
 * **General Description:** Elite satin emulsion delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.
 * **Coverage:** 12-14 m²/L
 

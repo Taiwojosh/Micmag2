@@ -13,7 +13,7 @@ const PAINT_PRODUCTS = [
   {
     name: 'Sandtex VME (Vinyl Matt Emulsion) 20L/4L',
     desc: 'High-opacity, contract-grade vinyl matt emulsion direct from CAP Plc. Delivers a gorgeous rich matt finish with exceptional wet-on-wet spread and superior durability. Available in over 120 colors.',
-    tag: 'Interior Classic',
+    tag: 'Interior & Exterior',
     coverage: '8-10 m²/L',
     image: './Sandtex VME.png',
     fallback: 'https://images.unsplash.com/photo-1590487988256-9ed24133863e?auto=format&fit=crop&q=80&w=800',
@@ -21,7 +21,7 @@ const PAINT_PRODUCTS = [
       title: 'SANDTEX CLASSIC VINYL MATT EMULSION (VME)',
       description: 'Standard Contract-Grade Vinyl Matt Emulsion paint with superior opacity and high coverage rate. Delivers a gorgeous flat-matt protective wrap tailored for high-yield building needs.',
       typicalUses: [
-        'For Interior wall and ceilings',
+        'Suitable for Interior and Exterior walls and ceilings',
         'Can be applied on plasterboards, screeded surfaces, brickwork, and masonry'
       ],
       keyBenefits: [
@@ -110,7 +110,7 @@ const PAINT_PRODUCTS = [
   {
     name: 'Sandtex Satin 20L/4L',
     desc: 'Elite satin emulsion delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.',
-    tag: 'Interior & Exterior',
+    tag: 'Interior Silk',
     coverage: '12-14 m²/L',
     image: './satin1.png',
     fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800',
@@ -118,7 +118,7 @@ const PAINT_PRODUCTS = [
       title: 'SANDTEX PREMIUM SATIN EMULSION',
       description: 'Elite semi-gloss satin emulsion with supreme washability. Specifically designed to provide a rich, soft-sheen protective coat that can withstand intense scrubbing and cleaning.',
       typicalUses: [
-        'For high-traffic Interior lobbies, kitchens, corridors, and high-prestige exterior trims',
+        'For high-traffic Interior lobbies, kitchens, corridors, and premium indoor spaces',
         'Screeded walls, luxury columns, partitions, panel mouldings'
       ],
       keyBenefits: [
