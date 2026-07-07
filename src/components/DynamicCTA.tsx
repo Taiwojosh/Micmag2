@@ -27,8 +27,8 @@ export default function DynamicCTA() {
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0a0b0d] relative overflow-hidden text-left border-y border-neutral-900">
-      {/* Background Spotlight Gradient */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_80%_90%,#b45309,transparent_60%)] opacity-15" />
+      {/* Background Animated Gradient Overlay */}
+      <div className="absolute inset-0 pointer-events-none animated-gradient-bg opacity-[0.16]" />
 
       <div className="absolute top-0 left-0 w-64 h-64 bg-neutral-900/40 rounded-full filter blur-[120px] pointer-events-none" />
 
@@ -37,7 +37,7 @@ export default function DynamicCTA() {
           
           {/* Brand Value Proposition Column */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-800/80 border border-neutral-700/50 rounded-full">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-850/80 border border-neutral-700/50 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
               <span className="text-[10px] font-mono text-neutral-300 font-extrabold uppercase tracking-widest">
                 MICMAG TURNKEY SPECIFICATIONS
@@ -85,7 +85,7 @@ export default function DynamicCTA() {
 
           {/* Interactive Conversion Action Frame */}
           <div className="lg:col-span-5 w-full">
-            <div className="bg-neutral-900 border border-neutral-800 rounded-[4px] p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden">
+            <div className="glass-premium-dark rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4">
                 <Gem className="w-5 h-5 text-neutral-700 font-light" />
               </div>

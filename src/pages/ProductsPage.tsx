@@ -234,12 +234,13 @@ export default function ProductsPage() {
     <div className="pt-24 min-h-screen bg-[#F5F4F0] relative">
       
       {/* Banner / Header */}
-      <div className="bg-[#000650] text-white py-16 px-5 md:px-[5%] relative overflow-hidden border-b border-neutral-800">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(117,152,243,0.15),transparent_60%)]" />
+      <div className="relative text-white py-16 px-5 md:px-[5%] overflow-hidden border-b border-neutral-900 bg-neutral-950">
+        <div className="absolute inset-0 animated-gradient-bg opacity-25 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="space-y-3 text-left">
-            <span className="text-[#7598f3] text-xs font-bold tracking-[0.25em] uppercase flex items-center gap-1.5">
-              <ShoppingBag className="w-4 h-4 text-[#7598f3]" />
+            <span className="text-amber-500 text-xs font-bold tracking-[0.25em] uppercase flex items-center gap-1.5">
+              <ShoppingBag className="w-4 h-4 text-amber-500" />
               Trade Portal
             </span>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-none">

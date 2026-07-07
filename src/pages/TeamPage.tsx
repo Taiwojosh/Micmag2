@@ -138,13 +138,13 @@ export default function TeamPage() {
       className="pt-24 min-h-screen bg-[#F5F4F0]"
     >
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-[#000082] via-[#1e3a5f] to-[#d32f2f] text-white py-20 px-5 md:px-[5%] relative overflow-hidden border-b-2 border-[#1c1917]">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#000082] via-transparent to-[#d32f2f]/30 opacity-70" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_65%)]" />
+      <div className="relative text-white py-20 px-5 md:px-[5%] overflow-hidden border-b-2 border-[#1c1917] bg-neutral-950">
+        <div className="absolute inset-0 animated-gradient-bg opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-transparent to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
         <div className="max-w-7xl mx-auto relative z-10 space-y-4 text-left">
-          <span className="text-[#7598f3] text-xs font-bold tracking-[0.25em] uppercase flex items-center gap-2">
-            <Users className="w-4 h-4 text-[#7598f3]" />
+          <span className="text-amber-500 text-xs font-bold tracking-[0.25em] uppercase flex items-center gap-2">
+            <Users className="w-4 h-4 text-amber-500" />
             Micmag Professionals
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
@@ -215,7 +215,7 @@ export default function TeamPage() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ ...springTransition, delay: idx * 0.1 }}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="bg-white border-2 border-[#1c1917] rounded-2xl overflow-hidden shadow-[4px_4px_0px_0px_#000082] hover:shadow-[6px_6px_0px_0px_#000082] transition-all duration-200 flex flex-col h-full"
+                  className="bg-white border-2 border-[#1c1917] rounded-2xl overflow-hidden shadow-[4px_4px_0px_0px_#b45309] hover:shadow-[6px_6px_0px_0px_#b45309] transition-all duration-200 flex flex-col h-full"
                 >
                   {/* Decorative Header with Monogram Badge */}
                   <div className={`p-6 bg-gradient-to-br ${member.bgGradient} border-b-2 border-[#1c1917] flex items-center justify-between relative overflow-hidden`}>
@@ -228,7 +228,7 @@ export default function TeamPage() {
                         <span className="text-[9px] font-mono uppercase font-bold tracking-wider text-[#d32f2f] bg-red-50 py-0.5 px-2 rounded border border-red-100">
                           Official Team
                         </span>
-                        <h3 className="font-serif text-base sm:text-lg font-black text-[#000082] leading-tight mt-1">
+                        <h3 className="font-serif text-base sm:text-lg font-black text-brand-charcoal leading-tight mt-1">
                           {member.name}
                         </h3>
                       </div>
@@ -255,7 +255,7 @@ export default function TeamPage() {
                     <div className="pt-4 border-t border-neutral-100">
                       <a
                         href={`mailto:${member.email}`}
-                        className="text-xs text-neutral-500 hover:text-[#000082] transition-colors flex items-center gap-1.5"
+                        className="text-xs text-neutral-500 hover:text-[#d32f2f] transition-colors flex items-center gap-1.5"
                       >
                         <Mail className="w-3.5 h-3.5" />
                         <span className="truncate">{member.email}</span>

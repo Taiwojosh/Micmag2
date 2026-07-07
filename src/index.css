@@ -92,6 +92,35 @@ body {
   animation: micmagGradientShift 30s ease-in-out infinite !important;
 }
 
+.animated-gradient-bg {
+  background: linear-gradient(-45deg, #78350f, #d32f2f, #ea6c00, #b45309, #d32f2f);
+  background-size: 400% 400%;
+  animation: micmagGradientShift 15s ease infinite;
+}
+
+.animated-gradient-text {
+  background: linear-gradient(-45deg, #78350f, #d32f2f, #ea6c00, #b45309);
+  background-size: 300% 300%;
+  animation: micmagGradientShift 8s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-premium {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-premium-dark {
+  background: rgba(28, 25, 23, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

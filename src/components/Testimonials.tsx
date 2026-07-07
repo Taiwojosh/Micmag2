@@ -115,10 +115,13 @@ export default function Testimonials() {
         </div>
 
         {/* Master Balanced Container - Centered and spacious */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto relative">
+          
+          {/* Shifting animated gradient glow behind testimonials card */}
+          <div className="absolute -inset-6 rounded-3xl filter blur-3xl opacity-20 animated-gradient-bg pointer-events-none" />
 
           {/* Testimonial Main Carousel Card - Impeccably Structured */}
-          <div className="w-full flex flex-col justify-between bg-white border border-neutral-200/70 rounded-[4px] p-6 sm:p-10 lg:p-12 shadow-sm relative min-h-[420px]">
+          <div className="w-full flex flex-col justify-between glass-premium rounded-2xl p-6 sm:p-10 lg:p-12 shadow-2xl relative min-h-[420px]">
             
             {/* Top Row with decorative brand asset symbol and verified status */}
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-neutral-100/80">

@@ -348,7 +348,7 @@ export default function Hero() {
             className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.04] font-black text-brand-charcoal tracking-tight"
           >
             Prestige Interiors. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-orange-500 to-amber-500">
+            <span className="animated-gradient-text font-black">
               Uncompromising Craft.
             </span>
           </motion.h1>
@@ -411,6 +411,9 @@ export default function Hero() {
           className="lg:col-span-5 relative flex justify-center mt-8 lg:mt-0 xl:pl-4"
         >
           
+          {/* Glowing colorful animated gradient background blur behind card */}
+          <div className="absolute -inset-4 rounded-3xl filter blur-2xl opacity-40 animated-gradient-bg pointer-events-none" />
+
           {/* Background Decorative Blocks - Animated sliding hover feel */}
           <motion.div 
             animate={{ 
@@ -424,11 +427,11 @@ export default function Hero() {
           <div 
             onMouseEnter={() => setIsHoveringSlides(true)}
             onMouseLeave={() => setIsHoveringSlides(false)}
-            className="relative w-full max-w-[420px] aspect-square md:aspect-[4/5] bg-white p-4 rounded-[6px] shadow-2xl border border-neutral-300"
+            className="relative w-full max-w-[420px] aspect-square md:aspect-[4/5] glass-premium p-4 rounded-2xl shadow-2xl border border-white/40 ring-1 ring-white/5"
           >
             
             {/* Elegant brand accent border */}
-            <div className="absolute top-0 inset-x-0 h-2.5 rounded-t-[6px] transition-colors duration-300 bg-amber-600" />
+            <div className="absolute top-0 inset-x-0 h-2.5 rounded-t-2xl transition-colors duration-300 bg-amber-600" />
 
             <div className="relative w-full h-full overflow-hidden rounded-[3px] bg-neutral-50 flex items-center justify-center border border-neutral-200">
               <motion.img
