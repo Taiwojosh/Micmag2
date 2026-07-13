@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 
 const ABOUT_ITEMS = [
   {
-    href: '/about',
+    href: '/#about',
     label: 'Our Legacy & Brand',
     desc: 'MICMAG\'s premium partnership roots across West Africa.',
     icon: Award,
     color: { bg: 'bg-red-50', text: 'text-brand-red', hover: 'group-hover/item:bg-brand-red group-hover/item:text-white', border: 'border-red-100/40', hoverText: 'group-hover/item:text-brand-red' },
   },
   {
-    href: '/core-values',
+    href: '/#core-values',
     label: 'Our Core Values',
     desc: 'Material integrity, design artistry, and nationwide trust.',
     icon: ShieldCheck,
@@ -144,22 +144,31 @@ export default function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   const handleLinkClick = (href: string, e: React.MouseEvent) => {
-    if (window.location.pathname === href) {
+    const isHomePage = window.location.pathname === '/';
+    
+    // Check if the link is a homepage hash link
+    if (isHomePage && href.startsWith('/#')) {
       e.preventDefault();
-      const pathIdMap: Record<string, string> = {
-        '/': 'navbar',
-        '/about': 'about',
-        '/core-values': 'core-values',
-        '/locations': 'service-locations',
+      const targetHash = href.substring(1); // e.g. '#about'
+      const hashIdMap: Record<string, string> = {
+        '#about': 'about',
+        '#core-values': 'core-values',
+        '#locations': 'service-locations',
       };
-      const targetId = pathIdMap[href];
+      const targetId = hashIdMap[targetHash];
       if (targetId) {
         const el = document.getElementById(targetId);
         if (el) {
           const offset = el.getBoundingClientRect().top + window.scrollY - 145;
-          window.scrollTo({ top: href === '/' ? 0 : offset, behavior: 'smooth' });
+          window.scrollTo({ top: offset, behavior: 'smooth' });
+          // Update URL hash without causing standard jumpy scroll behavior
+          window.history.pushState(null, '', href);
         }
       }
+    } else if (isHomePage && href === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.pushState(null, '', '/');
     }
   };
 
@@ -167,7 +176,7 @@ export default function Header() {
   const flatLinks: { name: string; href: string }[] = [
     { name: 'Home', href: '/' },
     { name: 'Products', href: '/collections' },
-    { name: 'Locations', href: '/locations' },
+    { name: 'Locations', href: '/#locations' },
   ];
 
   return (
@@ -249,8 +258,8 @@ export default function Header() {
             >
               <div className="relative group/link py-1 flex items-center gap-1 cursor-pointer">
                 <Link
-                  to="/about"
-                  onClick={(e) => handleLinkClick('/about', e)}
+                  to="/#about"
+                  onClick={(e) => handleLinkClick('/#about', e)}
                   className="text-[11px] xl:text-[0.79rem] font-bold tracking-[0.12em] uppercase transition-colors duration-300 hover:text-[#d32f2f]"
                   style={{ color: '#1c1917' }}
                 >
@@ -368,14 +377,14 @@ export default function Header() {
                     </Link>
 
                     {/* Locations */}
-                    <Link to="/locations" onClick={(e) => { closeMenu(); handleLinkClick('/locations', e); }}
+                    <Link to="/#locations" onClick={(e) => { closeMenu(); handleLinkClick('/#locations', e); }}
                       className="flex items-center justify-between py-3 border-b border-neutral-200 text-sm font-black tracking-[0.08em] uppercase text-[#1c1917] hover:text-[#d32f2f] transition-colors">
                       <span>Locations</span><span className="text-neutral-400 text-xs">→</span>
                     </Link>
 
                     {/* About section */}
                     <div className="py-2 border-b border-neutral-200">
-                      <Link to="/about" onClick={(e) => { closeMenu(); handleLinkClick('/about', e); }}
+                      <Link to="/#about" onClick={(e) => { closeMenu(); handleLinkClick('/#about', e); }}
                         className="flex items-center justify-between text-sm font-black tracking-[0.08em] uppercase text-[#1c1917] hover:text-[#d32f2f] transition-colors pb-2">
                         <span>About</span>
                       </Link>

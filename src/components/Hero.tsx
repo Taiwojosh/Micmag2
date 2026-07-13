@@ -259,6 +259,7 @@ export default function Hero() {
           muted
           playsInline
           onEnded={handleVideoEnded}
+          onError={handleVideoEnded}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             currentBg.type === 'video' ? 'opacity-75' : 'opacity-0'
           }`}

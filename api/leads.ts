@@ -1,14 +1,39 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
+// ── Security: build the valid passcode set from the environment variable ──────
+// ADMIN_PASSCODE must be set — server refuses if missing.
+// Supports multiple admins via comma-separated values:
+//   ADMIN_PASSCODE=alice_secret,bob_secret
+const ADMIN_PASSCODE_ENV = process.env.ADMIN_PASSCODE;
+
+const VALID_PASSCODES: Set<string> = ADMIN_PASSCODE_ENV
+  ? new Set(ADMIN_PASSCODE_ENV.split(',').map((p) => p.trim()).filter(Boolean))
+  : new Set();
+
+/** Returns true only if the submitted passcode is in the configured set */
+const isValidPasscode = (code: unknown): boolean =>
+  VALID_PASSCODES.size > 0 && typeof code === 'string' && VALID_PASSCODES.has(code);
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
-  // ── POST /api/leads ── Submit a new lead
+  // ── POST /api/leads ── Submit a new lead (public — no passcode required) ────
   if (req.method === 'POST') {
-    const { customerName, customerEmail, contactNumber, inquiryType, targetBranch, message } = req.body;
+    const { customerName, customerEmail, contactNumber, inquiryType, targetBranch, message } =
+      req.body ?? {};
 
     if (!customerName || !contactNumber || !targetBranch) {
-      return res.status(400).json({ error: 'Missing required fields: customerName, contactNumber, targetBranch' });
+      return res.status(400).json({
+        error: 'Missing required fields: customerName, contactNumber, targetBranch',
+      });
+    }
+
+    if (!webhookUrl) {
+      console.warn('GOOGLE_SHEETS_WEBHOOK_URL is not set. Lead not forwarded to Google Sheets.');
+      // Still return success so the user's form submission doesn't break
+      return res.status(201).json({ success: true });
     }
 
     const newLead = {
@@ -22,12 +47,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       message: message || '',
     };
 
-    if (!webhookUrl) {
-      console.warn('GOOGLE_SHEETS_WEBHOOK_URL is not set. Lead not forwarded.');
-      // Still return success so the form doesn't error out on the user
-      return res.status(201).json({ success: true, lead: newLead });
-    }
-
     try {
       const gsRes = await fetch(webhookUrl, {
         method: 'POST',
@@ -37,8 +56,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       if (!gsRes.ok) {
         const text = await gsRes.text();
-        console.error('Google Sheets webhook responded with error:', gsRes.status, text);
-        return res.status(502).json({ error: 'Lead forwarding to Google Sheets failed. Please try again.' });
+        console.error('Google Sheets webhook error:', gsRes.status, text);
+        return res.status(502).json({
+          error: 'Lead forwarding to Google Sheets failed. Please try again.',
+        });
       }
 
       return res.status(201).json({ success: true, lead: newLead });
@@ -48,22 +69,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   }
 
-  // ── GET /api/leads ── Fetch leads from Google Sheets via Apps Script
+  // ── GET /api/leads ── Fetch all leads from Google Sheets (admin only) ───────
   if (req.method === 'GET') {
-    const passcode = (req.headers['x-admin-passcode'] as string) || (req.query.passcode as string);
-    const configuredPasscode = process.env.ADMIN_PASSCODE || 'micmag2026';
+    // Passcode must come via the x-admin-passcode header — never via URL query
+    const passcode = req.headers['x-admin-passcode'];
 
-    if (passcode !== configuredPasscode) {
+    if (!isValidPasscode(passcode)) {
       return res.status(401).json({ error: 'Invalid admin passcode.' });
     }
 
-    const sheetsReadUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-    if (!sheetsReadUrl) {
-      return res.status(503).json({ error: 'Google Sheets is not configured.' });
+    if (!webhookUrl) {
+      return res.status(503).json({ error: 'Google Sheets is not configured on this server.' });
     }
 
     try {
-      const gsRes = await fetch(`${sheetsReadUrl}?passcode=${encodeURIComponent(configuredPasscode)}`);
+      // Forward the request to Google Apps Script — Apps Script validates its own
+      // internal secret; the admin passcode is NOT forwarded in the URL.
+      const gsRes = await fetch(`${webhookUrl}?action=list`);
       if (!gsRes.ok) {
         return res.status(502).json({ error: 'Failed to fetch leads from Google Sheets.' });
       }
@@ -75,41 +97,42 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   }
 
-  // ── PUT /api/leads ── Update a lead's status/note in Google Sheets
+  // ── PUT /api/leads ── Update a lead's status/note (admin only) ───────────
   if (req.method === 'PUT') {
-    const passcode = (req.headers['x-admin-passcode'] as string) || (req.query.passcode as string);
-    const configuredPasscode = process.env.ADMIN_PASSCODE || 'micmag2026';
+    const passcode = req.headers['x-admin-passcode'];
 
-    if (passcode !== configuredPasscode) {
+    if (!isValidPasscode(passcode)) {
       return res.status(401).json({ error: 'Invalid admin passcode.' });
     }
 
     const id = req.query.id as string;
     if (!id) return res.status(400).json({ error: 'Missing lead id.' });
 
-    const { status, note } = req.body;
     if (!webhookUrl) return res.status(503).json({ error: 'Google Sheets not configured.' });
+
+    const { status, note } = req.body ?? {};
 
     try {
       const gsRes = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'update', id, status, note, passcode }),
+        // Passcode is NOT forwarded — the Apps Script webhook does not need it
+        body: JSON.stringify({ action: 'update', id, status, note }),
       });
       if (!gsRes.ok) return res.status(502).json({ error: 'Failed to update lead.' });
       const data = await gsRes.json();
       return res.status(200).json(data);
     } catch (err: any) {
+      console.error('Error updating lead:', err.message);
       return res.status(502).json({ error: 'Could not reach Google Sheets.' });
     }
   }
 
-  // ── DELETE /api/leads ── Delete a lead from Google Sheets
+  // ── DELETE /api/leads ── Delete a lead (admin only) ───────────────────────
   if (req.method === 'DELETE') {
-    const passcode = (req.headers['x-admin-passcode'] as string) || (req.query.passcode as string);
-    const configuredPasscode = process.env.ADMIN_PASSCODE || 'micmag2026';
+    const passcode = req.headers['x-admin-passcode'];
 
-    if (passcode !== configuredPasscode) {
+    if (!isValidPasscode(passcode)) {
       return res.status(401).json({ error: 'Invalid admin passcode.' });
     }
 
@@ -122,11 +145,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const gsRes = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'delete', id, passcode }),
+        body: JSON.stringify({ action: 'delete', id }),
       });
       if (!gsRes.ok) return res.status(502).json({ error: 'Failed to delete lead.' });
       return res.status(200).json({ success: true });
     } catch (err: any) {
+      console.error('Error deleting lead:', err.message);
       return res.status(502).json({ error: 'Could not reach Google Sheets.' });
     }
   }

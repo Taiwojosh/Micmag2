@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { openWhatsApp } from '../utils/whatsapp';
+import { usePageMeta } from '../utils/usePageMeta';
 import { 
   Users, 
   Search, 
@@ -42,6 +43,11 @@ const springTransition = {
 };
 
 export default function AdminPage() {
+  usePageMeta({
+    title: 'Admin — Leads Control Centre',
+    description: 'Private admin portal for Micmag Homes & Fittings. Manage and action customer consultation leads.',
+  });
+
   const [passcode, setPasscode] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorContent, setErrorContent] = useState('');
@@ -53,9 +59,9 @@ export default function AdminPage() {
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
   const [activeNoteText, setActiveNoteText] = useState('');
 
-  // Automatically check localStorage for stored passcode on mount
+  // Automatically check sessionStorage for stored passcode on mount
   useEffect(() => {
-    const savedPasscode = localStorage.getItem('micmag_admin_passcode');
+    const savedPasscode = sessionStorage.getItem('micmag_admin_passcode');
     if (savedPasscode) {
       verifyAndLoadLeads(savedPasscode);
     }
@@ -65,7 +71,10 @@ export default function AdminPage() {
     setLoading(true);
     setErrorContent('');
     try {
-      const res = await fetch(`/api/leads?passcode=${encodeURIComponent(codeToVerify)}`);
+      // Send passcode in request header — never in the URL (avoids logs/history exposure)
+      const res = await fetch('/api/leads', {
+        headers: { 'x-admin-passcode': codeToVerify },
+      });
       if (res.status === 401) {
         throw new Error('Invalid Admin Passcode. Please try again.');
       }
@@ -76,11 +85,12 @@ export default function AdminPage() {
       setLeads(data);
       setPasscode(codeToVerify);
       setIsAuthenticated(true);
-      localStorage.setItem('micmag_admin_passcode', codeToVerify);
+      // sessionStorage auto-clears when the tab is closed (safer than localStorage)
+      sessionStorage.setItem('micmag_admin_passcode', codeToVerify);
     } catch (err: any) {
       setErrorContent(err.message || 'Verification failed');
       setIsAuthenticated(false);
-      localStorage.removeItem('micmag_admin_passcode');
+      sessionStorage.removeItem('micmag_admin_passcode');
     } finally {
       setLoading(false);
     }
@@ -93,7 +103,7 @@ export default function AdminPage() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('micmag_admin_passcode');
+    sessionStorage.removeItem('micmag_admin_passcode');
     setIsAuthenticated(false);
     setLeads([]);
     setPasscode('');

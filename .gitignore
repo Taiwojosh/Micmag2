@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Customer leads data — contains PII, must never be committed
+leads.json

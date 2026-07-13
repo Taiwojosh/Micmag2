@@ -196,50 +196,50 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
-    name: 'Sandtex Matt 20L',
+    name: 'Sandtex Matt (Smooth & Tough Exterior) 20L',
     desc: 'Legendary exterior coating delivering wet & coastal protection for humid regions. Actively curbs algae and fungi growth while allowing masonry breathing ventilation. Only 1 coat required.',
-    tag: 'Exterior Defense',
+    tag: 'Exterior Shield',
     coverage: '2.5-3.5 m²/L',
     image: './Sandtex MATT.png',
     fallback: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800',
     tdsSpec: {
-      title: 'SANDTEX MATT 20L',
-      description: 'High-performance contract-grade exterior protective masonry paint. Engineered with premium lightfast pigments and biocidal agents to repel tropical mildew, mold, and coastal chalking.',
+      title: 'SANDTEX MATT SMOOTH & TOUGH EXTERIOR MASONRY',
+      description: 'The ultimate weather-proof defensive shield for exterior walls. Engineered with state-of-the-art climate polymers to resist heavy tropical rainfall, intense UV heat, and coastal salinity.',
       typicalUses: [
-        'Exterior wall facades, columns, concrete blockwork, sand-cement rendering',
-        'High-altitude building walls subject to extreme rain and sun exposure'
+        'Exterior facades, perimeter fences, high-rise luxury concrete structures',
+        'Highly recommended for tropical and coastal regions with extreme weather patterns'
       ],
       keyBenefits: [
-        'High resistance to mold and algae growth',
-        'Excellent breathing properties allowing substrate moisture escape',
-        'Exceptional resistance to intense UV fading',
-        'Tough film protecting against sea-spray and wind-blown dust'
+        'Premium Anti-fungal & anti-algae biocide defense built-in',
+        'Outstanding UV protection prevents color chalking and fading',
+        'Microporous structure allows trapped moisture to escape while blocking liquid rain',
+        'Stretches with masonry to resist fine hair cracks'
       ],
       composition: {
-        pigment: 'Rutile Titanium Dioxide & Lightfast Extenders',
-        binder: 'Acrylic Copolymer',
+        pigment: 'High-grade weathering oxides and pigments',
+        binder: 'Silicone-Modified Premium Acrylic',
         solvent: 'Water'
       },
       packSize: '20 Liters',
-      finish: 'Flat Matt Texture',
-      volumeSolids: '35-38%',
+      finish: 'Tough Flat-Matt',
+      volumeSolids: '40-45%',
       theoreticalCoverage: '2.5-3.5 m²/L',
       dryingInfo: {
-        touchDry: '30 min',
-        hardDry: '3-4 hrs',
-        opacity: '2 coats'
+        touchDry: '1 hr',
+        hardDry: '4 hrs',
+        opacity: '1-2 coats'
       },
       applicationInfo: {
-        method: 'Stir deep. Apply by brush, exterior-grade roller, or spray machine.',
-        coverage: '2.5-3.5 sq.m/L depending on substrate profile.'
+        method: 'Apply directly onto clean primed masonry. Use sturdy long-pile exterior rollers.',
+        coverage: '2.5 - 3.5 sq.m per litre.'
       },
       thinning: {
-        brushRoller: 'Stir well. Apply directly.',
-        spray: 'Thin with water up to 10%'
+        brushRoller: 'Ready to use. Do not thin.',
+        spray: 'Not recommended to thin heavily'
       },
       safetyStorage: {
-        storage: 'Keep container sealed in a shaded space.',
-        careline: 'CAP Careline contact: 08159493070'
+        storage: 'Store upright under shade. Keep out of reach of children.',
+        careline: 'CAP Plc Helpline Careline: 08159493070'
       }
     }
   },
@@ -433,5 +433,12 @@ export const FITTINGS_PRODUCTS: FittingProduct[] = [
     tag: 'European Ceramics',
     image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800',
     fallback: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    name: 'Bampi Plumbing Systems',
+    desc: 'High-quality European polymer internal plumbing systems featuring soundproof drainage pipes and concealed cisterns with leak-proof push-fit technology.',
+    tag: 'Internal Plumbing',
+    image: './micmag-sanitary-ware.jpg',
+    fallback: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
   }
 ];

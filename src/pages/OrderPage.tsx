@@ -2,9 +2,18 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { usePageMeta } from '../utils/usePageMeta';
 import WhatsAppOrderBuilder from '../components/WhatsAppOrderBuilder';
 
 export default function OrderPage() {
+  usePageMeta({
+    title: 'Order Paint Swatches & Samples',
+    description:
+      'Build a bespoke Sandtex or Caplux paint order via WhatsApp. ' +
+      'Select your product, finish, and litre quantity — we dispatch samples nationwide.',
+    ogTitle: 'Order Sandtex Paint Swatches | Micmag Homes & Fittings',
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}

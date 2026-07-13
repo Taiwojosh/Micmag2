@@ -10,6 +10,27 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // ── Security: require ADMIN_PASSCODE to be explicitly configured ────────────
+  const ADMIN_PASSCODE_ENV = process.env.ADMIN_PASSCODE;
+  if (!ADMIN_PASSCODE_ENV || !ADMIN_PASSCODE_ENV.trim()) {
+    console.error(
+      "[FATAL] ADMIN_PASSCODE environment variable is not set.\n" +
+      "Set it in your .env file before starting the server.\n" +
+      "You can supply multiple passcodes as a comma-separated list:\n" +
+      "  ADMIN_PASSCODE=passcode_one,passcode_two"
+    );
+    process.exit(1);
+  }
+
+  // Split on commas to support multiple admin passcodes
+  const VALID_PASSCODES: Set<string> = new Set(
+    ADMIN_PASSCODE_ENV.split(',').map((p) => p.trim()).filter(Boolean)
+  );
+
+  /** Returns true if the supplied passcode is in the valid set */
+  const isValidPasscode = (code: unknown): boolean =>
+    typeof code === 'string' && VALID_PASSCODES.has(code);
+
   app.use(express.json());
 
   // API Route FIRST for Lead Submission
@@ -80,10 +101,9 @@ async function startServer() {
   // GET API to retrieve all leads (with simple passcode protective check)
   app.get("/api/leads", (req, res) => {
     try {
-      const passcode = req.headers["x-admin-passcode"] || req.query.passcode;
-      const configuredPasscode = process.env.ADMIN_PASSCODE || "micmag2026";
+      const passcode = req.headers["x-admin-passcode"];
 
-      if (passcode !== configuredPasscode) {
+      if (!isValidPasscode(passcode)) {
         return res.status(401).json({ error: "Invalid admin passcode provided." });
       }
 
@@ -103,10 +123,9 @@ async function startServer() {
   app.put("/api/leads/:id", (req, res) => {
     try {
       const { id } = req.params;
-      const passcode = req.headers["x-admin-passcode"] || req.query.passcode;
-      const configuredPasscode = process.env.ADMIN_PASSCODE || "micmag2026";
+      const passcode = req.headers["x-admin-passcode"];
 
-      if (passcode !== configuredPasscode) {
+      if (!isValidPasscode(passcode)) {
         return res.status(401).json({ error: "Invalid admin passcode provided." });
       }
 
@@ -138,10 +157,9 @@ async function startServer() {
   app.delete("/api/leads/:id", (req, res) => {
     try {
       const { id } = req.params;
-      const passcode = req.headers["x-admin-passcode"] || req.query.passcode;
-      const configuredPasscode = process.env.ADMIN_PASSCODE || "micmag2026";
+      const passcode = req.headers["x-admin-passcode"];
 
-      if (passcode !== configuredPasscode) {
+      if (!isValidPasscode(passcode)) {
         return res.status(401).json({ error: "Invalid admin passcode." });
       }
 

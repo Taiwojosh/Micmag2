@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -37,10 +37,10 @@ function AppLayout() {
         }>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<HomePage />} />
-            <Route path="/core-values" element={<HomePage />} />
-            <Route path="/why" element={<HomePage />} />
-            <Route path="/locations" element={<HomePage />} />
+            <Route path="/about" element={<Navigate to="/#about" replace />} />
+            <Route path="/core-values" element={<Navigate to="/#core-values" replace />} />
+            <Route path="/why" element={<Navigate to="/#why" replace />} />
+            <Route path="/locations" element={<Navigate to="/#locations" replace />} />
             <Route path="/collections" element={<ProductsPage />} />
             <Route path="/order" element={<OrderPage />} />
             <Route path="/specifications" element={<CapSpecificationsPage />} />
