@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { openWhatsApp } from '../utils/whatsapp';
-import { 
-  MapPin, 
-  Phone, 
-  Clock, 
-  Compass, 
-  Layers, 
-  Sparkles, 
-  CheckCircle2, 
-  ArrowUpRight, 
+import {
+  MapPin,
+  Phone,
+  Clock,
+  Compass,
+  Layers,
+  Sparkles,
+  CheckCircle2,
+  ArrowUpRight,
   Activity,
   PhoneCall,
   ChevronRight,
@@ -17,12 +17,12 @@ import {
 } from 'lucide-react';
 
 const BRANCHES = [
-  { 
-    id: 'oworonshoki', 
-    name: 'Oworonshoki Headquarters', 
-    node: 'Headquarters Depot', 
-    address: '12 Oduduwa road (Oworo road) car wash bus stop, Oworonshoki, Lagos', 
-    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
+  {
+    id: 'oworonshoki',
+    name: 'Oworonshoki Headquarters',
+    node: 'Headquarters Depot',
+    address: '12 Oduduwa road (Oworo road) car wash bus stop, Oworonshoki, Lagos',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 705 294 0445',
     tag: 'Main Store & Consult Desk',
     services: ['Architectural Color Consulting', 'Bespoke Textured Finishes Display', 'Professional Custom Tinting', 'On-Site Technical Inspections'],
@@ -33,12 +33,12 @@ const BRANCHES = [
     accentColor: '#d32f2f',
     micmagActive: true
   },
-  { 
-    id: 'sangotedo', 
-    name: 'Sangotedo Island Store', 
-    node: 'Lekki Island Store', 
-    address: 'KM 46, Lekki-Epe expressway, opposite hot bread, sangotedo Lagos', 
-    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
+  {
+    id: 'sangotedo',
+    name: 'Sangotedo Island Store',
+    node: 'Lekki Island Store',
+    address: 'KM 46, Lekki-Epe expressway, opposite hot bread, sangotedo Lagos',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 810 714 4064',
     tag: 'Paint & Texture Depot',
     services: ['Sandtex Climate-Resilient Textures', 'Caplux Screeding Fillers', 'Professional Color Cards', 'Local Contractor Pickup'],
@@ -48,12 +48,12 @@ const BRANCHES = [
     accentColor: '#0d9488',
     micmagActive: false
   },
-  { 
-    id: 'alakija', 
-    name: 'Alakija Store', 
-    node: 'Alakija Core Store', 
-    address: 'Merkato plaza, Alakija Festac, Lagos-Badagry expressway, Lagos', 
-    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
+  {
+    id: 'alakija',
+    name: 'Alakija Store',
+    node: 'Alakija Core Store',
+    address: 'Merkato plaza, Alakija Festac, Lagos-Badagry expressway, Lagos',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 706 792 4965',
     tag: 'Direct Contractor Store',
     services: ['Bulk Sandtex Sourcing Store', 'Caplux Surface Prep Primers', 'Site Logistics & Direct Delivery', 'Wholesale Trade Pricing'],
@@ -63,12 +63,12 @@ const BRANCHES = [
     accentColor: '#d97706',
     micmagActive: false
   },
-  { 
-    id: 'ikorodu', 
-    name: 'Ikorodu Store', 
-    node: 'Ikorodu Store', 
-    address: 'Lawret Plaza, Itamaga Roundabout, Ikorodu', 
-    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM', 
+  {
+    id: 'ikorodu',
+    name: 'Ikorodu Store',
+    node: 'Ikorodu Store',
+    address: 'Lawret Plaza, Itamaga Roundabout, Ikorodu',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 805 696 5188',
     tag: 'Direct Trade Outlet',
     services: ['Sandtex High-Build Finishes', 'Caplux Premium Undercoats', 'Fast Stock Collection Desk', 'Technical Specifications Consult'],
@@ -139,7 +139,7 @@ export default function ServiceLocations() {
       <div className="absolute left-[10%] bottom-0 w-80 h-80 bg-[#FF6B00]/5 rounded-full filter blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 text-left">
           <div className="lg:col-span-8 space-y-3">
@@ -148,9 +148,7 @@ export default function ServiceLocations() {
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.12] font-black text-white">
               Lagos Outlets <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B00] via-micmag-red to-[#FF6B00]">
-                & Physical Branches
-              </span>
+              & Physical Branches
             </h2>
           </div>
           <div className="lg:col-span-4 lg:pb-1">
@@ -161,19 +159,19 @@ export default function ServiceLocations() {
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-10 pb-4 border-b border-neutral-800">
           <span className="text-[10px] uppercase font-mono tracking-wider text-neutral-400 font-bold shrink-0">Regions:</span>
           <div className="flex bg-[#1a1b20] p-1 rounded border border-neutral-800 w-full sm:w-auto overflow-x-auto scrollbar-none gap-1 sm:gap-0">
-            <button 
+            <button
               onClick={() => { setActiveTab('all'); if (!filteredBranches.some(b => b.id === selectedBranch.id)) setSelectedBranch(BRANCHES[0]); }}
               className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'all' ? 'bg-micmag-red text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
             >
               All Branches ({BRANCHES.length})
             </button>
-            <button 
+            <button
               onClick={() => { setActiveTab('island'); setSelectedBranch(BRANCHES.find(b => b.id === 'sangotedo')!); }}
               className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'island' ? 'bg-micmag-red text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
             >
               Island Branches
             </button>
-            <button 
+            <button
               onClick={() => { setActiveTab('mainland'); setSelectedBranch(BRANCHES.find(b => b.id === 'oworonshoki')!); }}
               className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'mainland' ? 'bg-micmag-red text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
             >
@@ -184,7 +182,7 @@ export default function ServiceLocations() {
 
         {/* Dynamic Dual-Frame Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
+
           {/* Left Frame: Premium Cards list (7 Cols) */}
           <div className="lg:col-span-7 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -196,11 +194,10 @@ export default function ServiceLocations() {
                     layoutId={`branch-card-${branch.id}`}
                     onClick={() => setSelectedBranch(branch)}
                     whileHover={{ scale: 1.01 }}
-                    className={`p-6 rounded-[19px] border transition-all duration-300 text-left cursor-pointer flex flex-col justify-between relative group overflow-hidden ${
-                      isSelected 
-                        ? 'bg-white text-zinc-900 border-white shadow-xl' 
+                    className={`p-6 rounded-[19px] border transition-all duration-300 text-left cursor-pointer flex flex-col justify-between relative group overflow-hidden ${isSelected
+                        ? 'bg-white text-zinc-900 border-white shadow-xl'
                         : 'bg-[#15161b] text-white border-neutral-800 hover:border-neutral-700'
-                    }`}
+                      }`}
                   >
                     <div className="space-y-2 pr-12">
                       <h4 className="font-serif text-[1.15rem] leading-snug font-black">
@@ -273,15 +270,15 @@ export default function ServiceLocations() {
                           {/* Action Hub Connections */}
                           <div className="flex flex-col gap-2 pt-2">
                             <div className="grid grid-cols-2 gap-2">
-                              <a 
+                              <a
                                 href={`tel:${branch.phone}`}
                                 onClick={(e) => e.stopPropagation()}
                                 className="bg-[#15161b] hover:bg-neutral-800 text-white text-center p-3.5 rounded-full text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 font-mono"
                               >
                                 <Phone className="w-3.5 h-3.5 text-white" /> Call
                               </a>
-                              
-                              <a 
+
+                              <a
                                 href={'customGoogleMapsUrl' in branch && branch.customGoogleMapsUrl ? (branch.customGoogleMapsUrl as string) : `https://www.google.com/maps/dir/?api=1&destination=${branch.lat},${branch.lng}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -292,7 +289,7 @@ export default function ServiceLocations() {
                               </a>
                             </div>
 
-                            <button 
+                            <button
                               onClick={(e) => {
                                 e.stopPropagation();
                                 const text = `Hello Micmag team! I want to visit your ${branch.name} to inspect SANDTEX paints and CAPLUX surface preparation preps.`;
@@ -311,9 +308,9 @@ export default function ServiceLocations() {
                     </AnimatePresence>
 
                     {/* Bottom visual indicator border bar */}
-                    <div 
-                      className="absolute bottom-0 left-0 h-1 transition-all duration-300" 
-                      style={{ 
+                    <div
+                      className="absolute bottom-0 left-0 h-1 transition-all duration-300"
+                      style={{
                         backgroundColor: branch.accentColor,
                         width: isSelected ? '100%' : '0%'
                       }}
@@ -336,8 +333,8 @@ export default function ServiceLocations() {
                 className="bg-[#15161b] border border-neutral-800 rounded-[16px] p-6 md:p-8 space-y-6 text-left shadow-2xl relative overflow-hidden flex flex-col justify-between h-full"
               >
                 {/* Visual Accent Top Bar */}
-                <div 
-                  className="absolute top-0 inset-x-0 h-1.5 transition-colors duration-500" 
+                <div
+                  className="absolute top-0 inset-x-0 h-1.5 transition-colors duration-500"
                   style={{ backgroundColor: selectedBranch.accentColor }}
                 />
 
@@ -346,10 +343,10 @@ export default function ServiceLocations() {
                   <div className="absolute right-4 top-4 text-[9px] text-brand-yellow font-mono font-bold uppercase tracking-wider bg-brand-yellow/10 border border-brand-yellow/20 px-2.5 py-1 rounded inline-flex items-center gap-1.5 shadow-inner">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse" /> Open Now
                   </div>
-                  
+
                   <span className="text-[9px] font-mono text-neutral-500 font-bold block uppercase tracking-wider">Branch Location Coordinates</span>
 
-                  
+
                   {/* Decorative line */}
                   <div className="h-[2px] w-full bg-gradient-to-r from-brand-yellow via-micmag-red to-amber-500/10 rounded mt-3" />
                 </div>
@@ -377,7 +374,7 @@ export default function ServiceLocations() {
                       BRANCH OVERVIEW
                     </span>
                     <h3 className="font-serif text-2xl font-black text-white leading-snug">
-                       {selectedBranch.name}
+                      {selectedBranch.name}
                     </h3>
                     <p className="text-[11px] text-zinc-400 font-bold tracking-wide uppercase font-mono mt-1">
                       {selectedBranch.node}
@@ -402,7 +399,7 @@ export default function ServiceLocations() {
                 {/* Direct Action Hub Connections */}
                 <div className="pt-4 border-t border-neutral-800 flex flex-col gap-2.5">
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <motion.a 
+                    <motion.a
                       href={`tel:${selectedBranch.phone}`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -411,8 +408,8 @@ export default function ServiceLocations() {
                     >
                       <PhoneCall className="w-4 h-4 text-micmag-red" /> Call Branch
                     </motion.a>
-                    
-                    <motion.a 
+
+                    <motion.a
                       href={'customGoogleMapsUrl' in selectedBranch && selectedBranch.customGoogleMapsUrl ? (selectedBranch.customGoogleMapsUrl as string) : `https://www.google.com/maps/dir/?api=1&destination=${selectedBranch.lat},${selectedBranch.lng}&query=${encodeURIComponent(selectedBranch.name + ', ' + selectedBranch.address)}`}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -425,7 +422,7 @@ export default function ServiceLocations() {
                     </motion.a>
                   </div>
 
-                  <motion.button 
+                  <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => {

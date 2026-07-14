@@ -28,7 +28,7 @@ export default function CapSpecificationsPage() {
             <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" />
             <span>Return to Showroom Hub</span>
           </Link>
-          
+
           <div className="hidden sm:flex items-center gap-2 text-[10px] font-mono text-neutral-400">
             <span>SHOWROOM</span>
             <span>/</span>
@@ -40,19 +40,17 @@ export default function CapSpecificationsPage() {
         <div className="bg-[#101114] text-white rounded-[6px] border border-neutral-800 p-8 md:p-12 mb-12 relative overflow-hidden text-left">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-brand-yellow/10 to-transparent pointer-events-none" />
           <div className="absolute -right-16 -top-16 w-64 h-64 bg-brand-yellow/5 rounded-full filter blur-3xl pointer-events-none" />
-          
+
           <div className="max-w-3xl space-y-4 relative z-10">
             <div className="inline-flex items-center gap-1.5 bg-[#FF6B00]/10 border border-[#FF6B00]/25 text-brand-yellow px-3 py-1 rounded-[3px] text-[10px] font-mono font-black uppercase tracking-wider">
               <Award className="w-3.5 h-3.5" /> Authenticated Builder Program
             </div>
-            
+
             <h1 className="font-serif text-3xl sm:text-4xl md:text-[2.8rem] leading-[1.12] font-black text-white">
               Official CAP Plc <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-orange-500">
-                Technical Specifications
-              </span>
+              Technical Specifications
             </h1>
-            
+
             <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-2xl">
               Engineered by Chemical and Allied Products (CAP) Plc, Nigeria's premier coatings brand. This dedicated specifications console hosts certified structural paint application procedures, interactive yield calculators, and builder codes.
             </p>
@@ -63,7 +61,7 @@ export default function CapSpecificationsPage() {
         <div className="bg-white rounded-[6px] border border-neutral-200/80 shadow-sm overflow-hidden">
           <SandtexAdvantage />
         </div>
-        
+
         {/* Quality Footnote block */}
         <div className="mt-8 bg-neutral-100 border border-neutral-200 rounded-[4px] p-6 text-left grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           <div className="md:col-span-2 space-y-1.5">

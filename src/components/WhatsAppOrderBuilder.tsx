@@ -161,8 +161,8 @@ Please assign a formulation expert to verify my order, confirm availability, and
                       key={brand.id}
                       onClick={() => setSelectedBrand(brand.id as any)}
                       className={`px-3 py-1.5 text-[10px] font-bold rounded-lg cursor-pointer transition-all ${selectedBrand === brand.id
-                          ? 'bg-brand-charcoal text-white shadow-sm'
-                          : 'text-[#57534e] hover:text-brand-charcoal'
+                        ? 'bg-brand-charcoal text-white shadow-sm'
+                        : 'text-[#57534e] hover:text-brand-charcoal'
                         }`}
                     >
                       {brand.label}
@@ -178,8 +178,8 @@ Please assign a formulation expert to verify my order, confirm availability, and
                     key={model.name}
                     onClick={() => setSelectedModel(model)}
                     className={`p-4 text-left border-2 rounded-xl transition-all cursor-pointer flex flex-col justify-between h-full min-h-[92px] ${selectedModel.name === model.name
-                        ? 'border-brand-red bg-white shadow-sm ring-1 ring-brand-red/30'
-                        : 'border-neutral-200 hover:border-brand-charcoal bg-white'
+                      ? 'border-brand-red bg-white shadow-sm ring-1 ring-brand-red/30'
+                      : 'border-neutral-200 hover:border-brand-charcoal bg-white'
                       }`}
                   >
                     <div className="space-y-1">
@@ -251,8 +251,8 @@ Please assign a formulation expert to verify my order, confirm availability, and
                       key={size}
                       onClick={() => setSelectedSize(size)}
                       className={`w-full py-2.5 px-3 rounded-xl text-[11px] font-mono font-bold border-2 text-center cursor-pointer transition-all ${selectedSize === size
-                          ? 'bg-brand-charcoal text-white border-brand-charcoal shadow-sm'
-                          : 'bg-white text-brand-charcoal border-neutral-200 hover:border-neutral-400'
+                        ? 'bg-brand-charcoal text-white border-brand-charcoal shadow-sm'
+                        : 'bg-white text-brand-charcoal border-neutral-200 hover:border-neutral-400'
                         }`}
                     >
                       {size}
@@ -405,7 +405,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
                     <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                   </div>
                   <p className="text-[11px] sm:text-xs leading-relaxed text-[#57534e]">
-                    <strong className="text-brand-charcoal">Genuine Product Seal:</strong> Every tin of Sandtex and Caplux is sourced directly from Chemical & Allied Products Plc (CAP Plc) to safeguard your structures.
+                    <strong className="text-brand-charcoal">Genuine Product Seal:</strong> Every Product of Sandtex and Caplux is sourced directly from Chemical & Allied Products Plc (CAP Plc) to safeguard your structures.
                   </p>
                 </div>
                 <div className="flex gap-3.5 items-start">
