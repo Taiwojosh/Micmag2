@@ -85,7 +85,7 @@ export default function WhatsAppOrderBuilder() {
 
     const notesPart = customNotes.trim() ? `\n📝 Project Notes: ${customNotes.trim()}` : '';
 
-    const text = `Hello Micmag team! I want to place a paint order using your Bespoke WhatsApp Order Builder:
+    const text = `Hello Micmag team! I want to place a paint order using your  WhatsApp Order Builder:
 
 📦 Paint Range: ${brandName} Series
 🏷️ Product Model: ${selectedModel.name}
@@ -130,7 +130,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
         {/* Header Section */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-3">
           <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-brand-charcoal tracking-tight leading-tight">
-            Bespoke Paint Order Builder
+            Paint Order Builder
           </h2>
           <p className="text-xs sm:text-sm text-[#57534e] font-light max-w-2xl mx-auto leading-relaxed">
             Configure your custom paint formulation below. We will instantly compile your specifications into a live WhatsApp dispatch ticket for our formulation desk.

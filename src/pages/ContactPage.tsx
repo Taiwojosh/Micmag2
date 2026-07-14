@@ -24,7 +24,7 @@ const offices: OfficeBranch[] = [
     phone: '+234 705 294 0445',
     tag: 'Main Store & Consult Desk',
     customGoogleMapsUrl: 'https://www.google.com/maps/dir//SANDTEX+Paints-Gbagada-Oworo,+Anthony,+MarylandIkoyi,Lekki,+Iyanaworo+12+Oduduwa+road+Oworo+road+By+Akewusola+street+Ifako,+Gbagada,+Lagos/@6.5209062,3.3517324,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x103b8dfde48be55f:0xc4e217eac09c6c35!2m2!1d3.3972302!2d6.5542592?entry=ttu',
-    services: ['Architectural Color Consulting', 'Bespoke Textured Finishes Display', 'Professional Custom Tinting', 'On-Site Technical Inspections']
+    services: ['Architectural Color Consulting', ' Textured Finishes Display', 'Professional Custom Tinting', 'On-Site Technical Inspections']
   },
   {
     id: 'sangotedo',

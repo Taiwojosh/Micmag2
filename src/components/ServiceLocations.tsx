@@ -25,7 +25,7 @@ const BRANCHES = [
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 705 294 0445',
     tag: 'Main Store & Consult Desk',
-    services: ['Architectural Color Consulting', 'Bespoke Textured Finishes Display', 'Professional Custom Tinting', 'On-Site Technical Inspections'],
+    services: ['Architectural Color Consulting', ' Textured Finishes Display', 'Professional Custom Tinting', 'On-Site Technical Inspections'],
     coordinates: '6.5543° N, 3.3972° E',
     lat: 6.5542592,
     lng: 3.3972302,
@@ -195,8 +195,8 @@ export default function ServiceLocations() {
                     onClick={() => setSelectedBranch(branch)}
                     whileHover={{ scale: 1.01 }}
                     className={`p-6 rounded-[19px] border transition-all duration-300 text-left cursor-pointer flex flex-col justify-between relative group overflow-hidden ${isSelected
-                        ? 'bg-white text-zinc-900 border-white shadow-xl'
-                        : 'bg-[#15161b] text-white border-neutral-800 hover:border-neutral-700'
+                      ? 'bg-white text-zinc-900 border-white shadow-xl'
+                      : 'bg-[#15161b] text-white border-neutral-800 hover:border-neutral-700'
                       }`}
                   >
                     <div className="space-y-2 pr-12">

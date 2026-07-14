@@ -19,7 +19,7 @@ const REASONS = [
   {
     icon: <MessageSquareCode className="w-8 h-8 text-amber-600" />,
     title: 'Architectural Color Consulting',
-    desc: 'Our design experts sit down with you to curate bespoke interior color palettes, match physical textured boards, and select sophisticated high-end paint schemes.',
+    desc: 'Our design experts sit down with you to curate  interior color palettes, match physical textured boards, and select sophisticated high-end paint schemes.',
     badge: 'Design Curation'
   }
 ];

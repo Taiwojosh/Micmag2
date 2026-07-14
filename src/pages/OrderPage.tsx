@@ -9,7 +9,7 @@ export default function OrderPage() {
   usePageMeta({
     title: 'Order Paint Swatches & Samples',
     description:
-      'Build a bespoke Sandtex or Caplux paint order via WhatsApp. ' +
+      'Build a  Sandtex or Caplux paint order via WhatsApp. ' +
       'Select your product, finish, and litre quantity — we dispatch samples nationwide.',
     ogTitle: 'Order Sandtex Paint Swatches | Micmag Homes & Fittings',
   });
@@ -31,11 +31,11 @@ export default function OrderPage() {
             <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" />
             <span>Return to Showroom Hub</span>
           </Link>
-          
+
           <div className="hidden sm:flex items-center gap-2 text-[10px] font-mono text-neutral-400">
             <span>SHOWROOM</span>
             <span>/</span>
-            <span>BESPOKE PAINT ORDER</span>
+            <span> PAINT ORDER</span>
           </div>
         </div>
 

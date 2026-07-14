@@ -14,7 +14,7 @@ The experience is centered around a **unified yet segment-adaptive brand space**
 
 2. **MICMAG Fittings & Design** (The Curated Living Vibe):
    * **Accent Palette**: Luxury Warm Ochre & Amber (`#b45309` base) and deep Earth Umber (`#78350f`).
-   * **Vibe**: High-end glazed sanitary ware, biometric security integration, premium custom carpentry, and bespoke finish consultancy.
+   * **Vibe**: High-end glazed sanitary ware, biometric security integration, premium custom carpentry, and  finish consultancy.
 
 ### Global Typographic Pairings:
 * **Display & Headings**: Fine Elegant Serif coupled with responsive heavy-tracking display headers.

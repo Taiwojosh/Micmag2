@@ -16,7 +16,7 @@ const VALUES = [
     icon: Palette,
     title: 'Architectural Artistry',
     mono: '02 / DESIGN EXCELLENCE',
-    desc: 'Synthesizing color science and luxury textures to elevate luxury spaces into bespoke, editorial environments.',
+    desc: 'Synthesizing color science and luxury textures to elevate luxury spaces into , editorial environments.',
     color: 'from-amber-500 to-amber-600',
     bgColor: 'bg-amber-50/50',
     textColor: 'text-amber-800'
@@ -34,7 +34,7 @@ const VALUES = [
     icon: Leaf,
     title: 'Eco-Stewardship',
     mono: '04 / SUSTAINABLE HORIZON',
-    desc: 'Preserving interior environments with low-odor, eco-friendly bespoke finishes for healthy, refined spaces.',
+    desc: 'Preserving interior environments with low-odor, eco-friendly  finishes for healthy, refined spaces.',
     color: 'from-emerald-500 to-teal-600',
     bgColor: 'bg-emerald-50/50',
     textColor: 'text-emerald-700'
@@ -52,16 +52,16 @@ export default function CoreValues() {
   return (
     <section id="core-values" className="py-24 px-5 md:px-[5%] border-b border-neutral-200 relative overflow-hidden" style={{ backgroundColor: '#dfe7ff' }}>
       {/* Subtle decorative background grids or assets */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none select-none" 
-        style={{ 
-          backgroundImage: 'radial-gradient(var(--color-brand-red) 1px, transparent 1px)', 
-          backgroundSize: '24px 24px' 
-        }} 
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none select-none"
+        style={{
+          backgroundImage: 'radial-gradient(var(--color-brand-red) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
+        }}
       />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-brand-red text-xs font-bold tracking-[0.2em] uppercase flex items-center justify-center gap-1.5">
@@ -91,7 +91,7 @@ export default function CoreValues() {
               >
                 {/* Accent bar that grows on hover */}
                 <div className={`absolute top-0 left-0 bottom-0 w-[3px] bg-gradient-to-b ${val.color} transition-all duration-300 group-hover:w-[5px]`} />
-                
+
                 {/* Icon wrapper */}
                 <div className={`p-4 rounded-full ${val.bgColor} ${val.textColor} border border-neutral-100/50 flex-shrink-0 transition-transform duration-300 group-hover:scale-110`}>
                   <Icon className="w-6 h-6" />
