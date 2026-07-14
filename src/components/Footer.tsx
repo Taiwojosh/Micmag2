@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <>
       <footer 
-        className="text-[#a1a1aa] pt-20 pb-12 px-5 md:px-[5%] border-t border-neutral-900 relative overflow-hidden bg-[#820000]"
+        className="text-white pt-20 pb-12 px-5 md:px-[5%] border-t border-neutral-900 relative overflow-hidden bg-[#820000]"
         style={{ borderRadius: '30px 30px 0 0' }}
       >
         
@@ -36,7 +36,7 @@ export default function Footer() {
                 </div>
               </div>
               
-              <p className="text-[12.5px] leading-relaxed text-neutral-400 font-light max-w-sm">
+              <p className="text-[12.5px] leading-relaxed text-white font-light max-w-sm">
                 Micmag Homes & Fittings is Lagos' leading dealer of genuine architectural materials. From the climate-resilience of <strong>SANDTEX</strong> paints, to the high-integrity <strong>CAPLUX</strong> surface preparation preps and industrial primers, we are committed to uncompromising physical quality.
               </p>
 
@@ -84,28 +84,28 @@ export default function Footer() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-left">
                 
                 <div className="space-y-2">
-                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-bold block">
+                  <span className="text-[10px] uppercase tracking-wider text-white font-bold block">
                     Sales Management
                   </span>
                   <a href="mailto:micmaghomesfittings@gmail.com" className="text-white hover:underline block truncate flex items-center gap-1">
-                    <Mail className="w-3.5 h-3.5 text-neutral-600" /> micmaghomesfittings@gmail.com
+                    <Mail className="w-3.5 h-3.5 text-white" /> micmaghomesfittings@gmail.com
                   </a>
-                  <a href="mailto:kosimicmag@gmail.com" className="hover:underline text-neutral-300 block truncate leading-relaxed">
+                  <a href="mailto:kosimicmag@gmail.com" className="text-white hover:underline block truncate leading-relaxed">
                     kosimicmag@gmail.com
                   </a>
                 </div>
 
                 <div className="space-y-2">
-                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-bold block">
+                  <span className="text-[10px] uppercase tracking-wider text-white font-bold block">
                     Technical Desk
                   </span>
                   <a href="mailto:ajike_remalia@yahoo.com" className="text-white hover:underline block truncate flex items-center gap-1">
-                    <Mail className="w-3.5 h-3.5 text-neutral-600" /> ajike_remalia@yahoo.com
+                    <Mail className="w-3.5 h-3.5 text-white" /> ajike_remalia@yahoo.com
                   </a>
                   <a href="tel:+2347052940445" className="text-white hover:underline block truncate flex items-center gap-1">
-                    <Phone className="w-3.5 h-3.5 text-neutral-600" /> +234 705 294 0445 (HQ)
+                    <Phone className="w-3.5 h-3.5 text-white" /> +234 705 294 0445 (HQ)
                   </a>
-                  <span className="text-[10px] text-neutral-500 block">
+                  <span className="text-[10px] text-white block">
                     Mon - Sat: 8:00 AM - 6:00 PM
                   </span>
                 </div>
@@ -113,8 +113,8 @@ export default function Footer() {
               </div>
 
               {/* Physical Address Footnote */}
-              <div className="pt-2 border-t border-neutral-800/60 text-[11px] text-neutral-400 flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-micmag-red mt-0.5 flex-shrink-0" />
+              <div className="pt-2 border-t border-neutral-800/60 text-[11px] text-white flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                 <p>Offices in Oworonshoki (HQ), Sangotedo, Alakija, Ikorodu, Ogombo, and Bogije. Nationwide container site drops directly coordinated daily.</p>
               </div>
 
@@ -123,7 +123,7 @@ export default function Footer() {
           </div>
 
           {/* Bottom Copyright desk */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-[11px] text-neutral-500 font-mono">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-[11px] text-white font-mono">
             <span>&copy; {currentYear} Micmag Homes & Fittings. RC Registered Authorized Dealer.</span>
           </div>
 
