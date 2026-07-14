@@ -80,7 +80,7 @@ export default function ProductDetailModal({
   const [added, setAdded] = useState(false);
 
   const isSandtexOrCaplux = brand === 'sandtex' || brand === 'caplux';
-  const isPaint = isSandtexOrCaplux;
+  const isPaint = brand === 'sandtex';
 
   // Reset on item change
   useEffect(() => {
