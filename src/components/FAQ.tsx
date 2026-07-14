@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 const faqs = [
   {
     question: 'What is the relationship between Micmag and Sandtex?',
-    answer: 'Micmag is an authorized premium dealer of Sandtex (Portland Paints) coatings and CAPLUX surface preparation preps and industrial primers. We serve as the specialized trade hub and direct distributor for both legendary brands across Nigeria.'
+    answer: 'Micmag is an authorized premium dealer of Sandtex Paints and CAPLUX surface preparation preps and industrial primers produced by the Chemical Allied Products Plc We serve as the specialized trade hub and direct distributor for both legendary brands across Nigeria.'
   },
   {
     question: 'How do I choose the right paint for my surface?',
@@ -45,7 +45,7 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-20 px-5 md:px-[5%] bg-brand-cream/50 overflow-hidden">
       <div className="max-w-3xl mx-auto">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -60,7 +60,7 @@ export default function FAQ() {
           </h2>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -73,7 +73,7 @@ export default function FAQ() {
               variants={fadeInUpVariant}
             >
               <details
-                className="group bg-white border-2 border-brand-charcoal rounded-2xl p-6 shadow-[3px_3px_0px_0px_#1e3a5f] hover:shadow-[5px_5px_0px_0px_#1e3a5f] [&[open]]:shadow-[4px_4px_0px_0px_var(--color-micmag-red)] transition-all duration-300 text-left"
+                className="group bg-white border-2 border-[#1c1917] rounded-2xl p-6 shadow-[3px_3px_0px_0px_#1e3a5f] hover:shadow-[5px_5px_0px_0px_#1e3a5f] [&[open]]:shadow-[4px_4px_0px_0px_#d32f2f] transition-all duration-300 text-left"
               >
                 <summary className="font-bold text-brand-charcoal cursor-pointer flex justify-between items-center text-[1.05rem] marker:content-['']">
                   {faq.question}
