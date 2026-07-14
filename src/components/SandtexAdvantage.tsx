@@ -161,7 +161,7 @@ export default function SandtexAdvantage() {
   const totalSavings = Number((glossVal.savings + emulsionVal.savings + satinVal.savings).toFixed(1));
 
   return (
-    <section id="sandtex-advantage" className="py-24 px-5 md:px-[5%] bg-white border-b border-neutral-200 scroll-mt-20">
+    <section id="sandtex-advantage" className="py-24 px-5 md:px-[5%] max-w-3xl mx-auto text-center space-y-4 mb-16 bg-white border-b border-neutral-200 scroll-mt-20">
       <div className="max-w-7xl mx-auto">
 
         {/* Title Block */}

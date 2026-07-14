@@ -50,8 +50,6 @@ export default function ProductsPage() {
     ogTitle: 'Micmag Products — Sandtex Paints, Caplux Primers & European Fittings',
   });
   const [selectedBrand, setSelectedBrand] = useState<'all' | 'sandtex' | 'caplux' | 'micmag'>('all');
-  const [selectedTag, setSelectedTag] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<'name-asc' | 'name-desc' | 'brand'>('brand');
   
   // Cart / Inquiry Basket State
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -60,7 +58,9 @@ export default function ProductsPage() {
   // Detail Modal State
   const [activeModalItem, setActiveModalItem] = useState<any | null>(null);
   
-  // Mobile Filter Drawer State
+  const [sortBy, setSortBy] = useState<'name-asc' | 'name-desc' | 'brand'>('brand');
+  
+  // Mobile Filter Drawer State (search only)
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Compile unified catalog
@@ -111,15 +111,6 @@ export default function ProductsPage() {
     return list;
   }, []);
 
-  // Extract all unique tags
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    unifiedCatalog.forEach(p => {
-      if (p.tag) tags.add(p.tag);
-    });
-    return Array.from(tags);
-  }, [unifiedCatalog]);
-
   // Filter & sort catalog items
   const filteredCatalog = useMemo(() => {
     let result = unifiedCatalog.filter(p => {
@@ -128,9 +119,8 @@ export default function ProductsPage() {
                             p.tag.toLowerCase().includes(searchQuery.toLowerCase());
       
       const matchesBrand = selectedBrand === 'all' || p.brand === selectedBrand;
-      const matchesTag = selectedTag === 'all' || p.tag === selectedTag;
       
-      return matchesSearch && matchesBrand && matchesTag;
+      return matchesSearch && matchesBrand;
     });
 
     // Apply sorting
@@ -143,7 +133,7 @@ export default function ProductsPage() {
     }
 
     return result;
-  }, [unifiedCatalog, searchQuery, selectedBrand, selectedTag, sortBy]);
+  }, [unifiedCatalog, searchQuery, selectedBrand, sortBy]);
 
   // Basket Handlers
   const handleAddToBasket = (product: StandardProduct) => {
@@ -263,35 +253,27 @@ export default function ProductsPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-5 md:px-[5%] py-8 md:py-12">
-        
-        {/* Mobile Filter & Search Trigger Bar - Highly Responsive & Premium */}
-        <div className="lg:hidden flex flex-col sm:flex-row gap-3 mb-6 w-full">
-          <div className="relative flex-grow">
-            <input
-              type="text"
-              placeholder="Search premium formulations..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              className="w-full bg-white border border-neutral-200 rounded-lg py-3.5 pl-10 pr-4 text-xs font-sans text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 shadow-sm"
-            />
-            <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-[15px]" />
-          </div>
-          <div className="flex gap-2.5">
-            <button 
-              onClick={() => setShowMobileFilters(true)}
-              className="flex-1 sm:flex-initial bg-white border border-neutral-200 py-3.5 px-5 rounded-lg text-xs font-bold uppercase tracking-wider text-neutral-800 flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-neutral-50 active:scale-95 cursor-pointer"
-            >
-              <SlidersHorizontal className="w-4 h-4 text-micmag-blue" />
-              <span>Filter & Sort { (selectedBrand !== 'all' || selectedTag !== 'all') && '•' }</span>
-            </button>
+            {/* Inline Brand Chips — Mobile-first, shown on all screen sizes */}
+        <div className="flex flex-wrap gap-2 mb-6 px-0">
+          {[
+            { id: 'all', label: 'All Products', color: 'bg-neutral-700' },
+            { id: 'sandtex', label: 'Sandtex Paint', color: 'bg-micmag-red' },
+            { id: 'caplux', label: 'Caplux Prep', color: 'bg-amber-600' },
+            { id: 'micmag', label: 'Sanitary & Fittings', color: 'bg-micmag-blue' },
+          ].map(b => (
             <button
-              onClick={() => setIsCartOpen(true)}
-              className="bg-micmag-blue text-white py-3.5 px-5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-[#0000a0] active:scale-95 cursor-pointer shrink-0"
+              key={b.id}
+              onClick={() => setSelectedBrand(b.id as any)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                selectedBrand === b.id
+                  ? `${b.color} text-white border-transparent shadow-sm`
+                  : 'bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400'
+              }`}
             >
-              <ShoppingBag className="w-4 h-4 text-brand-yellow" />
-              <span>Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)})</span>
+              <span className={`w-2 h-2 rounded-full ${b.color} shrink-0 ${selectedBrand === b.id ? 'bg-white/60' : ''}`} />
+              {b.label}
             </button>
-          </div>
+          ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -336,7 +318,6 @@ export default function ProductsPage() {
                     key={b.id}
                     onClick={() => {
                       setSelectedBrand(b.id as any);
-                      setSelectedTag('all'); // Reset tag filter on brand switch
                     }}
                     className={`w-full text-left px-3.5 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between cursor-pointer ${
                       selectedBrand === b.id
@@ -346,38 +327,6 @@ export default function ProductsPage() {
                   >
                     <span>{b.label}</span>
                     {selectedBrand === b.id && <Check className="w-3.5 h-3.5" />}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Section / Category Filters */}
-            <div className="bg-white border border-neutral-200 p-5 rounded-lg space-y-4 shadow-sm">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400 block border-b border-neutral-100 pb-2">
-                Filter by Coating Tag
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                <button
-                  onClick={() => setSelectedTag('all')}
-                  className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
-                    selectedTag === 'all'
-                      ? 'bg-micmag-blue text-white border-micmag-blue'
-                      : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
-                  }`}
-                >
-                  All Categories
-                </button>
-                {allTags.map(tag => (
-                  <button
-                    key={tag}
-                    onClick={() => setSelectedTag(tag)}
-                    className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
-                      selectedTag === tag
-                        ? 'bg-micmag-blue text-white border-micmag-blue'
-                        : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
-                    }`}
-                  >
-                    {tag}
                   </button>
                 ))}
               </div>
@@ -410,11 +359,10 @@ export default function ProductsPage() {
                 Showing <span className="font-bold text-neutral-900">{filteredCatalog.length}</span> premium products
               </div>
               
-              {(selectedBrand !== 'all' || selectedTag !== 'all' || searchQuery) && (
+              {(selectedBrand !== 'all' || searchQuery) && (
                 <button
                   onClick={() => {
                     setSelectedBrand('all');
-                    setSelectedTag('all');
                     setSearchQuery('');
                   }}
                   className="text-xs font-bold text-brand-red hover:underline flex items-center gap-1 cursor-pointer"
@@ -694,164 +642,6 @@ export default function ProductsPage() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Filters Drawer - Highly Responsive and Polished */}
-      <AnimatePresence>
-        {showMobileFilters && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowMobileFilters(false)}
-              className="fixed inset-0 bg-black/60 z-[120] lg:hidden"
-            />
-            {/* Drawer Panel */}
-            <motion.div
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="fixed inset-x-0 bottom-0 max-h-[85vh] bg-white rounded-t-[24px] z-[130] shadow-[0_-8px_30px_rgb(0,0,0,0.12)] flex flex-col lg:hidden text-left overflow-hidden border-t border-neutral-100"
-            >
-              {/* Bottom Sheet Grab Handle Indicator */}
-              <div className="w-full flex justify-center py-2 shrink-0 bg-neutral-50">
-                <span className="w-12 h-1.5 rounded-full bg-neutral-300" />
-              </div>
-
-              {/* Header */}
-              <div className="px-5 pb-4 border-b border-neutral-100 flex items-center justify-between bg-neutral-50 shrink-0">
-                <div className="flex items-center gap-2">
-                  <SlidersHorizontal className="w-4 h-4 text-micmag-blue" />
-                  <span className="text-xs font-black uppercase tracking-wider text-neutral-900 font-sans">
-                    Filter &amp; Sort
-                  </span>
-                </div>
-                <button
-                  onClick={() => setShowMobileFilters(false)}
-                  className="p-1.5 rounded-full bg-neutral-100 text-neutral-500 hover:text-neutral-950 hover:bg-neutral-200 transition-colors cursor-pointer"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Scrollable content */}
-              <div className="p-6 overflow-y-auto space-y-7 flex-grow">
-                {/* Brand Selection */}
-                <div className="space-y-3">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400 block border-b border-neutral-100 pb-1.5">
-                    Brand Catalogues
-                  </span>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {[
-                      { id: 'all', label: 'All Brands', color: 'bg-neutral-400' },
-                      { id: 'sandtex', label: 'Sandtex Paint', color: 'bg-micmag-red' },
-                      { id: 'caplux', label: 'Caplux Prep', color: 'bg-amber-600' },
-                      { id: 'micmag', label: 'Sanitary & Fittings', color: 'bg-micmag-blue' }
-                    ].map(b => (
-                      <button
-                        key={b.id}
-                        onClick={() => {
-                          setSelectedBrand(b.id as any);
-                          setSelectedTag('all'); // Reset tag
-                        }}
-                        className={`text-left px-3.5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all flex items-center gap-2 border cursor-pointer ${
-                          selectedBrand === b.id
-                            ? 'bg-micmag-blue/5 text-micmag-blue border-micmag-blue ring-1 ring-micmag-blue font-black'
-                            : 'bg-neutral-50 border-neutral-200/80 text-neutral-600'
-                        }`}
-                      >
-                        <span className={`w-2 h-2 rounded-full ${b.color} shrink-0`} />
-                        <span className="truncate">{b.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Coating Categories */}
-                <div className="space-y-3">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400 block border-b border-neutral-100 pb-1.5">
-                    Coating Categories
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    <button
-                      onClick={() => setSelectedTag('all')}
-                      className={`px-3.5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
-                        selectedTag === 'all'
-                          ? 'bg-micmag-blue text-white border-micmag-blue font-black'
-                          : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
-                      }`}
-                    >
-                      All Categories
-                    </button>
-                    {allTags.map(tag => (
-                      <button
-                        key={tag}
-                        onClick={() => setSelectedTag(tag)}
-                        className={`px-3.5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
-                          selectedTag === tag
-                            ? 'bg-micmag-blue text-white border-micmag-blue font-black'
-                            : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
-                        }`}
-                      >
-                        {tag}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Sort Preference */}
-                <div className="space-y-3">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400 block border-b border-neutral-100 pb-1.5">
-                    Sort Hierarchy
-                  </span>
-                  <div className="grid grid-cols-1 gap-2">
-                    {[
-                      { id: 'name-asc', label: 'Alphabetical (A - Z)' },
-                      { id: 'name-desc', label: 'Alphabetical (Z - A)' },
-                      { id: 'brand', label: 'Sort by Brand Catalogue' }
-                    ].map(opt => (
-                      <button
-                        key={opt.id}
-                        onClick={() => setSortBy(opt.id as any)}
-                        className={`text-left px-4 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border cursor-pointer ${
-                          sortBy === opt.id
-                            ? 'bg-micmag-blue/5 text-micmag-blue border-micmag-blue ring-1 ring-micmag-blue font-black'
-                            : 'bg-neutral-50 border-neutral-200/80 text-neutral-600'
-                        }`}
-                      >
-                        <span>{opt.label}</span>
-                        {sortBy === opt.id && <Check className="w-4 h-4 text-micmag-blue" />}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Footer controls inside drawer */}
-              <div className="bg-neutral-50 border-t border-neutral-200/60 p-5 shrink-0 grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => {
-                    setSelectedBrand('all');
-                    setSelectedTag('all');
-                    setSearchQuery('');
-                    setShowMobileFilters(false);
-                  }}
-                  className="bg-white border border-neutral-300 text-neutral-600 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-neutral-100 transition-colors shadow-sm"
-                >
-                  Clear All
-                </button>
-                <button
-                  onClick={() => setShowMobileFilters(false)}
-                  className="bg-micmag-blue text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer hover:bg-micmag-blue-deep transition-colors"
-                >
-                  Apply Filters
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
 
       {/* TDS Detail Specifications Modal */}
       {activeModalItem && (
