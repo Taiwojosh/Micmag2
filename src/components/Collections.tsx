@@ -707,13 +707,6 @@ export default function Collections() {
               onClose={() => setModalState({ isOpen: false, activeItem: null, type: 'product' })}
               type={modalState.type}
               item={modalState.activeItem}
-              onSwapItem={(newItem, newType) => {
-                setModalState({
-                  isOpen: true,
-                  activeItem: newItem,
-                  type: newType
-                });
-              }}
             />
           )}
         </AnimatePresence>

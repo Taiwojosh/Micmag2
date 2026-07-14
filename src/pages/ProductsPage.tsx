@@ -4,23 +4,19 @@ import {
   Search, 
   SlidersHorizontal, 
   Trash2, 
-  FileText, 
   ShoppingBag, 
   Check, 
-  Sparkles, 
-  CheckCircle2, 
   X, 
-  Volume2, 
   Info, 
   PhoneCall, 
-  ArrowRight,
-  Database
+  Database,
+  MapPin
 } from 'lucide-react';
 import { PAINT_PRODUCTS, FITTINGS_PRODUCTS, PaintProduct, FittingProduct } from '../data/productsData';
 import { CAPLUX_PRODUCTS } from '../data/capluxProducts';
 import { openWhatsApp } from '../utils/whatsapp';
 import { usePageMeta } from '../utils/usePageMeta';
-import ProductDetailModal from '../components/ProductDetailModal';
+import ProductDetailModal, { OrderLineItem } from '../components/ProductDetailModal';
 
 // Unified format for catalog products
 interface StandardProduct {
@@ -36,9 +32,11 @@ interface StandardProduct {
 }
 
 interface CartItem {
+  lineId: string; // unique per addition
   product: StandardProduct;
+  color: string | null;  // color name
+  size: string | null;   // '4L' | '20L' | null for fittings
   quantity: number;
-  selectedSize?: string;
 }
 
 export default function ProductsPage() {
@@ -54,9 +52,10 @@ export default function ProductsPage() {
   // Cart / Inquiry Basket State
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  
-  // Detail Modal State
-  const [activeModalItem, setActiveModalItem] = useState<any | null>(null);
+  const [orderRegion, setOrderRegion] = useState('');
+
+  // Detail Modal State — stores the StandardProduct (not rawItem)
+  const [activeModalProduct, setActiveModalProduct] = useState<StandardProduct | null>(null);
   
   const [sortBy, setSortBy] = useState<'name-asc' | 'name-desc' | 'brand'>('brand');
   
@@ -136,34 +135,23 @@ export default function ProductsPage() {
   }, [unifiedCatalog, searchQuery, selectedBrand, sortBy]);
 
   // Basket Handlers
-  const handleAddToBasket = (product: StandardProduct) => {
-    setCart(prev => {
-      const existingIndex = prev.findIndex(item => item.product.id === product.id);
-      if (existingIndex > -1) {
-        const updated = [...prev];
-        updated[existingIndex].quantity += 1;
-        return updated;
+  // Add a line item from the modal (supports duplicates with different color/size)
+  const handleAddToOrder = (lineItem: OrderLineItem) => {
+    setCart(prev => [
+      ...prev,
+      {
+        lineId: `${lineItem.productId}-${Date.now()}`,
+        product: unifiedCatalog.find(p => p.id === lineItem.productId) || activeModalProduct!,
+        color: lineItem.color?.name ?? null,
+        size: lineItem.size,
+        quantity: lineItem.quantity,
       }
-      return [...prev, { product, quantity: 1 }];
-    });
-    // Open the cart automatically to give prompt user feedback
+    ]);
     setIsCartOpen(true);
   };
 
-  const handleUpdateQuantity = (productId: string, delta: number) => {
-    setCart(prev => {
-      return prev.map(item => {
-        if (item.product.id === productId) {
-          const nextQty = item.quantity + delta;
-          return nextQty > 0 ? { ...item, quantity: nextQty } : item;
-        }
-        return item;
-      }).filter(item => item.quantity > 0);
-    });
-  };
-
-  const handleRemoveFromBasket = (productId: string) => {
-    setCart(prev => prev.filter(item => item.product.id !== productId));
+  const handleRemoveFromBasket = (lineId: string) => {
+    setCart(prev => prev.filter(item => item.lineId !== lineId));
   };
 
   const handleClearBasket = () => {
@@ -191,31 +179,38 @@ export default function ProductsPage() {
     return sqm;
   }, [cart]);
 
-  // Submit Inquiry to WhatsApp (Professional Format)
+  // Submit multi-product order to WhatsApp
   const handleSubmitInquiry = () => {
     if (cart.length === 0) return;
 
-    let text = `*MICMAG HOMES & FITTINGS - E-COMMERCE QUOTE INQUIRY*\n`;
-    text += `===================================\n`;
-    text += `I have built an e-commerce estimate and would like to receive the official trade pricing, availability, and delivery options for the following item(s):\n\n`;
-
-    cart.forEach((item, idx) => {
-      const brandLabel = item.product.brand.toUpperCase();
-      text += `${idx + 1}. [${brandLabel}] *${item.product.name}*\n`;
-      text += `   - Quantity: ${item.quantity} unit(s)\n`;
-      if (item.product.coverage) {
-        text += `   - Factory Coverage Spec: ${item.product.coverage}\n`;
-      }
-      text += `\n`;
+    // Group line items by product name
+    const grouped = new Map<string, CartItem[]>();
+    cart.forEach(item => {
+      const key = item.product.name;
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key)!.push(item);
     });
 
-    if (totalEstimatedCoverage > 0) {
-      text += `===================================\n`;
-      text += `*Estimated Base Project Coverage*: ~${totalEstimatedCoverage} sq. meters total.\n`;
-    }
+    let text = `*MICMAG HOMES & FITTINGS — ORDER ENQUIRY*\n`;
+    text += `===================================\n\n`;
+    text += `Hello Micmag team! I'd like to place a paint/fittings order for the following:\n\n`;
 
-    text += `Please check stock at Oworonshoki Headquarters and advise on the next logistics steps.\n`;
-    text += `Thank you!`;
+    let idx = 1;
+    grouped.forEach((lines, productName) => {
+      const lineDescs = lines.map(l => {
+        const parts: string[] = [`${l.quantity}×`];
+        if (l.color) parts.push(l.color);
+        if (l.size) parts.push(l.size);
+        return parts.join(' ');
+      });
+      text += `${idx}. *${productName}* — ${lineDescs.join(', ')}\n`;
+      idx++;
+    });
+
+    if (orderRegion) {
+      text += `\n📍 *Delivery Location:* ${orderRegion}\n`;
+    }
+    text += `\nPlease confirm availability, pricing, and next steps. Thank you!`;
 
     openWhatsApp('2347052940445', text);
   };
@@ -391,7 +386,7 @@ export default function ProductsPage() {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35 }}
-                    onClick={() => setActiveModalItem(p.rawItem)}
+                    onClick={() => setActiveModalProduct(p)}
                     className="bg-white border border-neutral-200 rounded-lg overflow-hidden flex flex-col justify-between h-full shadow-sm hover:shadow-md hover:border-neutral-300 transition-all group cursor-pointer"
                   >
                     
@@ -457,12 +452,12 @@ export default function ProductsPage() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleAddToBasket(p);
+                          setActiveModalProduct(p);
                         }}
-                        className="w-full bg-micmag-blue hover:bg-micmag-blue-deep text-white py-2.5 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm cursor-pointer"
+                        className="w-full bg-micmag-red hover:brightness-110 text-white py-2.5 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm cursor-pointer transition-all"
                       >
                         <ShoppingBag className="w-3.5 h-3.5" />
-                        <span>Inquire</span>
+                        <span>Inquire / Order</span>
                       </button>
 
                     </div>
@@ -532,9 +527,9 @@ export default function ProductsPage() {
                 ) : (
                   <div className="space-y-4">
                     
-                    {cart.map(item => (
+                  {cart.map(item => (
                       <div 
-                        key={item.product.id} 
+                        key={item.lineId} 
                         className="bg-neutral-50 border border-neutral-200 p-4 rounded-lg flex gap-4 items-start text-left relative"
                       >
                         <div className="w-12 h-12 bg-white rounded border border-neutral-200 overflow-hidden shrink-0 flex items-center justify-center p-1.5">
@@ -548,7 +543,7 @@ export default function ProductsPage() {
                           />
                         </div>
                         
-                        <div className="flex-grow space-y-1.5 pr-6">
+                        <div className="flex-grow space-y-1 pr-6">
                           <span className={`text-[8px] font-mono uppercase font-bold tracking-wider px-1.5 py-0.5 rounded text-white ${
                             item.product.brand === 'sandtex' 
                               ? 'bg-micmag-red' 
@@ -561,30 +556,26 @@ export default function ProductsPage() {
                           <h4 className="font-serif text-sm font-bold text-neutral-900 leading-tight">
                             {item.product.name}
                           </h4>
-                          
-                          {/* Quantity Selector */}
-                          <div className="flex items-center gap-3">
-                            <button
-                              onClick={() => handleUpdateQuantity(item.product.id, -1)}
-                              className="w-6 h-6 border border-neutral-300 rounded-full flex items-center justify-center text-neutral-600 hover:bg-neutral-200 text-xs font-bold shrink-0 cursor-pointer"
-                            >
-                              -
-                            </button>
-                            <span className="text-xs font-mono font-bold text-neutral-800 w-4 text-center">
-                              {item.quantity}
+                          <div className="flex flex-wrap gap-1.5 mt-1">
+                            {item.size && (
+                              <span className="text-[9px] font-mono bg-neutral-100 border border-neutral-200 px-2 py-0.5 rounded font-bold text-neutral-600">
+                                {item.size}
+                              </span>
+                            )}
+                            {item.color && (
+                              <span className="text-[9px] font-mono bg-neutral-100 border border-neutral-200 px-2 py-0.5 rounded font-bold text-neutral-600">
+                                {item.color}
+                              </span>
+                            )}
+                            <span className="text-[9px] font-mono bg-neutral-100 border border-neutral-200 px-2 py-0.5 rounded font-bold text-neutral-600">
+                              Qty: {item.quantity}
                             </span>
-                            <button
-                              onClick={() => handleUpdateQuantity(item.product.id, 1)}
-                              className="w-6 h-6 border border-neutral-300 rounded-full flex items-center justify-center text-neutral-600 hover:bg-neutral-200 text-xs font-bold shrink-0 cursor-pointer"
-                            >
-                              +
-                            </button>
                           </div>
                         </div>
 
-                        {/* Trash Button */}
+                        {/* Remove Button */}
                         <button
-                          onClick={() => handleRemoveFromBasket(item.product.id)}
+                          onClick={() => handleRemoveFromBasket(item.lineId)}
                           className="absolute top-4 right-4 text-neutral-400 hover:text-micmag-red transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -619,20 +610,33 @@ export default function ProductsPage() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2">
-                    <button
-                      onClick={handleClearBasket}
-                      className="border border-neutral-300 hover:bg-neutral-100 text-neutral-600 py-3 rounded text-[10px] font-bold uppercase tracking-wider cursor-pointer"
+                  <div className="space-y-3">
+                    {/* Location selector */}
+                    <select
+                      value={orderRegion}
+                      onChange={(e) => setOrderRegion(e.target.value)}
+                      className="w-full border border-neutral-200 rounded-lg py-2.5 px-3.5 text-xs font-mono text-neutral-700 focus:outline-none focus:border-micmag-blue bg-white"
                     >
-                      Reset Cart
-                    </button>
-                    <button
-                      onClick={handleSubmitInquiry}
-                      className="col-span-2 bg-micmag-blue hover:bg-micmag-blue-deep text-white py-3 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow cursor-pointer"
-                    >
-                      <PhoneCall className="w-3.5 h-3.5" />
-                      <span>Submit Quote Order</span>
-                    </button>
+                      <option value="">📍 Select Delivery Location</option>
+                      <option value="Lagos Mainland">Lagos Mainland</option>
+                      <option value="Lagos Island">Lagos Island</option>
+                    </select>
+
+                    <div className="grid grid-cols-3 gap-2">
+                      <button
+                        onClick={handleClearBasket}
+                        className="border border-neutral-300 hover:bg-neutral-100 text-neutral-600 py-3 rounded text-[10px] font-bold uppercase tracking-wider cursor-pointer"
+                      >
+                        Clear All
+                      </button>
+                      <button
+                        onClick={handleSubmitInquiry}
+                        className="col-span-2 bg-micmag-red hover:brightness-110 text-white py-3 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow cursor-pointer transition-all"
+                      >
+                        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-white shrink-0" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                        <span>Send Order via WhatsApp</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -643,13 +647,16 @@ export default function ProductsPage() {
       </AnimatePresence>
 
 
-      {/* TDS Detail Specifications Modal */}
-      {activeModalItem && (
+      {/* Product Detail Modal */}
+      {activeModalProduct && (
         <ProductDetailModal
           isOpen={true}
-          onClose={() => setActiveModalItem(null)}
-          item={activeModalItem}
+          onClose={() => setActiveModalProduct(null)}
+          item={activeModalProduct.rawItem}
           type="product"
+          brand={activeModalProduct.brand}
+          productId={activeModalProduct.id}
+          onAddToOrder={handleAddToOrder}
         />
       )}
 
