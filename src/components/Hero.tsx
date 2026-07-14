@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronRight, ArrowUpRight, PaintBucket } from 'lucide-react';
+import { ChevronRight, ArrowUpRight } from 'lucide-react';
 
 const FLAGSHIP_COLORS = [
   {
@@ -281,7 +281,7 @@ export default function Hero() {
           <motion.div 
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-[5%] bottom-[15%] w-[45%] aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-white z-20 flex flex-col justify-center items-center p-4"
+            className="absolute left-[5%] bottom-[22%] w-[45%] aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-white z-20 flex flex-col justify-center items-center p-4"
           >
             <AnimatePresence mode="wait">
               <motion.img 
@@ -305,17 +305,6 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Floating Paint Bucket Accent */}
-          <motion.div 
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", delay: 0.8 }}
-            className="absolute right-[10%] bottom-[5%] bg-white p-3 rounded-full shadow-lg z-30"
-          >
-            <div className="bg-micmag-red w-12 h-12 rounded-full flex items-center justify-center">
-              <PaintBucket className="w-5 h-5 text-white" />
-            </div>
-          </motion.div>
         </motion.div>
 
       </div>
