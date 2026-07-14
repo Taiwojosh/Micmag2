@@ -55,7 +55,7 @@ export default function ProductCard({
   return (
     <div
       onClick={() => onViewDetails(product)}
-      className="bg-white border-2 border-[#1c1917] rounded-2xl p-5 shadow-[4px_4px_0px_0px_#ea6c00] transition-all duration-150 hover:shadow-[6px_6px_0px_0px_#ea6c00] hover:-translate-x-[1px] hover:-translate-y-[1px] active:shadow-[2px_2px_0px_0px_#ea6c00] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer text-left flex flex-col justify-between h-full relative"
+      className="bg-white border-2 border-brand-charcoal rounded-2xl p-5 shadow-[4px_4px_0px_0px_#ea6c00] transition-all duration-150 hover:shadow-[6px_6px_0px_0px_#ea6c00] hover:-translate-x-[1px] hover:-translate-y-[1px] active:shadow-[2px_2px_0px_0px_#ea6c00] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer text-left flex flex-col justify-between h-full relative"
       style={{
         // Dynamic overrides for shadow color per card type
         boxShadow: `4px 4px 0px 0px ${shadowColor}`,
@@ -64,7 +64,7 @@ export default function ProductCard({
     >
       <div>
         {/* Product Image Frame */}
-        <div className="relative h-48 w-full border-2 border-[#1c1917] rounded-xl overflow-hidden bg-white mb-4 mt-2">
+        <div className="relative h-48 w-full border-2 border-brand-charcoal rounded-xl overflow-hidden bg-white mb-4 mt-2">
           <img
             src={imgSrc}
             alt={product.name}
@@ -77,7 +77,7 @@ export default function ProductCard({
         </div>
 
         {/* Product details */}
-        <h4 className="font-display text-lg font-black text-[#1c1917] leading-tight mb-4 truncate" title={product.name}>
+        <h4 className="font-display text-lg font-black text-brand-charcoal leading-tight mb-4 truncate" title={product.name}>
           {product.name}
         </h4>
       </div>
@@ -90,7 +90,7 @@ export default function ProductCard({
             e.stopPropagation();
             onWhatsApp(product.name);
           }}
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white border-2 border-[#1c1917] shadow-[2.5px_2.5px_0px_0px_#1c1917] font-sans text-xs font-black uppercase tracking-wider transition-all hover:-translate-y-[0.5px] hover:shadow-[3.5px_3.5px_0px_0px_#1c1917] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#1c1917] cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white border-2 border-brand-charcoal shadow-[2.5px_2.5px_0px_0px_var(--color-brand-charcoal)] font-sans text-xs font-black uppercase tracking-wider transition-all hover:-translate-y-[0.5px] hover:shadow-[3.5px_3.5px_0px_0px_var(--color-brand-charcoal)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_var(--color-brand-charcoal)] cursor-pointer"
           style={{
             backgroundColor: brand === 'micmag' ? '#1e3a5f' : '#ea6c00',
           }}

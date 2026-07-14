@@ -231,7 +231,7 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="pt-24 min-h-screen bg-[#F5F4F0] relative">
+    <div className="pt-24 min-h-screen bg-brand-cream relative">
       
       {/* Banner / Header */}
       <div className="relative text-white py-16 px-5 md:px-[5%] overflow-hidden border-b border-neutral-900 bg-neutral-950">
@@ -254,7 +254,7 @@ export default function ProductsPage() {
           {/* Quick Basket Summary Button */}
           <button
             onClick={() => setIsCartOpen(true)}
-            className="self-start md:self-center bg-white text-[#000650] px-6 py-4 rounded-full font-bold uppercase text-[11px] tracking-wider shadow-lg hover:bg-neutral-100 transition-all flex items-center gap-2.5 cursor-pointer shrink-0"
+            className="self-start md:self-center bg-white text-micmag-blue-deep px-6 py-4 rounded-full font-bold uppercase text-[11px] tracking-wider shadow-lg hover:bg-neutral-100 transition-all flex items-center gap-2.5 cursor-pointer shrink-0"
           >
             <ShoppingBag className="w-4 h-4 text-brand-red" />
             <span>My Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)})</span>
@@ -281,12 +281,12 @@ export default function ProductsPage() {
               onClick={() => setShowMobileFilters(true)}
               className="flex-1 sm:flex-initial bg-white border border-neutral-200 py-3.5 px-5 rounded-lg text-xs font-bold uppercase tracking-wider text-neutral-800 flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-neutral-50 active:scale-95 cursor-pointer"
             >
-              <SlidersHorizontal className="w-4 h-4 text-[#000082]" />
+              <SlidersHorizontal className="w-4 h-4 text-micmag-blue" />
               <span>Filter & Sort { (selectedBrand !== 'all' || selectedTag !== 'all') && '•' }</span>
             </button>
             <button
               onClick={() => setIsCartOpen(true)}
-              className="bg-[#000082] text-white py-3.5 px-5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-[#0000a0] active:scale-95 cursor-pointer shrink-0"
+              className="bg-micmag-blue text-white py-3.5 px-5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-[#0000a0] active:scale-95 cursor-pointer shrink-0"
             >
               <ShoppingBag className="w-4 h-4 text-brand-yellow" />
               <span>Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)})</span>
@@ -361,7 +361,7 @@ export default function ProductsPage() {
                   onClick={() => setSelectedTag('all')}
                   className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
                     selectedTag === 'all'
-                      ? 'bg-[#000082] text-white border-[#000082]'
+                      ? 'bg-micmag-blue text-white border-micmag-blue'
                       : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
                   }`}
                 >
@@ -373,7 +373,7 @@ export default function ProductsPage() {
                     onClick={() => setSelectedTag(tag)}
                     className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
                       selectedTag === tag
-                        ? 'bg-[#000082] text-white border-[#000082]'
+                        ? 'bg-micmag-blue text-white border-micmag-blue'
                         : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
                     }`}
                   >
@@ -463,10 +463,10 @@ export default function ProductsPage() {
                       <div className="absolute top-3 left-3">
                         <span className={`text-[9px] font-mono uppercase tracking-wider font-bold px-2.5 py-1 rounded-full text-white shadow-sm ${
                           p.brand === 'sandtex' 
-                            ? 'bg-[#d32f2f]' 
+                            ? 'bg-micmag-red' 
                             : p.brand === 'caplux' 
                               ? 'bg-amber-600' 
-                              : 'bg-[#000082]'
+                              : 'bg-micmag-blue'
                         }`}>
                           {p.brand === 'sandtex' ? 'Sandtex' : p.brand === 'caplux' ? 'Caplux' : 'Micmag'}
                         </span>
@@ -484,7 +484,7 @@ export default function ProductsPage() {
                     <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
                       
                       <div className="space-y-2">
-                        <h3 className="font-serif text-base font-bold text-neutral-900 leading-tight group-hover:text-[#000082] transition-colors">
+                        <h3 className="font-serif text-base font-bold text-neutral-900 leading-tight group-hover:text-micmag-blue transition-colors">
                           {p.name}
                         </h3>
                         
@@ -511,7 +511,7 @@ export default function ProductsPage() {
                           e.stopPropagation();
                           handleAddToBasket(p);
                         }}
-                        className="w-full bg-[#000082] hover:bg-[#000650] text-white py-2.5 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm cursor-pointer"
+                        className="w-full bg-micmag-blue hover:bg-micmag-blue-deep text-white py-2.5 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm cursor-pointer"
                       >
                         <ShoppingBag className="w-3.5 h-3.5" />
                         <span>Inquire</span>
@@ -552,7 +552,7 @@ export default function ProductsPage() {
             >
               
               {/* Drawer Title Block */}
-              <div className="bg-[#000650] text-white p-5 flex justify-between items-center border-b border-neutral-800">
+              <div className="bg-micmag-blue-deep text-white p-5 flex justify-between items-center border-b border-neutral-800">
                 <div className="flex items-center gap-2">
                   <ShoppingBag className="w-5 h-5 text-[#7598f3]" />
                   <h3 className="font-serif text-lg font-bold">My Cart</h3>
@@ -576,7 +576,7 @@ export default function ProductsPage() {
                     <p className="text-xs text-neutral-500 font-light">Your cart is currently empty.</p>
                     <button
                       onClick={() => setIsCartOpen(false)}
-                      className="text-xs font-bold text-[#000082] uppercase hover:underline cursor-pointer"
+                      className="text-xs font-bold text-micmag-blue uppercase hover:underline cursor-pointer"
                     >
                       Browse Catalogue
                     </button>
@@ -603,10 +603,10 @@ export default function ProductsPage() {
                         <div className="flex-grow space-y-1.5 pr-6">
                           <span className={`text-[8px] font-mono uppercase font-bold tracking-wider px-1.5 py-0.5 rounded text-white ${
                             item.product.brand === 'sandtex' 
-                              ? 'bg-[#d32f2f]' 
+                              ? 'bg-micmag-red' 
                               : item.product.brand === 'caplux' 
                                 ? 'bg-amber-600' 
-                                : 'bg-[#000082]'
+                                : 'bg-micmag-blue'
                           }`}>
                             {item.product.brand.toUpperCase()}
                           </span>
@@ -637,7 +637,7 @@ export default function ProductsPage() {
                         {/* Trash Button */}
                         <button
                           onClick={() => handleRemoveFromBasket(item.product.id)}
-                          className="absolute top-4 right-4 text-neutral-400 hover:text-[#d32f2f] transition-colors cursor-pointer"
+                          className="absolute top-4 right-4 text-neutral-400 hover:text-micmag-red transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -647,8 +647,8 @@ export default function ProductsPage() {
                     {/* Interactive Yield Estimator */}
                     {totalEstimatedCoverage > 0 && (
                       <div className="bg-blue-50 border border-blue-200/80 p-4 rounded-lg space-y-2">
-                        <div className="flex items-center gap-1.5 text-xs text-[#000082] font-bold">
-                          <Info className="w-4 h-4 text-[#000082]" />
+                        <div className="flex items-center gap-1.5 text-xs text-micmag-blue font-bold">
+                          <Info className="w-4 h-4 text-micmag-blue" />
                           <span>Technical Coverage Estimator</span>
                         </div>
                         <p className="text-[11px] text-neutral-600 leading-normal font-light">
@@ -680,7 +680,7 @@ export default function ProductsPage() {
                     </button>
                     <button
                       onClick={handleSubmitInquiry}
-                      className="col-span-2 bg-[#000082] hover:bg-[#000650] text-white py-3 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow cursor-pointer"
+                      className="col-span-2 bg-micmag-blue hover:bg-micmag-blue-deep text-white py-3 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow cursor-pointer"
                     >
                       <PhoneCall className="w-3.5 h-3.5" />
                       <span>Submit Quote Order</span>
@@ -722,7 +722,7 @@ export default function ProductsPage() {
               {/* Header */}
               <div className="px-5 pb-4 border-b border-neutral-100 flex items-center justify-between bg-neutral-50 shrink-0">
                 <div className="flex items-center gap-2">
-                  <SlidersHorizontal className="w-4 h-4 text-[#000082]" />
+                  <SlidersHorizontal className="w-4 h-4 text-micmag-blue" />
                   <span className="text-xs font-black uppercase tracking-wider text-neutral-900 font-sans">
                     Filter &amp; Sort
                   </span>
@@ -745,9 +745,9 @@ export default function ProductsPage() {
                   <div className="grid grid-cols-2 gap-2.5">
                     {[
                       { id: 'all', label: 'All Brands', color: 'bg-neutral-400' },
-                      { id: 'sandtex', label: 'Sandtex Paint', color: 'bg-[#d32f2f]' },
+                      { id: 'sandtex', label: 'Sandtex Paint', color: 'bg-micmag-red' },
                       { id: 'caplux', label: 'Caplux Prep', color: 'bg-amber-600' },
-                      { id: 'micmag', label: 'Sanitary & Fittings', color: 'bg-[#000082]' }
+                      { id: 'micmag', label: 'Sanitary & Fittings', color: 'bg-micmag-blue' }
                     ].map(b => (
                       <button
                         key={b.id}
@@ -757,7 +757,7 @@ export default function ProductsPage() {
                         }}
                         className={`text-left px-3.5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all flex items-center gap-2 border cursor-pointer ${
                           selectedBrand === b.id
-                            ? 'bg-[#000082]/5 text-[#000082] border-[#000082] ring-1 ring-[#000082] font-black'
+                            ? 'bg-micmag-blue/5 text-micmag-blue border-micmag-blue ring-1 ring-micmag-blue font-black'
                             : 'bg-neutral-50 border-neutral-200/80 text-neutral-600'
                         }`}
                       >
@@ -778,7 +778,7 @@ export default function ProductsPage() {
                       onClick={() => setSelectedTag('all')}
                       className={`px-3.5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
                         selectedTag === 'all'
-                          ? 'bg-[#000082] text-white border-[#000082] font-black'
+                          ? 'bg-micmag-blue text-white border-micmag-blue font-black'
                           : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
                       }`}
                     >
@@ -790,7 +790,7 @@ export default function ProductsPage() {
                         onClick={() => setSelectedTag(tag)}
                         className={`px-3.5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
                           selectedTag === tag
-                            ? 'bg-[#000082] text-white border-[#000082] font-black'
+                            ? 'bg-micmag-blue text-white border-micmag-blue font-black'
                             : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:border-neutral-300'
                         }`}
                       >
@@ -816,12 +816,12 @@ export default function ProductsPage() {
                         onClick={() => setSortBy(opt.id as any)}
                         className={`text-left px-4 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border cursor-pointer ${
                           sortBy === opt.id
-                            ? 'bg-[#000082]/5 text-[#000082] border-[#000082] ring-1 ring-[#000082] font-black'
+                            ? 'bg-micmag-blue/5 text-micmag-blue border-micmag-blue ring-1 ring-micmag-blue font-black'
                             : 'bg-neutral-50 border-neutral-200/80 text-neutral-600'
                         }`}
                       >
                         <span>{opt.label}</span>
-                        {sortBy === opt.id && <Check className="w-4 h-4 text-[#000082]" />}
+                        {sortBy === opt.id && <Check className="w-4 h-4 text-micmag-blue" />}
                       </button>
                     ))}
                   </div>
@@ -843,7 +843,7 @@ export default function ProductsPage() {
                 </button>
                 <button
                   onClick={() => setShowMobileFilters(false)}
-                  className="bg-[#000082] text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer hover:bg-[#000650] transition-colors"
+                  className="bg-micmag-blue text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer hover:bg-micmag-blue-deep transition-colors"
                 >
                   Apply Filters
                 </button>
@@ -866,12 +866,12 @@ export default function ProductsPage() {
       {/* Floating Inquiry Basket Icon (Beside WhatsApp on desktop, on top on mobile) */}
       <button
         onClick={() => setIsCartOpen(true)}
-        className="fixed z-[90] bg-[#000082] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-[#1c1917] cursor-pointer bottom-[104px] right-8 md:bottom-8 md:right-[104px]"
+        className="fixed z-[90] bg-micmag-blue text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-brand-charcoal cursor-pointer bottom-[104px] right-8 md:bottom-8 md:right-[104px]"
         title="Open Cart"
       >
         <ShoppingBag className="w-6 h-6 text-white" />
         {cart.reduce((sum, item) => sum + item.quantity, 0) > 0 && (
-          <span className="absolute -top-1 -right-1 bg-[#d32f2f] text-white text-[10px] font-mono font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-[#1c1917] shadow-sm">
+          <span className="absolute -top-1 -right-1 bg-micmag-red text-white text-[10px] font-mono font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-brand-charcoal shadow-sm">
             {cart.reduce((sum, item) => sum + item.quantity, 0)}
           </span>
         )}

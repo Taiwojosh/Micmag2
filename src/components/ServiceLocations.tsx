@@ -148,7 +148,7 @@ export default function ServiceLocations() {
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.12] font-black text-white">
               Lagos Outlets <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B00] via-[#d32f2f] to-[#FF6B00]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B00] via-micmag-red to-[#FF6B00]">
                 & Physical Branches
               </span>
             </h2>
@@ -163,19 +163,19 @@ export default function ServiceLocations() {
           <div className="flex bg-[#1a1b20] p-1 rounded border border-neutral-800 w-full sm:w-auto overflow-x-auto scrollbar-none gap-1 sm:gap-0">
             <button 
               onClick={() => { setActiveTab('all'); if (!filteredBranches.some(b => b.id === selectedBranch.id)) setSelectedBranch(BRANCHES[0]); }}
-              className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'all' ? 'bg-[#d32f2f] text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
+              className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'all' ? 'bg-micmag-red text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
             >
               All Branches ({BRANCHES.length})
             </button>
             <button 
               onClick={() => { setActiveTab('island'); setSelectedBranch(BRANCHES.find(b => b.id === 'sangotedo')!); }}
-              className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'island' ? 'bg-[#d32f2f] text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
+              className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'island' ? 'bg-micmag-red text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
             >
               Island Branches
             </button>
             <button 
               onClick={() => { setActiveTab('mainland'); setSelectedBranch(BRANCHES.find(b => b.id === 'oworonshoki')!); }}
-              className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'mainland' ? 'bg-[#d32f2f] text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
+              className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'mainland' ? 'bg-micmag-red text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
             >
               Mainland Branches
             </button>
@@ -215,7 +215,7 @@ export default function ServiceLocations() {
                       <span className={`flex items-center gap-1 font-bold ${isSelected ? 'text-zinc-700' : 'text-neutral-400'}`}>
                         <Clock className="w-3.5 h-3.5" /> Open: 8am-5pm
                       </span>
-                      <span className="text-[#d32f2f] font-extrabold uppercase tracking-wide flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">
+                      <span className="text-micmag-red font-extrabold uppercase tracking-wide flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200">
                         {isSelected ? 'Selected' : 'View Branch'} <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-300 ${isSelected ? 'rotate-90 text-brand-red' : ''}`} />
                       </span>
                     </div>
@@ -288,7 +288,7 @@ export default function ServiceLocations() {
                                 onClick={(e) => e.stopPropagation()}
                                 className="bg-neutral-100 hover:bg-neutral-200 text-zinc-900 border border-neutral-200 text-center p-3.5 rounded-full text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 font-mono"
                               >
-                                <MapPin className="w-3.5 h-3.5 text-[#d32f2f]" /> Route
+                                <MapPin className="w-3.5 h-3.5 text-micmag-red" /> Route
                               </a>
                             </div>
 
@@ -351,7 +351,7 @@ export default function ServiceLocations() {
 
                   
                   {/* Decorative line */}
-                  <div className="h-[2px] w-full bg-gradient-to-r from-brand-yellow via-[#d32f2f] to-amber-500/10 rounded mt-3" />
+                  <div className="h-[2px] w-full bg-gradient-to-r from-brand-yellow via-micmag-red to-amber-500/10 rounded mt-3" />
                 </div>
 
                 {/* Premium Google Map Iframe Integration */}
@@ -387,7 +387,7 @@ export default function ServiceLocations() {
                   {/* Complete parameters list (address) */}
                   <div className="space-y-3 pt-2 text-[12.5px] text-neutral-300 leading-relaxed font-light">
                     <p className="flex items-start gap-2.5">
-                      <MapPin className="w-4 h-4 text-[#d32f2f] shrink-0 mt-1" />
+                      <MapPin className="w-4 h-4 text-micmag-red shrink-0 mt-1" />
                       <span>{selectedBranch.address}</span>
                     </p>
                     <p className="flex items-center gap-2.5 font-bold text-neutral-200 font-mono">
@@ -409,7 +409,7 @@ export default function ServiceLocations() {
                       className="flex-1 bg-white hover:bg-neutral-100 text-[#0c0d10] text-center p-3.5 text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow font-bold"
                       style={{ borderRadius: '20px', borderWidth: '1px' }}
                     >
-                      <PhoneCall className="w-4 h-4 text-[#d32f2f]" /> Call Branch
+                      <PhoneCall className="w-4 h-4 text-micmag-red" /> Call Branch
                     </motion.a>
                     
                     <motion.a 
@@ -421,7 +421,7 @@ export default function ServiceLocations() {
                       className="flex-1 bg-neutral-800 hover:bg-neutral-750 text-white border border-neutral-700 text-center p-3.5 text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 font-bold"
                       style={{ borderRadius: '20px' }}
                     >
-                      <MapPin className="w-4 h-4 text-[#d32f2f]" /> Get Directions
+                      <MapPin className="w-4 h-4 text-micmag-red" /> Get Directions
                     </motion.a>
                   </div>
 

@@ -135,10 +135,10 @@ export default function TeamPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="pt-24 min-h-screen bg-[#F5F4F0]"
+      className="pt-24 min-h-screen bg-brand-cream"
     >
       {/* Hero Section */}
-      <div className="relative text-white py-20 px-5 md:px-[5%] overflow-hidden border-b-2 border-[#1c1917] bg-neutral-950">
+      <div className="relative text-white py-20 px-5 md:px-[5%] overflow-hidden border-b-2 border-brand-charcoal bg-neutral-950">
         <div className="absolute inset-0 animated-gradient-bg opacity-30 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-transparent to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
@@ -162,7 +162,7 @@ export default function TeamPage() {
         <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory pb-4 md:pb-0 scrollbar-none bg-white border border-neutral-200 p-6 md:p-8 rounded-lg shadow-sm">
           <div className="flex gap-4 items-start text-left w-[285px] md:w-auto shrink-0 snap-center">
             <div className="bg-blue-50 p-3 rounded-full shrink-0">
-              <ShieldCheck className="w-6 h-6 text-[#000082]" />
+              <ShieldCheck className="w-6 h-6 text-micmag-blue" />
             </div>
             <div>
               <h3 className="font-bold text-neutral-900 text-xs sm:text-sm uppercase tracking-wider">Direct Verification</h3>
@@ -171,7 +171,7 @@ export default function TeamPage() {
           </div>
           <div className="flex gap-4 items-start text-left w-[285px] md:w-auto shrink-0 snap-center">
             <div className="bg-blue-50 p-3 rounded-full shrink-0">
-              <Award className="w-6 h-6 text-[#000082]" />
+              <Award className="w-6 h-6 text-micmag-blue" />
             </div>
             <div>
               <h3 className="font-bold text-neutral-900 text-xs sm:text-sm uppercase tracking-wider">Expert Advisory</h3>
@@ -180,7 +180,7 @@ export default function TeamPage() {
           </div>
           <div className="flex gap-4 items-start text-left w-[285px] md:w-auto shrink-0 snap-center">
             <div className="bg-blue-50 p-3 rounded-full shrink-0">
-              <Briefcase className="w-6 h-6 text-[#000082]" />
+              <Briefcase className="w-6 h-6 text-micmag-blue" />
             </div>
             <div>
               <h3 className="font-bold text-neutral-900 text-xs sm:text-sm uppercase tracking-wider">Prompt Order Fulfillment</h3>
@@ -195,9 +195,9 @@ export default function TeamPage() {
         {branches.map((branch) => (
           <div key={branch.id} className="space-y-6 text-left">
             {/* Branch Header */}
-            <div className="border-b-2 border-[#1c1917] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-              <h2 className="font-serif text-xl sm:text-2xl font-black text-[#000082] flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-[#d32f2f]" />
+            <div className="border-b-2 border-brand-charcoal pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <h2 className="font-serif text-xl sm:text-2xl font-black text-micmag-blue flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-micmag-red" />
                 {branch.name}
               </h2>
               <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
@@ -215,17 +215,17 @@ export default function TeamPage() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ ...springTransition, delay: idx * 0.1 }}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="bg-white border-2 border-[#1c1917] rounded-2xl overflow-hidden shadow-[4px_4px_0px_0px_#b45309] hover:shadow-[6px_6px_0px_0px_#b45309] transition-all duration-200 flex flex-col h-full"
+                  className="bg-white border-2 border-brand-charcoal rounded-2xl overflow-hidden shadow-[4px_4px_0px_0px_var(--color-brand-red-deep)] hover:shadow-[6px_6px_0px_0px_var(--color-brand-red-deep)] transition-all duration-200 flex flex-col h-full"
                 >
                   {/* Decorative Header with Monogram Badge */}
-                  <div className={`p-6 bg-gradient-to-br ${member.bgGradient} border-b-2 border-[#1c1917] flex items-center justify-between relative overflow-hidden`}>
+                  <div className={`p-6 bg-gradient-to-br ${member.bgGradient} border-b-2 border-brand-charcoal flex items-center justify-between relative overflow-hidden`}>
                     <div className="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-black/5 pointer-events-none" />
                     <div className="flex items-center gap-4 relative z-10">
-                      <div className={`w-14 h-14 rounded-full border-2 border-[#1c1917] bg-white flex items-center justify-center font-serif text-lg font-black ${member.textColor} shadow-[2px_2px_0px_0px_#1c1917] shrink-0`}>
+                      <div className={`w-14 h-14 rounded-full border-2 border-brand-charcoal bg-white flex items-center justify-center font-serif text-lg font-black ${member.textColor} shadow-[2px_2px_0px_0px_var(--color-brand-charcoal)] shrink-0`}>
                         {member.name.replace(/^(Mr|Mrs|Engr)\.?\s+/i, '').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
                       </div>
                       <div>
-                        <span className="text-[9px] font-mono uppercase font-bold tracking-wider text-[#d32f2f] bg-red-50 py-0.5 px-2 rounded border border-red-100">
+                        <span className="text-[9px] font-mono uppercase font-bold tracking-wider text-micmag-red bg-red-50 py-0.5 px-2 rounded border border-red-100">
                           Official Team
                         </span>
                         <h3 className="font-serif text-base sm:text-lg font-black text-brand-charcoal leading-tight mt-1">
@@ -243,7 +243,7 @@ export default function TeamPage() {
                           {member.role}
                         </span>
                       </div>
-                      <p className="text-xs font-mono uppercase tracking-wider text-[#1a6b3c] font-bold">
+                      <p className="text-xs font-mono uppercase tracking-wider text-micmag-green font-bold">
                         {member.specialty}
                       </p>
                       <p className="text-xs text-neutral-600 leading-relaxed font-light">
@@ -255,7 +255,7 @@ export default function TeamPage() {
                     <div className="pt-4 border-t border-neutral-100">
                       <a
                         href={`mailto:${member.email}`}
-                        className="text-xs text-neutral-500 hover:text-[#d32f2f] transition-colors flex items-center gap-1.5"
+                        className="text-xs text-neutral-500 hover:text-micmag-red transition-colors flex items-center gap-1.5"
                       >
                         <Mail className="w-3.5 h-3.5" />
                         <span className="truncate">{member.email}</span>

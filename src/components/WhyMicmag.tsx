@@ -5,7 +5,7 @@ import TrustPill from './TrustPill';
 
 const REASONS = [
   {
-    icon: <ShieldCheck className="w-8 h-8 text-[#d32f2f]" />,
+    icon: <ShieldCheck className="w-8 h-8 text-micmag-red" />,
     title: '100% Genuine Certified Stock',
     desc: 'Every container of Sandtex paints and Caplux prep products is sourced directly from the manufacturer. Fully backed by standard guarantees and stored under secure conditions in Lagos.',
     badge: 'Authentic Warranty'
@@ -80,8 +80,8 @@ export default function WhyMicmag() {
             transition={springTransition}
             className="lg:col-span-7 space-y-3"
           >
-            <span className="text-[#d32f2f] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-[#d32f2f] animate-pulse" /> Why Elite Builders Choose Us
+            <span className="text-micmag-red text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-1.5">
+              <Zap className="w-4 h-4 text-micmag-red animate-pulse" /> Why Elite Builders Choose Us
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.15] font-black text-brand-charcoal">
               Uncompromising Standards <br />
@@ -116,22 +116,22 @@ export default function WhyMicmag() {
               key={idx}
               variants={cardVariant}
               whileHover={{ y: -8 }}
-              className="p-8 border-2 border-[#1c1917] rounded-2xl bg-white flex flex-col justify-between space-y-6 group text-left shadow-[4px_4px_0px_0px_#b45309] hover:shadow-[6px_6px_0px_0px_#b45309] transition-all duration-150"
+              className="p-8 border-2 border-brand-charcoal rounded-2xl bg-white flex flex-col justify-between space-y-6 group text-left shadow-[4px_4px_0px_0px_var(--color-brand-red-deep)] hover:shadow-[6px_6px_0px_0px_var(--color-brand-red-deep)] transition-all duration-150"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <motion.div 
                     whileHover={{ scale: 1.1, rotate: 6 }}
-                    className="p-3.5 bg-neutral-50 rounded-[4px] inline-block border-2 border-[#1c1917] group-hover:bg-neutral-100 transition-colors duration-350"
+                    className="p-3.5 bg-neutral-50 rounded-[4px] inline-block border-2 border-brand-charcoal group-hover:bg-neutral-100 transition-colors duration-350"
                   >
                     {r.icon}
                   </motion.div>
-                  <span className="text-[9px] font-mono font-black uppercase tracking-widest text-[#1c1917] bg-neutral-100 border-2 border-[#1c1917] px-2.5 py-1 rounded-md shadow-[2px_2px_0px_0px_rgba(0,0,0,0.12)]">
+                  <span className="text-[9px] font-mono font-black uppercase tracking-widest text-brand-charcoal bg-neutral-100 border-2 border-brand-charcoal px-2.5 py-1 rounded-md shadow-[2px_2px_0px_0px_rgba(0,0,0,0.12)]">
                     {r.badge}
                   </span>
                 </div>
                 
-                <h3 className="text-lg font-black text-[#1c1917] font-display leading-tight">
+                <h3 className="text-lg font-black text-brand-charcoal font-display leading-tight">
                   {r.title}
                 </h3>
                 
@@ -140,8 +140,8 @@ export default function WhyMicmag() {
                 </p>
               </div>
 
-              <div className="pt-3 border-t-2 border-dashed border-[#e7e5e4] flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase text-[#1c1917]">
-                <CheckCircle className="w-4 h-4 text-[#d32f2f] flex-shrink-0" />
+              <div className="pt-3 border-t-2 border-dashed border-[#e7e5e4] flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase text-brand-charcoal">
+                <CheckCircle className="w-4 h-4 text-micmag-red flex-shrink-0" />
                 <span>Credibility Pillar {idx + 1}</span>
               </div>
 
@@ -163,10 +163,10 @@ export default function WhyMicmag() {
           viewport={{ once: true, margin: "-100px" }}
           transition={springTransition}
           style={{ backgroundColor: '#000650' }}
-          className="mt-16 text-white rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-[#1c1917] text-left shadow-[5px_5px_0px_0px_#d32f2f]"
+          className="mt-16 text-white rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-brand-charcoal text-left shadow-[5px_5px_0px_0px_var(--color-micmag-red)]"
         >
           <div className="space-y-2 text-left">
-            <span className="text-[9px] font-mono tracking-widest text-[#d32f2f] uppercase font-bold block">
+            <span className="text-[9px] font-mono tracking-widest text-micmag-red uppercase font-bold block">
               Paint Samples Provided
             </span>
             <h4 className="font-serif text-xl sm:text-2xl font-bold">

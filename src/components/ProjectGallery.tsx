@@ -70,9 +70,9 @@ export default function ProjectGallery() {
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-[#d32f2f] text-xs font-bold tracking-[0.2em] uppercase mb-3 flex items-center gap-1.5"
+            className="text-micmag-red text-xs font-bold tracking-[0.2em] uppercase mb-3 flex items-center gap-1.5"
           >
-            <LayoutGrid className="w-4 h-4 text-[#d32f2f] animate-spin-slow" /> What You Will Get
+            <LayoutGrid className="w-4 h-4 text-micmag-red animate-spin-slow" /> What You Will Get
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
@@ -187,7 +187,7 @@ export default function ProjectGallery() {
                   </div>
 
                   <div className="pt-4 pb-1 pl-1 space-y-1.5 text-left">
-                    <h3 className="text-[1.15rem] font-serif font-black text-brand-charcoal group-hover:text-[#d32f2f] transition-colors duration-200">
+                    <h3 className="text-[1.15rem] font-serif font-black text-brand-charcoal group-hover:text-micmag-red transition-colors duration-200">
                       {project.title}
                     </h3>
                     

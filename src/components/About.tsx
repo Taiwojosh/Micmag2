@@ -37,7 +37,7 @@ export default function About() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute -top-24 -left-24 w-[500px] h-[500px] rounded-full bg-[#d32f2f] filter blur-[120px]"
+          className="absolute -top-24 -left-24 w-[500px] h-[500px] rounded-full bg-micmag-red filter blur-[120px]"
         />
         
         {/* Micmag Logo Blue (#1e3a5f) Orb */}
@@ -67,7 +67,7 @@ export default function About() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute -bottom-32 left-1/4 w-[500px] h-[500px] rounded-full bg-[#1a6b3c] filter blur-[120px]"
+          className="absolute -bottom-32 left-1/4 w-[500px] h-[500px] rounded-full bg-micmag-green filter blur-[120px]"
         />
       </div>
 
@@ -111,9 +111,9 @@ export default function About() {
             whileHover={{ y: -8, rotate: -0.5 }}
             className="lg:col-span-12 xl:col-span-5 flex justify-center relative w-full"
           >
-            <div className="absolute -inset-2 bg-gradient-to-tr from-[#d32f2f]/10 to-amber-500/15 rounded-2xl filter blur-lg opacity-60" />
-            <div className="relative w-full bg-white border-2 border-[#1c1917] rounded-2xl p-6 md:p-8 shadow-[6px_6px_0px_0px_#b45309] space-y-6 text-left">
-              <span className="text-[10px] font-mono tracking-widest text-[#d32f2f] uppercase font-bold block bg-red-50 py-1 px-2.5 rounded border border-red-100 w-max">
+            <div className="absolute -inset-2 bg-gradient-to-tr from-micmag-red/10 to-amber-500/15 rounded-2xl filter blur-lg opacity-60" />
+            <div className="relative w-full bg-white border-2 border-brand-charcoal rounded-2xl p-6 md:p-8 shadow-[6px_6px_0px_0px_var(--color-brand-red-deep)] space-y-6 text-left">
+              <span className="text-[10px] font-mono tracking-widest text-micmag-red uppercase font-bold block bg-red-50 py-1 px-2.5 rounded border border-red-100 w-max">
                 Material Integrity
               </span>
               <h3 className="font-serif text-xl font-black text-brand-charcoal">
@@ -121,7 +121,7 @@ export default function About() {
               </h3>
               <div className="space-y-4">
                 {HIGHLIGHT_CARDS.map((card, i) => (
-                  <div key={i} className="border-l-4 border-[#d32f2f] pl-4 space-y-1.5">
+                  <div key={i} className="border-l-4 border-micmag-red pl-4 space-y-1.5">
                     <h4 className="font-sans font-bold text-xs sm:text-sm text-neutral-800 uppercase tracking-wider">{card.title}</h4>
                     <p className="text-xs text-neutral-600 leading-relaxed font-light">{card.desc}</p>
                   </div>

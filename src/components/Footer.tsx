@@ -15,7 +15,7 @@ export default function Footer() {
         
         {/* Decorative horizontal color bands at the top of the footer (signature paint theme detail) */}
         <div className="absolute top-0 left-0 right-0 h-1.5 flex">
-          <span className="flex-1 bg-[#d32f2f]" />
+          <span className="flex-1 bg-micmag-red" />
           <span className="flex-1 bg-[#FF6B00]" />
           <span className="flex-1 bg-brand-blue" />
           <span className="flex-1 bg-[#FF6B00]" />
@@ -32,7 +32,7 @@ export default function Footer() {
                 <img src="./Logo.png" alt="Micmag Logo" className="h-10 w-auto bg-white p-1 rounded" />
                 <div className="flex flex-col text-left">
                   <span className="text-sm font-serif font-black text-white tracking-widest uppercase">MICMAG</span>
-                  <span className="text-[8px] font-mono font-bold text-[#d32f2f] uppercase tracking-widest">Homes & Fittings</span>
+                  <span className="text-[8px] font-mono font-bold text-micmag-red uppercase tracking-widest">Homes & Fittings</span>
                 </div>
               </div>
               
@@ -114,7 +114,7 @@ export default function Footer() {
 
               {/* Physical Address Footnote */}
               <div className="pt-2 border-t border-neutral-800/60 text-[11px] text-neutral-400 flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#d32f2f] mt-0.5 flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-micmag-red mt-0.5 flex-shrink-0" />
                 <p>Offices in Oworonshoki (HQ), Sangotedo, Alakija, Ikorodu, Ogombo, and Bogije. Nationwide container site drops directly coordinated daily.</p>
               </div>
 

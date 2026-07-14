@@ -129,7 +129,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
         
         {/* Header Section */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-3">
-          <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#1c1917] tracking-tight leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-brand-charcoal tracking-tight leading-tight">
             Bespoke Paint Order Builder
           </h2>
           <p className="text-xs sm:text-sm text-[#57534e] font-light max-w-2xl mx-auto leading-relaxed">
@@ -141,7 +141,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* LEFT: Configuration Panel */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border-4 border-[#1c1917] shadow-[8px_8px_0px_0px_#b45309] p-6 sm:p-8 space-y-8">
+          <div className="lg:col-span-7 bg-white rounded-3xl border-4 border-brand-charcoal shadow-[8px_8px_0px_0px_var(--color-brand-red-deep)] p-6 sm:p-8 space-y-8">
             
             {/* Step 1 & 2 Combined: Select Paint Formulation */}
             <div className="space-y-4">
@@ -162,8 +162,8 @@ Please assign a formulation expert to verify my order, confirm availability, and
                       onClick={() => setSelectedBrand(brand.id as any)}
                       className={`px-3 py-1.5 text-[10px] font-bold rounded-lg cursor-pointer transition-all ${
                         selectedBrand === brand.id
-                          ? 'bg-[#1c1917] text-white shadow-sm'
-                          : 'text-[#57534e] hover:text-[#1c1917]'
+                          ? 'bg-brand-charcoal text-white shadow-sm'
+                          : 'text-[#57534e] hover:text-brand-charcoal'
                       }`}
                     >
                       {brand.label}
@@ -173,19 +173,19 @@ Please assign a formulation expert to verify my order, confirm availability, and
               </div>
 
               {/* Product selection grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[280px] overflow-y-auto pr-1 border-2 border-[#1c1917]/25 rounded-2xl p-4 bg-[#FAF9F6] scrollbar-thin scrollbar-thumb-neutral-300">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[280px] overflow-y-auto pr-1 border-2 border-brand-charcoal/25 rounded-2xl p-4 bg-[#FAF9F6] scrollbar-thin scrollbar-thumb-neutral-300">
                 {filteredModels.map(model => (
                   <button
                     key={model.name}
                     onClick={() => setSelectedModel(model)}
                     className={`p-4 text-left border-2 rounded-xl transition-all cursor-pointer flex flex-col justify-between h-full min-h-[92px] ${
                       selectedModel.name === model.name
-                        ? 'border-[#ea6c00] bg-white shadow-sm ring-1 ring-[#ea6c00]/30'
-                        : 'border-neutral-200 hover:border-[#1c1917] bg-white'
+                        ? 'border-brand-red bg-white shadow-sm ring-1 ring-brand-red/30'
+                        : 'border-neutral-200 hover:border-brand-charcoal bg-white'
                     }`}
                   >
                     <div className="space-y-1">
-                      <div className="text-xs sm:text-sm font-bold text-[#1c1917]">{model.name}</div>
+                      <div className="text-xs sm:text-sm font-bold text-brand-charcoal">{model.name}</div>
                       {model.subtitle && <div className="text-[10px] text-[#78716c] font-light leading-snug">{model.subtitle}</div>}
                     </div>
                     <div className="text-[9px] font-mono font-bold uppercase tracking-wider text-neutral-400 mt-2">
@@ -208,7 +208,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
                 {selectedModel.hasColor ? (
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 bg-neutral-50 p-2 rounded-xl border border-neutral-200 justify-between">
-                      <span className="text-[11px] font-bold text-[#1c1917] truncate">{selectedColor.name}</span>
+                      <span className="text-[11px] font-bold text-brand-charcoal truncate">{selectedColor.name}</span>
                       <div className="w-3.5 h-3.5 rounded-full border border-neutral-300 shrink-0" style={{ backgroundColor: selectedColor.hex }} />
                     </div>
                     
@@ -221,13 +221,13 @@ Please assign a formulation expert to verify my order, confirm availability, and
                             onClick={() => setSelectedColor(color)}
                             title={`${color.name} - ${color.description}`}
                             className={`relative aspect-square rounded-full border overflow-hidden flex items-center justify-center cursor-pointer hover:scale-105 transition-all ${
-                              isSelected ? 'border-[#1c1917] ring-1 ring-neutral-400' : 'border-neutral-300'
+                              isSelected ? 'border-brand-charcoal ring-1 ring-neutral-400' : 'border-neutral-300'
                             }`}
                             style={{ backgroundColor: color.hex }}
                           >
                             {isSelected && (
                               <div className="bg-white p-0.5 rounded-full shadow-md text-neutral-900 z-10">
-                                <Check className="w-2 h-2 stroke-[4] text-[#ea6c00]" />
+                                <Check className="w-2 h-2 stroke-[4] text-brand-red" />
                               </div>
                             )}
                           </button>
@@ -255,8 +255,8 @@ Please assign a formulation expert to verify my order, confirm availability, and
                       onClick={() => setSelectedSize(size)}
                       className={`w-full py-2.5 px-3 rounded-xl text-[11px] font-mono font-bold border-2 text-center cursor-pointer transition-all ${
                         selectedSize === size
-                          ? 'bg-[#1c1917] text-white border-[#1c1917] shadow-sm'
-                          : 'bg-white text-[#1c1917] border-neutral-200 hover:border-neutral-400'
+                          ? 'bg-brand-charcoal text-white border-brand-charcoal shadow-sm'
+                          : 'bg-white text-brand-charcoal border-neutral-200 hover:border-neutral-400'
                       }`}
                     >
                       {size}
@@ -278,7 +278,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
                 <div className="flex items-center gap-1.5 w-full">
                   <button
                     onClick={handleDecrement}
-                    className="p-2.5 border border-neutral-300 rounded-xl bg-white text-[#1c1917] hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
+                    className="p-2.5 border border-neutral-300 rounded-xl bg-white text-brand-charcoal hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
                   >
                     <Minus className="w-3.5 h-3.5" />
                   </button>
@@ -289,7 +289,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
                   
                   <button
                     onClick={handleIncrement}
-                    className="p-2.5 border border-neutral-300 rounded-xl bg-white text-[#1c1917] hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
+                    className="p-2.5 border border-neutral-300 rounded-xl bg-white text-brand-charcoal hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                   </button>
@@ -308,7 +308,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
                 onChange={(e) => setCustomNotes(e.target.value)}
                 placeholder="e.g. Include matching undercoats, request delivery to Lekki, or request professional site painters..."
                 rows={2}
-                className="w-full text-xs sm:text-sm p-3 border-2 border-neutral-200 rounded-xl focus:border-[#1c1917] focus:ring-0 outline-none transition-all font-sans bg-[#FAF9F6] placeholder-neutral-400 focus:bg-white"
+                className="w-full text-xs sm:text-sm p-3 border-2 border-neutral-200 rounded-xl focus:border-brand-charcoal focus:ring-0 outline-none transition-all font-sans bg-[#FAF9F6] placeholder-neutral-400 focus:bg-white"
               />
             </div>
 
@@ -318,8 +318,8 @@ Please assign a formulation expert to verify my order, confirm availability, and
           <div className="lg:col-span-5 space-y-6">
             
             {/* Spec Card */}
-            <div className="bg-[#1c1917] rounded-3xl border-4 border-[#1c1917] text-white p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden shadow-[8px_8px_0px_0px_#b45309]">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#ea6c00]/15 rounded-full filter blur-2xl" />
+            <div className="bg-brand-charcoal rounded-3xl border-4 border-brand-charcoal text-white p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden shadow-[8px_8px_0px_0px_var(--color-brand-red-deep)]">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-red/15 rounded-full filter blur-2xl" />
               
               <div className="flex justify-between items-start border-b border-neutral-800 pb-4">
                 <div>
@@ -401,7 +401,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
             </div>
 
             {/* Quality Seals card */}
-            <div className="bg-white border-4 border-[#1c1917] rounded-3xl p-6 space-y-4 shadow-[6px_6px_0px_0px_#b45309]">
+            <div className="bg-white border-4 border-brand-charcoal rounded-3xl p-6 space-y-4 shadow-[6px_6px_0px_0px_var(--color-brand-red-deep)]">
               <h5 className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-widest text-[#78716c]">Order Protection Assurances</h5>
               <div className="space-y-4">
                 <div className="flex gap-3.5 items-start">
@@ -409,15 +409,15 @@ Please assign a formulation expert to verify my order, confirm availability, and
                     <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                   </div>
                   <p className="text-[11px] sm:text-xs leading-relaxed text-[#57534e]">
-                    <strong className="text-[#1c1917]">Genuine Product Seal:</strong> Every tin of Sandtex and Caplux is sourced directly from Chemical & Allied Products Plc (CAP Plc) to safeguard your structures.
+                    <strong className="text-brand-charcoal">Genuine Product Seal:</strong> Every tin of Sandtex and Caplux is sourced directly from Chemical & Allied Products Plc (CAP Plc) to safeguard your structures.
                   </p>
                 </div>
                 <div className="flex gap-3.5 items-start">
                   <div className="p-1.5 bg-amber-50 rounded-lg border border-amber-200">
-                    <Truck className="w-4 h-4 text-[#ea6c00] shrink-0" />
+                    <Truck className="w-4 h-4 text-brand-red shrink-0" />
                   </div>
                   <p className="text-[11px] sm:text-xs leading-relaxed text-[#57534e]">
-                    <strong className="text-[#1c1917]">National Deliveries:</strong> Secure on-site courier transit options are fully calculated and assigned to your invoice based on exact GPS delivery coordinates.
+                    <strong className="text-brand-charcoal">National Deliveries:</strong> Secure on-site courier transit options are fully calculated and assigned to your invoice based on exact GPS delivery coordinates.
                   </p>
                 </div>
               </div>

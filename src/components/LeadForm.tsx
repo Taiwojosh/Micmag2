@@ -187,7 +187,7 @@ export default function LeadForm() {
   };
 
   return (
-    <section id="contact" className="py-24 px-5 md:px-[5%] bg-[#F5F4F0] border-b border-neutral-200">
+    <section id="contact" className="py-24 px-5 md:px-[5%] bg-brand-cream border-b border-neutral-200">
       <div className="max-w-3xl mx-auto">
         
         {/* Contact Form Complex */}
@@ -196,7 +196,7 @@ export default function LeadForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ type: "spring", stiffness: 70, damping: 17 }}
-          className="bg-white p-8 md:p-12 rounded-2xl border-2 border-[#1c1917] shadow-[6px_6px_0px_0px_#b45309] flex flex-col justify-between"
+          className="bg-white p-8 md:p-12 rounded-2xl border-2 border-brand-charcoal shadow-[6px_6px_0px_0px_var(--color-brand-red-deep)] flex flex-col justify-between"
         >
           <div className="space-y-6 text-left">
             <h3 className="font-serif text-2xl md:text-3xl font-black text-brand-charcoal">
@@ -216,8 +216,8 @@ export default function LeadForm() {
             )}
 
             {error && (
-              <div className="bg-red-50 border border-red-200 text-[#d32f2f] rounded-[4px] p-4 text-xs font-semibold flex items-start gap-2.5">
-                <AlertTriangle className="w-5 h-5 text-[#d32f2f] mt-0.5 flex-shrink-0" />
+              <div className="bg-red-50 border border-red-200 text-micmag-red rounded-[4px] p-4 text-xs font-semibold flex items-start gap-2.5">
+                <AlertTriangle className="w-5 h-5 text-micmag-red mt-0.5 flex-shrink-0" />
                 <div>
                   <h5 className="font-bold">Verification Error</h5>
                   <p className="text-[11px] text-red-700 font-light mt-1">{error}</p>

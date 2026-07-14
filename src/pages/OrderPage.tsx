@@ -19,7 +19,7 @@ export default function OrderPage() {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="min-h-screen bg-[#FAF9F5] pt-28 pb-16 px-5 md:px-[5%]"
+      className="min-h-screen bg-brand-cream pt-28 pb-16 px-5 md:px-[5%]"
     >
       <div className="max-w-7xl mx-auto">
         {/* Navigation Breadcrumbs Bar */}

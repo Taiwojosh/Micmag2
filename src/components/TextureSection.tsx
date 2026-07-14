@@ -106,7 +106,7 @@ export default function TextureSection() {
   };
 
   return (
-    <section className="py-24 px-5 md:px-[5%] bg-[#F5F4F0] border-b border-neutral-200 overflow-hidden relative">
+    <section className="py-24 px-5 md:px-[5%] bg-brand-cream border-b border-neutral-200 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(#e8e3d9_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.45] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -120,12 +120,12 @@ export default function TextureSection() {
             transition={springTransition}
             className="lg:col-span-12 xl:col-span-7 space-y-4 text-left"
           >
-            <span className="text-[#d32f2f] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
-              <Layers className="w-4 h-4 text-[#d32f2f]" /> Premium Finish Standards
+            <span className="text-micmag-red text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
+              <Layers className="w-4 h-4 text-micmag-red" /> Premium Finish Standards
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-black text-brand-charcoal leading-tight">
               A Paint Finish Isn't Just Color. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d32f2f] via-amber-600 to-indigo-600 font-serif">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-micmag-red via-amber-600 to-indigo-600 font-serif">
                 It Protects Your Investment.
               </span>
             </h2>
@@ -164,7 +164,7 @@ export default function TextureSection() {
             <div className="space-y-3 mb-4 text-left">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <span className="text-[10px] font-mono font-bold text-brand-charcoal uppercase tracking-wider flex items-center gap-1.5 bg-white border border-neutral-200 px-3 py-1 rounded-[2px] shadow-sm">
-                  <Eye className="w-3.5 h-3.5 text-[#d32f2f]" /> Paint Texture Preview
+                  <Eye className="w-3.5 h-3.5 text-micmag-red" /> Paint Texture Preview
                 </span>
                 
                 <span className="text-[11px] text-[#71717a] font-medium font-mono">
@@ -281,7 +281,7 @@ export default function TextureSection() {
             
             {/* Selection tab chips */}
             <div className="space-y-4">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#d32f2f] bg-red-50 px-3 py-1.5 rounded-[2px] inline-block border border-red-100">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-micmag-red bg-red-50 px-3 py-1.5 rounded-[2px] inline-block border border-red-100">
                 Choose Surface Finish
               </span>
               <h3 className="font-serif text-2xl font-black text-brand-charcoal">
@@ -336,7 +336,7 @@ export default function TextureSection() {
                       <div className="space-y-1 text-left">
                         <div className="font-serif text-[0.93rem] font-bold text-brand-charcoal flex items-center gap-1.5">
                           {finish.name}
-                          {!isActive && <span className="text-[9px] text-[#d32f2f] opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono font-bold">View Details &rarr;</span>}
+                          {!isActive && <span className="text-[9px] text-micmag-red opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono font-bold">View Details &rarr;</span>}
                         </div>
                         <p className="text-[10px] text-brand-mid font-bold tracking-wide uppercase font-mono">
                           {finish.subtitle}
@@ -357,7 +357,7 @@ export default function TextureSection() {
               className="bg-white border border-neutral-200 p-6 rounded-[4px] space-y-3 text-left shadow-sm"
             >
               <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-brand-charcoal flex items-center gap-1.5">
-                <Milestone className="w-4 h-4 text-[#d32f2f]" /> Technical Specification Guide
+                <Milestone className="w-4 h-4 text-micmag-red" /> Technical Specification Guide
               </h4>
               <p className="text-xs font-light text-[#52525b] leading-relaxed">
                 {selectedFinish.description}
@@ -365,7 +365,7 @@ export default function TextureSection() {
               
               <div className="pt-3 border-t border-neutral-200 flex items-center justify-between text-[10px] font-mono">
                 <span className="text-[#71717a] font-bold uppercase">Ideal Application:</span>
-                <span className="font-extrabold text-[#d32f2f] uppercase">
+                <span className="font-extrabold text-micmag-red uppercase">
                   {selectedFinish.id === 'textured-matt' ? 'Exterior Facades' : selectedFinish.id === 'satin-sheen' ? 'Kitchens / Corridors' : 'Bedrooms & Living Areas'}
                 </span>
               </div>
@@ -375,8 +375,8 @@ export default function TextureSection() {
             <div className="bg-gradient-to-r from-neutral-900 to-brand-charcoal text-white p-5 rounded-[4px] border border-neutral-800 shadow-lg space-y-3 relative overflow-hidden mt-4">
               <div className="absolute right-0 bottom-0 w-32 h-32 bg-brand-red/15 rounded-full filter blur-[30px] pointer-events-none" />
               <div className="space-y-1 relative z-10">
-                <h4 className="text-xs font-mono font-extrabold uppercase tracking-widest text-[#d32f2f] flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#d32f2f] animate-pulse" /> Request Real Swatch Sample
+                <h4 className="text-xs font-mono font-extrabold uppercase tracking-widest text-micmag-red flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-micmag-red animate-pulse" /> Request Real Swatch Sample
                 </h4>
                 <p className="text-[11px] text-neutral-400 font-light leading-relaxed">
                   Would you like to review physical paint cards or luxury textures live on your construction site before confirming project formulation?

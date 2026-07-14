@@ -247,7 +247,7 @@ export default function Hero() {
   return (
     <section 
       id="hero" 
-      className="relative min-h-[100svh] md:min-h-[92vh] flex items-center pt-24 md:pt-32 pb-16 md:pb-24 px-5 md:px-[5%] overflow-hidden bg-[#faf9f5] border-b border-neutral-200"
+      className="relative min-h-[100svh] md:min-h-[92vh] flex items-center pt-24 md:pt-32 pb-16 md:pb-24 px-5 md:px-[5%] overflow-hidden bg-brand-cream border-b border-neutral-200"
     >
       {/* Background Media Container (Seamless Cross-Fading) */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
@@ -283,7 +283,7 @@ export default function Hero() {
       </div>
 
       {/* Background Overlay to ensure readability and match aesthetic */}
-      <div className="absolute inset-0 bg-[#faf9f5]/55 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-brand-cream/55 pointer-events-none z-0" />
 
       {/* Structural Architectural background patterns - Animated scale */}
       <motion.div 
@@ -495,10 +495,10 @@ export default function Hero() {
               </div>
 
               {/* Sleek architectural descriptive overlay */}
-              <div className="absolute bottom-0 inset-x-0 bg-[#1c1917]/95 backdrop-blur text-white p-3 border-t border-neutral-800 text-left z-20 select-none rounded-[14px]">
+              <div className="absolute bottom-0 inset-x-0 bg-brand-charcoal/95 backdrop-blur text-white p-3 border-t border-neutral-800 text-left z-20 select-none rounded-[14px]">
                 <div className="flex items-center justify-between">
                   <span className={`text-[8.5px] font-mono font-black uppercase tracking-wider px-1.5 py-0.5 rounded text-white ${
-                    isPaintImage ? 'bg-[#ea6c00]/90' : 'bg-[#1a6b3c]/90'
+                    isPaintImage ? 'bg-brand-red/90' : 'bg-micmag-green/90'
                   }`}>
                     {currentSlideItem.tag}
                   </span>

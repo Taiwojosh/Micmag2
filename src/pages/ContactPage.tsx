@@ -91,7 +91,7 @@ export default function ContactPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="pt-24 min-h-screen bg-[#F5F4F0]"
+      className="pt-24 min-h-screen bg-brand-cream"
     >
       {/* Page Hero */}
       <div className="relative text-white py-20 px-5 md:px-[5%] overflow-hidden border-b border-neutral-900 bg-neutral-950">
@@ -140,7 +140,7 @@ export default function ContactPage() {
                     <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-neutral-400">
                       {office.tag}
                     </span>
-                    <MapPin className="w-4 h-4 text-[#d32f2f] shrink-0" />
+                    <MapPin className="w-4 h-4 text-micmag-red shrink-0" />
                   </div>
                   <h3 className="font-serif text-lg font-bold text-neutral-900 leading-tight">
                     {office.name}
@@ -157,9 +157,9 @@ export default function ContactPage() {
                   </div>
                   <a
                     href={`tel:${office.phone.replace(/\s+/g, '')}`}
-                    className="flex items-center gap-2 text-xs font-bold text-brand-charcoal hover:text-[#000082] transition-colors"
+                    className="flex items-center gap-2 text-xs font-bold text-brand-charcoal hover:text-micmag-blue transition-colors"
                   >
-                    <Phone className="w-3.5 h-3.5 shrink-0 text-[#000082]" />
+                    <Phone className="w-3.5 h-3.5 shrink-0 text-micmag-blue" />
                     <span>{office.phone}</span>
                   </a>
 
@@ -168,7 +168,7 @@ export default function ContactPage() {
                       href={office.customGoogleMapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-[#000082] hover:underline"
+                      className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-micmag-blue hover:underline"
                     >
                       <span>Get Directions on Google Maps</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -195,7 +195,7 @@ export default function ContactPage() {
         {/* Right Column: Lead Form */}
         <div className="lg:col-span-5 text-left">
           <div className="sticky top-28 space-y-6">
-            <div className="bg-[#000650] text-white p-6 rounded-t-lg border-b border-neutral-800">
+            <div className="bg-micmag-blue-deep text-white p-6 rounded-t-lg border-b border-neutral-800">
               <div className="flex items-center gap-2 text-xs text-[#7598f3] font-mono uppercase tracking-wider font-bold">
                 <MessageSquare className="w-4 h-4" />
                 <span>Immediate Inquiry Routing</span>

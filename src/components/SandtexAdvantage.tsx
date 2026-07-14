@@ -166,7 +166,7 @@ export default function SandtexAdvantage() {
         
         {/* Title Block */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
-          <span className="text-[#d32f2f] text-xs font-bold font-mono tracking-[0.25em] uppercase px-3 py-1 bg-red-50 border border-red-100/60 rounded-full inline-block">
+          <span className="text-micmag-red text-xs font-bold font-mono tracking-[0.25em] uppercase px-3 py-1 bg-red-50 border border-red-100/60 rounded-full inline-block">
             AUTHENTIC CAP Plc SPECIFICATIONS
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.12] font-black text-brand-charcoal">
@@ -192,7 +192,7 @@ export default function SandtexAdvantage() {
               onClick={() => setActiveTab('spput')}
               className={`flex-1 py-3 text-center text-[10.5px] uppercase font-mono font-bold rounded-[3px] tracking-wider transition-all duration-300 cursor-pointer ${
                 activeTab === 'spput' 
-                  ? 'bg-[#d32f2f] border border-[#d32f2f] text-white shadow-sm font-black' 
+                  ? 'bg-micmag-red border border-micmag-red text-white shadow-sm font-black' 
                   : 'text-brand-mid hover:text-brand-charcoal'
               }`}
             >
@@ -220,7 +220,7 @@ export default function SandtexAdvantage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: -15 }}
               transition={springTransition}
-              className="bg-[#faf9f5] border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-start shadow-md"
+              className="bg-brand-cream border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-start shadow-md"
             >
               
               {/* Interactive Area Sizer (left - 5 columns) */}
@@ -297,7 +297,7 @@ export default function SandtexAdvantage() {
                   
                   {/* Gloss Savings Card */}
                   <div className="bg-white border border-neutral-200 p-5 rounded-[4px] space-y-3.5 relative overflow-hidden group shadow-sm">
-                    <div className="absolute top-0 right-0 h-full w-1.5 bg-[#d32f2f]" />
+                    <div className="absolute top-0 right-0 h-full w-1.5 bg-micmag-red" />
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="text-xs font-black text-brand-charcoal uppercase tracking-wide">
@@ -328,8 +328,8 @@ export default function SandtexAdvantage() {
                         </span>
                       </div>
                       <div>
-                        <span className="text-[9px] font-mono text-[#d32f2f] block uppercase font-bold">Volume Saved</span>
-                        <span className="text-xs text-[#d32f2f] font-black font-mono">
+                        <span className="text-[9px] font-mono text-micmag-red block uppercase font-bold">Volume Saved</span>
+                        <span className="text-xs text-micmag-red font-black font-mono">
                           {glossVal.savings} L
                         </span>
                       </div>
@@ -374,8 +374,8 @@ export default function SandtexAdvantage() {
                         </span>
                       </div>
                       <div>
-                        <span className="text-[9px] font-mono text-[#d32f2f] block uppercase font-bold">Volume Saved</span>
-                        <span className="text-xs text-[#d32f2f] font-black font-mono">
+                        <span className="text-[9px] font-mono text-micmag-red block uppercase font-bold">Volume Saved</span>
+                        <span className="text-xs text-micmag-red font-black font-mono">
                           {emulsionVal.savings} L
                         </span>
                       </div>
@@ -420,8 +420,8 @@ export default function SandtexAdvantage() {
                         </span>
                       </div>
                       <div>
-                        <span className="text-[9px] font-mono text-[#d32f2f] block uppercase font-bold">Volume Saved</span>
-                        <span className="text-xs text-[#d32f2f] font-black font-mono">
+                        <span className="text-[9px] font-mono text-micmag-red block uppercase font-bold">Volume Saved</span>
+                        <span className="text-xs text-micmag-red font-black font-mono">
                           {satinVal.savings} L
                         </span>
                       </div>
@@ -446,7 +446,7 @@ export default function SandtexAdvantage() {
                     </p>
                   </div>
                   <div className="text-center sm:text-right">
-                    <span className="text-[11px] font-mono font-bold text-[#d32f2f] block uppercase">
+                    <span className="text-[11px] font-mono font-bold text-micmag-red block uppercase">
                       Total Paint Volume Saved
                     </span>
                     <span className="text-xl sm:text-2xl font-mono font-black text-white">
@@ -467,13 +467,13 @@ export default function SandtexAdvantage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: -15 }}
               transition={springTransition}
-              className="bg-[#faf9f5] border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch shadow-md"
+              className="bg-brand-cream border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch shadow-md"
             >
               
               {/* Stepper selection (left - 5 col) */}
               <div className="lg:col-span-5 flex flex-col justify-between space-y-6 border-r border-neutral-200/50 pr-0 lg:pr-8">
                 <div className="space-y-2">
-                  <span className="text-[#d32f2f] text-[10px] font-mono font-bold uppercase tracking-wider bg-red-50 border border-red-100 px-2.5 py-0.5 rounded inline-block">
+                  <span className="text-micmag-red text-[10px] font-mono font-bold uppercase tracking-wider bg-red-50 border border-red-100 px-2.5 py-0.5 rounded inline-block">
                     ★ ★ ★ ★ ★ Official CAP Paint System
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-charcoal">
@@ -517,22 +517,22 @@ export default function SandtexAdvantage() {
 
               {/* Active Step Details (right - 7 col) */}
               <div className="lg:col-span-7 flex flex-col justify-between bg-white border border-neutral-200 p-6 md:p-8 rounded-[6px] shadow-sm relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-[3.5px] bg-[#d32f2f]" />
+                <div className="absolute top-0 left-0 w-full h-[3.5px] bg-micmag-red" />
                 
                 {(() => {
                   const currentObj = SPPUT_STEPS.find(s => s.id === activeSpput) || SPPUT_STEPS[0];
                   return (
                     <div className="space-y-6">
                       <div className="flex items-center gap-4">
-                        <span className="bg-neutral-50 border border-neutral-200 p-3.5 rounded-[4px] flex items-center justify-center text-[#d32f2f]">
+                        <span className="bg-neutral-50 border border-neutral-200 p-3.5 rounded-[4px] flex items-center justify-center text-micmag-red">
                           {currentObj.id === 'S' && <Layers className="w-8 h-8 text-amber-600" />}
                           {currentObj.id === 'P1' && <Layers className="w-8 h-8 text-orange-500" />}
                           {currentObj.id === 'P2' && <Layers className="w-8 h-8 text-yellow-600" />}
                           {currentObj.id === 'U' && <Layers className="w-8 h-8 text-blue-600" />}
-                          {currentObj.id === 'T' && <Sparkles className="w-8 h-8 text-[#d32f2f]" />}
+                          {currentObj.id === 'T' && <Sparkles className="w-8 h-8 text-micmag-red" />}
                         </span>
                         <div>
-                          <span className="text-[10px] font-mono font-bold text-[#d32f2f] tracking-widest block uppercase">
+                          <span className="text-[10px] font-mono font-bold text-micmag-red tracking-widest block uppercase">
                             ACTIVE PHASE DETAILS ({currentObj.id})
                           </span>
                           <h4 className="font-serif text-xl font-bold text-brand-charcoal leading-tight">
@@ -557,11 +557,11 @@ export default function SandtexAdvantage() {
                           {currentObj.id === 'S' && (
                             <>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Plaster should dry for dynamic periods (minimum 28 days for sandcrete cement).
                               </li>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Verify substrate moisture level using electronic hydrometers before painting.
                               </li>
                             </>
@@ -569,11 +569,11 @@ export default function SandtexAdvantage() {
                           {currentObj.id === 'P1' && (
                             <>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Completely clean away masonry dust, algae growth, grease, and mortar splashes.
                               </li>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Fill masonry hairline cracks with high-elastic weather-proof fillers.
                               </li>
                             </>
@@ -581,11 +581,11 @@ export default function SandtexAdvantage() {
                           {currentObj.id === 'P2' && (
                             <>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Sandtex Finebuild Base Primer binds loose wall particles into cohesive surface matrices.
                               </li>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Prevents aggressive alkaline burn which decomposes paint binders and alters color tone.
                               </li>
                             </>
@@ -593,11 +593,11 @@ export default function SandtexAdvantage() {
                           {currentObj.id === 'U' && (
                             <>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Solid base coat application providing uniform color absorption for final layer.
                               </li>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Masks structural brick/block profiles and seals surface pores completely.
                               </li>
                             </>
@@ -605,11 +605,11 @@ export default function SandtexAdvantage() {
                           {currentObj.id === 'T' && (
                             <>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Top it up with original Sandtex Satin, Matt Emulsion, or Gloss.
                               </li>
                               <li className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#d32f2f] rounded-full" />
+                                <span className="w-1.5 h-1.5 bg-micmag-red rounded-full" />
                                 Offers deep climate immunity against heavy coastal precipitation and intense Nigeria sun.
                               </li>
                             </>
@@ -623,7 +623,7 @@ export default function SandtexAdvantage() {
 
                 <div className="pt-4 border-t border-neutral-100 flex items-center justify-between text-[10px] font-mono text-brand-mid">
                   <span>CAP Paint System Guidelines &bull; 2020 Edition</span>
-                  <span className="font-bold text-[#d32f2f]">5-star Standard Recommended</span>
+                  <span className="font-bold text-micmag-red">5-star Standard Recommended</span>
                 </div>
               </div>
 
@@ -637,7 +637,7 @@ export default function SandtexAdvantage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: -15 }}
               transition={springTransition}
-              className="bg-[#faf9f5] border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch shadow-md"
+              className="bg-brand-cream border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch shadow-md"
             >
               
               {/* Safety Tips Column */}

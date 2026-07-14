@@ -160,14 +160,14 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
         animate={{ y: 0 }}
         exit={{ y: '100%' }}
         transition={{ type: 'spring', damping: 25, stiffness: 180 }}
-        className="relative bg-white w-full max-w-5xl h-[85vh] md:h-[80vh] flex flex-col rounded-t-3xl md:rounded-2xl border-t-4 md:border-4 border-[#1c1917] overflow-hidden shadow-[8px_8px_0px_0px_#1e3a5f] z-10"
+        className="relative bg-white w-full max-w-5xl h-[85vh] md:h-[80vh] flex flex-col rounded-t-3xl md:rounded-2xl border-t-4 md:border-4 border-brand-charcoal overflow-hidden shadow-[8px_8px_0px_0px_#1e3a5f] z-10"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-white border-b-2 border-[#1c1917]">
+        <div className="flex items-center justify-between px-6 py-4 bg-white border-b-2 border-brand-charcoal">
           <div className="flex items-center gap-2">
             {/* Brand Badge */}
-            <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border-2 border-[#1c1917] font-mono text-[9px] font-black tracking-widest uppercase text-white ${
-              isPaint ? 'bg-[#ea6c00]' : type === 'service' ? 'bg-[#1a6b3c]' : 'bg-[#1e3a5f]'
+            <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border-2 border-brand-charcoal font-mono text-[9px] font-black tracking-widest uppercase text-white ${
+              isPaint ? 'bg-brand-red' : type === 'service' ? 'bg-micmag-green' : 'bg-[#1e3a5f]'
             }`}>
               {isPaint ? 'Sandtex' : type === 'service' ? 'MICMAG SERVICE' : 'MICMAG SPECIALTY'}
             </span>
@@ -177,10 +177,10 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
           </div>
           <button 
             onClick={onClose}
-            className="border-2 border-[#1c1917] hover:bg-[#f5f5f4] rounded-xl p-1.5 shadow-[2px_2px_0px_0px_#1c1917] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#1c1917] transition-all"
+            className="border-2 border-brand-charcoal hover:bg-[#f5f5f4] rounded-xl p-1.5 shadow-[2px_2px_0px_0px_var(--color-brand-charcoal)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_var(--color-brand-charcoal)] transition-all"
             aria-label="Close modal"
           >
-            <X className="w-4 h-4 text-[#1c1917] font-black" />
+            <X className="w-4 h-4 text-brand-charcoal font-black" />
           </button>
         </div>
 
@@ -195,7 +195,7 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
               </span>
               
               {/* Main Image Frame with Neo-Brutalist Frame */}
-              <div className="relative aspect-[4/3] bg-[#f5f5f4] border-2 border-[#1c1917] rounded-2xl overflow-hidden shadow-[4px_4px_0px_0px_#1c1917] flex-shrink-0">
+              <div className="relative aspect-[4/3] bg-[#f5f5f4] border-2 border-brand-charcoal rounded-2xl overflow-hidden shadow-[4px_4px_0px_0px_var(--color-brand-charcoal)] flex-shrink-0">
                 <img 
                   src={images[activeImageIndex]} 
                   alt={item.name}
@@ -208,12 +208,12 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
 
                 {/* Simulated dynamic interior Wall colour swatch preview */}
                 {selectedColour && (
-                  <div className="absolute bottom-3 right-3 bg-white border-2 border-[#1c1917] p-2 rounded-xl flex items-center gap-2 shadow-[2px_2px_0px_0px_#1c1917]">
+                  <div className="absolute bottom-3 right-3 bg-white border-2 border-brand-charcoal p-2 rounded-xl flex items-center gap-2 shadow-[2px_2px_0px_0px_var(--color-brand-charcoal)]">
                     <div className="text-[9px] font-mono font-black text-[#78716c] uppercase leading-none">
                       PREVIEW
                     </div>
                     <div 
-                      className="h-5 w-12 rounded-md border border-[#1c1917] transition-colors duration-300"
+                      className="h-5 w-12 rounded-md border border-brand-charcoal transition-colors duration-300"
                       style={{ backgroundColor: selectedColour.hex }}
                     />
                   </div>
@@ -228,8 +228,8 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
                     onClick={() => setActiveImageIndex(idx)}
                     className={`h-12 w-12 rounded-xl border-2 transition-all duration-150 flex-shrink-0 ${
                       activeImageIndex === idx
-                        ? 'border-[#1a6b3c] shadow-[2px_2px_0px_0px_#1a6b3c]'
-                        : 'border-[#1c1917] hover:border-black opacity-75 hover:opacity-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.12)]'
+                        ? 'border-micmag-green shadow-[2px_2px_0px_0px_#1a6b3c]'
+                        : 'border-brand-charcoal hover:border-black opacity-75 hover:opacity-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.12)]'
                     }`}
                   >
                     <img src={img} alt="Thumb" className="w-full h-full object-cover rounded-lg" onError={(e) => e.currentTarget.src = item.fallback} />
@@ -239,8 +239,8 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
 
               {/* Interactive Color Swatch Section for Sandtex Paints */}
               {isPaint && (
-                <div className="bg-[#FAF9F5] border-2 border-[#1c1917] rounded-2xl p-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.06)] flex-shrink-0">
-                  <span className="block font-mono text-[9px] font-black text-[#ea6c00] uppercase tracking-widest mb-2">
+                <div className="bg-brand-cream border-2 border-brand-charcoal rounded-2xl p-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.06)] flex-shrink-0">
+                  <span className="block font-mono text-[9px] font-black text-brand-red uppercase tracking-widest mb-2">
                     CHOOSE SURFACE COLOUR
                   </span>
                   
@@ -251,14 +251,14 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
                         <button
                           key={color.name}
                           onClick={() => setSelectedColour(color)}
-                          className="relative h-8 w-full rounded-lg border-2 border-[#1c1917] shadow-[2px_2px_0px_0px_rgba(0,0,0,0.12)] transition-all duration-150 hover:scale-105 active:scale-95 cursor-pointer"
+                          className="relative h-8 w-full rounded-lg border-2 border-brand-charcoal shadow-[2px_2px_0px_0px_rgba(0,0,0,0.12)] transition-all duration-150 hover:scale-105 active:scale-95 cursor-pointer"
                           style={{ backgroundColor: color.hex }}
                           title={color.name}
                           aria-pressed={isSelected}
                         >
                           {isSelected && (
-                            <span className="absolute inset-[-4px] rounded-[10px] border-2 border-[#1c1917] pointer-events-none flex items-center justify-center">
-                              <span className="w-1 h-1 bg-[#1c1917] rounded-full" />
+                            <span className="absolute inset-[-4px] rounded-[10px] border-2 border-brand-charcoal pointer-events-none flex items-center justify-center">
+                              <span className="w-1 h-1 bg-brand-charcoal rounded-full" />
                             </span>
                           )}
                         </button>
@@ -268,7 +268,7 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
                   
                   {selectedColour && (
                     <div className="mt-3 font-mono text-[10px] text-[#78716c] font-black leading-none uppercase">
-                      Selected: <span className="text-[#1c1917]">{selectedColour.name}</span>
+                      Selected: <span className="text-brand-charcoal">{selectedColour.name}</span>
                     </div>
                   )}
                 </div>
@@ -280,7 +280,7 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
 
 
               <div>
-                <h2 className="font-display font-black text-xl text-[#1c1917] tracking-tight leading-tight">
+                <h2 className="font-display font-black text-xl text-brand-charcoal tracking-tight leading-tight">
                   {item.name}
                 </h2>
                 <p className="font-sans text-xs text-[#78716c] mt-1">
@@ -289,7 +289,7 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
               </div>
 
               {/* Description */}
-              <div className="font-sans text-xs md:text-sm text-[#1c1917] leading-relaxed">
+              <div className="font-sans text-xs md:text-sm text-brand-charcoal leading-relaxed">
                 {type === 'service' ? (
                   <span>
                     Our interior specialists work with you to define a cohesive direction for your space — from color palette and material selection to furniture layout and finishing priorities. Whether you're furnishing a new build or refreshing an existing home, we start with your brief and build from there.
@@ -304,20 +304,20 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
               {/* Service inclusions */}
               {type === 'service' && (
                 <div className="space-y-2 mt-2">
-                  <span className="block font-mono text-[9px] font-black text-[#1a6b3c] uppercase tracking-widest">
+                  <span className="block font-mono text-[9px] font-black text-micmag-green uppercase tracking-widest">
                     WHAT IS INCLUDED IN SERVICE
                   </span>
                   <ul className="space-y-1.5">
-                    <li className="flex items-start gap-2 font-sans text-xs text-[#1c1917]">
-                      <Check className="w-3.5 h-3.5 text-[#1a6b3c] flex-shrink-0 mt-0.5" />
+                    <li className="flex items-start gap-2 font-sans text-xs text-brand-charcoal">
+                      <Check className="w-3.5 h-3.5 text-micmag-green flex-shrink-0 mt-0.5" />
                       <span>Initial consultation call (30 mins) with lead designers</span>
                     </li>
-                    <li className="flex items-start gap-2 font-sans text-xs text-[#1c1917]">
-                      <Check className="w-3.5 h-3.5 text-[#1a6b3c] flex-shrink-0 mt-0.5" />
+                    <li className="flex items-start gap-2 font-sans text-xs text-brand-charcoal">
+                      <Check className="w-3.5 h-3.5 text-micmag-green flex-shrink-0 mt-0.5" />
                       <span>Site visitation & physical room assessment across Lagos</span>
                     </li>
-                    <li className="flex items-start gap-2 font-sans text-xs text-[#1c1917]">
-                      <Check className="w-3.5 h-3.5 text-[#1a6b3c] flex-shrink-0 mt-0.5" />
+                    <li className="flex items-start gap-2 font-sans text-xs text-brand-charcoal">
+                      <Check className="w-3.5 h-3.5 text-micmag-green flex-shrink-0 mt-0.5" />
                       <span>Bespoke color palette proposal (3 distinct options)</span>
                     </li>
                   </ul>
@@ -329,12 +329,12 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
         </div>
 
         {/* Sticky Conversion Footer */}
-        <div className="sticky bottom-0 bg-white border-t-2 border-[#1c1917] p-5 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+        <div className="sticky bottom-0 bg-white border-t-2 border-brand-charcoal p-5 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           <div className="text-left">
             <span className="block font-mono text-[9px] text-[#78716c] font-black uppercase tracking-wider">
               ENQUIRING ABOUT:
             </span>
-            <span className="block font-sans font-black text-xs text-[#1c1917]">
+            <span className="block font-sans font-black text-xs text-brand-charcoal">
               {item.name} {selectedColour ? `• ${selectedColour.name}` : ''} {modalRegion ? `• Deliver to ${modalRegion}` : ''}
             </span>
           </div>
@@ -344,7 +344,7 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
             <select
               value={modalRegion}
               onChange={(e) => setModalRegion(e.target.value)}
-              className="border-2 border-[#1c1917] rounded-xl px-3 py-2 text-xs font-mono font-bold bg-white text-[#1c1917] focus:outline-none focus:ring-2 focus:ring-[#1a6b3c]"
+              className="border-2 border-brand-charcoal rounded-xl px-3 py-2 text-xs font-mono font-bold bg-white text-brand-charcoal focus:outline-none focus:ring-2 focus:ring-micmag-green"
               aria-label="Select delivery region"
             >
               <option value="">Select Location *</option>
@@ -356,9 +356,9 @@ I'd love to book a consultation at your earliest convenience. Thank you!`;
             <button
               onClick={handleWhatsAppInquiry}
               disabled={!modalRegion}
-              className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-sans text-xs font-black uppercase border-2 border-[#1c1917] text-white shadow-[3px_3px_0px_0px_#1c1917] transition-all duration-150 ${
+              className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-sans text-xs font-black uppercase border-2 border-brand-charcoal text-white shadow-[3px_3px_0px_0px_var(--color-brand-charcoal)] transition-all duration-150 ${
                 modalRegion
-                  ? `${isPaint ? 'bg-[#ea6c00] hover:shadow-[5px_5px_0px_0px_#1c1917] hover:-translate-x-[1px] hover:-translate-y-[1px] active:translate-x-[1px] active:translate-y-[1px]' : 'bg-[#1a6b3c] hover:shadow-[5px_5px_0px_0px_#1c1917] hover:-translate-x-[1px] hover:-translate-y-[1px] active:translate-x-[1px] active:translate-y-[1px]'} cursor-pointer`
+                  ? `${isPaint ? 'bg-brand-red hover:shadow-[5px_5px_0px_0px_var(--color-brand-charcoal)] hover:-translate-x-[1px] hover:-translate-y-[1px] active:translate-x-[1px] active:translate-y-[1px]' : 'bg-micmag-green hover:shadow-[5px_5px_0px_0px_var(--color-brand-charcoal)] hover:-translate-x-[1px] hover:-translate-y-[1px] active:translate-x-[1px] active:translate-y-[1px]'} cursor-pointer`
                   : 'bg-neutral-300 border-neutral-400 text-neutral-500 shadow-none opacity-50 cursor-not-allowed'
               }`}
             >

@@ -16,7 +16,7 @@ export default function CapSpecificationsPage() {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="min-h-screen bg-[#FAF9F5] pt-28 pb-16 px-5 md:px-[5%]"
+      className="min-h-screen bg-brand-cream pt-28 pb-16 px-5 md:px-[5%]"
     >
       <div className="max-w-7xl mx-auto">
         {/* Navigation Breadcrumbs Bar */}
@@ -68,7 +68,7 @@ export default function CapSpecificationsPage() {
         <div className="mt-8 bg-neutral-100 border border-neutral-200 rounded-[4px] p-6 text-left grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           <div className="md:col-span-2 space-y-1.5">
             <h4 className="text-xs font-black text-brand-charcoal uppercase tracking-wider flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-[#d32f2f]" /> Architectural Verification Seal
+              <BookOpen className="w-4 h-4 text-micmag-red" /> Architectural Verification Seal
             </h4>
             <p className="text-[11px] text-brand-mid font-light leading-relaxed">
               These guidelines conform to official CAP Plc curriculum requirements for large-scale developments. Ensure dry-cure substrate readings are fully documented prior to requesting color formulations.

@@ -73,7 +73,7 @@ export default function FAQ() {
               variants={fadeInUpVariant}
             >
               <details
-                className="group bg-white border-2 border-[#1c1917] rounded-2xl p-6 shadow-[3px_3px_0px_0px_#1e3a5f] hover:shadow-[5px_5px_0px_0px_#1e3a5f] [&[open]]:shadow-[4px_4px_0px_0px_#d32f2f] transition-all duration-300 text-left"
+                className="group bg-white border-2 border-brand-charcoal rounded-2xl p-6 shadow-[3px_3px_0px_0px_#1e3a5f] hover:shadow-[5px_5px_0px_0px_#1e3a5f] [&[open]]:shadow-[4px_4px_0px_0px_var(--color-micmag-red)] transition-all duration-300 text-left"
               >
                 <summary className="font-bold text-brand-charcoal cursor-pointer flex justify-between items-center text-[1.05rem] marker:content-['']">
                   {faq.question}

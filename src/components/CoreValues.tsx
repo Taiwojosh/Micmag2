@@ -87,7 +87,7 @@ export default function CoreValues() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ ...springTransition, delay: idx * 0.1 }}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                className="bg-white border-2 border-[#1c1917] rounded-2xl p-8 shadow-[4px_4px_0px_0px_#000082] hover:shadow-[6px_6px_0px_0px_#000082] hover:-translate-y-[2px] transition-all duration-200 flex flex-col sm:flex-row gap-6 items-start relative overflow-hidden group"
+                className="bg-white border-2 border-brand-charcoal rounded-2xl p-8 shadow-[4px_4px_0px_0px_#000082] hover:shadow-[6px_6px_0px_0px_#000082] hover:-translate-y-[2px] transition-all duration-200 flex flex-col sm:flex-row gap-6 items-start relative overflow-hidden group"
               >
                 {/* Accent bar that grows on hover */}
                 <div className={`absolute top-0 left-0 bottom-0 w-[3px] bg-gradient-to-b ${val.color} transition-all duration-300 group-hover:w-[5px]`} />

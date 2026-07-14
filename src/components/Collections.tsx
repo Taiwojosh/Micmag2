@@ -80,7 +80,7 @@ export default function Collections() {
   }, []);
 
   return (
-    <section id="products" className="py-24 px-5 md:px-[5%] bg-[#F5F4F0]/60 border-b border-neutral-200">
+    <section id="products" className="py-24 px-5 md:px-[5%] bg-brand-cream/60 border-b border-neutral-200">
       <div className="max-w-7xl mx-auto">
 
         {/* Dynamic Section Header */}
@@ -365,11 +365,11 @@ export default function Collections() {
                     },
                     type: 'service'
                   })}
-                  className="bg-white border-2 border-[#1c1917] rounded-2xl p-5 shadow-[4px_4px_0px_0px_#1a6b3c] transition-all duration-150 hover:shadow-[6px_6px_0px_0px_#1a6b3c] hover:-translate-x-[1px] hover:-translate-y-[1px] active:shadow-[2px_2px_0px_0px_#1a6b3c] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer text-left flex flex-col justify-between h-full relative"
+                  className="bg-white border-2 border-brand-charcoal rounded-2xl p-5 shadow-[4px_4px_0px_0px_#1a6b3c] transition-all duration-150 hover:shadow-[6px_6px_0px_0px_#1a6b3c] hover:-translate-x-[1px] hover:-translate-y-[1px] active:shadow-[2px_2px_0px_0px_#1a6b3c] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer text-left flex flex-col justify-between h-full relative"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-3.5">
-                      <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border-2 border-[#1c1917] font-mono text-[9px] font-black tracking-widest uppercase bg-[#1a6b3c] text-white">
+                      <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border-2 border-brand-charcoal font-mono text-[9px] font-black tracking-widest uppercase bg-micmag-green text-white">
                         MICMAG SERVICE
                       </span>
                       <span className="font-mono text-[10px] text-[#78716c] font-black uppercase">
@@ -377,7 +377,7 @@ export default function Collections() {
                       </span>
                     </div>
 
-                    <div className="relative h-48 w-full border-2 border-[#1c1917] rounded-xl overflow-hidden bg-white mb-4">
+                    <div className="relative h-48 w-full border-2 border-brand-charcoal rounded-xl overflow-hidden bg-white mb-4">
                       <img
                         src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800"
                         alt="Interior Design Consultation"
@@ -385,7 +385,7 @@ export default function Collections() {
                       />
                     </div>
 
-                    <h4 className="font-display text-lg font-black text-[#1c1917] leading-tight mb-2">
+                    <h4 className="font-display text-lg font-black text-brand-charcoal leading-tight mb-2">
                       Architectural Color Consultation
                     </h4>
                     <p className="text-xs text-[#78716c] leading-relaxed mb-4">
@@ -410,7 +410,7 @@ export default function Collections() {
                           type: 'service'
                         });
                       }}
-                      className="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-transparent text-[#1c1917] border-2 border-[#1c1917] shadow-[2px_2px_0px_0px_#1c1917] font-sans text-xs font-semibold transition-all hover:bg-neutral-50 active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#1c1917] cursor-pointer"
+                      className="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-transparent text-brand-charcoal border-2 border-brand-charcoal shadow-[2px_2px_0px_0px_var(--color-brand-charcoal)] font-sans text-xs font-semibold transition-all hover:bg-neutral-50 active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_var(--color-brand-charcoal)] cursor-pointer"
                     >
                       <span>View Details</span>
                     </button>
@@ -420,7 +420,7 @@ export default function Collections() {
                         const text = "Hello! I am interested in booking an Architectural Color Consultation with your team.";
                         openWhatsApp('2347052940445', text);
                       }}
-                      className="w-full flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-white bg-[#1a6b3c] border-2 border-[#1c1917] shadow-[2px_2px_0px_0px_#1c1917] font-sans text-xs font-bold transition-all active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#1c1917] cursor-pointer"
+                      className="w-full flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-white bg-micmag-green border-2 border-brand-charcoal shadow-[2px_2px_0px_0px_var(--color-brand-charcoal)] font-sans text-xs font-bold transition-all active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_var(--color-brand-charcoal)] cursor-pointer"
                     >
                       <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-white shrink-0" fill="currentColor">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -501,8 +501,8 @@ export default function Collections() {
                 <div className="bg-neutral-900 text-[#f4efe5] px-6 py-5 border-b border-neutral-800 flex-shrink-0">
                   <div className="max-w-4xl mx-auto flex justify-between items-center w-full">
                     <div>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-[#d32f2f] font-extrabold flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#d32f2f] animate-pulse" />
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-micmag-red font-extrabold flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-micmag-red animate-pulse" />
                         Official Technical Data Sheet (TDS)
                       </span>
                       <h3 className="font-serif text-lg md:text-2xl font-bold tracking-tight mt-1">{activeTds.tdsSpec?.title}</h3>
@@ -534,7 +534,7 @@ export default function Collections() {
                       <div className="space-y-6">
                         <div>
                           <h4 className="text-xs font-mono font-black uppercase tracking-wider text-brand-charcoal pb-1.5 border-b border-neutral-200 flex items-center gap-1.5 mb-3.5">
-                            <BookOpen className="w-4 h-4 text-[#d32f2f]" /> Product Specifications
+                            <BookOpen className="w-4 h-4 text-micmag-red" /> Product Specifications
                           </h4>
                           <div className="space-y-2.5 font-mono text-[11px]">
                             <div className="flex justify-between py-1.5 border-b border-neutral-100">
@@ -570,12 +570,12 @@ export default function Collections() {
 
                         <div className="pt-2">
                           <h4 className="text-xs font-mono font-black uppercase tracking-wider text-brand-charcoal pb-1.5 border-b border-neutral-200 flex items-center gap-1.5 mb-3.5">
-                            <Shield className="w-4 h-4 text-[#d32f2f]" /> Key Performance Benefits
+                            <Shield className="w-4 h-4 text-micmag-red" /> Key Performance Benefits
                           </h4>
                           <ul className="space-y-2 text-neutral-700 list-none pl-0">
                             {activeTds.tdsSpec?.keyBenefits?.map((benefit: string, idx: number) => (
                               <li key={idx} className="flex items-start gap-2.5">
-                                <span className="text-[#d32f2f] text-sm leading-none mt-0.5">✓</span>
+                                <span className="text-micmag-red text-sm leading-none mt-0.5">✓</span>
                                 <span className="text-[12.5px] md:text-[13px]">{benefit}</span>
                               </li>
                             ))}
@@ -587,7 +587,7 @@ export default function Collections() {
                       <div className="space-y-6">
                         <div>
                           <h4 className="text-xs font-mono font-black uppercase tracking-wider text-brand-charcoal pb-1.5 border-b border-neutral-200 flex items-center gap-1.5 mb-3.5">
-                            <Timer className="w-4 h-4 text-[#d32f2f]" /> Drying & Film Properties
+                            <Timer className="w-4 h-4 text-micmag-red" /> Drying & Film Properties
                           </h4>
                           <div className="space-y-2.5 font-mono text-[11px]">
                             <div className="flex justify-between py-1.5 border-b border-neutral-100">
@@ -612,7 +612,7 @@ export default function Collections() {
                           <ul className="space-y-2 pl-0 pr-1 list-none text-neutral-700">
                             {activeTds.tdsSpec?.typicalUses?.map((use: string, idx: number) => (
                               <li key={idx} className="flex items-start gap-2.5">
-                                <span className="w-2 h-2 rounded-full bg-[#d32f2f] inline-block mt-1.5 flex-shrink-0" />
+                                <span className="w-2 h-2 rounded-full bg-micmag-red inline-block mt-1.5 flex-shrink-0" />
                                 <span className="text-[12.5px] leading-relaxed">{use}</span>
                               </li>
                             ))}
@@ -653,7 +653,7 @@ export default function Collections() {
                     {/* Safety and Support */}
                     <div className="bg-neutral-950 text-neutral-300 p-5 rounded-[4px] space-y-2.5 text-[11.5px] font-mono border border-neutral-850">
                       <div className="flex items-start gap-3">
-                        <AlertCircle className="w-5 h-5 text-[#d32f2f] flex-shrink-0 mt-0.5" />
+                        <AlertCircle className="w-5 h-5 text-micmag-red flex-shrink-0 mt-0.5" />
                         <div>
                           <span className="font-semibold uppercase text-[10px] tracking-widest text-neutral-400">Project Storage Safety & Transport Info:</span>
                           <p className="text-neutral-300 font-sans text-[12px] leading-relaxed mt-1">
