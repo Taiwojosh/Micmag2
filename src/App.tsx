@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AdminPage from './pages/AdminPage';
 import CapSpecificationsPage from './pages/CapSpecificationsPage';
-import OrderPage from './pages/OrderPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import TeamPage from './pages/TeamPage';
@@ -42,9 +41,8 @@ function AppLayout() {
             <Route path="/why" element={<Navigate to="/#why" replace />} />
             <Route path="/locations" element={<Navigate to="/#locations" replace />} />
             <Route path="/collections" element={<ProductsPage />} />
-            <Route path="/order" element={<OrderPage />} />
-            <Route path="/specifications" element={<CapSpecificationsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/specifications" element={<CapSpecificationsPage />} />
             <Route path="/team" element={<TeamPage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="*" element={<NotFoundPage />} />

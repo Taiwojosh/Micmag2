@@ -320,12 +320,12 @@ export default function Header() {
             </a>
 
             <Link
-              to="/order"
+              to="/collections"
               className="flex items-center gap-1.5 rounded-[10px] font-bold tracking-[0.1em] uppercase transition-all duration-300 shadow-sm hover:shadow-md hover:brightness-110 px-3 py-1.5"
               style={{ backgroundColor: '#d32f2f', color: '#ffffff', fontSize: '10px' }}
             >
               <ShoppingBag className="w-3.5 h-3.5" />
-              Order Swatch
+              Order Now
             </Link>
           </div>
 
@@ -430,12 +430,12 @@ export default function Header() {
                       </a>
                     </div>
                     <Link
-                      to="/order"
+                      to="/collections"
                       onClick={closeMenu}
                       className="w-full text-center py-3 rounded-xl text-xs font-black tracking-[0.14em] uppercase transition-all duration-300 shadow-md block hover:brightness-105 shrink-0"
                       style={{ backgroundColor: '#d32f2f', color: '#ffffff' }}
                     >
-                      Order Sample Swatches
+                      Order Now
                     </Link>
                   </div>
                 </motion.div>
