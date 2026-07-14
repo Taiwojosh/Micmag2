@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Calculator, 
-  Layers, 
-  Sparkles, 
-  TrendingUp, 
-  AlertTriangle, 
-  ShieldCheck, 
-  BookOpen, 
+import {
+  Calculator,
+  Layers,
+  Sparkles,
+  TrendingUp,
+  AlertTriangle,
+  ShieldCheck,
+  BookOpen,
   CheckCircle,
   HardHat,
   Users
@@ -163,53 +163,49 @@ export default function SandtexAdvantage() {
   return (
     <section id="sandtex-advantage" className="py-24 px-5 md:px-[5%] bg-white border-b border-neutral-200 scroll-mt-20">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Title Block */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
-          <span className="text-micmag-red text-xs font-bold font-mono tracking-[0.25em] uppercase px-3 py-1 bg-red-50 border border-red-100/60 rounded-full inline-block">
-            AUTHENTIC CAP Plc SPECIFICATIONS
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.12] font-black text-brand-charcoal">
-            The Sandtex Advantage Center
-          </h2>
-          <p className="text-xs sm:text-sm text-brand-mid font-light max-w-2xl mx-auto">
-            Directly from Chemical & Allied Products (CAP) Plc official builder curriculum. Explore authenticated cost saving multipliers, the 5-Star S-P-P-U-T paint framework, and site protocols.
-          </p>
 
-          {/* Desktop/Mobile navigation tabs */}
-          <div className="flex justify-center p-1 bg-neutral-100 rounded-[5px] border border-neutral-200 mt-8 max-w-lg mx-auto">
-            <button
-              onClick={() => setActiveTab('savings')}
-              className={`flex-1 py-3 text-center text-[10.5px] uppercase font-mono font-bold rounded-[3px] tracking-wider transition-all duration-300 cursor-pointer ${
-                activeTab === 'savings' 
-                  ? 'bg-neutral-900 border border-neutral-900 text-white shadow-sm font-black' 
-                  : 'text-brand-mid hover:text-brand-charcoal'
+        {/* Title Block */}
+        <span className="text-micmag-red text-xs font-bold font-mono tracking-[0.25em] uppercase px-3 py-1 bg-red-50 border border-red-100/60 rounded-full inline-block">
+          AUTHENTIC CAP Plc SPECIFICATIONS
+        </span>
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.12] font-black text-brand-charcoal">
+          The Sandtex Advantage Center
+        </h2>
+        <p className="text-xs sm:text-sm text-brand-mid font-light max-w-2xl mx-auto">
+          Directly from Chemical & Allied Products (CAP) Plc official builder curriculum. Explore authenticated cost saving multipliers, the 5-Star S-P-P-U-T paint framework, and site protocols.
+        </p>
+
+        {/* Desktop/Mobile navigation tabs */}
+        <div className="flex justify-center p-1 bg-neutral-100 rounded-[5px] border border-neutral-200 mt-8 max-w-lg mx-auto">
+          <button
+            onClick={() => setActiveTab('savings')}
+            className={`flex-1 py-3 text-center text-[10.5px] uppercase font-mono font-bold rounded-[3px] tracking-wider transition-all duration-300 cursor-pointer ${activeTab === 'savings'
+                ? 'bg-neutral-900 border border-neutral-900 text-white shadow-sm font-black'
+                : 'text-brand-mid hover:text-brand-charcoal'
               }`}
-            >
-              Yield &amp; Material Efficiency
-            </button>
-            <button
-              onClick={() => setActiveTab('spput')}
-              className={`flex-1 py-3 text-center text-[10.5px] uppercase font-mono font-bold rounded-[3px] tracking-wider transition-all duration-300 cursor-pointer ${
-                activeTab === 'spput' 
-                  ? 'bg-micmag-red border border-micmag-red text-white shadow-sm font-black' 
-                  : 'text-brand-mid hover:text-brand-charcoal'
+          >
+            Yield &amp; Material Efficiency
+          </button>
+          <button
+            onClick={() => setActiveTab('spput')}
+            className={`flex-1 py-3 text-center text-[10.5px] uppercase font-mono font-bold rounded-[3px] tracking-wider transition-all duration-300 cursor-pointer ${activeTab === 'spput'
+                ? 'bg-micmag-red border border-micmag-red text-white shadow-sm font-black'
+                : 'text-brand-mid hover:text-brand-charcoal'
               }`}
-            >
-              CAP Paint System
-            </button>
-            <button
-              onClick={() => setActiveTab('professionals')}
-              className={`flex-1 py-3 text-center text-[10.5px] uppercase font-mono font-bold rounded-[3px] tracking-wider transition-all duration-300 cursor-pointer ${
-                activeTab === 'professionals' 
-                  ? 'bg-amber-600 border border-amber-600 text-white shadow-sm font-black' 
-                  : 'text-brand-mid hover:text-brand-charcoal'
+          >
+            CAP Paint System
+          </button>
+          <button
+            onClick={() => setActiveTab('professionals')}
+            className={`flex-1 py-3 text-center text-[10.5px] uppercase font-mono font-bold rounded-[3px] tracking-wider transition-all duration-300 cursor-pointer ${activeTab === 'professionals'
+                ? 'bg-amber-600 border border-amber-600 text-white shadow-sm font-black'
+                : 'text-brand-mid hover:text-brand-charcoal'
               }`}
-            >
-              Professional Code
-            </button>
-          </div>
+          >
+            Professional Code
+          </button>
         </div>
+
 
         {/* Dynamic Panel Canvas */}
         <AnimatePresence mode="wait">
@@ -222,7 +218,7 @@ export default function SandtexAdvantage() {
               transition={springTransition}
               className="bg-brand-cream border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-start shadow-md"
             >
-              
+
               {/* Interactive Area Sizer (left - 5 columns) */}
               <div className="lg:col-span-5 space-y-6">
                 <div className="space-y-2">
@@ -294,7 +290,7 @@ export default function SandtexAdvantage() {
                 </span>
 
                 <div className="space-y-4">
-                  
+
                   {/* Gloss Savings Card */}
                   <div className="bg-white border border-neutral-200 p-5 rounded-[4px] space-y-3.5 relative overflow-hidden group shadow-sm">
                     <div className="absolute top-0 right-0 h-full w-1.5 bg-micmag-red" />
@@ -469,7 +465,7 @@ export default function SandtexAdvantage() {
               transition={springTransition}
               className="bg-brand-cream border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch shadow-md"
             >
-              
+
               {/* Stepper selection (left - 5 col) */}
               <div className="lg:col-span-5 flex flex-col justify-between space-y-6 border-r border-neutral-200/50 pr-0 lg:pr-8">
                 <div className="space-y-2">
@@ -492,11 +488,10 @@ export default function SandtexAdvantage() {
                       <button
                         key={idx}
                         onClick={() => setActiveSpput(step.id)}
-                        className={`w-full text-left p-3 rounded transition-all duration-300 flex items-center gap-4 border cursor-pointer ${
-                          isActive 
-                            ? 'bg-white border-neutral-900 ring-2 ring-neutral-900/5 shadow-sm' 
+                        className={`w-full text-left p-3 rounded transition-all duration-300 flex items-center gap-4 border cursor-pointer ${isActive
+                            ? 'bg-white border-neutral-900 ring-2 ring-neutral-900/5 shadow-sm'
                             : 'bg-transparent border-neutral-200 hover:bg-neutral-50 hover:border-neutral-300'
-                        }`}
+                          }`}
                       >
                         <span className="w-8 h-8 rounded-full bg-brand-charcoal text-white text-xs font-mono font-black flex items-center justify-center">
                           {step.id}
@@ -518,7 +513,7 @@ export default function SandtexAdvantage() {
               {/* Active Step Details (right - 7 col) */}
               <div className="lg:col-span-7 flex flex-col justify-between bg-white border border-neutral-200 p-6 md:p-8 rounded-[6px] shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[3.5px] bg-micmag-red" />
-                
+
                 {(() => {
                   const currentObj = SPPUT_STEPS.find(s => s.id === activeSpput) || SPPUT_STEPS[0];
                   return (
@@ -552,7 +547,7 @@ export default function SandtexAdvantage() {
                         <span className="text-[9px] font-mono text-neutral-400 font-bold uppercase tracking-wider block">
                           Technical Site Protocols
                         </span>
-                        
+
                         <ul className="text-xs text-brand-mid space-y-1.5 font-light">
                           {currentObj.id === 'S' && (
                             <>
@@ -639,7 +634,7 @@ export default function SandtexAdvantage() {
               transition={springTransition}
               className="bg-brand-cream border border-neutral-200 rounded-[8px] p-6 md:p-10 text-left grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch shadow-md"
             >
-              
+
               {/* Safety Tips Column */}
               <div className="bg-white border border-neutral-200 p-6 md:p-8 rounded-[6px] shadow-sm flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
