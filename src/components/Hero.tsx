@@ -1,160 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { Paintbrush, ShieldCheck, ChevronRight, ChevronLeft, Droplet, Layers, Check, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronRight, ArrowUpRight, PaintBucket } from 'lucide-react';
 
 const FLAGSHIP_COLORS = [
   {
     name: "Sandtex Majestic Orange",
     hex: "#FF6B00",
-    description: "Vibrant and authentic sandtex orange tone, engineered with premium weather-protection.",
+    description: "Vibrant and authentic sandtex orange tone.",
     themeClass: "from-[#FF6B00]/20 to-neutral-950/10",
-  },
-  {
-    name: "Sunset Marigold",
-    hex: "#F95700",
-    description: "Rich high-vibrancy architectural marigold. Premium UV block shields fading under intense tropical sun.",
-    themeClass: "from-orange-600/20 to-red-950/10",
   },
   {
     name: "Lekki Terracotta",
     hex: "#B8442E",
-    description: "Deep luxury clay-tone paint, built to withstand aggressive coastal humidity with majestic elegance.",
+    description: "Deep luxury clay-tone paint.",
     themeClass: "from-red-600/20 to-neutral-950/10",
   },
   {
     name: "Kano Crimson Cream",
     hex: "#D32F2F",
-    description: "Pure intense premium crimson. Special moisture-shielding protection for prestigious estates.",
+    description: "Pure intense premium crimson.",
     themeClass: "from-red-700/20 to-neutral-950/10",
   },
   {
     name: "Eko Alabaster Satin",
     hex: "#C5A880",
-    description: "Sophisticated premium sand-stone gold, standard finish for modern Lekki developments.",
+    description: "Sophisticated premium sand-stone gold.",
     themeClass: "from-amber-600/20 to-neutral-950/10",
+  },
+  {
+    name: "Classic Charcoal",
+    hex: "#1C1917",
+    description: "Sleek and modern dark neutral.",
+    themeClass: "from-neutral-800/20 to-neutral-950/10",
   }
 ];
 
-const SANDTEX_SLIDES = [
-  {
-    name: "Luxury Living Room",
-    tag: "Interior Velvet Finish",
-    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800",
-    description: "Elegant modern living room coated with our premium Sandtex Velvet.",
-    color: "#d32f2f"
-  },
-  {
-    name: "Modern Kitchen Layout",
-    tag: "Stain-Resistant Matt",
-    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800",
-    description: "Pristine white kitchen walls protected by Sandtex wipeable matt.",
-    color: "#ea6c00"
-  },
-  {
-    name: "Serene Bedroom Space",
-    tag: "Calming Satin Finish",
-    image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=800",
-    description: "Restful ambiance achieved with Sandtex Premium Satin tones.",
-    color: "#b45309"
-  },
-  {
-    name: "Sandtex Satin 20L/4L",
-    tag: "Interior & Exterior Semi-Gloss",
-    image: "./satin1.png",
-    description: "Elite washable emulsion for luxury spaces",
-    color: "#ea6c00"
-  },
-  {
-    name: "Sandtex Select VME 20L",
-    tag: "Interior & Exterior Matt",
-    image: "./Sandtex select VME.png",
-    description: "Ready-mix premium wall & ceiling finish with high yield",
-    color: "#d32f2f"
-  },
-  {
-    name: "Sandtex Matt (Smooth & Tough Exterior) 20L",
-    tag: "Ultimate Exterior Shield",
-    image: "./Sandtex MATT.png",
-    description: "Anti-fungal weather preservation for aggressive coastal rain",
-    color: "#ea6c00"
-  },
-  {
-    name: "Sandtex Trade Smooth 20L",
-    tag: "Professional Elite Masonry",
-    image: "./Sandtex Trade Smooth.png",
-    description: "Tremendous yield exterior paint favored by top developers",
-    color: "#b45309"
-  },
-  {
-    name: "Sandtex VME (Vinyl Matt Emulsion) 20L/4L",
-    tag: "Interior Contract Classic",
-    image: "./Sandtex VME.png",
-    description: "Standard grade vinyl matt with superior opacity",
-    color: "#ea6c00"
-  },
-  {
-    name: "Sandtex Finebuild 20L",
-    tag: "Textured Primer Build",
-    image: "./Sandtex FineBuild.png",
-    description: "Bridges hairline cracks & stabilizes porous walls",
-    color: "#78716c"
-  },
-  {
-    name: "Sandtex Gloss 4L",
-    tag: "Multi-surface Gloss Enamel",
-    image: "./Sandtex GLOSS.png",
-    description: "Heavy-duty lead-free polyurethane gloss for metals & wood",
-    color: "#ea6c00"
-  }
-];
-
-const MICMAG_SLIDES = [
-  {
-    name: "Premium Interior Walls",
-    tag: "Decorative Matt Finish",
-    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=800",
-    description: "Ultra-smooth high-opacity Matt emulsions for luxury interiors.",
-    color: "#1e3a5f"
-  },
-  {
-    name: "Heavy-Duty Exterior Shield",
-    tag: "Sandtex Smooth & Textured",
-    image: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=800",
-    description: "Weather-locked polymer exterior paints resisting coastal Lagos rain and heat.",
-    color: "#1a6b3c"
-  },
-  {
-    name: "Caplux Industrial Primers",
-    tag: "Alkaline Primers & Sealers",
-    image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&q=80&w=800",
-    description: "High-adhesion acrylic primers to lock salts and prevent coating peeling.",
-    color: "#1e3a5f"
-  },
-  {
-    name: "Custom Color Tinting",
-    tag: "Precision Formulas",
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800",
-    description: "Computerized automatic paint tinting to match any design shade.",
-    color: "#b45309"
-  },
-  {
-    name: "Architectural Texture Boards",
-    tag: "Trowel & Roller Finishes",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800",
-    description: "Plaster texture patterns, stucco effect coat, and premium exterior cladding look.",
-    color: "#1a6b3c"
-  },
-  {
-    name: "Anti-Corrosive Metal Coatings",
-    tag: "Gloss & Red Oxide Primers",
-    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800",
-    description: "Protective gloss enamels shielding wood, steel gates, and burglar bars.",
-    color: "#78716c"
-  }
-];
-
-// Spring transitions for professional high-end movements
 const springTransition = {
   type: "spring",
   stiffness: 75,
@@ -177,345 +58,179 @@ const fadeUpVariant = {
   animate: { opacity: 1, y: 0, transition: springTransition }
 };
 
-const HERO_BACKGROUND_MEDIA = [
-  { type: 'video', src: './a_video_for_the_landing_page_o.mp4' },
-  { type: 'image', src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1600' },
-  { type: 'image', src: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=1600' },
-  { type: 'video', src: './A_video_of_a_Nigerian_middle_a.mp4' },
-  { type: 'image', src: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1600' },
-  { type: 'image', src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1600' }
-];
-
 export default function Hero() {
-  const [bgIndex, setBgIndex] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const [slideIndex, setSlideIndex] = useState(0);
-  const [isHoveringSlides, setIsHoveringSlides] = useState(false);
-
-  const currentSlides = [...MICMAG_SLIDES, ...SANDTEX_SLIDES];
-  const currentIndex = slideIndex;
-  const currentSlideItem = currentSlides[currentIndex];
-  const isPaintImage = currentSlideItem.image.includes('.png') || currentSlideItem.name.includes('Sandtex');
-
-  const currentBg = HERO_BACKGROUND_MEDIA[bgIndex];
-
-  // Auto-cycle slideshows
-  useEffect(() => {
-    if (isHoveringSlides) return;
-
-    const interval = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % currentSlides.length);
-    }, 4500); // cycle every 4.5 seconds
-
-    return () => clearInterval(interval);
-  }, [isHoveringSlides, currentSlides.length]);
-
-  const handlePrevSlide = () => {
-    setSlideIndex((prev) => (prev - 1 + currentSlides.length) % currentSlides.length);
-  };
-
-  const handleNextSlide = () => {
-    setSlideIndex((prev) => (prev + 1) % currentSlides.length);
-  };
-
-  // Background Media Transitions: Timer for images
-  useEffect(() => {
-    if (currentBg.type === 'image') {
-      const timer = setTimeout(() => {
-        setBgIndex((prev) => (prev + 1) % HERO_BACKGROUND_MEDIA.length);
-      }, 6000); // stay on images for 6 seconds
-      return () => clearTimeout(timer);
-    }
-  }, [bgIndex, currentBg.type]);
-
-  // Video End Transitions
-  const handleVideoEnded = () => {
-    setBgIndex((prev) => (prev + 1) % HERO_BACKGROUND_MEDIA.length);
-  };
-
-  // Play video on mount or swap
-  useEffect(() => {
-    if (currentBg.type === 'video' && videoRef.current) {
-      videoRef.current.load();
-      videoRef.current.play().catch((err) => {
-        console.warn("Video autoPlay failed:", err);
-      });
-    }
-  }, [bgIndex, currentBg.type]);
+  const [activeColor, setActiveColor] = useState<typeof FLAGSHIP_COLORS[0] | null>(null);
 
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] md:min-h-[92vh] flex items-center pt-24 md:pt-32 pb-16 md:pb-24 px-5 md:px-[5%] overflow-hidden bg-brand-cream border-b border-neutral-200"
+      className="relative min-h-[100svh] md:min-h-[92vh] flex flex-col justify-center pt-24 md:pt-32 pb-32 md:pb-24 px-5 md:px-[5%] overflow-hidden bg-brand-cream border-b border-neutral-200 transition-colors duration-700"
     >
-      {/* Background Media Container (Seamless Cross-Fading) */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-        {/* Background Video */}
-        <video
-          ref={videoRef}
-          key={currentBg.type === 'video' ? currentBg.src : 'inactive-video'}
-          autoPlay
-          muted
-          playsInline
-          onEnded={handleVideoEnded}
-          onError={handleVideoEnded}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${currentBg.type === 'video' ? 'opacity-75' : 'opacity-0'
-            }`}
-        >
-          {currentBg.type === 'video' && <source src={currentBg.src} type="video/mp4" />}
-        </video>
+      {/* Dynamic Background Tint based on active color */}
+      <AnimatePresence>
+        {activeColor && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.05 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 pointer-events-none"
+            style={{ backgroundColor: activeColor.hex }}
+          />
+        )}
+      </AnimatePresence>
 
-        {/* Background Images */}
-        {HERO_BACKGROUND_MEDIA.map((media, idx) => (
-          media.type === 'image' && (
-            <img
-              key={media.src}
-              src={media.src}
-              alt="Luxury Interior Spec"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${currentBg.type === 'image' && bgIndex === idx ? 'opacity-65' : 'opacity-0'
-                }`}
-            />
-          )
-        ))}
-      </div>
-
-      {/* Background Overlay to ensure readability and match aesthetic */}
-      <div className="absolute inset-0 bg-brand-cream/55 pointer-events-none z-0" />
-
-      {/* Structural Architectural background patterns - Animated scale */}
-      <motion.div
-        animate={{ scale: [1, 1.03, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 bg-[radial-gradient(#0c0d10_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-[0.05] pointer-events-none"
-      />
-
-      {/* Blocky decorative accent with smooth sliding animation on entrance */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 0.22 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="absolute -left-12 top-0 w-24 h-full bg-[#fcd34d] transform -skew-x-12 pointer-events-none"
-      />
-
-      {/* Dynamic Glowing Paint Backdrop Blobs */}
-      <motion.div
-        key="unified-hero-glow"
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1.1, opacity: 0.24 }}
-        exit={{ scale: 0.8, opacity: 0 }}
-        transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute -right-32 -top-32 w-[650px] h-[650px] rounded-full filter blur-[110px] bg-gradient-to-br from-amber-600/20 to-neutral-900/10 pointer-events-none"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.15, 0.95, 1],
-          x: [0, 20, -10, 0],
-          y: [0, -20, 15, 0]
+      {/* Subtle Architectural Grid Pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(#1c1917 1px, transparent 1px), linear-gradient(90deg, #1c1917 1px, transparent 1px)',
+          backgroundSize: '40px 40px'
         }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-5 left-[5%] w-[380px] h-[380px] bg-amber-500/10 rounded-full filter blur-[90px] pointer-events-none"
       />
 
-      <div className="relative max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-10 items-center z-10 mt-8 md:mt-0">
-
-        {/* Left Column: Premium Pitch Header Copy */}
+      <div className="relative max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10 flex-grow">
+        
+        {/* Left Column: Editorial Typography */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
           animate="animate"
-          className="lg:col-span-7 flex flex-col items-start text-left space-y-6"
+          className="lg:col-span-6 flex flex-col items-start text-left space-y-8"
         >
-
-          {/* Vibrant Authorized Partner Tag with slide-down/fade-in */}
+          {/* Partner Badge */}
           <motion.div
             variants={fadeUpVariant}
-            className="inline-flex items-center gap-2 text-[#f4efe5] px-4 py-2 rounded-[15px] shadow-lg border border-neutral-800"
-            style={{ backgroundColor: '#242d48' }}
+            className="inline-flex items-center gap-2 text-[#f4efe5] px-4 py-2 rounded-full shadow-sm border border-neutral-800"
+            style={{ backgroundColor: '#1c1917' }}
           >
-            <span className="flex h-2.5 w-2.5 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-micmag-red opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-micmag-red"></span>
             </span>
-            <span className="text-[8px] font-serif font-bold uppercase tracking-widest" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
-              OFFICIAL SANDTEX PARTNER
+            <span className="text-[9px] font-sans font-bold uppercase tracking-[0.2em]">
+              Official Sandtex Partner
             </span>
           </motion.div>
 
+          {/* Headline */}
           <motion.h1
             variants={fadeUpVariant}
-            className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.04] font-black text-brand-charcoal tracking-tight"
+            className="font-serif text-5xl sm:text-6xl lg:text-[72px] leading-[0.95] font-black text-brand-charcoal tracking-tight"
           >
-            Prestige Interiors. <br />
-            <span className="animated-gradient-text font-black">
-              Uncompromising Craft.
-            </span>
+            Prestige <br />
+            <span className="text-micmag-red italic font-light tracking-normal">Interiors.</span><br />
+            Uncompromising <br />
+            Craft.
           </motion.h1>
 
-          <motion.p
-            variants={fadeUpVariant}
-            className="text-xs sm:text-sm md:text-[15px] leading-relaxed text-brand-mid font-light max-w-2xl"
-          >
-            Welcome to <strong>Micmag Homes & Fittings</strong>, the ultimate destination for premium architectural finishes and substrate preservation. We offer the heavy-duty, climate-proof durability of genuine <strong>Sandtex paints</strong> combined with high-integrity <strong>Caplux industrial primers</strong> and custom textured finishes engineered to withstand Nigeria's tropical humidity and coastal salts.
-          </motion.p>
-
-
-
-
-          {/* CTAs with beautiful dynamic bounce animations */}
-          <motion.div
-            variants={fadeUpVariant}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
-          >
-            {/* Primary CTA — amber brand fill */}
-            <motion.div
-              whileHover={{ scale: 1.05, translateY: -3 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full sm:w-auto"
-            >
-              <Link
-                to="/contact"
-                className="w-full sm:w-[225px] h-[48px] text-[11px] inline-flex items-center justify-center gap-2 rounded-[60px] font-bold tracking-[0.15em] uppercase transition-all duration-300 shadow-lg cursor-pointer group"
-                style={{ backgroundColor: '#b45309', color: '#ffffff' }}
-              >
-                <span>Book Consultation</span>
-                <ChevronRight className="w-4 h-4 flex-shrink-0" />
-              </Link>
-            </motion.div>
-
-            {/* Secondary CTA — charcoal outline */}
-            <motion.div
-              whileHover={{ scale: 1.05, translateY: -3 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full sm:w-auto"
-            >
-              <Link
-                to="/collections"
-                className="w-full sm:w-[225px] h-[48px] text-[11px] inline-flex items-center justify-center gap-2 rounded-[60px] font-bold tracking-[0.15em] uppercase transition-all duration-300 shadow-sm cursor-pointer border-2 hover:bg-brand-charcoal hover:text-white"
-                style={{ borderColor: '#1c1917', color: '#1c1917', backgroundColor: 'transparent' }}
-              >
-                <span>View Catalogue</span>
-                <ChevronRight className="w-4 h-4 flex-shrink-0" />
-              </Link>
-            </motion.div>
+          {/* Description with Vertical Line Accent */}
+          <motion.div variants={fadeUpVariant} className="flex gap-4 items-start max-w-xl">
+            <div className="w-1 h-full min-h-[60px] bg-amber-600 shrink-0 mt-1" />
+            <p className="text-sm sm:text-base leading-relaxed text-brand-charcoal/80 font-light">
+              Welcome to <strong>Micmag Homes & Fittings</strong>. We supply heavy-duty, climate-proof <strong>Sandtex paints</strong> and high-integrity <strong>Caplux primers</strong> engineered for Nigeria's tropical humidity and coastal salts.
+            </p>
           </motion.div>
 
-        </motion.div>
-
-        {/* Right Column: Original Container with Premium Frame and Interactive Tint Overlay */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, rotate: 3 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ type: "spring", stiffness: 45, damping: 15, delay: 0.25 }}
-          className="lg:col-span-5 relative flex justify-center mt-8 lg:mt-0 xl:pl-4"
-        >
-
-          {/* Glowing colorful animated gradient background blur behind card */}
-          <div className="absolute -inset-4 rounded-3xl filter blur-2xl opacity-40 animated-gradient-bg pointer-events-none" />
-
-          {/* Background Decorative Blocks - Animated sliding hover feel */}
+          {/* Elegant CTAs */}
           <motion.div
-            animate={{
-              x: [0, 8, -5, 0],
-              y: [0, -8, 5, 0]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 border-2 border-brand-charcoal/10 rounded-[8px] transform translate-x-4 translate-y-4 pointer-events-none"
-          />
-
-          <div
-            onMouseEnter={() => setIsHoveringSlides(true)}
-            onMouseLeave={() => setIsHoveringSlides(false)}
-            className="relative w-full max-w-[420px] aspect-square md:aspect-[4/5] glass-premium p-4 rounded-2xl shadow-2xl border border-white/40 ring-1 ring-white/5"
+            variants={fadeUpVariant}
+            className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto pt-4"
           >
+            <Link
+              to="/contact"
+              className="group relative h-12 inline-flex items-center justify-center gap-3 rounded-none bg-micmag-red text-white px-8 font-bold tracking-[0.15em] text-[11px] uppercase overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Book Consultation <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-[#a32222] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+            </Link>
 
-            {/* Elegant brand accent border */}
-            <div className="absolute top-0 inset-x-0 h-2.5 rounded-t-2xl transition-colors duration-300 bg-amber-600" />
-
-            <div className="relative w-full h-full overflow-hidden rounded-[3px] bg-neutral-50 flex items-center justify-center border border-neutral-200">
-              <motion.img
-                key={`unified-${currentIndex}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                src={currentSlideItem.image}
-                alt={`${currentSlideItem.name} - ${currentSlideItem.description}`}
-                className={`w-full h-full ${isPaintImage ? 'p-6 object-contain bg-white' : 'object-cover'
-                  }`}
-                referrerPolicy="no-referrer"
-                whileHover={{ scale: 1.04 }}
-                transition={{ duration: 0.4 }}
-              />
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  handlePrevSlide();
-                }}
-                className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-brand-charcoal border border-neutral-200 shadow-md flex items-center justify-center z-30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-4.5 h-4.5 text-brand-charcoal" />
-              </button>
-
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  handleNextSlide();
-                }}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-brand-charcoal border border-neutral-200 shadow-md flex items-center justify-center z-30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-4.5 h-4.5 text-brand-charcoal" />
-              </button>
-
-              {/* Indicator dots right above detail card */}
-              <div className="absolute bottom-[76px] inset-x-0 flex justify-center gap-1.5 z-20">
-                {currentSlides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setSlideIndex(idx);
-                    }}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === idx
-                        ? 'bg-amber-600 w-4.5'
-                        : 'bg-neutral-300/80 hover:bg-neutral-400'
-                      }`}
-                  />
-                ))}
-              </div>
-
-              {/* Sleek architectural descriptive overlay */}
-              <div className="absolute bottom-0 inset-x-0 bg-brand-charcoal/95 backdrop-blur text-white p-3 border-t border-neutral-800 text-left z-20 select-none rounded-[14px]">
-                <div className="flex items-center justify-between">
-                  <span className={`text-[8.5px] font-mono font-black uppercase tracking-wider px-1.5 py-0.5 rounded text-white ${isPaintImage ? 'bg-brand-red/90' : 'bg-micmag-green/90'
-                    }`}>
-                    {currentSlideItem.tag}
-                  </span>
-                  <span className="text-[9px] font-mono font-bold text-neutral-400">
-                    {currentIndex + 1} / {currentSlides.length}
-                  </span>
-                </div>
-                <h4 className="text-[12px] font-black tracking-wide uppercase mt-1.5 leading-none font-sans text-white truncate" style={{ color: '#ffffff' }}>
-                  {currentSlideItem.name}
-                </h4>
-                <p className="text-[9.5px] text-neutral-300 mt-1 leading-tight line-clamp-1 font-sans" style={{ color: '#ffffff' }}>
-                  {currentSlideItem.description}
-                </p>
-              </div>
-
-            </div>
-
-
-
-          </div>
+            <Link
+              to="/collections"
+              className="group h-12 inline-flex items-center justify-center gap-2 px-6 font-bold tracking-[0.15em] text-[11px] uppercase text-brand-charcoal border-b-2 border-brand-charcoal/20 hover:border-brand-charcoal transition-colors duration-300"
+            >
+              View Catalogue <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
         </motion.div>
+
+        {/* Right Column: Asymmetrical Image Grid */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          className="lg:col-span-6 relative h-[500px] sm:h-[600px] w-full mt-10 lg:mt-0"
+        >
+          {/* Main Arched Image */}
+          <div className="absolute right-0 top-0 w-[80%] h-[90%] rounded-t-[200px] rounded-b-[40px] overflow-hidden shadow-2xl border-4 border-white">
+            <img 
+              src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800" 
+              alt="Luxury Interior" 
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+
+          {/* Accent Overlapping Square Image */}
+          <motion.div 
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-[5%] bottom-[15%] w-[45%] aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=600" 
+              alt="Detailed Texture" 
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
+          {/* Floating Paint Bucket Accent */}
+          <motion.div 
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", delay: 0.8 }}
+            className="absolute right-[10%] bottom-[5%] bg-white p-3 rounded-full shadow-lg z-30"
+          >
+            <div className="bg-micmag-red w-12 h-12 rounded-full flex items-center justify-center">
+              <PaintBucket className="w-5 h-5 text-white" />
+            </div>
+          </motion.div>
+        </motion.div>
+
       </div>
+
+      {/* Floating Interactive Color Bar */}
+      <motion.div 
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.8 }}
+        className="absolute bottom-0 left-0 w-full bg-white/80 backdrop-blur-md border-t border-neutral-200 py-4 px-5 md:px-[5%] z-20 flex flex-col md:flex-row items-center justify-between gap-4"
+      >
+        <div className="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/60 flex items-center gap-2">
+          <span>Signature Palettes</span>
+          <div className="w-8 h-px bg-brand-charcoal/20" />
+        </div>
+
+        <div className="flex gap-3 overflow-x-auto no-scrollbar max-w-full pb-2 md:pb-0">
+          {FLAGSHIP_COLORS.map((color) => (
+            <button
+              key={color.name}
+              onMouseEnter={() => setActiveColor(color)}
+              onMouseLeave={() => setActiveColor(null)}
+              className="group relative flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm hover:shadow-md transition-all shrink-0 cursor-pointer"
+            >
+              <span 
+                className="w-4 h-4 rounded-full shadow-inner border border-black/10 transition-transform group-hover:scale-110"
+                style={{ backgroundColor: color.hex }}
+              />
+              <span className="text-[10px] font-medium text-brand-charcoal group-hover:text-black transition-colors">
+                {color.name}
+              </span>
+            </button>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }
