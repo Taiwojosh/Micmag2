@@ -11,34 +11,133 @@ interface ColorSwatch {
 }
 
 const PALETTE: ColorSwatch[] = [
-  // Whites & Off-Whites
-  { name: 'Brilliant White', hex: '#FAF9F6' },
-  { name: 'Ivory', hex: '#F5F0DC' },
-  { name: 'Cream', hex: '#FFFDD0' },
-  { name: 'Pearl', hex: '#EAE0C8' },
-  // Neutrals & Greys
-  { name: 'Silver Grey', hex: '#A8A9AD' },
-  { name: 'Ash Grey', hex: '#B2BEB5' },
-  { name: 'Stone', hex: '#928E85' },
-  { name: 'Warm Beige', hex: '#D5C5A1' },
-  // Earth & Terracotta
-  { name: 'Terracotta', hex: '#B8442E' },
-  { name: 'Sandstone', hex: '#C2956C' },
-  { name: 'Chocolate Brown', hex: '#5C3317' },
-  { name: 'Buff', hex: '#D4A96A' },
-  // Blues & Greens
-  { name: 'Navy Blue', hex: '#002366' },
-  { name: 'Sky Blue', hex: '#87CEEB' },
-  { name: 'Teal', hex: '#008080' },
-  { name: 'Forest Green', hex: '#228B22' },
-  { name: 'Sage Green', hex: '#B2AC88' },
-  // Bold / Accent
-  { name: 'Crimson Red', hex: '#D32F2F' },
-  { name: 'Sandtex Orange', hex: '#EA6C00' },
-  { name: 'Marigold Yellow', hex: '#FFC300' },
-  { name: 'Gold', hex: '#CFB53B' },
-  { name: 'Violet', hex: '#7F00FF' },
-  // Special
+  // ── Reds ──
+  { name: 'Dusky Pink', hex: '#BCA29A' },
+  { name: 'Magnolia', hex: '#EEDACF' },
+  { name: 'Lilac', hex: '#B2B2BC' },
+  { name: 'Cinnabar', hex: '#9F4D45' },
+  { name: 'Pale Vermillion', hex: '#B87E74' },
+  { name: 'Russet', hex: '#7B5D54' },
+  { name: 'Sienna', hex: '#845B42' },
+  { name: 'Opriment', hex: '#89743C' },
+  { name: 'Bamboo', hex: '#A57D59' },
+  { name: 'Lekki Red', hex: '#CC252C' },
+  { name: 'Rich Brown', hex: '#5D433B' },
+  { name: 'Minium', hex: '#AE563D' },
+  { name: 'Estrucan Red', hex: '#563E37' },
+  { name: 'Coke Red', hex: '#A5232B' },
+  { name: 'Rose', hex: '#B47E6F' },
+  { name: 'Isabella', hex: '#D8CCCA' },
+  { name: 'Cinnamon Spice', hex: '#893D2B' },
+  { name: 'Strawberry', hex: '#D59092' },
+  { name: 'Reef Red', hex: '#6C2929' },
+  { name: 'Coral', hex: '#BE5341' },
+  // ── Yellows ──
+  { name: 'Apple White', hex: '#EEEBE0' },
+  { name: 'Jasmine White', hex: '#EBE5D7' },
+  { name: 'Warm Sun', hex: '#E4D8BC' },
+  { name: 'Yellow Rose', hex: '#D9BE2B' },
+  { name: 'Barley', hex: '#D2B485' },
+  { name: 'Sun Yellow', hex: '#A89158' },
+  { name: 'Mustard Maize', hex: '#635F47' },
+  { name: 'Golden Yellow', hex: '#DBA220' },
+  { name: 'Gentle Yellow', hex: '#EBDFC4' },
+  { name: 'Butter Milk', hex: '#E3DAC1' },
+  { name: 'Trade Yellow', hex: '#EBD021' },
+  { name: 'Soft Yellow', hex: '#DED6B4' },
+  { name: 'Primrose', hex: '#CECB8C' },
+  { name: 'Espana', hex: '#CFB77F' },
+  { name: 'Pale Daffodil', hex: '#CFBE76' },
+  { name: 'Lantern Glow', hex: '#CBB33A' },
+  { name: 'Candle Light', hex: '#E5B225' },
+  { name: 'Heirloom', hex: '#B1AB77' },
+  { name: 'Midas Touch', hex: '#978F2C' },
+  { name: 'Constant', hex: '#CFD39C' },
+  // ── Neutrals ──
+  { name: 'Off White', hex: '#DDD6C3' },
+  { name: 'Calabash', hex: '#B8A593' },
+  { name: 'Silver Grey', hex: '#949391' },
+  { name: 'Symphony', hex: '#CBB2A3' },
+  { name: 'Pale Mushroom', hex: '#CBB5A4' },
+  { name: 'Dove Grey', hex: '#7F8180' },
+  { name: 'Midstone', hex: '#7B745F' },
+  { name: 'Stone Grey', hex: '#67645F' },
+  { name: 'Mid Grey', hex: '#4D5254' },
+  { name: 'Pale Grey', hex: '#616665' },
+  { name: 'Sierra', hex: '#796E6A' },
+  { name: 'Hazel Brown', hex: '#8F7B6B' },
+  { name: 'Dark Grey', hex: '#414A4E' },
+  { name: 'Bone White', hex: '#EAE4DA' },
+  { name: 'Dark Mushroom', hex: '#4E4B4A' },
+  { name: 'Bitter Chocolate', hex: '#343233' },
+  { name: 'Coconut', hex: '#534C49' },
+  { name: 'Silver Lining', hex: '#B4B9B9' },
+  { name: 'Flake Grey', hex: '#9CA09F' },
+  { name: 'Cloud Burst', hex: '#8FA09E' },
+  // ── Oranges ──
+  { name: 'Rose Dawn', hex: '#EFE6DA' },
+  { name: 'Table Linen', hex: '#E7DBCB' },
+  { name: 'Beige', hex: '#A49383' },
+  { name: 'Cameo', hex: '#907C69' },
+  { name: 'Cream 3040', hex: '#DCC2A3' },
+  { name: 'Peach', hex: '#CCA188' },
+  { name: 'Rich Cream', hex: '#BA9E74' },
+  { name: 'Light Cream', hex: '#A49383' },
+  { name: 'Orange', hex: '#DF7935' },
+  { name: 'Fruit Basket', hex: '#E68E64' },
+  { name: 'Honey Locust', hex: '#DF9E7E' },
+  { name: 'Orange Crush', hex: '#C53B21' },
+  { name: 'Hot Toddy', hex: '#DD7A33' },
+  { name: 'Spiced Peach', hex: '#D59882' },
+  { name: 'Apple Blossom', hex: '#AD9286' },
+  { name: 'Lemon Chiffon', hex: '#DCDCA2' },
+  { name: 'Sugar Cookie', hex: '#E4DBCA' },
+  { name: 'Titian Gold', hex: '#CCA752' },
+  { name: 'Butterfly', hex: '#A09028' },
+  { name: 'Shiloh', hex: '#C96A1E' },
+  // ── Blues ──
+  { name: 'Bloomy Aster', hex: '#CCD9E3' },
+  { name: 'Mountain Air', hex: '#E5EBE2' },
+  { name: 'Nursery Blue', hex: '#5A8F96' },
+  { name: 'Lagoon Blue', hex: '#37809C' },
+  { name: 'Azure Blue', hex: '#31435C' },
+  { name: 'Mist Blue', hex: '#BDCCC2' },
+  { name: 'Light Blue', hex: '#8DA698' },
+  { name: 'Skye Blue', hex: '#598375' },
+  { name: 'Babbling Brook', hex: '#98B9C4' },
+  { name: 'Ocean Wave', hex: '#7A9CB0' },
+  { name: 'Navy Blue', hex: '#243142' },
+  { name: 'Solent Blue', hex: '#334954' },
+  { name: 'Brillant Blue', hex: '#1D658C' },
+  { name: 'Cold Morn', hex: '#B5B9BE' },
+  { name: 'Scandinavian Sky', hex: '#6E8A9F' },
+  { name: 'Water Front Blue', hex: '#96B0BD' },
+  { name: 'Flattery', hex: '#487198' },
+  { name: 'Opera Blue', hex: '#98ADB5' },
+  { name: 'Pacific Blue', hex: '#416D82' },
+  { name: 'Blue Blood', hex: '#14619A' },
+  // ── Greens ──
+  { name: 'Aspen Whispers', hex: '#CCD3BF' },
+  { name: 'Icy Wind', hex: '#D2DBD2' },
+  { name: 'Leaf Green', hex: '#526242' },
+  { name: 'Spray Green', hex: '#8A8A77' },
+  { name: 'Lovat Green', hex: '#5F664E' },
+  { name: 'National Green', hex: '#1F5139' },
+  { name: 'Peppermint', hex: '#A9C7B5' },
+  { name: 'Sea Holly', hex: '#D2DBCA' },
+  { name: 'Olive Drab', hex: '#394039' },
+  { name: 'Chartreuse', hex: '#419232' },
+  { name: 'Casuarina Lovat', hex: '#485043' },
+  { name: 'Tropic Green', hex: '#659539' },
+  { name: 'Spring Leaf', hex: '#81AB41' },
+  { name: 'Placid View', hex: '#A5C481' },
+  { name: 'Lime Spray', hex: '#D7DEC1' },
+  { name: 'Citron', hex: '#CBD4A6' },
+  { name: 'Water Green', hex: '#B4C7B3' },
+  { name: 'Whimsical', hex: '#5F9B4D' },
+  { name: 'Luiere', hex: '#91BE83' },
+  { name: 'Meadow Brook', hex: '#B8CC9B' },
+  // ── Special ──
   { name: 'Custom (Specify via WhatsApp)', hex: 'custom' },
 ];
 
@@ -78,6 +177,7 @@ export default function ProductDetailModal({
   const [selectedSize, setSelectedSize] = useState<'4L' | '20L'>('20L');
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [colorSearch, setColorSearch] = useState('');
 
   const isSandtexOrCaplux = brand === 'sandtex' || brand === 'caplux';
   const isPaint = brand === 'sandtex';
@@ -213,8 +313,17 @@ export default function ProductDetailModal({
                 )}
               </div>
 
-              <div className="grid grid-cols-7 gap-2">
-                {PALETTE.map((color) => {
+              {/* Color Search */}
+              <input
+                type="text"
+                placeholder="Search colours… e.g. Navy Blue"
+                value={colorSearch}
+                onChange={(e) => setColorSearch(e.target.value)}
+                className="w-full px-3 py-2 text-[11px] font-mono border-2 border-neutral-200 rounded-xl focus:outline-none focus:border-brand-charcoal transition-colors"
+              />
+
+              <div className="grid grid-cols-8 gap-1.5 max-h-48 overflow-y-auto pr-1">
+                {PALETTE.filter(c => c.name.toLowerCase().includes(colorSearch.toLowerCase())).map((color) => {
                   const isSelected = selectedColour?.name === color.name;
                   if (color.hex === 'custom') {
                     return (
