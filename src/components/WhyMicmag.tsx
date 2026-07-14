@@ -48,32 +48,32 @@ const cardVariant = {
 export default function WhyMicmag() {
   return (
     <section id="why" className="py-24 px-5 md:px-[5%] bg-white border-b border-neutral-200 relative overflow-hidden">
-      
+
       {/* Dynamic background accents - subtle animated floating */}
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: [1, 1.15, 1],
           x: [0, 30, 0],
           y: [0, -15, 0]
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-0 top-0 w-80 h-80 bg-red-100/35 rounded-full filter blur-3xl pointer-events-none" 
+        className="absolute right-0 top-0 w-80 h-80 bg-red-100/35 rounded-full filter blur-3xl pointer-events-none"
       />
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: [1, 1.1, 1],
           x: [0, -20, 0],
           y: [0, 20, 0]
         }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[10%] bottom-0 w-96 h-96 bg-brand-yellow/10 rounded-full filter blur-3xl pointer-events-none" 
+        className="absolute left-[10%] bottom-0 w-96 h-96 bg-brand-yellow/10 rounded-full filter blur-3xl pointer-events-none"
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Header Block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 text-left">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -90,7 +90,7 @@ export default function WhyMicmag() {
               </span>
             </h2>
           </motion.div>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 35 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -104,7 +104,7 @@ export default function WhyMicmag() {
         </div>
 
         {/* Dynamic Reasons Grid - neo-brutalist credibility pillars (Section 1a) */}
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -120,7 +120,7 @@ export default function WhyMicmag() {
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.1, rotate: 6 }}
                     className="p-3.5 bg-neutral-50 rounded-[4px] inline-block border-2 border-brand-charcoal group-hover:bg-neutral-100 transition-colors duration-350"
                   >
@@ -130,11 +130,11 @@ export default function WhyMicmag() {
                     {r.badge}
                   </span>
                 </div>
-                
+
                 <h3 className="text-lg font-black text-brand-charcoal font-display leading-tight">
                   {r.title}
                 </h3>
-                
+
                 <p className="text-xs sm:text-[13px] leading-relaxed text-brand-mid font-light">
                   {r.desc}
                 </p>
@@ -151,13 +151,13 @@ export default function WhyMicmag() {
 
         {/* Trust Pills Band (Section 1e + Section 5) */}
         <div className="flex flex-wrap justify-center items-center gap-4 mt-16">
-          <TrustPill text="Official Sandtex® Partner" />
-          <TrustPill text="Elite Caplux® Coatings Dealer" />
+          <TrustPill text="Official Sandtex Partner" />
+          <TrustPill text="Elite Caplux Coatings Dealer" />
           <TrustPill text="Genuine CAP Warranty" />
         </div>
 
         {/* Trust block at bottom */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}

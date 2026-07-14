@@ -39,7 +39,7 @@ export default function About() {
           }}
           className="absolute -top-24 -left-24 w-[500px] h-[500px] rounded-full bg-micmag-red filter blur-[120px]"
         />
-        
+
         {/* Micmag Logo Blue (#1e3a5f) Orb */}
         <motion.div
           animate={{
@@ -72,21 +72,21 @@ export default function About() {
       </div>
 
       {/* Decorative vertical paint drip element in background - animated */}
-      <motion.div 
+      <motion.div
         initial={{ height: 0 }}
         whileInView={{ height: '100%' }}
         viewport={{ once: true }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-red via-brand-yellow to-amber-400 opacity-80" 
+        className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-red via-brand-yellow to-amber-400 opacity-80"
       />
-      
+
       <div className="max-w-7xl mx-auto">
-        
+
         {/* About Main Intro & Story */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20">
-          
+
           {/* Left Column: Vision Copy Grid */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -97,13 +97,13 @@ export default function About() {
               Exquisite Decorative Finishes & Legendary Paint Coatings
             </h2>
             <p className="text-sm md:text-base leading-relaxed text-brand-mid font-light text-left">
-              As an Official Sandtex® Partner, Micmag merges exquisite interior design aesthetics with legendary coating technology. We specialize in bespoke architectural color consulting, high-end textured plasters, luxury Matt emulsions, and precision automated tinting services—offering architects, interior designers, and premium property developers a flawless synthesis of visual elegance and weatherproofing engineering.
+              As an Official Sandtex Partner, Micmag merges exquisite interior design aesthetics with legendary coating technology. We specialize in bespoke architectural color consulting, high-end textured plasters, luxury Matt emulsions, and precision automated tinting services—offering architects, interior designers, and premium property developers a flawless synthesis of visual elegance and weatherproofing engineering.
             </p>
 
           </motion.div>
 
           {/* Right Column: Premium guarantee specs card with visible rounded borders & deep shadows */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}

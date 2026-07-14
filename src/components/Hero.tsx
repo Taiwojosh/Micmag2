@@ -245,8 +245,8 @@ export default function Hero() {
   }, [bgIndex, currentBg.type]);
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       className="relative min-h-[100svh] md:min-h-[92vh] flex items-center pt-24 md:pt-32 pb-16 md:pb-24 px-5 md:px-[5%] overflow-hidden bg-brand-cream border-b border-neutral-200"
     >
       {/* Background Media Container (Seamless Cross-Fading) */}
@@ -260,9 +260,8 @@ export default function Hero() {
           playsInline
           onEnded={handleVideoEnded}
           onError={handleVideoEnded}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            currentBg.type === 'video' ? 'opacity-75' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${currentBg.type === 'video' ? 'opacity-75' : 'opacity-0'
+            }`}
         >
           {currentBg.type === 'video' && <source src={currentBg.src} type="video/mp4" />}
         </video>
@@ -274,9 +273,8 @@ export default function Hero() {
               key={media.src}
               src={media.src}
               alt="Luxury Interior Spec"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                currentBg.type === 'image' && bgIndex === idx ? 'opacity-65' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${currentBg.type === 'image' && bgIndex === idx ? 'opacity-65' : 'opacity-0'
+                }`}
             />
           )
         ))}
@@ -286,51 +284,51 @@ export default function Hero() {
       <div className="absolute inset-0 bg-brand-cream/55 pointer-events-none z-0" />
 
       {/* Structural Architectural background patterns - Animated scale */}
-      <motion.div 
+      <motion.div
         animate={{ scale: [1, 1.03, 1] }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 bg-[radial-gradient(#0c0d10_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-[0.05] pointer-events-none" 
+        className="absolute inset-0 bg-[radial-gradient(#0c0d10_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-[0.05] pointer-events-none"
       />
-      
+
       {/* Blocky decorative accent with smooth sliding animation on entrance */}
-      <motion.div 
+      <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 0.22 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
-        className="absolute -left-12 top-0 w-24 h-full bg-[#fcd34d] transform -skew-x-12 pointer-events-none" 
+        className="absolute -left-12 top-0 w-24 h-full bg-[#fcd34d] transform -skew-x-12 pointer-events-none"
       />
 
       {/* Dynamic Glowing Paint Backdrop Blobs */}
-      <motion.div 
+      <motion.div
         key="unified-hero-glow"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1.1, opacity: 0.24 }}
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute -right-32 -top-32 w-[650px] h-[650px] rounded-full filter blur-[110px] bg-gradient-to-br from-amber-600/20 to-neutral-900/10 pointer-events-none" 
+        className="absolute -right-32 -top-32 w-[650px] h-[650px] rounded-full filter blur-[110px] bg-gradient-to-br from-amber-600/20 to-neutral-900/10 pointer-events-none"
       />
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.15, 0.95, 1], 
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 0.95, 1],
           x: [0, 20, -10, 0],
-          y: [0, -20, 15, 0] 
+          y: [0, -20, 15, 0]
         }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-5 left-[5%] w-[380px] h-[380px] bg-amber-500/10 rounded-full filter blur-[90px] pointer-events-none" 
+        className="absolute bottom-5 left-[5%] w-[380px] h-[380px] bg-amber-500/10 rounded-full filter blur-[90px] pointer-events-none"
       />
 
       <div className="relative max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-10 items-center z-10 mt-8 md:mt-0">
-        
+
         {/* Left Column: Premium Pitch Header Copy */}
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="initial"
           animate="animate"
           className="lg:col-span-7 flex flex-col items-start text-left space-y-6"
         >
-          
+
           {/* Vibrant Authorized Partner Tag with slide-down/fade-in */}
-          <motion.div 
+          <motion.div
             variants={fadeUpVariant}
             className="inline-flex items-center gap-2 text-[#f4efe5] px-4 py-2 rounded-[15px] shadow-lg border border-neutral-800"
             style={{ backgroundColor: '#242d48' }}
@@ -340,11 +338,11 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
             </span>
             <span className="text-[8px] font-serif font-bold uppercase tracking-widest" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
-              OFFICIAL SANDTEX® PARTNER
+              OFFICIAL SANDTEX PARTNER
             </span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             variants={fadeUpVariant}
             className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.04] font-black text-brand-charcoal tracking-tight"
           >
@@ -354,18 +352,18 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             variants={fadeUpVariant}
             className="text-xs sm:text-sm md:text-[15px] leading-relaxed text-brand-mid font-light max-w-2xl"
           >
-            Welcome to <strong>Micmag Homes & Fittings</strong>, the ultimate destination for premium architectural finishes and substrate preservation. We offer the heavy-duty, climate-proof durability of genuine <strong>Sandtex® paints</strong> combined with high-integrity <strong>Caplux® industrial primers</strong> and custom textured finishes engineered to withstand Nigeria's tropical humidity and coastal salts.
+            Welcome to <strong>Micmag Homes & Fittings</strong>, the ultimate destination for premium architectural finishes and substrate preservation. We offer the heavy-duty, climate-proof durability of genuine <strong>Sandtex paints</strong> combined with high-integrity <strong>Caplux industrial primers</strong> and custom textured finishes engineered to withstand Nigeria's tropical humidity and coastal salts.
           </motion.p>
 
 
 
 
           {/* CTAs with beautiful dynamic bounce animations */}
-          <motion.div 
+          <motion.div
             variants={fadeUpVariant}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
           >
@@ -384,7 +382,7 @@ export default function Hero() {
                 <ChevronRight className="w-4 h-4 flex-shrink-0" />
               </Link>
             </motion.div>
-            
+
             {/* Secondary CTA — charcoal outline */}
             <motion.div
               whileHover={{ scale: 1.05, translateY: -3 }}
@@ -401,36 +399,36 @@ export default function Hero() {
               </Link>
             </motion.div>
           </motion.div>
-          
+
         </motion.div>
 
         {/* Right Column: Original Container with Premium Frame and Interactive Tint Overlay */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9, rotate: 3 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ type: "spring", stiffness: 45, damping: 15, delay: 0.25 }}
           className="lg:col-span-5 relative flex justify-center mt-8 lg:mt-0 xl:pl-4"
         >
-          
+
           {/* Glowing colorful animated gradient background blur behind card */}
           <div className="absolute -inset-4 rounded-3xl filter blur-2xl opacity-40 animated-gradient-bg pointer-events-none" />
 
           {/* Background Decorative Blocks - Animated sliding hover feel */}
-          <motion.div 
-            animate={{ 
+          <motion.div
+            animate={{
               x: [0, 8, -5, 0],
               y: [0, -8, 5, 0]
             }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 border-2 border-brand-charcoal/10 rounded-[8px] transform translate-x-4 translate-y-4 pointer-events-none" 
+            className="absolute inset-0 border-2 border-brand-charcoal/10 rounded-[8px] transform translate-x-4 translate-y-4 pointer-events-none"
           />
-          
-          <div 
+
+          <div
             onMouseEnter={() => setIsHoveringSlides(true)}
             onMouseLeave={() => setIsHoveringSlides(false)}
             className="relative w-full max-w-[420px] aspect-square md:aspect-[4/5] glass-premium p-4 rounded-2xl shadow-2xl border border-white/40 ring-1 ring-white/5"
           >
-            
+
             {/* Elegant brand accent border */}
             <div className="absolute top-0 inset-x-0 h-2.5 rounded-t-2xl transition-colors duration-300 bg-amber-600" />
 
@@ -442,9 +440,8 @@ export default function Hero() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 src={currentSlideItem.image}
                 alt={`${currentSlideItem.name} - ${currentSlideItem.description}`}
-                className={`w-full h-full ${
-                  isPaintImage ? 'p-6 object-contain bg-white' : 'object-cover'
-                }`}
+                className={`w-full h-full ${isPaintImage ? 'p-6 object-contain bg-white' : 'object-cover'
+                  }`}
                 referrerPolicy="no-referrer"
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.4 }}
@@ -462,7 +459,7 @@ export default function Hero() {
               >
                 <ChevronLeft className="w-4.5 h-4.5 text-brand-charcoal" />
               </button>
-              
+
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -485,11 +482,10 @@ export default function Hero() {
                       e.stopPropagation();
                       setSlideIndex(idx);
                     }}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      currentIndex === idx 
-                        ? 'bg-amber-600 w-4.5' 
+                    className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === idx
+                        ? 'bg-amber-600 w-4.5'
                         : 'bg-neutral-300/80 hover:bg-neutral-400'
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -497,9 +493,8 @@ export default function Hero() {
               {/* Sleek architectural descriptive overlay */}
               <div className="absolute bottom-0 inset-x-0 bg-brand-charcoal/95 backdrop-blur text-white p-3 border-t border-neutral-800 text-left z-20 select-none rounded-[14px]">
                 <div className="flex items-center justify-between">
-                  <span className={`text-[8.5px] font-mono font-black uppercase tracking-wider px-1.5 py-0.5 rounded text-white ${
-                    isPaintImage ? 'bg-brand-red/90' : 'bg-micmag-green/90'
-                  }`}>
+                  <span className={`text-[8.5px] font-mono font-black uppercase tracking-wider px-1.5 py-0.5 rounded text-white ${isPaintImage ? 'bg-brand-red/90' : 'bg-micmag-green/90'
+                    }`}>
                     {currentSlideItem.tag}
                   </span>
                   <span className="text-[9px] font-mono font-bold text-neutral-400">
@@ -515,7 +510,7 @@ export default function Hero() {
               </div>
 
             </div>
-            
+
 
 
           </div>

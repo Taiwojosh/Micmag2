@@ -34,7 +34,7 @@ export default function DynamicCTA() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Brand Value Proposition Column */}
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-850/80 border border-neutral-700/50 rounded-full">
@@ -50,7 +50,7 @@ export default function DynamicCTA() {
                 <span className="text-amber-500">Built to Last, Designed to Impress.</span>
               </h2>
               <p className="text-neutral-400 font-light text-sm sm:text-base leading-relaxed max-w-xl">
-                Whether shielding your structure with heavy-duty, climate-proof Sandtex® polymer coatings or specifying premium Caplux protective primers and textured architectural finishes, we ensure uncompromising quality.
+                Whether shielding your structure with heavy-duty, climate-proof Sandtex polymer coatings or specifying premium Caplux protective primers and textured architectural finishes, we ensure uncompromising quality.
               </p>
             </div>
 

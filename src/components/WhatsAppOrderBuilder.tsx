@@ -79,10 +79,10 @@ export default function WhatsAppOrderBuilder() {
   // Build dynamic text message
   useEffect(() => {
     const brandName = selectedModel.brand === 'sandtex' ? 'Sandtex Premium' : 'Caplux Professional';
-    const colorPart = selectedModel.hasColor 
+    const colorPart = selectedModel.hasColor
       ? `\n🎨 Selected Colour: ${selectedColor.name} (${selectedColor.hex})`
       : `\n🛠️ Finish Option: Factory-Standard Base (Primer/Sealer/Putty)`;
-    
+
     const notesPart = customNotes.trim() ? `\n📝 Project Notes: ${customNotes.trim()}` : '';
 
     const text = `Hello Micmag team! I want to place a paint order using your Bespoke WhatsApp Order Builder:
@@ -113,20 +113,20 @@ Please assign a formulation expert to verify my order, confirm availability, and
     setCustomNotes('');
   };
 
-  const filteredModels = selectedBrand === 'all' 
-    ? PAINT_MODELS 
+  const filteredModels = selectedBrand === 'all'
+    ? PAINT_MODELS
     : PAINT_MODELS.filter(m => m.brand === selectedBrand);
 
   return (
-    <section 
-      id="whatsapp-order" 
+    <section
+      id="whatsapp-order"
       className="py-12 md:py-16 px-5 md:px-[6%] bg-[#FAF9F6] border-b border-neutral-200 scroll-mt-20 relative overflow-hidden"
     >
       {/* Immersive Architectural Background Accents */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#efedea_1px,transparent_1px),linear-gradient(to_bottom,#efedea_1px,transparent_1px)] [background-size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60 pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        
+
         {/* Header Section */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-3">
           <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-brand-charcoal tracking-tight leading-tight">
@@ -139,17 +139,17 @@ Please assign a formulation expert to verify my order, confirm availability, and
 
         {/* Builder Container */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
+
           {/* LEFT: Configuration Panel */}
           <div className="lg:col-span-7 bg-white rounded-3xl border-4 border-brand-charcoal shadow-[8px_8px_0px_0px_var(--color-brand-red-deep)] p-6 sm:p-8 space-y-8">
-            
+
             {/* Step 1 & 2 Combined: Select Paint Formulation */}
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <label className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-widest text-[#78716c] flex items-center gap-2">
                   <ShoppingBag className="w-4 h-4 text-brand-red" /> 1. Select Paint Formulation
                 </label>
-                
+
                 {/* Brand filter tabs */}
                 <div className="flex bg-neutral-100 p-1 rounded-xl border border-neutral-200 self-start sm:self-auto">
                   {[
@@ -160,11 +160,10 @@ Please assign a formulation expert to verify my order, confirm availability, and
                     <button
                       key={brand.id}
                       onClick={() => setSelectedBrand(brand.id as any)}
-                      className={`px-3 py-1.5 text-[10px] font-bold rounded-lg cursor-pointer transition-all ${
-                        selectedBrand === brand.id
+                      className={`px-3 py-1.5 text-[10px] font-bold rounded-lg cursor-pointer transition-all ${selectedBrand === brand.id
                           ? 'bg-brand-charcoal text-white shadow-sm'
                           : 'text-[#57534e] hover:text-brand-charcoal'
-                      }`}
+                        }`}
                     >
                       {brand.label}
                     </button>
@@ -178,11 +177,10 @@ Please assign a formulation expert to verify my order, confirm availability, and
                   <button
                     key={model.name}
                     onClick={() => setSelectedModel(model)}
-                    className={`p-4 text-left border-2 rounded-xl transition-all cursor-pointer flex flex-col justify-between h-full min-h-[92px] ${
-                      selectedModel.name === model.name
+                    className={`p-4 text-left border-2 rounded-xl transition-all cursor-pointer flex flex-col justify-between h-full min-h-[92px] ${selectedModel.name === model.name
                         ? 'border-brand-red bg-white shadow-sm ring-1 ring-brand-red/30'
                         : 'border-neutral-200 hover:border-brand-charcoal bg-white'
-                    }`}
+                      }`}
                   >
                     <div className="space-y-1">
                       <div className="text-xs sm:text-sm font-bold text-brand-charcoal">{model.name}</div>
@@ -198,20 +196,20 @@ Please assign a formulation expert to verify my order, confirm availability, and
 
             {/* Steps 3, 4 & 5 Combined: Options Configurator Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-neutral-200">
-              
+
               {/* Color Tint Column */}
               <div className="space-y-3">
                 <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#78716c] block">
                   2. Color Tint
                 </label>
-                
+
                 {selectedModel.hasColor ? (
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 bg-neutral-50 p-2 rounded-xl border border-neutral-200 justify-between">
                       <span className="text-[11px] font-bold text-brand-charcoal truncate">{selectedColor.name}</span>
                       <div className="w-3.5 h-3.5 rounded-full border border-neutral-300 shrink-0" style={{ backgroundColor: selectedColor.hex }} />
                     </div>
-                    
+
                     <div className="grid grid-cols-5 gap-1.5 p-2 bg-[#FAF9F6] border border-neutral-200 rounded-xl">
                       {COLOR_PALETTE.map(color => {
                         const isSelected = selectedColor.name === color.name;
@@ -220,9 +218,8 @@ Please assign a formulation expert to verify my order, confirm availability, and
                             key={color.name}
                             onClick={() => setSelectedColor(color)}
                             title={`${color.name} - ${color.description}`}
-                            className={`relative aspect-square rounded-full border overflow-hidden flex items-center justify-center cursor-pointer hover:scale-105 transition-all ${
-                              isSelected ? 'border-brand-charcoal ring-1 ring-neutral-400' : 'border-neutral-300'
-                            }`}
+                            className={`relative aspect-square rounded-full border overflow-hidden flex items-center justify-center cursor-pointer hover:scale-105 transition-all ${isSelected ? 'border-brand-charcoal ring-1 ring-neutral-400' : 'border-neutral-300'
+                              }`}
                             style={{ backgroundColor: color.hex }}
                           >
                             {isSelected && (
@@ -253,11 +250,10 @@ Please assign a formulation expert to verify my order, confirm availability, and
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`w-full py-2.5 px-3 rounded-xl text-[11px] font-mono font-bold border-2 text-center cursor-pointer transition-all ${
-                        selectedSize === size
+                      className={`w-full py-2.5 px-3 rounded-xl text-[11px] font-mono font-bold border-2 text-center cursor-pointer transition-all ${selectedSize === size
                           ? 'bg-brand-charcoal text-white border-brand-charcoal shadow-sm'
                           : 'bg-white text-brand-charcoal border-neutral-200 hover:border-neutral-400'
-                      }`}
+                        }`}
                     >
                       {size}
                     </button>
@@ -282,11 +278,11 @@ Please assign a formulation expert to verify my order, confirm availability, and
                   >
                     <Minus className="w-3.5 h-3.5" />
                   </button>
-                  
+
                   <div className="flex-1 text-center py-2 px-2 border border-neutral-300 bg-neutral-50 text-xs font-bold font-mono rounded-xl">
                     {quantity} <span className="text-[9px] text-neutral-400 font-normal">PCS</span>
                   </div>
-                  
+
                   <button
                     onClick={handleIncrement}
                     className="p-2.5 border border-neutral-300 rounded-xl bg-white text-brand-charcoal hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
@@ -316,17 +312,17 @@ Please assign a formulation expert to verify my order, confirm availability, and
 
           {/* RIGHT: Specification Sheet & Live Preview */}
           <div className="lg:col-span-5 space-y-6">
-            
+
             {/* Spec Card */}
             <div className="bg-brand-charcoal rounded-3xl border-4 border-brand-charcoal text-white p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden shadow-[8px_8px_0px_0px_var(--color-brand-red-deep)]">
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-red/15 rounded-full filter blur-2xl" />
-              
+
               <div className="flex justify-between items-start border-b border-neutral-800 pb-4">
                 <div>
                   <h3 className="text-[9px] font-mono text-brand-red font-bold uppercase tracking-widest">Digital Dispatch Specs</h3>
                   <h4 className="font-serif text-lg font-bold text-neutral-100">Live Order Ticket</h4>
                 </div>
-                <button 
+                <button
                   onClick={handleReset}
                   title="Reset form specs"
                   className="p-2 text-neutral-400 hover:text-white rounded-xl bg-neutral-900 border border-neutral-800 transition-all cursor-pointer"
@@ -355,10 +351,10 @@ Please assign a formulation expert to verify my order, confirm availability, and
                   <span className="text-neutral-400 uppercase tracking-wider text-[9px]">Quantity:</span>
                   <span className="font-bold text-emerald-400">{quantity} Unit(s)</span>
                 </div>
-                
+
                 {selectedModel.hasColor ? (
                   <div className="flex justify-between border-b border-neutral-800/60 pb-2.5 items-center">
-                    <span className="text-neutral-400 uppercase tracking-wider text-[9px]">Tint Option:</span>
+                    <span className="text-neutral-400 uppercase tracking-wider text-[9px]">Color:</span>
                     <div className="flex items-center gap-2 bg-neutral-900/80 py-1 px-2.5 rounded-full border border-neutral-800">
                       <div className="w-3 h-3 rounded-full border border-neutral-700 shrink-0" style={{ backgroundColor: selectedColor.hex }} />
                       <span className="font-sans font-bold text-white text-[10px]">{selectedColor.name}</span>
@@ -366,7 +362,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
                   </div>
                 ) : (
                   <div className="flex justify-between border-b border-neutral-800/60 pb-2.5">
-                    <span className="text-neutral-400 uppercase tracking-wider text-[9px]">Tint Option:</span>
+                    <span className="text-neutral-400 uppercase tracking-wider text-[9px]">Color:</span>
                     <span className="text-neutral-500 italic text-[10px]">Factory Base White</span>
                   </div>
                 )}
@@ -380,7 +376,7 @@ Please assign a formulation expert to verify my order, confirm availability, and
                 >
                   {showPayload ? '[-]' : '[+]'} View Raw WhatsApp Message
                 </button>
-                
+
                 {showPayload && (
                   <div className="mt-2.5 w-full bg-black/40 p-3 border border-neutral-800 rounded-xl text-[9px] font-mono text-neutral-300 whitespace-pre-wrap max-h-[100px] overflow-y-auto leading-normal scrollbar-thin scrollbar-thumb-neutral-800">
                     {prefilledMessage}

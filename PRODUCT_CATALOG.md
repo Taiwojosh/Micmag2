@@ -76,7 +76,7 @@ This catalog outlines detailed Technical Data Sheets (TDS) and application speci
 
 
 ### 2. Alkali Resisting Primer 4L
-* **Category:** Salt Protection & Alkaline Barrier
+* **Category:** Primer & Alkaline Barrier
 * **General Description:** High-performance water-borne primer sealer engineered to shield topcoats from masonry alkalinity. Ideal for fresh plaster and concrete blocks to prevent peeling.
 * **Coverage:** 10 - 12 m²/L
 

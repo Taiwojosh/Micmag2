@@ -49,7 +49,7 @@ export const CAPLUX_PRODUCTS = [
   {
     name: 'Alkali Resisting Primer 4L',
     desc: 'High-performance water-borne primer sealer engineered to shield topcoats from masonry alkalinity. Ideal for fresh plaster and concrete blocks to prevent peeling.',
-    tag: 'Salt Protection',
+    tag: 'Primer',
     coverage: '10 - 12 m²/L',
     image: './Caplux Alkali Resisting Primer.png',
     fallback: 'https://images.unsplash.com/photo-1590487988256-9ed24133863e?auto=format&fit=crop&q=80&w=800',
