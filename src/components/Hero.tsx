@@ -14,7 +14,7 @@ const FLAGSHIP_COLORS = [
     name: "National Green",
     hex: "#1F5139",
     description: "Deep luxury clay-tone paint.",
-    themeClass: "from-[#B8A593]/20 to-neutral-950/10",
+    themeClass: "from-[#1F5139]/20 to-neutral-950/10",
   },
   {
     name: "Coconut",
