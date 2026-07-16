@@ -8,11 +8,11 @@ export default function Footer() {
 
   return (
     <>
-      <footer 
+      <footer
         className="text-white pt-20 pb-12 px-5 md:px-[5%] border-t border-neutral-900 relative overflow-hidden bg-[#820000]"
         style={{ borderRadius: '30px 30px 0 0' }}
       >
-        
+
         {/* Decorative horizontal color bands at the top of the footer (signature paint theme detail) */}
         <div className="absolute top-0 left-0 right-0 h-1.5 flex">
           <span className="flex-1 bg-micmag-red" />
@@ -22,10 +22,10 @@ export default function Footer() {
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          
+
           {/* Main Footer Columns */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 pb-16 border-b border-neutral-800/80 mb-10">
-            
+
             {/* Column 1: Brand Identity */}
             <div className="md:col-span-4 space-y-5">
               <div className="flex items-center gap-2">
@@ -35,7 +35,7 @@ export default function Footer() {
                   <span className="text-[8px] font-mono font-bold text-micmag-red uppercase tracking-widest">Homes & Fittings</span>
                 </div>
               </div>
-              
+
               <p className="text-[12.5px] leading-relaxed text-white font-light max-w-sm">
                 Micmag Homes & Fittings is Lagos' leading dealer of genuine architectural materials. From the climate-resilience of <strong>SANDTEX</strong> paints, to the high-integrity <strong>CAPLUX</strong> surface preparation preps and industrial primers, we are committed to uncompromising physical quality.
               </p>
@@ -80,9 +80,9 @@ export default function Footer() {
               <h4 className="text-[11px] font-mono font-extrabold tracking-[0.18em] uppercase text-white">
                 Direct Sales Desks
               </h4>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-left">
-                
+
                 <div className="space-y-2">
                   <span className="text-[10px] uppercase tracking-wider text-white font-bold block">
                     Sales Management
@@ -115,7 +115,7 @@ export default function Footer() {
               {/* Physical Address Footnote */}
               <div className="pt-2 border-t border-neutral-800/60 text-[11px] text-white flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
-                <p>Offices in Oworonshoki (HQ), Sangotedo, Alakija, Ikorodu, Ogombo, and Bogije. Nationwide container site drops directly coordinated daily.</p>
+                <p>Offices in Oworonshoki (HQ), Sangotedo, Alakija, Ikorodu, Ogombo, and Bogije.</p>
               </div>
 
             </div>

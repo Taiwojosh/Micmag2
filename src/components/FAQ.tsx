@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 const faqs = [
   {
     question: 'What is the relationship between Micmag and Sandtex?',
-    answer: 'Micmag is an authorized premium dealer of Sandtex Paints and CAPLUX surface preparation preps and industrial primers produced by the Chemical Allied Products Plc. We serve as the specialized trade hub and direct distributor for both legendary brands across Nigeria.'
+    answer: 'Micmag is an authorized premium dealer of Sandtex Paints and CAPLUX surface preparation preps and industrial primers produced by the Chemical and Allied Products Plc. We serve as the specialized trade hub and direct distributor for both legendary brands across Nigeria.'
   },
   {
     question: 'How do I choose the right paint for my surface?',
