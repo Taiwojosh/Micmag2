@@ -5,26 +5,26 @@ import { ChevronRight, ArrowUpRight } from 'lucide-react';
 
 const FLAGSHIP_COLORS = [
   {
-    name: "Sandtex Majestic Orange",
-    hex: "#FF6B00",
+    name: "Midas Touch",
+    hex: "#978F2C",
     description: "Vibrant and authentic sandtex orange tone.",
-    themeClass: "from-[#FF6B00]/20 to-neutral-950/10",
+    themeClass: "from-[#978F2C]/20 to-neutral-950/10",
   },
   {
-    name: "Lekki Terracotta",
-    hex: "#B8442E",
+    name: "National Green",
+    hex: "#1F5139",
     description: "Deep luxury clay-tone paint.",
-    themeClass: "from-red-600/20 to-neutral-950/10",
+    themeClass: "from-[#B8A593]/20 to-neutral-950/10",
   },
   {
-    name: "Kano Crimson Cream",
-    hex: "#D32F2F",
+    name: "Coconut",
+    hex: "#534C49",
     description: "Pure intense premium crimson.",
     themeClass: "from-red-700/20 to-neutral-950/10",
   },
   {
-    name: "Eko Alabaster Satin",
-    hex: "#C5A880",
+    name: "Lagoon Blue",
+    hex: "#37809C",
     description: "Sophisticated premium sand-stone gold.",
     themeClass: "from-amber-600/20 to-neutral-950/10",
   },
@@ -70,7 +70,7 @@ const fadeUpVariant = { initial: { opacity: 0, y: 35 }, animate: { opacity: 1, y
 
 export default function Hero() {
   const [activeColor, setActiveColor] = useState<typeof FLAGSHIP_COLORS[0] | null>(null);
-  
+
   // Background Slideshow State
   const [bgIndex, setBgIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -133,9 +133,8 @@ export default function Hero() {
           playsInline
           onEnded={handleVideoEnded}
           onError={handleVideoEnded}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            currentBg.type === 'video' ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${currentBg.type === 'video' ? 'opacity-100' : 'opacity-0'
+            }`}
         >
           {currentBg.type === 'video' && <source src={currentBg.src} type="video/mp4" />}
         </video>
@@ -146,9 +145,8 @@ export default function Hero() {
               key={media.src}
               src={media.src}
               alt="Luxury Interior Spec"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                currentBg.type === 'image' && bgIndex === idx ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${currentBg.type === 'image' && bgIndex === idx ? 'opacity-100' : 'opacity-0'
+                }`}
             />
           )
         ))}
@@ -172,7 +170,7 @@ export default function Hero() {
       </AnimatePresence>
 
       {/* Subtle Architectural Grid Pattern (overlaying the frosted glass) */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
         style={{
           backgroundImage: 'linear-gradient(#1c1917 1px, transparent 1px), linear-gradient(90deg, #1c1917 1px, transparent 1px)',
@@ -181,7 +179,7 @@ export default function Hero() {
       />
 
       <div className="relative max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10 flex-grow">
-        
+
         {/* Left Column: Editorial Typography */}
         <motion.div
           variants={staggerContainer}
@@ -259,14 +257,14 @@ export default function Hero() {
           {/* Main Arched Image (Interior shot cycling) */}
           <div className="absolute right-0 top-0 w-[80%] h-[90%] rounded-t-[200px] rounded-b-[40px] overflow-hidden shadow-2xl border-4 border-white bg-neutral-100">
             <AnimatePresence mode="wait">
-              <motion.img 
+              <motion.img
                 key={currentMicmagSlide.image}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8 }}
                 src={currentMicmagSlide.image}
-                alt={currentMicmagSlide.name} 
+                alt={currentMicmagSlide.name}
                 className="w-full h-full object-cover transition-transform duration-700"
               />
             </AnimatePresence>
@@ -278,20 +276,20 @@ export default function Hero() {
           </div>
 
           {/* Accent Overlapping Square Image (Product bucket cycling) */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="absolute left-[5%] bottom-[22%] w-[45%] aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-white z-20 flex flex-col justify-center items-center p-4"
           >
             <AnimatePresence mode="wait">
-              <motion.img 
+              <motion.img
                 key={currentSandtexSlide.image}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5 }}
                 src={currentSandtexSlide.image}
-                alt={currentSandtexSlide.name} 
+                alt={currentSandtexSlide.name}
                 className="w-full h-[70%] object-contain mb-2"
               />
             </AnimatePresence>
@@ -310,7 +308,7 @@ export default function Hero() {
       </div>
 
       {/* Floating Interactive Color Bar */}
-      <motion.div 
+      <motion.div
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.8 }}
@@ -329,7 +327,7 @@ export default function Hero() {
               onMouseLeave={() => setActiveColor(null)}
               className="group relative flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm hover:shadow-md transition-all shrink-0 cursor-pointer"
             >
-              <span 
+              <span
                 className="w-4 h-4 rounded-full shadow-inner border border-black/10 transition-transform group-hover:scale-110"
                 style={{ backgroundColor: color.hex }}
               />
