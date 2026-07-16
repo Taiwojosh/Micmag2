@@ -673,7 +673,7 @@ export default function ProductsPage() {
 
       {/* Floating Inquiry Basket Icon (Beside WhatsApp on desktop, on top on mobile) */}
       <button
-        onClick={() => setIsCartOpen(true)}
+        onClick={() => setIsCartOpen(prev => !prev)}
         className="fixed z-[90] bg-micmag-blue text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-brand-charcoal cursor-pointer bottom-[104px] right-8 md:bottom-8 md:right-[104px]"
         title="Open Cart"
       >
