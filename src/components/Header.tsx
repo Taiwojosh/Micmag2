@@ -173,9 +173,10 @@ export default function Header() {
   };
 
   // Simple flat nav links (no dropdown)
-  const flatLinks: { name: string; href: string }[] = [
+  const flatLinks: { name: string; href: string; badge?: string }[] = [
     { name: 'Home', href: '/' },
     { name: 'Products', href: '/collections' },
+    { name: 'Showroom', href: '/showroom', badge: 'NEW' },
     { name: 'Locations', href: '/#locations' },
   ];
 
@@ -236,7 +237,7 @@ export default function Header() {
             {/* Flat links */}
             {flatLinks.map((link) => (
               <li key={link.name} className="relative h-full flex items-center">
-                <div className="relative group/link py-1 flex items-center">
+                <div className="relative group/link py-1 flex items-center gap-1.5">
                   <Link
                     to={link.href}
                     onClick={(e) => handleLinkClick(link.href, e)}
@@ -245,6 +246,12 @@ export default function Header() {
                   >
                     {link.name}
                   </Link>
+                  {link.badge && (
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[8px] font-black tracking-wider uppercase animate-pulse"
+                      style={{ background: '#1a2c5b', color: '#c9a84c' }}>
+                      {link.badge}
+                    </span>
+                  )}
                   <span className="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-gradient-to-r from-amber-600 via-orange-500 to-micmag-red transition-all duration-300 group-hover/link:w-full" />
                 </div>
               </li>
@@ -379,7 +386,14 @@ export default function Header() {
                       <span>Products</span><span className="text-neutral-400 text-xs">→</span>
                     </Link>
 
-                    {/* Locations */}
+                    {/* Showroom */}
+                    <Link to="/showroom" onClick={closeMenu}
+                      className="flex items-center justify-between py-3 border-b border-neutral-200 text-sm font-black tracking-[0.08em] uppercase text-brand-charcoal hover:text-micmag-red transition-colors">
+                      <span>Showroom</span>
+                      <span className="inline-flex items-center gap-1 text-[8px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider" style={{ background: '#1a2c5b', color: '#c9a84c' }}>NEW →</span>
+                    </Link>
+
+
                     <Link to="/#locations" onClick={(e) => { closeMenu(); handleLinkClick('/#locations', e); }}
                       className="flex items-center justify-between py-3 border-b border-neutral-200 text-sm font-black tracking-[0.08em] uppercase text-brand-charcoal hover:text-micmag-red transition-colors">
                       <span>Locations</span><span className="text-neutral-400 text-xs">→</span>

@@ -14,6 +14,7 @@ import { BrandProvider } from './BrandContext';
 
 // Lazy-load the heaviest pages to keep initial bundle lean
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const ShowroomPage = lazy(() => import('./pages/ShowroomPage'));
 
 function AppLayout() {
   const brandStyles = {
@@ -42,6 +43,7 @@ function AppLayout() {
             <Route path="/why" element={<Navigate to="/#why" replace />} />
             <Route path="/locations" element={<Navigate to="/#locations" replace />} />
             <Route path="/collections" element={<ProductsPage />} />
+            <Route path="/showroom" element={<ShowroomPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/specifications" element={<CapSpecificationsPage />} />
             <Route path="/team" element={<TeamPage />} />
