@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposal – Interior Design & Decoration Services | Micmag Interiors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2c5b;
+      --crimson: #8b1a1a;
+      --gold: #c9a84c;
+      --gold-light: #f0d898;
+      --cream: #fdf8f0;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --light-gray: #f3f4f6;
+      --border: #e5d9c3;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: #1f2937;
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 40px auto;
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--navy) 0%, #253d7a 60%, #1a2c5b 100%);
+      padding: 48px 56px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .header-logo img {
+      height: 100px;
+      width: auto;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+    .header-text { flex: 1; }
+    .header-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .header-title span { color: var(--gold); }
+    .header-sub {
+      margin-top: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+    }
+
+    .gold-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--crimson), var(--gold), var(--navy));
+    }
+
+    .meta-strip {
+      background: var(--light-gray);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 56px;
+      display: flex;
+      gap: 40px;
+      font-size: 12.5px;
+      color: var(--gray);
+    }
+    .meta-strip strong { color: var(--navy); }
+
+    .body { padding: 48px 56px; }
+
+    .salutation {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .subject-line {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--crimson);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    p { font-size: 14.5px; color: #374151; margin-bottom: 18px; }
+
+    .services-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 36px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .services-heading::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .service-card {
+      background: linear-gradient(135deg, #f8f4ee, #fff);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 6px;
+      padding: 18px 20px;
+    }
+    .service-icon { font-size: 22px; margin-bottom: 8px; }
+    .service-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .why-box {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3571 100%);
+      border-radius: 10px;
+      padding: 36px 40px;
+      margin: 36px 0;
+    }
+    .why-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .why-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.5;
+    }
+    .why-list li::before {
+      content: '\2726';
+      color: var(--gold);
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .closing { margin-top: 36px; }
+
+    .signature-block {
+      margin-top: 48px;
+      border-top: 2px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+    }
+    .sig-left img {
+      height: 72px;
+      width: auto;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+    }
+    .sig-left .sig-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .sig-left .sig-sub {
+      font-size: 11.5px;
+      color: var(--gray);
+    }
+    .sig-right {
+      text-align: right;
+      font-size: 12.5px;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    .sig-line {
+      display: inline-block;
+      width: 200px;
+      border-bottom: 1px solid #aaa;
+      margin-top: 4px;
+    }
+    .sig-label { font-size: 12px; color: var(--gray); margin-bottom: 4px; }
+
+    .footer {
+      background: linear-gradient(135deg, var(--navy), #253d7a);
+      padding: 28px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-offices { display: flex; flex-direction: column; gap: 6px; }
+    .footer-office {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.75);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .footer-office span.pin { color: var(--gold); font-size: 13px; }
+    .footer-contact {
+      text-align: right;
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.9;
+    }
+    .footer-contact a { color: var(--gold-light); text-decoration: none; }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; }
+    }
+    @media (max-width: 640px) {
+      .header { flex-direction: column; padding: 32px 28px 24px; }
+      .body { padding: 32px 28px; }
+      .meta-strip { padding: 12px 28px; flex-wrap: wrap; gap: 10px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .signature-block { flex-direction: column; }
+      .footer { padding: 24px 28px; }
+      .footer-contact { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-logo">
+      <img src="./Logo.png" alt="Micmag Homes & Fittings Logo" />
+    </div>
+    <div class="header-text">
+      <div class="header-tag">Business Proposal</div>
+      <div class="header-title">Interior Design &amp; <span>Decoration</span> Services</div>
+      <div class="header-sub">Micmag Interiors — A Division of Micmag Homes &amp; Fittings</div>
+    </div>
+  </div>
+
+  <div class="gold-bar"></div>
+
+  <div class="meta-strip">
+    <div><strong>Date:</strong> August 2025</div>
+    <div><strong>Subject:</strong> Interior Design &amp; Decoration Proposal</div>
+    <div><strong>Prepared by:</strong> Micmag Interiors</div>
+  </div>
+
+  <div class="body">
+
+    <div class="salutation">Dear Sir / Madam,</div>
+    <div class="subject-line">
+      RE: Proposal for Interior Design &amp; Decoration Services – Micmag Interiors
+    </div>
+
+    <p>
+      We are pleased to introduce <strong>Micmag Interiors</strong>, a professional interior design and
+      decoration company committed to delivering innovative interior design and fit-out solutions that
+      transform residential, commercial, corporate, and hospitality spaces into <strong>functional,
+      elegant, and inspiring environments</strong>.
+    </p>
+
+    <p>
+      Building on our extensive experience in the finishing and paint industry, Micmag Interiors was
+      established to provide innovative interior solutions that combine creativity, quality
+      craftsmanship, and meticulous attention to detail. We believe every space tells a story, and
+      our goal is to create interiors that reflect our clients' personalities, lifestyles, and
+      business objectives while maintaining exceptional standards of quality and functionality.
+    </p>
+
+    <h2 class="services-heading">Our Services Include</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Interior Design &amp; Consultation</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <div class="service-name">Residential &amp; Commercial Interiors</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <div class="service-name">Interior Finishes &amp; Styling</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <div class="service-name">Custom Fixtures &amp; Installations</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚿</div>
+        <div class="service-name">Sanitary Ware Supply &amp; Fitting</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🖌️</div>
+        <div class="service-name">Premium Paints &amp; Finishes</div>
+      </div>
+    </div>
+
+    <div class="why-box">
+      <h3>Why Choose Micmag Interiors?</h3>
+      <ul class="why-list">
+        <li>Innovative and functional designs tailored to each client's needs and vision.</li>
+        <li>Premium-quality materials and exceptional craftsmanship.</li>
+        <li>Professional project management with timely project delivery.</li>
+        <li>Transparent communication and personalized service throughout every stage of the project.</li>
+        <li>Meticulous attention to detail from concept development to final installation.</li>
+        <li>A strong commitment to quality, customer satisfaction, and lasting value.</li>
+      </ul>
+    </div>
+
+    <div class="closing">
+      <p>
+        We would be honored to partner with you / your esteemed organization on your upcoming
+        interior projects. Whether it is a new construction, renovation, office upgrade, retail
+        fit-out, hospitality project, or residential makeover, we are fully equipped to deliver
+        tailored solutions that exceed expectations.
+      </p>
+      <p>
+        We are confident that our commitment to professionalism, innovation, quality, and customer
+        satisfaction makes us a reliable partner for all your interior design and finishing requirements.
+      </p>
+      <p>We look forward to building a mutual and long-lasting relationship with you.</p>
+      <p style="margin-top: 24px;">Yours faithfully,</p>
+    </div>
+
+    <div class="signature-block">
+      <div class="sig-left">
+        <img src="./Logo.png" alt="Micmag Logo" />
+        <div class="sig-title">For: Micmag Interiors</div>
+        <div class="sig-sub">A Division of Micmag Homes &amp; Fittings</div>
+      </div>
+      <div class="sig-right">
+        <div class="sig-label">Name:</div>
+        <div class="sig-line"></div>
+        <br/>
+        <div class="sig-label">Signature:</div>
+        <div class="sig-line"></div>
+        <br/>
+        <div class="sig-label">Date:</div>
+        <div class="sig-line"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-offices">
+      <div class="footer-office">
+        <span class="pin">📍</span>
+        <span>12, Oduduwa Road, Lafarge Cement Building, Car Wash Bus-stop, Oworonshoki, Lagos.</span>
+      </div>
+      <div class="footer-office">
+        <span class="pin">📍</span>
+        <span>Km 46, Lekki-Epe Expressway, Hot Bread Bus Stop, Sangotedo, Lagos.</span>
+      </div>
+    </div>
+    <div class="footer-contact">
+      <div>📞 07052940445 &nbsp;|&nbsp; 07067924965</div>
+      <div>✉ <a href="mailto:micmaghomesfittings@gmail.com">micmaghomesfittings@gmail.com</a></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
