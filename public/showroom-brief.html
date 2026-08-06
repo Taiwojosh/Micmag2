@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Showroom Brief — Micmag Homes & Fittings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2c5b;
+      --navy-light: #253d7a;
+      --crimson: #8b1a1a;
+      --gold: #c9a84c;
+      --gold-light: #f0d898;
+      --cream: #fdf8f0;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --light: #f3f4f6;
+      --border: #e5d9c3;
+      --text: #1f2937;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0f4ff 0%, var(--cream) 60%, #fff5f5 100%);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+
+    .wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3571 60%, var(--crimson) 100%);
+      border-radius: 16px 16px 0 0;
+      padding: 52px 56px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(201,168,76,0.12) 0%, transparent 60%),
+                  radial-gradient(circle at 75% 20%, rgba(255,255,255,0.06) 0%, transparent 50%);
+    }
+    .cover-inner { position: relative; z-index: 1; }
+    .cover img { height: 80px; width: auto; margin-bottom: 20px; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3)); }
+    .cover-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      border: 1px solid rgba(201,168,76,0.35);
+      background: rgba(201,168,76,0.1);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .cover h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .cover h1 span { color: var(--gold); }
+    .cover p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── Gold bar ── */
+    .gold-bar { height: 5px; background: linear-gradient(90deg, var(--crimson), var(--gold), var(--navy)); }
+
+    /* ── Intro card ── */
+    .intro-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 32px 48px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .intro-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .intro-card h2 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .intro-card p { font-size: 13.5px; color: var(--gray); }
+
+    /* ── Form body ── */
+    form {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+    }
+
+    /* ── Section heading ── */
+    .section-head {
+      padding: 28px 48px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      flex-shrink: 0;
+      background: var(--navy);
+      color: var(--gold);
+    }
+    .section-head h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--navy);
+      font-weight: 600;
+    }
+    .section-head p { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+    /* ── Questions ── */
+    .questions { padding: 0 48px 32px; display: flex; flex-direction: column; gap: 28px; }
+
+    .q { display: flex; flex-direction: column; gap: 8px; }
+    .q label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .q label .req { color: var(--crimson); font-size: 14px; }
+    .q .hint { font-size: 11.5px; color: var(--gray); font-weight: 400; margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--text);
+      background: var(--light);
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(26,44,91,0.08);
+      background: #fff;
+    }
+    textarea { min-height: 90px; }
+
+    /* ── Radio / checkbox groups ── */
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .options.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .option:hover { border-color: var(--navy); background: #f0f4ff; }
+    .option input { margin-top: 2px; accent-color: var(--navy); flex-shrink: 0; }
+    .option span { font-size: 13px; color: var(--text); line-height: 1.4; }
+    .option .sub { font-size: 11px; color: var(--gray); margin-top: 2px; display: block; }
+
+    /* selected highlight via JS */
+    .option.selected { border-color: var(--navy); background: #f0f4ff; }
+
+    /* ── Range slider ── */
+    .range-wrap { display: flex; flex-direction: column; gap: 6px; }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--navy);
+      height: 5px;
+    }
+    .range-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray); }
+    .range-value {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      background: #f0f4ff;
+      border: 1px solid rgba(26,44,91,0.15);
+      border-radius: 6px;
+      padding: 4px 12px;
+      display: inline-block;
+      align-self: center;
+      min-width: 80px;
+    }
+
+    /* ── Divider ── */
+    .divider { height: 1px; background: var(--border); margin: 8px 48px; }
+
+    /* ── Mood board ── */
+    .mood-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .mood-card {
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .mood-card:hover { border-color: var(--navy); transform: translateY(-2px); }
+    .mood-card.selected { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.2); }
+    .mood-card input { position: absolute; opacity: 0; }
+    .mood-preview {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .mood-label {
+      padding: 6px 10px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text);
+      border-top: 1px solid #f0f0f0;
+      background: #fafafa;
+    }
+
+    /* ── Submit ── */
+    .submit-zone {
+      background: linear-gradient(135deg, #f8f4ee, #fff);
+      border-top: 1px solid var(--border);
+      padding: 36px 48px;
+      text-align: center;
+    }
+    .submit-zone p { font-size: 13px; color: var(--gray); margin-bottom: 20px; }
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 40px;
+      border-radius: 50px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(26,44,91,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(26,44,91,0.3); }
+
+    /* ── Thank you state ── */
+    #thankyou {
+      display: none;
+      text-align: center;
+      padding: 60px 48px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+    }
+    #thankyou .big-icon { font-size: 56px; margin-bottom: 16px; }
+    #thankyou h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--navy); margin-bottom: 8px; }
+    #thankyou p { font-size: 14px; color: var(--gray); }
+
+    @media (max-width: 600px) {
+      .cover { padding: 36px 24px 30px; }
+      .intro-card { padding: 24px; }
+      .section-head { padding: 24px 24px 12px; }
+      .questions { padding: 0 24px 24px; }
+      .options.grid { grid-template-columns: 1fr; }
+      .mood-grid { grid-template-columns: 1fr 1fr; }
+      .submit-zone { padding: 28px 24px; }
+      .divider { margin: 8px 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-inner">
+      <img src="./Logo.png" alt="Micmag Homes & Fittings" />
+      <div class="cover-tag">Client Brief — Internal Use</div>
+      <h1>Digital Showroom<br /><span>Vision Brief</span></h1>
+      <p>A short questionnaire to help us understand exactly what the Micmag Digital Showroom should look, feel, and do before a single line of code is written.</p>
+    </div>
+  </div>
+
+  <div class="gold-bar"></div>
+
+  <!-- Intro -->
+  <div class="intro-card">
+    <div class="intro-icon">📋</div>
+    <div>
+      <h2>To: The Boss — From: The Team</h2>
+      <p>Your answers will guide the entire design and build of the showroom. There are no right or wrong answers — just your vision. This should take about <strong>10–15 minutes</strong> to complete. All questions marked <span style="color:#8b1a1a;font-weight:700;">*</span> are required.</p>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <form id="brief-form" onsubmit="submitForm(event)">
+
+    <!-- ═══ SECTION 1: PURPOSE ═══ -->
+    <div class="section-head">
+      <div class="section-num">1</div>
+      <div>
+        <h3>Purpose & Goals</h3>
+        <p>What should the showroom actually do for the business?</p>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="q">
+        <label>What is the primary goal of the digital showroom? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="goal" value="generate_leads" required /> <span>Generate more leads & customer inquiries<span class="sub">People browse products and contact us to buy</span></span></label>
+          <label class="option"><input type="radio" name="goal" value="showcase_brand" /> <span>Showcase the brand & build prestige<span class="sub">Create a wow-factor, luxury brand impression</span></span></label>
+          <label class="option"><input type="radio" name="goal" value="replace_catalogue" /> <span>Replace our physical product catalogue<span class="sub">A digital version of our printed brochure</span></span></label>
+          <label class="option"><input type="radio" name="goal" value="all_above" /> <span>All of the above — we need everything<span class="sub">Leads, brand prestige, and full catalogue</span></span></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Who is the primary audience of the showroom? <span class="req">*</span></label>
+        <div class="options grid">
+          <label class="option"><input type="checkbox" name="audience" value="homeowners" /> <span>Individual homeowners<span class="sub">People building or renovating homes</span></span></label>
+          <label class="option"><input type="checkbox" name="audience" value="contractors" /> <span>Contractors & builders<span class="sub">Professionals who buy in bulk</span></span></label>
+          <label class="option"><input type="checkbox" name="audience" value="architects" /> <span>Architects & interior designers<span class="sub">Specification decision-makers</span></span></label>
+          <label class="option"><input type="checkbox" name="audience" value="corporate" /> <span>Corporate clients<span class="sub">Hotels, offices, real estate developers</span></span></label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 2: LOOK & FEEL ═══ -->
+    <div class="section-head">
+      <div class="section-num">2</div>
+      <div>
+        <h3>Look & Feel</h3>
+        <p>The visual personality of the showroom</p>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="q">
+        <label>Which mood should the showroom convey? <span class="req">*</span> <span class="hint">(pick up to 2)</span></label>
+        <div class="mood-grid">
+          <label class="mood-card"><input type="checkbox" name="mood" value="luxury" /><div class="mood-preview" style="background: linear-gradient(135deg,#1a1a1a,#3d2b1f);">🥂</div><div class="mood-label">Dark Luxury</div></label>
+          <label class="mood-card"><input type="checkbox" name="mood" value="bright" /><div class="mood-preview" style="background: linear-gradient(135deg,#fff9f0,#ffe8cc);">☀️</div><div class="mood-label">Bright & Warm</div></label>
+          <label class="mood-card"><input type="checkbox" name="mood" value="corporate" /><div class="mood-preview" style="background: linear-gradient(135deg,#1a2c5b,#2d4a8e);">🏢</div><div class="mood-label">Corporate Blue</div></label>
+          <label class="mood-card"><input type="checkbox" name="mood" value="natural" /><div class="mood-preview" style="background: linear-gradient(135deg,#e8f5e9,#c8e6c9);">🌿</div><div class="mood-label">Natural & Fresh</div></label>
+          <label class="mood-card"><input type="checkbox" name="mood" value="bold" /><div class="mood-preview" style="background: linear-gradient(135deg,#b71c1c,#e53935);">🔥</div><div class="mood-label">Bold & Vibrant</div></label>
+          <label class="mood-card"><input type="checkbox" name="mood" value="minimal" /><div class="mood-preview" style="background: linear-gradient(135deg,#f9f9f9,#eeeeee);">◻️</div><div class="mood-label">Clean & Minimal</div></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Do you have a reference website that inspires you? <span class="hint">(e.g. a luxury hotel, paint brand, or competitor site)</span></label>
+        <input type="text" name="reference_site" placeholder="e.g. https://www.dulux.com.ng or Roca bathroom showroom..." />
+      </div>
+
+      <div class="q">
+        <label>Should the showroom feel like a physical store or a website? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="format" value="physical_store" required /> <span>A physical store — room-by-room navigation, walk-through feeling<span class="sub">Visitors "enter" different rooms or spaces</span></span></label>
+          <label class="option"><input type="radio" name="format" value="website" /> <span>A standard website — clean, fast, catalogue-style<span class="sub">Professional and easy to browse like a product page</span></span></label>
+          <label class="option"><input type="radio" name="format" value="hybrid" /> <span>A hybrid — stylish website with a showroom-like experience<span class="sub">Premium feel but still easy to navigate</span></span></label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 3: CONTENT ═══ -->
+    <div class="section-head">
+      <div class="section-num">3</div>
+      <div>
+        <h3>Products & Content</h3>
+        <p>What should customers be able to see and do?</p>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="q">
+        <label>Which product categories should be featured in the showroom? <span class="req">*</span></label>
+        <div class="options grid">
+          <label class="option"><input type="checkbox" name="categories" value="sandtex_paints" checked /> <span>Sandtex Paints</span></label>
+          <label class="option"><input type="checkbox" name="categories" value="caplux" checked /> <span>Caplux Surface Systems</span></label>
+          <label class="option"><input type="checkbox" name="categories" value="sanitary_ware" checked /> <span>Sanitary Ware & Fittings</span></label>
+          <label class="option"><input type="checkbox" name="categories" value="interior_design" /> <span>Interior Design Services<span class="sub">Micmag Interiors</span></span></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Should customers be able to see prices in the showroom? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="show_prices" value="yes" required /> <span>Yes — show prices publicly</span></label>
+          <label class="option"><input type="radio" name="show_prices" value="no" /> <span>No — "Request a Quote" only</span></label>
+          <label class="option"><input type="radio" name="show_prices" value="range" /> <span>Show a price range (e.g. ₦12,000–₦18,000)</span></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>What colour palette feature is needed for paints? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="color_feature" value="swatches_only" required /> <span>Just show colour swatches to pick from</span></label>
+          <label class="option"><input type="radio" name="color_feature" value="visualizer" /> <span>Full room visualiser — see how a colour looks on a wall<span class="sub">More advanced, very impressive</span></span></label>
+          <label class="option"><input type="radio" name="color_feature" value="none" /> <span>Not needed — no colour selection tool</span></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Should the showroom include project/portfolio images? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="portfolio" value="yes_own" required /> <span>Yes — show our own completed project photos</span></label>
+          <label class="option"><input type="radio" name="portfolio" value="yes_stock" /> <span>Yes — use high-quality stock photos for now</span></label>
+          <label class="option"><input type="radio" name="portfolio" value="no" /> <span>No portfolio section needed</span></label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 4: FEATURES ═══ -->
+    <div class="section-head">
+      <div class="section-num">4</div>
+      <div>
+        <h3>Features & Functionality</h3>
+        <p>What should visitors be able to do?</p>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="q">
+        <label>How should customers contact you from the showroom? <span class="req">*</span> <span class="hint">(tick all that apply)</span></label>
+        <div class="options grid">
+          <label class="option"><input type="checkbox" name="contact_method" value="whatsapp" checked /> <span>WhatsApp button</span></label>
+          <label class="option"><input type="checkbox" name="contact_method" value="enquiry_form" /> <span>Enquiry / quote form</span></label>
+          <label class="option"><input type="checkbox" name="contact_method" value="phone_call" /> <span>Click-to-call button</span></label>
+          <label class="option"><input type="checkbox" name="contact_method" value="email" /> <span>Email contact</span></label>
+          <label class="option"><input type="checkbox" name="contact_method" value="basket" /> <span>Inquiry basket (add multiple products, then send)</span></label>
+          <label class="option"><input type="checkbox" name="contact_method" value="book_visit" /> <span>Book a showroom / site visit</span></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Should there be a separate page for Micmag Interiors (interior design services)? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="interiors_page" value="yes_full" required /> <span>Yes — a full dedicated page with our services, portfolio & proposal download</span></label>
+          <label class="option"><input type="radio" name="interiors_page" value="yes_section" /> <span>Yes — just a section within the main showroom</span></label>
+          <label class="option"><input type="radio" name="interiors_page" value="no" /> <span>No — not yet</span></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Rank the importance of these features <span class="hint">(1 = Most Important, drag to reorder — or just describe below)</span></label>
+        <div id="rank-list" style="display:flex;flex-direction:column;gap:8px;">
+          <div class="option" style="cursor:grab;"><span>🎨 Colour / product visualiser</span></div>
+          <div class="option" style="cursor:grab;"><span>📸 Project gallery / portfolio</span></div>
+          <div class="option" style="cursor:grab;"><span>🛒 Product enquiry basket</span></div>
+          <div class="option" style="cursor:grab;"><span>📄 Downloadable product PDF / brochure</span></div>
+          <div class="option" style="cursor:grab;"><span>📅 Book a site visit / consultation</span></div>
+          <div class="option" style="cursor:grab;"><span>💬 Live chat or WhatsApp chat widget</span></div>
+        </div>
+        <textarea name="feature_rank_notes" placeholder="Or describe in words what's most important to you..." style="margin-top:8px;"></textarea>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 5: TIMELINE & BUDGET ═══ -->
+    <div class="section-head">
+      <div class="section-num">5</div>
+      <div>
+        <h3>Timeline & Priorities</h3>
+        <p>Helps us plan what to build first</p>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="q">
+        <label>When do you need the showroom ready? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="timeline" value="asap" required /> <span>As soon as possible — within 1–2 weeks</span></label>
+          <label class="option"><input type="radio" name="timeline" value="month" /> <span>Within the next month — we have time to do it properly</span></label>
+          <label class="option"><input type="radio" name="timeline" value="quarter" /> <span>No rush — within the next 3 months</span></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>How polished should Version 1 be? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="polish" value="mvp" required /> <span>Launch quickly with core features — we can add more later<span class="sub">Ship fast, improve over time</span></span></label>
+          <label class="option"><input type="radio" name="polish" value="full" /> <span>Take the time to build it fully right from the start<span class="sub">Everything working perfectly before launch</span></span></label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label>Overall, how important is the Digital Showroom to the business right now?</label>
+        <div class="range-wrap">
+          <input type="range" name="importance" min="1" max="10" value="7" oninput="document.getElementById('imp-val').textContent = this.value + ' / 10'" />
+          <div class="range-labels"><span>Nice to have</span><span>Business critical</span></div>
+          <div class="range-value" id="imp-val">7 / 10</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 6: OPEN FEEDBACK ═══ -->
+    <div class="section-head">
+      <div class="section-num">6</div>
+      <div>
+        <h3>Your Vision in Your Own Words</h3>
+        <p>This is the most important section</p>
+      </div>
+    </div>
+    <div class="questions">
+
+      <div class="q">
+        <label>If you could describe the perfect Micmag Digital Showroom in 3 sentences, what would you say? <span class="req">*</span></label>
+        <textarea name="vision" rows="5" placeholder="e.g. I want customers to feel like they are walking into a premium Lagos showroom. They should be able to explore our paints, pick colours, and send us a WhatsApp instantly. It should feel more expensive than our competitors' websites..."></textarea>
+      </div>
+
+      <div class="q">
+        <label>Is there anything about the current website you definitely want to keep? <span class="hint">(or anything you dislike?)</span></label>
+        <textarea name="keep_dislike" placeholder="e.g. I love the logo and the product photos. I don't like that it's hard to find the contact button on mobile..."></textarea>
+      </div>
+
+      <div class="q">
+        <label>Any other notes, ideas, or things we should know?</label>
+        <textarea name="other" placeholder="Anything else on your mind..."></textarea>
+      </div>
+
+      <div class="q">
+        <label>Your name <span class="req">*</span></label>
+        <input type="text" name="respondent_name" placeholder="e.g. Mrs. Adeyemi" required />
+      </div>
+
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-zone">
+      <p>Your responses will be used to design the showroom exactly to your vision. Thank you for taking the time! 🙏</p>
+      <button type="submit" class="submit-btn">
+        ✦ Submit My Brief
+      </button>
+    </div>
+
+  </form>
+
+  <!-- Thank you -->
+  <div id="thankyou">
+    <div class="big-icon">🎉</div>
+    <h2>Thank you!</h2>
+    <p>Your vision brief has been received. The development team will review your answers and come back with a tailored showroom plan.</p>
+    <p style="margin-top:12px;font-size:12px;color:#aaa;">You may close this window.</p>
+  </div>
+
+</div>
+
+<script>
+  // Highlight selected radio/checkbox options
+  document.querySelectorAll('.option input').forEach(input => {
+    input.addEventListener('change', () => {
+      const name = input.name;
+      if (input.type === 'radio') {
+        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+          r.closest('.option')?.classList.remove('selected');
+        });
+      }
+      if (input.checked) input.closest('.option')?.classList.add('selected');
+      else input.closest('.option')?.classList.remove('selected');
+    });
+  });
+
+  // Mood card selections
+  document.querySelectorAll('.mood-card input').forEach(input => {
+    input.addEventListener('change', () => {
+      const checked = document.querySelectorAll('.mood-card input:checked');
+      if (!input.checked) {
+        input.closest('.mood-card')?.classList.remove('selected');
+        return;
+      }
+      // Max 2 selections
+      if (checked.length > 2) {
+        input.checked = false;
+        return;
+      }
+      input.closest('.mood-card')?.classList.add('selected');
+    });
+  });
+
+  // Submit handler — collect all answers and show summary
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('brief-form');
+    const data = new FormData(form);
+    const summary = {};
+    for (let [k, v] of data.entries()) {
+      if (summary[k]) {
+        summary[k] = Array.isArray(summary[k]) ? [...summary[k], v] : [summary[k], v];
+      } else {
+        summary[k] = v;
+      }
+    }
+    console.log('Brief Summary:', JSON.stringify(summary, null, 2));
+
+    // Build readable text for copy
+    let text = '=== MICMAG DIGITAL SHOWROOM BRIEF ===\n\n';
+    for (const [k, v] of Object.entries(summary)) {
+      text += `${k.replace(/_/g,' ').toUpperCase()}: ${Array.isArray(v) ? v.join(', ') : v}\n`;
+    }
+
+    // Try to copy to clipboard
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+
+    form.style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Also log to console for easy retrieval
+    console.log(text);
+  }
+</script>
+
+</body>
+</html>
