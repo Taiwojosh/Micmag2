@@ -586,6 +586,22 @@
       </button>
     </div>
 
+    <!-- Delivery options — shown after submit -->
+    <div id="delivery" style="display:none; padding: 36px 48px; border-top: 1px solid var(--border); background: #f8f4ee;">
+      <h3 style="font-family:'Playfair Display',serif; color:var(--navy); font-size:18px; margin-bottom:6px;">How would you like to send your answers?</h3>
+      <p style="font-size:13px; color:var(--gray); margin-bottom:24px;">Choose the easiest option for you:</p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <button onclick="sendWhatsApp()" style="display:flex; align-items:center; gap:12px; padding:16px 20px; border-radius:12px; border:none; background:linear-gradient(135deg,#25d366,#128c7e); color:#fff; font-family:'Inter',sans-serif; font-size:14px; font-weight:700; cursor:pointer; text-align:left;">
+          <span style="font-size:24px;">📱</span>
+          <div><div>Send via WhatsApp</div><div style="font-size:11px;font-weight:400;opacity:0.85;">Opens WhatsApp with all your answers pre-filled — just tap Send</div></div>
+        </button>
+        <button onclick="downloadTxt()" style="display:flex; align-items:center; gap:12px; padding:16px 20px; border-radius:12px; border:1.5px solid var(--border); background:#fff; color:var(--navy); font-family:'Inter',sans-serif; font-size:14px; font-weight:700; cursor:pointer; text-align:left;">
+          <span style="font-size:24px;">📥</span>
+          <div><div>Download as Text File</div><div style="font-size:11px;font-weight:400;color:var(--gray);">Saves a .txt file you can email or share</div></div>
+        </button>
+      </div>
+    </div>
+
   </form>
 
   <!-- Thank you -->
@@ -630,7 +646,32 @@
     });
   });
 
-  // Submit handler — collect all answers and show summary
+  // ── Label maps for human-readable output ──
+  const LABELS = {
+    goal: 'Primary Goal',
+    audience: 'Target Audience',
+    mood: 'Visual Mood',
+    reference_site: 'Reference Website',
+    format: 'Showroom Format',
+    categories: 'Product Categories',
+    show_prices: 'Show Prices?',
+    color_feature: 'Colour Tool',
+    portfolio: 'Portfolio / Gallery',
+    contact_method: 'Contact Methods',
+    interiors_page: 'Micmag Interiors Page',
+    feature_rank_notes: 'Feature Priority Notes',
+    timeline: 'Timeline',
+    polish: 'Launch Polish Level',
+    importance: 'Business Importance',
+    vision: 'Vision in Her Words',
+    keep_dislike: 'Keep / Dislike',
+    other: 'Other Notes',
+    respondent_name: 'Respondent Name',
+  };
+
+  let _briefText = '';
+
+  // Submit handler
   function submitForm(e) {
     e.preventDefault();
     const form = document.getElementById('brief-form');
@@ -643,25 +684,46 @@
         summary[k] = v;
       }
     }
-    console.log('Brief Summary:', JSON.stringify(summary, null, 2));
 
-    // Build readable text for copy
-    let text = '=== MICMAG DIGITAL SHOWROOM BRIEF ===\n\n';
+    // Build human-readable text
+    let text = '📋 MICMAG DIGITAL SHOWROOM BRIEF\n';
+    text += '================================\n\n';
     for (const [k, v] of Object.entries(summary)) {
-      text += `${k.replace(/_/g,' ').toUpperCase()}: ${Array.isArray(v) ? v.join(', ') : v}\n`;
+      const label = LABELS[k] || k.replace(/_/g, ' ');
+      const val = Array.isArray(v) ? v.join(', ') : v;
+      if (val && val.trim()) {
+        text += `▸ ${label}:\n  ${val}\n\n`;
+      }
     }
+    text += '================================\n';
+    text += 'Submitted via micmaghomes.com/showroom-brief.html';
 
-    // Try to copy to clipboard
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).catch(() => {});
-    }
+    _briefText = text;
 
-    form.style.display = 'none';
-    document.getElementById('thankyou').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Show delivery options
+    document.getElementById('delivery').style.display = 'block';
+    document.getElementById('delivery').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 
-    // Also log to console for easy retrieval
-    console.log(text);
+  // Send via WhatsApp to the implementor's number
+  function sendWhatsApp() {
+    const phone = '2347052940445'; // ← change to YOUR number if needed
+    const encoded = encodeURIComponent(_briefText);
+    const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    const url = isMobile
+      ? `whatsapp://send?phone=${phone}&text=${encoded}`
+      : `https://api.whatsapp.com/send?phone=${phone}&text=${encoded}`;
+    window.open(url, '_blank');
+  }
+
+  // Download as .txt file
+  function downloadTxt() {
+    const blob = new Blob([_briefText], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Micmag-Showroom-Brief.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
   }
 </script>
 
