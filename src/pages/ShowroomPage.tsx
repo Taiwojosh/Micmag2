@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import {
   Sparkles,
@@ -9,16 +9,17 @@ import {
   Bath,
   Phone,
   MessageCircle,
-  ShieldCheck,
-  Award,
-  Layers,
-  ChevronRight,
+  FileText,
+  Calculator,
+  Download,
+  Share2,
 } from 'lucide-react';
 import { usePageMeta } from '../utils/usePageMeta';
 import { openWhatsApp } from '../utils/whatsapp';
 import RoomCanvas from '../components/showroom/RoomCanvas';
 import ColorStudio from '../components/showroom/ColorStudio';
 import PaintCalculatorModal from '../components/showroom/PaintCalculatorModal';
+import PaletteSnapshotModal from '../components/showroom/PaletteSnapshotModal';
 import {
   ROOM_TYPES,
   DESIGNER_HARMONIES,
@@ -29,6 +30,7 @@ import {
   type FinishType,
   type ColorHarmony,
 } from '../data/showroomData';
+import { findClosestSandtexColor } from '../utils/colorTheory';
 
 export default function ShowroomPage() {
   usePageMeta({
@@ -46,12 +48,17 @@ export default function ShowroomPage() {
   const [colors, setColors] = useState<Record<SurfaceKey, string>>(activeRoom.defaultColors);
   const [activeSurface, setActiveSurface] = useState<SurfaceKey>('mainWall');
 
+  // History stack for Undo / Redo
+  const [history, setHistory] = useState<Record<SurfaceKey, string>[]>([activeRoom.defaultColors]);
+  const [historyIndex, setHistoryIndex] = useState(0);
+
   // Lighting and Finish modes
   const [lighting, setLighting] = useState<LightingMode>('daylight');
   const [finish, setFinish] = useState<FinishType>('matt');
 
-  // Calculator modal state
+  // Modals
   const [isCalcOpen, setIsCalcOpen] = useState(false);
+  const [isSnapshotOpen, setIsSnapshotOpen] = useState(false);
 
   // Switch Room Type
   const handleRoomChange = (roomId: RoomTypeId) => {
@@ -59,31 +66,86 @@ export default function ShowroomPage() {
     const room = ROOM_TYPES.find((r) => r.id === roomId);
     if (room) {
       setColors(room.defaultColors);
+      setHistory([room.defaultColors]);
+      setHistoryIndex(0);
     }
   };
 
+  // Push to history when color changes
+  const updateColorsWithHistory = useCallback(
+    (newColors: Record<SurfaceKey, string>) => {
+      const newHistory = history.slice(0, historyIndex + 1);
+      newHistory.push(newColors);
+      setHistory(newHistory);
+      setHistoryIndex(newHistory.length - 1);
+      setColors(newColors);
+    },
+    [history, historyIndex]
+  );
+
   // Apply single color to active surface
   const handleApplyColor = (surface: SurfaceKey, hex: string) => {
-    setColors((prev) => ({
-      ...prev,
+    const updated = {
+      ...colors,
       [surface]: hex,
-    }));
+    };
+    updateColorsWithHistory(updated);
   };
 
   // Apply full designer harmony (60-30-10)
   const handleApplyHarmony = (harmony: ColorHarmony) => {
-    setColors({
+    const updated = {
       mainWall: harmony.mainWall,
       accentWall: harmony.accentWall,
       ceiling: harmony.ceiling,
       trim: harmony.trim,
       accents: harmony.accents,
-    });
+    };
+    updateColorsWithHistory(updated);
   };
+
+  // Undo / Redo handlers
+  const canUndo = historyIndex > 0;
+  const canRedo = historyIndex < history.length - 1;
+
+  const handleUndo = useCallback(() => {
+    if (canUndo) {
+      const newIdx = historyIndex - 1;
+      setHistoryIndex(newIdx);
+      setColors(history[newIdx]);
+    }
+  }, [canUndo, historyIndex, history]);
+
+  const handleRedo = useCallback(() => {
+    if (canRedo) {
+      const newIdx = historyIndex + 1;
+      setHistoryIndex(newIdx);
+      setColors(history[newIdx]);
+    }
+  }, [canRedo, historyIndex, history]);
+
+  // Keyboard shortcut listener (Ctrl+Z / Ctrl+Y)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+        e.preventDefault();
+        if (e.shiftKey) {
+          handleRedo();
+        } else {
+          handleUndo();
+        }
+      } else if ((e.ctrlKey || e.metaKey) && e.key === 'y') {
+        e.preventDefault();
+        handleRedo();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleUndo, handleRedo]);
 
   // Reset to room defaults
   const handleReset = () => {
-    setColors(activeRoom.defaultColors);
+    updateColorsWithHistory(activeRoom.defaultColors);
   };
 
   // Randomize / Inspire
@@ -93,9 +155,7 @@ export default function ShowroomPage() {
   };
 
   // Active swatch name for calculator
-  const activeSwatchName =
-    SANDTEX_PALETTE.find((s) => s.hex.toLowerCase() === colors[activeSurface].toLowerCase())?.name ||
-    'Custom Mixed Shade';
+  const activeSwatchName = findClosestSandtexColor(colors[activeSurface]).name;
 
   return (
     <div className="min-h-screen bg-[#070c18] text-white pt-24 pb-20 selection:bg-amber-500/20 selection:text-amber-300 font-sans">
@@ -117,7 +177,13 @@ export default function ShowroomPage() {
           </div>
 
           {/* Quick CTA button */}
-          <div className="flex items-center gap-3 self-center sm:self-start lg:self-end">
+          <div className="flex items-center gap-3 self-center sm:self-start lg:self-end flex-wrap">
+            <button
+              onClick={() => setIsSnapshotOpen(true)}
+              className="flex items-center gap-2 px-4 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider bg-white/10 hover:bg-white/15 border border-white/15 text-white transition-all shadow-md"
+            >
+              <FileText size={14} /> Spec Card
+            </button>
             <button
               onClick={() =>
                 openWhatsApp(
@@ -182,6 +248,10 @@ export default function ShowroomPage() {
               onFinishChange={setFinish}
               onReset={handleReset}
               onRandomize={handleRandomize}
+              canUndo={canUndo}
+              canRedo={canRedo}
+              onUndo={handleUndo}
+              onRedo={handleRedo}
             />
 
             {/* Room Info & Tips */}
@@ -191,15 +261,26 @@ export default function ShowroomPage() {
                   <Sparkles size={14} />
                 </span>
                 <span>
-                  <strong>Tip:</strong> Click directly on any surface in the room above or select tabs in the color studio to paint.
+                  <strong>Tip:</strong> Click any room surface to paint it, or press <kbd className="px-1.5 py-0.5 rounded bg-black/40 border border-white/20 font-mono text-[10px]">Ctrl+Z</kbd> to undo.
                 </span>
               </div>
-              <button
-                onClick={() => setIsCalcOpen(true)}
-                className="text-amber-300 font-bold hover:underline flex-shrink-0"
-              >
-                Calculate Paint Needed →
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setIsSnapshotOpen(true)}
+                  className="text-amber-300 font-bold hover:underline flex-shrink-0 flex items-center gap-1"
+                >
+                  <FileText size={13} />
+                  <span>Spec Card</span>
+                </button>
+                <span className="text-white/20">•</span>
+                <button
+                  onClick={() => setIsCalcOpen(true)}
+                  className="text-amber-300 font-bold hover:underline flex-shrink-0 flex items-center gap-1"
+                >
+                  <Calculator size={13} />
+                  <span>Yield Calc →</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -213,6 +294,7 @@ export default function ShowroomPage() {
               onApplyHarmony={handleApplyHarmony}
               roomName={activeRoom.name}
               onOpenCalculator={() => setIsCalcOpen(true)}
+              onOpenSnapshot={() => setIsSnapshotOpen(true)}
             />
           </div>
         </div>
@@ -303,6 +385,16 @@ export default function ShowroomPage() {
         onClose={() => setIsCalcOpen(false)}
         selectedColorName={activeSwatchName}
         roomName={activeRoom.name}
+      />
+
+      {/* ── Palette Snapshot & Spec Card Modal ── */}
+      <PaletteSnapshotModal
+        isOpen={isSnapshotOpen}
+        onClose={() => setIsSnapshotOpen(false)}
+        room={activeRoom}
+        colors={colors}
+        lighting={lighting}
+        finish={finish}
       />
     </div>
   );

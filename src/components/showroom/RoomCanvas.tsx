@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sun, Sunset, Moon, Sparkles, RotateCcw, Eye, Layers, Check } from 'lucide-react';
+import {
+  Sun,
+  Sunset,
+  Moon,
+  Sparkles,
+  RotateCcw,
+  Eye,
+  Layers,
+  Check,
+  Undo2,
+  Redo2,
+  Maximize2,
+  Minimize2,
+} from 'lucide-react';
 import type { RoomTypeId, SurfaceKey, LightingMode, FinishType } from '../../data/showroomData';
 import { SURFACES } from '../../data/showroomData';
+import { findClosestSandtexColor } from '../../utils/colorTheory';
 
 interface RoomCanvasProps {
   roomType: RoomTypeId;
@@ -15,6 +29,10 @@ interface RoomCanvasProps {
   onFinishChange: (finish: FinishType) => void;
   onReset: () => void;
   onRandomize: () => void;
+  canUndo?: boolean;
+  canRedo?: boolean;
+  onUndo?: () => void;
+  onRedo?: () => void;
 }
 
 export default function RoomCanvas({
@@ -28,9 +46,14 @@ export default function RoomCanvas({
   onFinishChange,
   onReset,
   onRandomize,
+  canUndo = false,
+  canRedo = false,
+  onUndo,
+  onRedo,
 }: RoomCanvasProps) {
   const [hoveredSurface, setHoveredSurface] = useState<SurfaceKey | null>(null);
   const [showOriginal, setShowOriginal] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Lighting overlay styling
   const lightingOverlayStyles: Record<LightingMode, { filter: string; ambientColor: string; opacity: number }> = {
@@ -75,9 +98,13 @@ export default function RoomCanvas({
   };
 
   return (
-    <div className="relative flex flex-col w-full bg-[#0a1122] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+    <div
+      className={`relative flex flex-col w-full bg-[#0a1122] rounded-3xl overflow-hidden border border-white/10 shadow-2xl transition-all duration-300 ${
+        isFullscreen ? 'fixed inset-4 z-50 rounded-2xl max-w-none' : ''
+      }`}
+    >
       {/* ── Room Controls Bar ── */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5 bg-[#0d1629]/90 backdrop-blur-md border-b border-white/10 z-20">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 bg-[#0d1629]/95 backdrop-blur-md border-b border-white/10 z-20">
         {/* Surface Quick-Target indicator */}
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold text-white/50 uppercase tracking-widest hidden sm:inline">
@@ -91,11 +118,36 @@ export default function RoomCanvas({
             <span className="text-xs font-bold text-white tracking-wide">
               {SURFACES.find((s) => s.key === activeSurface)?.label}
             </span>
+            <span className="text-[10px] text-amber-300 font-mono hidden md:inline">
+              ({findClosestSandtexColor(colors[activeSurface]).name})
+            </span>
           </div>
         </div>
 
-        {/* Action Pills: Lighting & Textures */}
+        {/* Action Pills: Lighting, Finish, Undo/Redo */}
         <div className="flex items-center gap-2 flex-wrap">
+          {/* Undo / Redo */}
+          {onUndo && (
+            <div className="flex items-center bg-black/40 p-1 rounded-xl border border-white/10">
+              <button
+                onClick={onUndo}
+                disabled={!canUndo}
+                title="Undo color change (Ctrl+Z)"
+                className="p-1 rounded-lg text-white/70 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              >
+                <Undo2 size={13} />
+              </button>
+              <button
+                onClick={onRedo}
+                disabled={!canRedo}
+                title="Redo color change (Ctrl+Y)"
+                className="p-1 rounded-lg text-white/70 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              >
+                <Redo2 size={13} />
+              </button>
+            </div>
+          )}
+
           {/* Lighting Mode Selector */}
           <div className="flex items-center bg-black/40 p-1 rounded-xl border border-white/10">
             <button
@@ -186,12 +238,21 @@ export default function RoomCanvas({
           >
             <RotateCcw size={14} />
           </button>
+
+          {/* Fullscreen Expand */}
+          <button
+            onClick={() => setIsFullscreen(!isFullscreen)}
+            title={isFullscreen ? 'Exit Fullscreen' : 'Expand Fullscreen'}
+            className="p-1.5 rounded-xl text-white/50 hover:text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all hidden md:flex"
+          >
+            {isFullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+          </button>
         </div>
       </div>
 
       {/* ── Interactive SVG Room Scene ── */}
       <div
-        className="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[340px] max-h-[580px] overflow-hidden flex items-center justify-center select-none"
+        className="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[340px] max-h-[620px] overflow-hidden flex items-center justify-center select-none"
         style={{ filter: lightingOverlayStyles[lighting].filter }}
       >
         {/* Ambient room texture */}
@@ -325,7 +386,6 @@ export default function RoomCanvas({
               />
 
               {/* Baseboard Trim & Cornice */}
-              {/* Ceiling Cornice Trim */}
               <polyline
                 points="0,0 140,110 860,110 1000,0"
                 fill="none"
@@ -337,7 +397,6 @@ export default function RoomCanvas({
                 onMouseEnter={() => setHoveredSurface('trim')}
                 onMouseLeave={() => setHoveredSurface(null)}
               />
-              {/* Baseboard Skirting Trim */}
               <polyline
                 points="0,650 140,510 860,510 1000,650"
                 fill="none"
@@ -383,7 +442,6 @@ export default function RoomCanvas({
                   onMouseEnter={() => setHoveredSurface('accents')}
                   onMouseLeave={() => setHoveredSurface(null)}
                 />
-                {/* Abstract gold/geo art strokes */}
                 <circle cx="500" cy="240" r="45" fill={currentColorFor('accents')} opacity="0.35" />
                 <path d="M 400 270 Q 500 180 600 270" stroke={currentColorFor('accents')} strokeWidth="4" fill="none" />
                 <line x1="430" y1="210" x2="570" y2="210" stroke="#ffffff" strokeWidth="2" opacity="0.5" />
@@ -395,9 +453,7 @@ export default function RoomCanvas({
 
               {/* Modern Luxury Italian Sofa */}
               <g id="sofa-group" filter="url(#furnitureShadow)">
-                {/* Sofa Backrest */}
                 <rect x="260" y="410" width="480" height="90" rx="20" fill="#1c2030" stroke="rgba(255,255,255,0.1)" />
-                {/* Sofa Cushions / Pillows (Accents) */}
                 <rect
                   x="300"
                   y="435"
@@ -424,12 +480,9 @@ export default function RoomCanvas({
                   onMouseEnter={() => setHoveredSurface('accents')}
                   onMouseLeave={() => setHoveredSurface(null)}
                 />
-                {/* Sofa Base / Seat */}
                 <rect x="230" y="470" width="540" height="95" rx="24" fill="#252b42" stroke="rgba(255,255,255,0.15)" strokeWidth="2" />
-                {/* Sofa Armrests */}
                 <rect x="205" y="450" width="50" height="110" rx="16" fill="#1e2336" />
                 <rect x="745" y="450" width="50" height="110" rx="16" fill="#1e2336" />
-                {/* Modern Brass Sofa Legs */}
                 <line x1="240" y1="565" x2="235" y2="585" stroke="#c9a84c" strokeWidth="6" strokeLinecap="round" />
                 <line x1="760" y1="565" x2="765" y2="585" stroke="#c9a84c" strokeWidth="6" strokeLinecap="round" />
               </g>
@@ -442,11 +495,10 @@ export default function RoomCanvas({
                 <circle cx="850" cy="540" r="18" fill="#1a1a1a" stroke="#c9a84c" strokeWidth="3" />
               </g>
 
-              {/* Architectural Indoor Fiddle Leaf Fig Plant */}
+              {/* Indoor Plant */}
               <g id="indoor-plant">
                 <ellipse cx="150" cy="530" rx="22" ry="10" fill="#1a120b" />
                 <polygon points="135,530 165,530 160,575 140,575" fill="#fdf8f0" stroke="#c9a84c" strokeWidth="2" />
-                {/* Green Leaves */}
                 <path d="M 150 530 Q 120 450 100 420 Q 140 440 150 530" fill="#386641" />
                 <path d="M 150 530 Q 180 430 190 390 Q 160 430 150 530" fill="#2d5a35" />
                 <path d="M 150 530 Q 130 400 145 350 Q 165 410 150 530" fill="#4f772d" />
@@ -459,7 +511,6 @@ export default function RoomCanvas({
              ═══════════════════════════════════════════════════════════════════ */}
           {roomType === 'master-bedroom' && (
             <g id="scene-master-bedroom">
-              {/* Ceiling */}
               <polygon
                 points="0,0 1000,0 850,120 150,120"
                 fill={currentColorFor('ceiling')}
@@ -470,7 +521,6 @@ export default function RoomCanvas({
               />
               <polygon points="0,0 1000,0 850,120 150,120" fill="url(#ceilingGrad)" pointerEvents="none" />
 
-              {/* Left Main Side Wall */}
               <polygon
                 points="0,0 150,120 150,520 0,650"
                 fill={currentColorFor('mainWall')}
@@ -479,7 +529,6 @@ export default function RoomCanvas({
                 onMouseEnter={() => setHoveredSurface('mainWall')}
                 onMouseLeave={() => setHoveredSurface(null)}
               />
-              {/* Right Main Side Wall */}
               <polygon
                 points="1000,0 850,120 850,520 1000,650"
                 fill={currentColorFor('mainWall')}
@@ -489,7 +538,6 @@ export default function RoomCanvas({
                 onMouseLeave={() => setHoveredSurface(null)}
               />
 
-              {/* Headboard Center Accent Wall */}
               <polygon
                 points="150,120 850,120 850,520 150,520"
                 fill={currentColorFor('accentWall')}
@@ -499,10 +547,8 @@ export default function RoomCanvas({
                 onMouseLeave={() => setHoveredSurface(null)}
               />
 
-              {/* Floor */}
               <polygon points="0,650 150,520 850,520 1000,650" fill="#141118" />
 
-              {/* Trims */}
               <polyline
                 points="0,0 150,120 850,120 1000,0"
                 fill="none"
@@ -520,14 +566,12 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('trim')}
               />
 
-              {/* Architectural Wood Slats Behind Bed */}
               <g opacity="0.25">
                 {[...Array(14)].map((_, i) => (
                   <rect key={i} x={300 + i * 28} y="130" width="8" height="320" fill="#ffffff" />
                 ))}
               </g>
 
-              {/* Giant Luxury Upholstered Headboard */}
               <rect
                 x="260"
                 y="260"
@@ -540,10 +584,8 @@ export default function RoomCanvas({
                 filter="url(#furnitureShadow)"
               />
 
-              {/* King Size Bed Frame */}
               <polygon points="240,430 760,430 830,590 170,590" fill="#2d334d" filter="url(#furnitureShadow)" />
 
-              {/* Bed Duvet / Linen (Accents) */}
               <polygon
                 points="250,470 750,470 820,590 180,590"
                 fill={currentColorFor('accents')}
@@ -553,16 +595,13 @@ export default function RoomCanvas({
                 onMouseLeave={() => setHoveredSurface(null)}
               />
 
-              {/* Pillows */}
               <rect x="290" y="380" width="100" height="60" rx="10" fill="#ffffff" opacity="0.9" />
               <rect x="410" y="380" width="100" height="60" rx="10" fill="#ffffff" opacity="0.9" />
               <rect x="530" y="380" width="100" height="60" rx="10" fill="#ffffff" opacity="0.9" />
 
-              {/* Bedside Floating Tables */}
               <rect x="180" y="440" width="70" height="30" rx="4" fill="#181310" stroke="#c9a84c" strokeWidth="1" />
               <rect x="750" y="440" width="70" height="30" rx="4" fill="#181310" stroke="#c9a84c" strokeWidth="1" />
 
-              {/* Hanging Brass Bedside Pendants */}
               <line x1="215" y1="120" x2="215" y2="340" stroke="#c9a84c" strokeWidth="2" />
               <circle cx="215" cy="350" r="16" fill="#fff8e7" stroke="#c9a84c" strokeWidth="3" filter="url(#softGlow)" />
               <line x1="785" y1="120" x2="785" y2="340" stroke="#c9a84c" strokeWidth="2" />
@@ -575,7 +614,6 @@ export default function RoomCanvas({
              ═══════════════════════════════════════════════════════════════════ */}
           {roomType === 'dining-kitchen' && (
             <g id="scene-dining-kitchen">
-              {/* Ceiling */}
               <polygon
                 points="0,0 1000,0 840,110 160,110"
                 fill={currentColorFor('ceiling')}
@@ -583,14 +621,12 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('ceiling')}
               />
 
-              {/* Left Wall */}
               <polygon
                 points="0,0 160,110 160,520 0,650"
                 fill={currentColorFor('mainWall')}
                 className={getSurfaceClass('mainWall')}
                 onClick={() => onSelectSurface('mainWall')}
               />
-              {/* Right Wall / Kitchen Pantry Side */}
               <polygon
                 points="1000,0 840,110 840,520 1000,650"
                 fill={currentColorFor('mainWall')}
@@ -598,7 +634,6 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('mainWall')}
               />
 
-              {/* Center Feature Dining Backdrop */}
               <polygon
                 points="160,110 840,110 840,520 160,520"
                 fill={currentColorFor('accentWall')}
@@ -606,10 +641,8 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('accentWall')}
               />
 
-              {/* Floor */}
               <polygon points="0,650 160,520 840,520 1000,650" fill="#1b1816" />
 
-              {/* Trims */}
               <polyline
                 points="0,0 160,110 840,110 1000,0"
                 fill="none"
@@ -627,12 +660,10 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('trim')}
               />
 
-              {/* Modern Dining Table */}
               <polygon points="260,420 740,420 820,540 180,540" fill="#251a14" stroke="#c9a84c" strokeWidth="2" filter="url(#furnitureShadow)" />
               <line x1="220" y1="540" x2="220" y2="610" stroke="#110d0a" strokeWidth="12" />
               <line x1="780" y1="540" x2="780" y2="610" stroke="#110d0a" strokeWidth="12" />
 
-              {/* Dining Chairs with Accents */}
               <rect
                 x="310"
                 y="340"
@@ -664,7 +695,6 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('accents')}
               />
 
-              {/* Statement Trio Pendant Chandelier */}
               <line x1="380" y1="110" x2="380" y2="230" stroke="#c9a84c" strokeWidth="2" />
               <polygon points="360,260 400,260 410,230 350,230" fill="#181310" stroke="#c9a84c" strokeWidth="2" />
               <circle cx="380" cy="265" r="8" fill="#fffbe8" filter="url(#softGlow)" />
@@ -684,10 +714,8 @@ export default function RoomCanvas({
              ═══════════════════════════════════════════════════════════════════ */}
           {roomType === 'exterior-facade' && (
             <g id="scene-exterior-facade">
-              {/* Sky Background */}
               <rect x="0" y="0" width="1000" height="650" fill="#162035" />
 
-              {/* Roof Eaves / Overhang (Ceiling) */}
               <polygon
                 points="120,90 880,90 940,140 60,140"
                 fill={currentColorFor('ceiling')}
@@ -696,7 +724,6 @@ export default function RoomCanvas({
               />
               <line x1="60" y1="140" x2="940" y2="140" stroke={currentColorFor('trim')} strokeWidth="8" />
 
-              {/* Main Exterior Stucco Facade */}
               <rect
                 x="140"
                 y="140"
@@ -707,7 +734,6 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('mainWall')}
               />
 
-              {/* Accent Feature Columns / Portico Cladding */}
               <rect
                 x="440"
                 y="140"
@@ -719,12 +745,9 @@ export default function RoomCanvas({
                 filter="url(#furnitureShadow)"
               />
 
-              {/* Foundation Plinth (Ground) */}
               <rect x="0" y="560" width="1000" height="90" fill="#181c24" />
               <line x1="0" y1="560" x2="1000" y2="560" stroke={currentColorFor('trim')} strokeWidth="10" />
 
-              {/* Architectural Windows with Trim */}
-              {/* Upper Left Window */}
               <rect
                 x="200"
                 y="190"
@@ -738,7 +761,6 @@ export default function RoomCanvas({
               />
               <line x1="280" y1="190" x2="280" y2="300" stroke={currentColorFor('trim')} strokeWidth="6" />
 
-              {/* Upper Right Window */}
               <rect
                 x="660"
                 y="190"
@@ -752,7 +774,6 @@ export default function RoomCanvas({
               />
               <line x1="740" y1="190" x2="740" y2="300" stroke={currentColorFor('trim')} strokeWidth="6" />
 
-              {/* Grand Entrance Door (Accents) */}
               <rect
                 x="470"
                 y="360"
@@ -765,10 +786,8 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('accents')}
               />
               <rect x="490" y="380" width="60" height="80" fill="rgba(255,255,255,0.08)" />
-              {/* Long Brass Door Handle */}
               <line x1="555" y1="430" x2="555" y2="490" stroke="#c9a84c" strokeWidth="6" strokeLinecap="round" />
 
-              {/* Outdoor Sconce Lights */}
               <circle cx="430" cy="380" r="10" fill="#fff0c2" filter="url(#softGlow)" />
               <circle cx="610" cy="380" r="10" fill="#fff0c2" filter="url(#softGlow)" />
             </g>
@@ -779,7 +798,6 @@ export default function RoomCanvas({
              ═══════════════════════════════════════════════════════════════════ */}
           {roomType === 'bathroom' && (
             <g id="scene-bathroom">
-              {/* Ceiling */}
               <polygon
                 points="0,0 1000,0 840,110 160,110"
                 fill={currentColorFor('ceiling')}
@@ -787,14 +805,12 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('ceiling')}
               />
 
-              {/* Left Dry Wall */}
               <polygon
                 points="0,0 160,110 160,520 0,650"
                 fill={currentColorFor('mainWall')}
                 className={getSurfaceClass('mainWall')}
                 onClick={() => onSelectSurface('mainWall')}
               />
-              {/* Right Wall */}
               <polygon
                 points="1000,0 840,110 840,520 1000,650"
                 fill={currentColorFor('mainWall')}
@@ -802,7 +818,6 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('mainWall')}
               />
 
-              {/* Center Wet Vanity Feature Wall */}
               <polygon
                 points="160,110 840,110 840,520 160,520"
                 fill={currentColorFor('accentWall')}
@@ -810,10 +825,8 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('accentWall')}
               />
 
-              {/* Floor */}
               <polygon points="0,650 160,520 840,520 1000,650" fill="#121822" />
 
-              {/* Base Trims */}
               <polyline
                 points="0,0 160,110 840,110 1000,0"
                 fill="none"
@@ -831,18 +844,13 @@ export default function RoomCanvas({
                 onClick={() => onSelectSurface('trim')}
               />
 
-              {/* Backlit Circular Mirror (Accents) */}
               <circle cx="500" cy="270" r="95" fill="none" stroke="#ffffff" strokeWidth="8" filter="url(#softGlow)" />
               <circle cx="500" cy="270" r="90" fill="#111c2e" stroke={currentColorFor('accents')} strokeWidth="4" />
 
-              {/* Modern Floating Vanity with Basin */}
               <rect x="340" y="420" width="320" height="60" rx="8" fill="#1e2738" stroke="rgba(255,255,255,0.15)" filter="url(#furnitureShadow)" />
-              {/* Ceramic Basin */}
               <ellipse cx="500" cy="415" rx="80" ry="25" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="3" />
-              {/* European Brushed Gold Tap (Accents) */}
               <path d="M 500 370 L 500 340 Q 500 320 515 320 L 525 325" fill="none" stroke={currentColorFor('accents')} strokeWidth="6" strokeLinecap="round" />
 
-              {/* Freestanding Bathtub on Left */}
               <g id="freestanding-tub" filter="url(#furnitureShadow)">
                 <ellipse cx="220" cy="510" rx="85" ry="35" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="3" />
                 <path d="M 135 510 C 135 570 305 570 305 510" fill="#e2e8f0" />
@@ -858,13 +866,18 @@ export default function RoomCanvas({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 px-4 py-2 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white text-xs font-semibold shadow-xl flex items-center gap-2 pointer-events-none"
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 px-4 py-2 rounded-full bg-black/85 backdrop-blur-md border border-white/20 text-white text-xs font-semibold shadow-xl flex items-center gap-2 pointer-events-none"
             >
               <span
-                className="w-3 h-3 rounded-full border border-white/40"
+                className="w-3.5 h-3.5 rounded-full border border-white/40 shadow-inner"
                 style={{ backgroundColor: colors[hoveredSurface] }}
               />
-              <span>Click to select {SURFACES.find((s) => s.key === hoveredSurface)?.label}</span>
+              <span>
+                Click to paint {SURFACES.find((s) => s.key === hoveredSurface)?.label} •{' '}
+                <strong className="text-amber-300">
+                  {findClosestSandtexColor(colors[hoveredSurface]).name}
+                </strong>
+              </span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -874,6 +887,7 @@ export default function RoomCanvas({
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-3 bg-[#0d1629] border-t border-white/10">
         {SURFACES.map((surf) => {
           const isSelected = activeSurface === surf.key;
+          const currentSwatch = findClosestSandtexColor(colors[surf.key]);
           return (
             <button
               key={surf.key}
@@ -902,7 +916,7 @@ export default function RoomCanvas({
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-bold text-white truncate">{surf.label}</p>
-                <p className="text-[10px] text-white/50 truncate">{surf.recommendedFinish}</p>
+                <p className="text-[10px] text-amber-300/80 truncate">{currentSwatch.name}</p>
               </div>
             </button>
           );

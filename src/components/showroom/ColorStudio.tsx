@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Palette,
@@ -6,11 +6,15 @@ import {
   SlidersHorizontal,
   Search,
   Check,
-  Info,
   MessageCircle,
   Calculator,
-  Plus,
+  Bookmark,
+  BookmarkCheck,
+  Trash2,
+  Share2,
+  FileText,
   Layers,
+  Wand2,
 } from 'lucide-react';
 import {
   SANDTEX_PALETTE,
@@ -20,7 +24,16 @@ import {
   type ColorHarmony,
   type SurfaceKey,
 } from '../../data/showroomData';
+import { generateHarmoniesFromBase, findClosestSandtexColor } from '../../utils/colorTheory';
 import { openWhatsApp } from '../../utils/whatsapp';
+
+interface SavedRecipe {
+  id: string;
+  name: string;
+  roomName: string;
+  date: string;
+  colors: Record<SurfaceKey, string>;
+}
 
 interface ColorStudioProps {
   activeSurface: SurfaceKey;
@@ -30,9 +43,10 @@ interface ColorStudioProps {
   onApplyHarmony: (harmony: ColorHarmony) => void;
   roomName: string;
   onOpenCalculator: () => void;
+  onOpenSnapshot: () => void;
 }
 
-type TabMode = 'swatches' | 'harmonies' | 'mixer';
+type TabMode = 'swatches' | 'harmonies' | 'mixer' | 'saved';
 
 export default function ColorStudio({
   activeSurface,
@@ -42,28 +56,75 @@ export default function ColorStudio({
   onApplyHarmony,
   roomName,
   onOpenCalculator,
+  onOpenSnapshot,
 }: ColorStudioProps) {
   const [tab, setTab] = useState<TabMode>('swatches');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [customHex, setCustomHex] = useState<string>(colors[activeSurface]);
   const [brightnessOffset, setBrightnessOffset] = useState<number>(0);
+  const [savedRecipes, setSavedRecipes] = useState<SavedRecipe[]>([]);
+  const [recipeNameInput, setRecipeNameInput] = useState<string>('');
+  const [showSaveToast, setShowSaveToast] = useState(false);
+
+  // Load saved recipes from localStorage
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('micmag_saved_recipes');
+      if (stored) {
+        setSavedRecipes(JSON.parse(stored));
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  // Save recipe
+  const handleSaveRecipe = () => {
+    const name = recipeNameInput.trim() || `${roomName} Design ${savedRecipes.length + 1}`;
+    const newRecipe: SavedRecipe = {
+      id: `recipe-${Date.now()}`,
+      name,
+      roomName,
+      date: new Date().toLocaleDateString(),
+      colors: { ...colors },
+    };
+    const updated = [newRecipe, ...savedRecipes];
+    setSavedRecipes(updated);
+    try {
+      localStorage.setItem('micmag_saved_recipes', JSON.stringify(updated));
+    } catch {
+      // ignore
+    }
+    setRecipeNameInput('');
+    setShowSaveToast(true);
+    setTimeout(() => setShowSaveToast(false), 2500);
+  };
+
+  const handleDeleteRecipe = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const updated = savedRecipes.filter((r) => r.id !== id);
+    setSavedRecipes(updated);
+    try {
+      localStorage.setItem('micmag_saved_recipes', JSON.stringify(updated));
+    } catch {
+      // ignore
+    }
+  };
 
   // Find active swatch metadata
   const currentActiveHex = colors[activeSurface].toLowerCase();
   const activeSwatch = useMemo(() => {
     return (
-      SANDTEX_PALETTE.find((s) => s.hex.toLowerCase() === currentActiveHex) || {
-        id: 'custom',
-        name: 'Custom Mixed Shade',
-        hex: colors[activeSurface],
-        category: 'neutral' as const,
-        code: 'STX-CUSTOM',
-        productLine: 'Sandtex Custom Mix',
-        desc: 'Custom formulated designer tone ready for on-site batch mixing.',
-      }
+      SANDTEX_PALETTE.find((s) => s.hex.toLowerCase() === currentActiveHex) ||
+      findClosestSandtexColor(colors[activeSurface])
     );
   }, [currentActiveHex, colors, activeSurface]);
+
+  // Generated dynamic color theory harmonies based on the currently selected paint color
+  const dynamicHarmonies = useMemo(() => {
+    return generateHarmoniesFromBase(colors[activeSurface]);
+  }, [colors, activeSurface]);
 
   // Filter swatches
   const filteredSwatches = useMemo(() => {
@@ -81,7 +142,6 @@ export default function ColorStudio({
   // Handle custom tint slider
   const handleBrightnessChange = (val: number) => {
     setBrightnessOffset(val);
-    // Simple hex brightness shift
     try {
       const num = parseInt(customHex.replace('#', ''), 16);
       let r = (num >> 16) + val;
@@ -102,13 +162,13 @@ export default function ColorStudio({
     const text =
       `🎨 *Micmag Digital Showroom — Paint Inquiry*\n\n` +
       `Hello Micmag! I am customizing colors for my *${roomName}*:\n\n` +
-      `• *Main Wall:* ${colors.mainWall}\n` +
-      `• *Accent Feature Wall:* ${colors.accentWall}\n` +
-      `• *Ceiling:* ${colors.ceiling}\n` +
-      `• *Trim & Mouldings:* ${colors.trim}\n` +
+      `• *Main Wall:* ${colors.mainWall} (${findClosestSandtexColor(colors.mainWall).name})\n` +
+      `• *Accent Feature Wall:* ${colors.accentWall} (${findClosestSandtexColor(colors.accentWall).name})\n` +
+      `• *Ceiling:* ${colors.ceiling} (${findClosestSandtexColor(colors.ceiling).name})\n` +
+      `• *Trim & Mouldings:* ${colors.trim} (${findClosestSandtexColor(colors.trim).name})\n` +
       `• *Accents:* ${colors.accents}\n\n` +
-      `📌 *Currently Selected Paint:* ${activeSwatch.name} (${activeSwatch.code}) for ${activeInfo?.label}\n` +
-      `• Product: ${activeSwatch.productLine}\n\n` +
+      `📌 *Selected Topcoat:* ${activeSwatch.name} (${activeSwatch.code}) for ${activeInfo?.label}\n` +
+      `• Recommended Finish: ${activeInfo?.recommendedFinish}\n\n` +
       `Could you please confirm availability and provide a direct quote for supply/application?`;
 
     openWhatsApp('2347052940445', text);
@@ -128,7 +188,7 @@ export default function ColorStudio({
             }`}
           >
             <Palette size={14} />
-            <span>Sandtex Colors</span>
+            <span className="hidden sm:inline">Sandtex</span> Colors
           </button>
           <button
             onClick={() => setTab('harmonies')}
@@ -139,7 +199,7 @@ export default function ColorStudio({
             }`}
           >
             <Sparkles size={14} />
-            <span>Designer Mixes</span>
+            <span className="hidden sm:inline">Designer</span> Mixes
           </button>
           <button
             onClick={() => setTab('mixer')}
@@ -150,7 +210,23 @@ export default function ColorStudio({
             }`}
           >
             <SlidersHorizontal size={14} />
-            <span>Color Mixer</span>
+            Mixer
+          </button>
+          <button
+            onClick={() => setTab('saved')}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all relative ${
+              tab === 'saved'
+                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
+                : 'text-white/60 hover:text-white'
+            }`}
+          >
+            <Bookmark size={14} />
+            <span>Saved</span>
+            {savedRecipes.length > 0 && (
+              <span className="w-4 h-4 rounded-full bg-amber-500 text-black text-[9px] font-bold flex items-center justify-center">
+                {savedRecipes.length}
+              </span>
+            )}
           </button>
         </div>
       </div>
@@ -236,14 +312,59 @@ export default function ColorStudio({
           </div>
         )}
 
-        {/* TAB 2: DESIGNER MIXES / HARMONIES */}
+        {/* TAB 2: DESIGNER MIXES & COLOR HARMONY ENGINE */}
         {tab === 'harmonies' && (
-          <div className="space-y-4">
-            <p className="text-xs text-white/60 leading-relaxed">
-              Curated 60-30-10 interior designer mixtures combining dominant wall, accent feature, ceiling, and trim.
-            </p>
+          <div className="space-y-5">
+            {/* Dynamic Generated Harmonies from Active Swatch */}
+            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-3">
+              <div className="flex items-center gap-2 text-amber-300 font-bold text-xs">
+                <Wand2 size={14} />
+                <span>Color Science Harmonies for {activeSwatch.name}</span>
+              </div>
+              <p className="text-[11.5px] text-white/60">
+                Mathematically balanced combinations calculated from your active color:
+              </p>
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                {Object.entries(dynamicHarmonies).map(([key, h]) => (
+                  <button
+                    key={key}
+                    onClick={() =>
+                      onApplyHarmony({
+                        id: key,
+                        name: h.name,
+                        tagline: 'Scientific Color Harmony',
+                        description: '',
+                        mainWall: h.mainWall,
+                        accentWall: h.accentWall,
+                        ceiling: h.ceiling,
+                        trim: h.trim,
+                        accents: h.accents,
+                        tags: [],
+                      })
+                    }
+                    className="flex flex-col p-2.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 hover:border-amber-400/50 text-left transition-all group"
+                  >
+                    <span className="text-xs font-bold text-white group-hover:text-amber-300 truncate">
+                      {h.name}
+                    </span>
+                    <div className="flex gap-1.5 mt-2 h-4 w-full rounded overflow-hidden">
+                      <div className="flex-1" style={{ backgroundColor: h.mainWall }} title="Main Wall" />
+                      <div className="flex-1" style={{ backgroundColor: h.accentWall }} title="Accent Wall" />
+                      <div className="flex-1" style={{ backgroundColor: h.ceiling }} title="Ceiling" />
+                      <div className="flex-1" style={{ backgroundColor: h.trim }} title="Trim" />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Curated Pre-set Themes */}
             <div className="space-y-3">
+              <span className="text-xs font-bold text-white/60 uppercase tracking-widest block">
+                Curated Nigerian Luxury Palettes
+              </span>
+
               {DESIGNER_HARMONIES.map((harmony) => (
                 <motion.div
                   key={harmony.id}
@@ -265,22 +386,34 @@ export default function ColorStudio({
 
                   <p className="text-xs text-white/50 leading-relaxed mb-3">{harmony.description}</p>
 
-                  {/* 5-part Color Strip */}
+                  {/* 4-part Color Strip */}
                   <div className="flex items-center gap-2 p-2 rounded-xl bg-black/30 border border-white/5">
                     <div className="flex-1 flex flex-col items-center">
-                      <div className="w-full h-6 rounded-lg border border-white/20" style={{ backgroundColor: harmony.mainWall }} />
+                      <div
+                        className="w-full h-6 rounded-lg border border-white/20"
+                        style={{ backgroundColor: harmony.mainWall }}
+                      />
                       <span className="text-[9px] text-white/40 mt-1">Main (60%)</span>
                     </div>
                     <div className="flex-1 flex flex-col items-center">
-                      <div className="w-full h-6 rounded-lg border border-white/20" style={{ backgroundColor: harmony.accentWall }} />
+                      <div
+                        className="w-full h-6 rounded-lg border border-white/20"
+                        style={{ backgroundColor: harmony.accentWall }}
+                      />
                       <span className="text-[9px] text-white/40 mt-1">Accent (30%)</span>
                     </div>
                     <div className="flex-1 flex flex-col items-center">
-                      <div className="w-full h-6 rounded-lg border border-white/20" style={{ backgroundColor: harmony.ceiling }} />
+                      <div
+                        className="w-full h-6 rounded-lg border border-white/20"
+                        style={{ backgroundColor: harmony.ceiling }}
+                      />
                       <span className="text-[9px] text-white/40 mt-1">Ceiling</span>
                     </div>
                     <div className="flex-1 flex flex-col items-center">
-                      <div className="w-full h-6 rounded-lg border border-white/20" style={{ backgroundColor: harmony.trim }} />
+                      <div
+                        className="w-full h-6 rounded-lg border border-white/20"
+                        style={{ backgroundColor: harmony.trim }}
+                      />
                       <span className="text-[9px] text-white/40 mt-1">Trim (10%)</span>
                     </div>
                   </div>
@@ -337,7 +470,98 @@ export default function ColorStudio({
                   className="w-full accent-amber-400 cursor-pointer"
                 />
               </div>
+
+              {/* Closest Sandtex Match Badge */}
+              <div className="p-3 rounded-xl bg-black/30 border border-white/10 flex items-center justify-between text-xs">
+                <span className="text-white/60">Closest Sandtex Standard:</span>
+                <span className="font-bold text-amber-300">
+                  {findClosestSandtexColor(colors[activeSurface]).name}
+                </span>
+              </div>
             </div>
+          </div>
+        )}
+
+        {/* TAB 4: SAVED RECIPES */}
+        {tab === 'saved' && (
+          <div className="space-y-4">
+            {/* Save current recipe box */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+              <label className="text-xs font-bold text-white/70 block">Save Current Room Colors</label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder={`e.g. ${roomName} Scheme A`}
+                  value={recipeNameInput}
+                  onChange={(e) => setRecipeNameInput(e.target.value)}
+                  className="flex-1 px-3 py-2 rounded-xl bg-black/40 border border-white/15 text-xs text-white placeholder-white/40 focus:outline-none focus:border-amber-400"
+                />
+                <button
+                  onClick={handleSaveRecipe}
+                  className="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black hover:bg-amber-400 transition-all flex items-center gap-1.5"
+                >
+                  <BookmarkCheck size={14} /> Save
+                </button>
+              </div>
+              {showSaveToast && (
+                <p className="text-xs text-emerald-400 font-semibold animate-pulse">
+                  ✓ Recipe saved to your collection!
+                </p>
+              )}
+            </div>
+
+            {/* Saved list */}
+            {savedRecipes.length === 0 ? (
+              <div className="p-8 text-center text-white/40 text-xs">
+                <Bookmark size={24} className="mx-auto mb-2 opacity-30" />
+                <p>No saved recipes yet. Design your room and save it for future reference!</p>
+              </div>
+            ) : (
+              <div className="space-y-2.5">
+                {savedRecipes.map((recipe) => (
+                  <div
+                    key={recipe.id}
+                    onClick={() => {
+                      onApplyHarmony({
+                        id: recipe.id,
+                        name: recipe.name,
+                        tagline: recipe.roomName,
+                        description: '',
+                        mainWall: recipe.colors.mainWall,
+                        accentWall: recipe.colors.accentWall,
+                        ceiling: recipe.colors.ceiling,
+                        trim: recipe.colors.trim,
+                        accents: recipe.colors.accents,
+                        tags: [],
+                      });
+                    }}
+                    className="p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-amber-400/40 transition-all cursor-pointer flex items-center justify-between gap-3 group"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <h5 className="text-xs font-bold text-white truncate">{recipe.name}</h5>
+                        <span className="text-[10px] text-white/40">{recipe.date}</span>
+                      </div>
+                      {/* Swatches preview */}
+                      <div className="flex gap-1.5 mt-2 h-4 w-32 rounded overflow-hidden border border-white/10">
+                        <div className="flex-1" style={{ backgroundColor: recipe.colors.mainWall }} />
+                        <div className="flex-1" style={{ backgroundColor: recipe.colors.accentWall }} />
+                        <div className="flex-1" style={{ backgroundColor: recipe.colors.ceiling }} />
+                        <div className="flex-1" style={{ backgroundColor: recipe.colors.trim }} />
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={(e) => handleDeleteRecipe(recipe.id, e)}
+                      className="p-2 rounded-lg text-white/30 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                      title="Delete recipe"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -358,13 +582,23 @@ export default function ColorStudio({
               </div>
             </div>
 
-            <button
-              onClick={onOpenCalculator}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-amber-300 font-semibold transition-all"
-            >
-              <Calculator size={13} />
-              <span>Yield Calc</span>
-            </button>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={onOpenSnapshot}
+                title="Export Specification Card"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-amber-300 font-semibold transition-all"
+              >
+                <FileText size={14} />
+              </button>
+              <button
+                onClick={onOpenCalculator}
+                title="Paint Calculator"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-amber-300 font-semibold transition-all"
+              >
+                <Calculator size={13} />
+                <span className="hidden sm:inline">Calc</span>
+              </button>
+            </div>
           </div>
 
           <p className="text-xs text-white/60 leading-relaxed">{activeSwatch.desc}</p>
