@@ -1,398 +1,308 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ShoppingBag, X, Phone, MessageCircle, Sparkles, ExternalLink } from 'lucide-react';
-
-import ShowroomHero from '../components/showroom/ShowroomHero';
-import DivisionSelector, { Division } from '../components/showroom/DivisionSelector';
-import ShowroomCard, { ShowroomProduct } from '../components/showroom/ShowroomCard';
-import SwatchRail from '../components/showroom/SwatchRail';
-import ShowroomBasket, { BasketItem } from '../components/showroom/ShowroomBasket';
-
-import { PAINT_PRODUCTS } from '../data/productsData';
-import { FITTINGS_PRODUCTS } from '../data/productsData';
-import { CAPLUX_PRODUCTS } from '../data/capluxProducts';
+import React, { useState, useCallback } from 'react';
+import { motion } from 'motion/react';
+import {
+  Sparkles,
+  Sofa,
+  BedDouble,
+  Utensils,
+  Home,
+  Bath,
+  Phone,
+  MessageCircle,
+  ShieldCheck,
+  Award,
+  Layers,
+  ChevronRight,
+} from 'lucide-react';
 import { usePageMeta } from '../utils/usePageMeta';
-
-// ── Build unified product lists ──────────────────────────────────────────────
-
-const SANDTEX_SHOWROOM: ShowroomProduct[] = PAINT_PRODUCTS.map((p, i) => ({
-  id: `sandtex-${i}`,
-  name: p.name,
-  desc: p.desc,
-  tag: p.tag,
-  coverage: p.coverage,
-  image: p.image,
-  fallback: p.fallback,
-  brand: 'sandtex',
-}));
-
-const CAPLUX_SHOWROOM: ShowroomProduct[] = CAPLUX_PRODUCTS.map((p, i) => ({
-  id: `caplux-${i}`,
-  name: p.name,
-  desc: p.desc,
-  tag: p.tag,
-  coverage: p.coverage,
-  image: p.image,
-  fallback: p.fallback,
-  brand: 'caplux',
-}));
-
-const BATHROOM_SHOWROOM: ShowroomProduct[] = FITTINGS_PRODUCTS.map((p, i) => ({
-  id: `bathroom-${i}`,
-  name: p.name,
-  desc: p.desc,
-  tag: p.tag,
-  image: p.image,
-  fallback: p.fallback,
-  brand: 'bathroom',
-}));
-
-const DIVISION_PRODUCTS: Record<Division, ShowroomProduct[]> = {
-  sandtex: SANDTEX_SHOWROOM,
-  caplux: CAPLUX_SHOWROOM,
-  bathroom: BATHROOM_SHOWROOM,
-};
-
-const DIVISION_LABELS: Record<Division, string> = {
-  sandtex: 'Paint Studio — Sandtex Premium Paints',
-  caplux: 'Prep Lab — Caplux Surface Systems',
-  bathroom: 'Bathroom Suite — Luxury European Fittings',
-};
-
-const DIVISION_ACCENT: Record<Division, string> = {
-  sandtex: '#ea6c00',
-  caplux: '#3b82f6',
-  bathroom: '#10b981',
-};
-
-// ── Detail Modal ──────────────────────────────────────────────────────────────
-
-interface DetailModalProps {
-  product: ShowroomProduct | null;
-  onClose: () => void;
-  onAddToBasket: (product: ShowroomProduct) => void;
-}
-
-function DetailModal({ product, onClose, onAddToBasket }: DetailModalProps) {
-  const [imgSrc, setImgSrc] = useState(product?.image ?? '');
-  if (!product) return null;
-  return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)' }}
-      >
-        <motion.div
-          initial={{ scale: 0.9, y: 20 }}
-          animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.9, y: 20 }}
-          onClick={(e) => e.stopPropagation()}
-          className="w-full max-w-2xl rounded-2xl overflow-hidden"
-          style={{ background: '#0d1526', border: '1px solid rgba(255,255,255,0.1)', maxHeight: '90vh', overflowY: 'auto' }}
-        >
-          {/* Image */}
-          <div className="relative h-64">
-            <img
-              src={imgSrc}
-              alt={product.name}
-              onError={() => setImgSrc(product.fallback)}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #0d1526 0%, transparent 50%)' }} />
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors"
-              style={{ background: 'rgba(0,0,0,0.5)', color: '#fff' }}
-            >
-              <X size={18} />
-            </button>
-          </div>
-
-          {/* Content */}
-          <div className="p-8">
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <p className="text-xs uppercase tracking-widest mb-1" style={{ color: DIVISION_ACCENT[product.brand] }}>
-                  {product.tag}
-                </p>
-                <h2 className="font-serif text-2xl text-white leading-snug">{product.name}</h2>
-              </div>
-              {product.coverage && (
-                <div className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold"
-                  style={{ background: 'rgba(201,168,76,0.12)', color: '#c9a84c', border: '1px solid rgba(201,168,76,0.25)' }}>
-                  {product.coverage} coverage
-                </div>
-              )}
-            </div>
-            <p className="text-sm leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.6)' }}>
-              {product.desc}
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => { onAddToBasket(product); onClose(); }}
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white transition-all"
-                style={{ background: 'linear-gradient(135deg, #c9a84c, #a0762e)' }}
-              >
-                <ShoppingBag size={15} /> Add to Inquiry Basket
-              </button>
-              <a
-                href={`https://wa.me/2347052940445?text=${encodeURIComponent(`Hi Micmag! I'd like to know more about: ${product.name}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold transition-colors"
-                style={{ background: 'rgba(37,211,102,0.12)', color: '#25d366', border: '1px solid rgba(37,211,102,0.25)' }}
-              >
-                <MessageCircle size={15} /> Ask
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-}
-
-// ── Main Page ─────────────────────────────────────────────────────────────────
+import { openWhatsApp } from '../utils/whatsapp';
+import RoomCanvas from '../components/showroom/RoomCanvas';
+import ColorStudio from '../components/showroom/ColorStudio';
+import PaintCalculatorModal from '../components/showroom/PaintCalculatorModal';
+import {
+  ROOM_TYPES,
+  DESIGNER_HARMONIES,
+  SANDTEX_PALETTE,
+  type RoomTypeId,
+  type SurfaceKey,
+  type LightingMode,
+  type FinishType,
+  type ColorHarmony,
+} from '../data/showroomData';
 
 export default function ShowroomPage() {
   usePageMeta({
-    title: 'Digital Showroom',
-    description: "Explore Micmag's premium Sandtex paints, Caplux surface systems, and luxury European bathroom fittings in our interactive digital showroom.",
-    ogTitle: 'Micmag Digital Showroom — Premium Paints & Luxury Fittings',
+    title: 'Digital Showroom & Room Visualizer | Test Sandtex Paints & Colors',
+    description:
+      "Select, test, and visualize Sandtex paint colors in your living room, bedroom, kitchen, exterior facade, and bathroom in Micmag's interactive 3D digital showroom.",
+    ogTitle: 'Micmag Digital Showroom — Interactive Room Color Visualizer',
   });
 
+  // Active room state
+  const [activeRoomId, setActiveRoomId] = useState<RoomTypeId>('living-room');
+  const activeRoom = ROOM_TYPES.find((r) => r.id === activeRoomId) || ROOM_TYPES[0];
 
-  const [heroVisible, setHeroVisible] = useState(true);
-  const [activeDivision, setActiveDivision] = useState<Division>('sandtex');
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [basket, setBasket] = useState<BasketItem[]>([]);
-  const [isBasketOpen, setIsBasketOpen] = useState(false);
-  const [detailProduct, setDetailProduct] = useState<ShowroomProduct | null>(null);
-  const [toast, setToast] = useState<string | null>(null);
+  // Room surface colors
+  const [colors, setColors] = useState<Record<SurfaceKey, string>>(activeRoom.defaultColors);
+  const [activeSurface, setActiveSurface] = useState<SurfaceKey>('mainWall');
 
-  const floorRef = useRef<HTMLDivElement>(null);
+  // Lighting and Finish modes
+  const [lighting, setLighting] = useState<LightingMode>('daylight');
+  const [finish, setFinish] = useState<FinishType>('matt');
 
-  const showToast = (msg: string) => {
-    setToast(msg);
-    setTimeout(() => setToast(null), 2500);
+  // Calculator modal state
+  const [isCalcOpen, setIsCalcOpen] = useState(false);
+
+  // Switch Room Type
+  const handleRoomChange = (roomId: RoomTypeId) => {
+    setActiveRoomId(roomId);
+    const room = ROOM_TYPES.find((r) => r.id === roomId);
+    if (room) {
+      setColors(room.defaultColors);
+    }
   };
 
-  const handleEnter = useCallback(() => {
-    setHeroVisible(false);
-    setTimeout(() => floorRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
-  }, []);
+  // Apply single color to active surface
+  const handleApplyColor = (surface: SurfaceKey, hex: string) => {
+    setColors((prev) => ({
+      ...prev,
+      [surface]: hex,
+    }));
+  };
 
-  const handleAddToBasket = useCallback((product: ShowroomProduct) => {
-    setBasket((prev) => {
-      const existing = prev.find((i) => i.product.id === product.id && i.color === (selectedColor ?? undefined));
-      if (existing) {
-        return prev.map((i) =>
-          i.product.id === product.id && i.color === (selectedColor ?? undefined)
-            ? { ...i, quantity: i.quantity + 1 }
-            : i
-        );
-      }
-      return [...prev, { product, color: selectedColor ?? undefined, quantity: 1 }];
+  // Apply full designer harmony (60-30-10)
+  const handleApplyHarmony = (harmony: ColorHarmony) => {
+    setColors({
+      mainWall: harmony.mainWall,
+      accentWall: harmony.accentWall,
+      ceiling: harmony.ceiling,
+      trim: harmony.trim,
+      accents: harmony.accents,
     });
-    showToast(`"${product.name.split(' ').slice(0, 3).join(' ')}" added to basket`);
-  }, [selectedColor]);
-
-  const handleRemove = useCallback((productId: string) => {
-    setBasket((prev) => prev.filter((i) => i.product.id !== productId));
-  }, []);
-
-  const handleDivisionChange = (div: Division) => {
-    setActiveDivision(div);
-    setSelectedColor(null);
   };
 
-  const products = DIVISION_PRODUCTS[activeDivision];
-  const basketCount = basket.reduce((a, i) => a + i.quantity, 0);
+  // Reset to room defaults
+  const handleReset = () => {
+    setColors(activeRoom.defaultColors);
+  };
+
+  // Randomize / Inspire
+  const handleRandomize = () => {
+    const randomHarmony = DESIGNER_HARMONIES[Math.floor(Math.random() * DESIGNER_HARMONIES.length)];
+    handleApplyHarmony(randomHarmony);
+  };
+
+  // Active swatch name for calculator
+  const activeSwatchName =
+    SANDTEX_PALETTE.find((s) => s.hex.toLowerCase() === colors[activeSurface].toLowerCase())?.name ||
+    'Custom Mixed Shade';
 
   return (
-    <div style={{ background: '#080e1c', minHeight: '100vh' }}>
+    <div className="min-h-screen bg-[#070c18] text-white pt-24 pb-20 selection:bg-amber-500/20 selection:text-amber-300 font-sans">
+      {/* ── Top Hero & Intro ── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center sm:text-left">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold uppercase tracking-widest mb-3">
+              <Sparkles size={13} />
+              Interactive Digital Showroom
+            </div>
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+              Test Colors & Finishes in Your Space
+            </h1>
+            <p className="text-sm sm:text-base text-white/60 mt-2 max-w-2xl leading-relaxed">
+              Experience authentic Sandtex paints and Caplux prep systems. Click any wall, trim, or ceiling surface to
+              test colors, try designer palettes, and preview lighting.
+            </p>
+          </div>
 
-      {/* Hero */}
-      <AnimatePresence>
-        {heroVisible && (
-          <motion.div exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5 }}>
-            <ShowroomHero onEnter={handleEnter} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Showroom Floor */}
-      <div ref={floorRef}>
-        {/* Division Selector */}
-        <DivisionSelector active={activeDivision} onChange={handleDivisionChange} />
-
-        {/* Floor Section */}
-        <section className="py-16 px-6" style={{ background: '#080e1c' }}>
-          <div className="max-w-7xl mx-auto">
-
-            {/* Floor header */}
-            <motion.div
-              key={activeDivision}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10"
+          {/* Quick CTA button */}
+          <div className="flex items-center gap-3 self-center sm:self-start lg:self-end">
+            <button
+              onClick={() =>
+                openWhatsApp(
+                  '2347052940445',
+                  `Hi Micmag! I am testing colors in the Digital Showroom and would like to request a free physical color chart or on-site paint consultation.`
+                )
+              }
+              className="flex items-center gap-2 px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all hover:scale-105"
+              style={{ background: 'linear-gradient(135deg, #c9a84c 0%, #966e25 100%)' }}
             >
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest mb-1.5"
-                  style={{ color: DIVISION_ACCENT[activeDivision] }}>
-                  Showroom Floor
-                </p>
-                <h2 className="font-serif text-2xl md:text-3xl text-white">
-                  {DIVISION_LABELS[activeDivision]}
-                </h2>
-                <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                  {products.length} products available
-                </p>
-              </div>
+              <MessageCircle size={15} /> Request Free Color Chart
+            </button>
+          </div>
+        </div>
 
-              {/* Basket FAB */}
+        {/* ── Room Type Navigation Pills ── */}
+        <div className="flex items-center gap-2.5 overflow-x-auto pt-6 pb-2 no-scrollbar">
+          {ROOM_TYPES.map((room) => {
+            const isSelected = activeRoomId === room.id;
+            const Icon =
+              room.id === 'living-room'
+                ? Sofa
+                : room.id === 'master-bedroom'
+                ? BedDouble
+                : room.id === 'dining-kitchen'
+                ? Utensils
+                : room.id === 'exterior-facade'
+                ? Home
+                : Bath;
+
+            return (
               <button
-                id="showroom-basket-fab"
-                onClick={() => setIsBasketOpen(true)}
-                className="relative flex items-center gap-2.5 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105"
-                style={{
-                  background: 'rgba(201,168,76,0.1)',
-                  border: '1px solid rgba(201,168,76,0.3)',
-                  color: '#c9a84c',
-                }}
+                key={room.id}
+                onClick={() => handleRoomChange(room.id)}
+                className={`flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border text-xs font-bold tracking-wide transition-all flex-shrink-0 ${
+                  isSelected
+                    ? 'bg-amber-500 text-black border-amber-400 shadow-lg shadow-amber-500/20 scale-[1.02]'
+                    : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/10 hover:text-white'
+                }`}
               >
-                <ShoppingBag size={16} />
-                Inquiry Basket
-                {basketCount > 0 && (
-                  <span className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center rounded-full text-xs font-bold text-white"
-                    style={{ background: '#c9a84c' }}>
-                    {basketCount}
-                  </span>
-                )}
+                <Icon size={16} />
+                <span>{room.name}</span>
               </button>
-            </motion.div>
+            );
+          })}
+        </div>
+      </section>
 
-            {/* Color Swatches (Sandtex only) */}
-            <AnimatePresence mode="wait">
-              {activeDivision === 'sandtex' && (
-                <motion.div
-                  key="swatches"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mb-10 rounded-2xl p-5 overflow-hidden"
-                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
-                >
-                  <SwatchRail selected={selectedColor} onSelect={setSelectedColor} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+      {/* ── Main Visualizer & Color Studio Workspace ── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left / Main Column: Room Canvas */}
+          <div className="lg:col-span-7 xl:col-span-8 space-y-4">
+            <RoomCanvas
+              roomType={activeRoomId}
+              colors={colors}
+              activeSurface={activeSurface}
+              onSelectSurface={setActiveSurface}
+              lighting={lighting}
+              onLightingChange={setLighting}
+              finish={finish}
+              onFinishChange={setFinish}
+              onReset={handleReset}
+              onRandomize={handleRandomize}
+            />
 
-            {/* Product Grid */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeDivision}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            {/* Room Info & Tips */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/70">
+              <div className="flex items-center gap-2.5">
+                <span className="p-1.5 rounded-lg bg-amber-500/20 text-amber-300">
+                  <Sparkles size={14} />
+                </span>
+                <span>
+                  <strong>Tip:</strong> Click directly on any surface in the room above or select tabs in the color studio to paint.
+                </span>
+              </div>
+              <button
+                onClick={() => setIsCalcOpen(true)}
+                className="text-amber-300 font-bold hover:underline flex-shrink-0"
               >
-                {products.map((product, i) => (
-                  <ShowroomCard
-                    key={product.id}
-                    product={product}
-                    index={i}
-                    onAddToBasket={handleAddToBasket}
-                    onViewDetail={setDetailProduct}
-                  />
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                Calculate Paint Needed →
+              </button>
+            </div>
           </div>
-        </section>
 
-        {/* CTA Band */}
-        <section className="py-20 px-6" style={{ background: 'linear-gradient(135deg, #1a2c5b 0%, #0d1526 50%, #1a0808 100%)' }}>
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border"
-                style={{ background: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)', color: '#f0d898' }}>
-                <Sparkles size={13} />
-                <span className="text-xs font-semibold uppercase tracking-widest">Request a Site Visit</span>
-              </div>
-
-              <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
-                Ready to Transform Your Space?
-              </h2>
-              <p className="text-lg mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                Our specialists will visit your site, assess your needs, and provide a tailored quote — completely free.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="https://wa.me/2347052940445?text=Hi%20Micmag!%20I%27d%20like%20to%20book%20a%20free%20site%20visit."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-widest transition-all duration-200 hover:scale-105"
-                  style={{ background: 'linear-gradient(135deg, #25d366, #128c7e)', color: '#fff', boxShadow: '0 8px 30px rgba(37,211,102,0.3)' }}
-                >
-                  <MessageCircle size={16} /> Book Site Visit on WhatsApp
-                </a>
-                <a
-                  href="tel:+2347052940445"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-widest border transition-all duration-200 hover:bg-white/10"
-                  style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.8)' }}
-                >
-                  <Phone size={16} /> Call 07052940445
-                </a>
-              </div>
-            </motion.div>
+          {/* Right Column: Color Studio, Swatches & Mixer */}
+          <div className="lg:col-span-5 xl:col-span-4 min-h-[580px] h-full">
+            <ColorStudio
+              activeSurface={activeSurface}
+              onSelectSurface={setActiveSurface}
+              colors={colors}
+              onApplyColor={handleApplyColor}
+              onApplyHarmony={handleApplyHarmony}
+              roomName={activeRoom.name}
+              onOpenCalculator={() => setIsCalcOpen(true)}
+            />
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      {/* Toast */}
-      <AnimatePresence>
-        {toast && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, x: '-50%' }}
-            animate={{ opacity: 1, y: 0, x: '-50%' }}
-            exit={{ opacity: 0, y: 20, x: '-50%' }}
-            className="fixed bottom-6 left-1/2 z-50 px-5 py-3 rounded-xl text-sm font-semibold text-white shadow-xl"
-            style={{ background: 'rgba(201,168,76,0.95)', backdropFilter: 'blur(8px)' }}
-          >
-            ✓ {toast}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* ── 3-Step Professional Painting Process ── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <div className="text-center mb-10">
+          <p className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-2">
+            The Micmag Quality Standard
+          </p>
+          <h2 className="font-serif text-2xl sm:text-3xl text-white font-bold">
+            The 3-Step Surface System for 10+ Year Durability
+          </h2>
+        </div>
 
-      {/* Detail Modal */}
-      {detailProduct && (
-        <DetailModal
-          product={detailProduct}
-          onClose={() => setDetailProduct(null)}
-          onAddToBasket={handleAddToBasket}
-        />
-      )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden">
+            <div className="text-3xl font-serif font-bold text-amber-400/40 mb-3">01</div>
+            <h3 className="text-base font-bold text-white mb-2">Preparation & Priming</h3>
+            <p className="text-xs text-white/60 leading-relaxed mb-4">
+              Apply <strong>Caplux Alkali Resisting Primer</strong> or <strong>Plaster Primer</strong> to seal porous walls and eliminate efflorescence salts.
+            </p>
+            <span className="text-[11px] font-mono text-amber-300">Caplux Surface Systems</span>
+          </div>
 
-      {/* Basket */}
-      <ShowroomBasket
-        items={basket}
-        isOpen={isBasketOpen}
-        onClose={() => setIsBasketOpen(false)}
-        onRemove={handleRemove}
-        onClearAll={() => setBasket([])}
+          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden">
+            <div className="text-3xl font-serif font-bold text-amber-400/40 mb-3">02</div>
+            <h3 className="text-base font-bold text-white mb-2">Screeding & Leveling</h3>
+            <p className="text-xs text-white/60 leading-relaxed mb-4">
+              Smooth surface imperfections using <strong>Caplux Screeding Filler</strong> for glass-smooth, crack-free finish before topcoats.
+            </p>
+            <span className="text-[11px] font-mono text-amber-300">Caplux Screeding System</span>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden">
+            <div className="text-3xl font-serif font-bold text-amber-400/40 mb-3">03</div>
+            <h3 className="text-base font-bold text-white mb-2">Sandtex Luxury Topcoats</h3>
+            <p className="text-xs text-white/60 leading-relaxed mb-4">
+              Apply 2 coats of <strong>Sandtex Matt</strong>, <strong>Silk Vinyl</strong>, or <strong>FineBuild</strong> for vibrant, washable, long-lasting color.
+            </p>
+            <span className="text-[11px] font-mono text-amber-300">Sandtex Premium Paints</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Consultation CTA Banner ── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <div
+          className="rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden border border-amber-500/30"
+          style={{
+            background: 'linear-gradient(135deg, #101c38 0%, #0d1526 50%, #1a0808 100%)',
+          }}
+        >
+          <div className="max-w-3xl mx-auto space-y-4">
+            <h2 className="font-serif text-2xl sm:text-4xl text-white font-bold">
+              Need Professional Painting & On-Site Color Matching?
+            </h2>
+            <p className="text-sm text-white/70 leading-relaxed">
+              Our certified paint specialists visit your residential or commercial site in Lagos and nationwide.
+              We provide free surface diagnosis, exact paint estimation, and physical color swatches.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              <a
+                href="https://wa.me/2347052940445?text=Hi%20Micmag!%20I%20tested%20colors%20on%20your%20Digital%20Showroom%20and%20would%20like%20to%20book%20a%20site%20visit."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest text-white shadow-xl transition-all hover:scale-105"
+                style={{ background: 'linear-gradient(135deg, #25d366 0%, #128c7e 100%)' }}
+              >
+                <MessageCircle size={16} /> Book Site Visit on WhatsApp
+              </a>
+              <a
+                href="tel:+2347052940445"
+                className="flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest border border-white/20 text-white hover:bg-white/10 transition-all"
+              >
+                <Phone size={16} /> Call +234 705 294 0445
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Paint Calculator Modal ── */}
+      <PaintCalculatorModal
+        isOpen={isCalcOpen}
+        onClose={() => setIsCalcOpen(false)}
+        selectedColorName={activeSwatchName}
+        roomName={activeRoom.name}
       />
     </div>
   );
