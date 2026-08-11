@@ -63,8 +63,14 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/showroom" className="hover:text-white transition duration-200 flex items-center gap-1.5">
+                    <span>Digital Showroom</span>
+                    <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-[#c9a84c] text-black">NEW</span>
+                  </Link>
+                </li>
+                <li>
                   <Link to="/team" className="hover:text-white transition duration-200">
-                    Technical & leadership Team
+                    Technical &amp; Leadership Team
                   </Link>
                 </li>
                 <li>

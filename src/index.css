@@ -1,37 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-brand-red: #ea6c00; /* Premium brand orange-amber core */
-  --color-brand-red-deep: #b45309; /* Premium brand deep amber */
-  --color-sandtex-orange: #ea6c00;
-  --color-sandtex-red: #d32f2f;
-  --color-micmag-blue: #000082;
-  --color-micmag-blue-deep: #000650;
+  --color-brand-navy: #1a2c5b; /* Micmag Signature Royal Navy */
+  --color-brand-navy-deep: #0d1629; /* Deep Obsidian Slate */
+  --color-brand-navy-dark: #060b17; /* Darkest studio background */
+  
+  --color-brand-gold: #c9a84c; /* Refined luxury gold */
+  --color-brand-gold-light: #f0d898; /* Warm champagne highlight */
+  --color-brand-gold-deep: #96762c; /* Antique burnished bronze */
+
+  --color-brand-crimson: #8b1a1a; /* Heritage crimson */
+  --color-sandtex-orange: #ea6c00; /* Sandtex vibrant orange core */
+  --color-sandtex-red: #d32f2f; /* Sandtex deep red */
+  --color-brand-red: #ea6c00;
+  --color-brand-red-deep: #b45309;
+  
+  --color-micmag-blue: #1a2c5b;
+  --color-micmag-blue-deep: #0d1629;
   --color-micmag-green: #1a6b3c;
-  --color-micmag-red: #d32f2f;
+  --color-micmag-red: #8b1a1a;
   
-  --color-brand-charcoal: #1c1917; /* Rich premium charcoal */
-  --color-brand-cream: #fafaf9; /* Warm off-white surface */
-  --color-brand-sand: #e7e5e4; /* Hairline dividers / sand tone */
-  --color-brand-mid: #57534e; /* Warm elegant gray */
+  --color-brand-charcoal: #111827; /* Rich premium charcoal */
+  --color-brand-cream: #faf8f5; /* Warm linen surface */
+  --color-brand-sand: #f0eae1; /* Elegant sand border */
+  --color-brand-mid: #4b5563; /* Warm balanced gray */
   
-  --font-serif: "Playfair Display", Georgia, serif; /* Premium luxury display serif */
-  --font-sans: "Plus Jakarta Sans", sans-serif; /* Scannable geometric sans for body & UI */
-  --font-mono: "Plus Jakarta Sans", sans-serif; /* Rigid sans-mono for validation/spec details */
+  --font-serif: "Playfair Display", Georgia, Cambria, serif; /* Premium luxury display serif */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif; /* Scannable geometric sans */
+  --font-mono: "Plus Jakarta Sans", ui-monospace, monospace;
   --font-display: "Playfair Display", Georgia, serif;
 }
 
 :root {
-  --charcoal: #1c1917;
-  --red: #b45309;
-  --red-deep: #78350f;
-  --yellow: #ea6c00;
-  --yellow-deep: #d32f2f;
+  --navy: #1a2c5b;
+  --navy-deep: #0d1629;
+  --gold: #c9a84c;
+  --gold-light: #f0d898;
+  --crimson: #8b1a1a;
+  --charcoal: #111827;
+  --cream: #faf8f5;
+  --sand: #f0eae1;
+  --mid: #4b5563;
   --white: #ffffff;
-  --cream: #fafaf9;
-  --sand: #e7e5e4;
-  --mid: #57534e;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -41,11 +59,31 @@ body {
   overflow-x: hidden;
 }
 
+/* Luxury Gold & Metallic Text Gradients */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #f0d898 0%, #c9a84c 50%, #e5c368 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-silver-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.border-gold-glow {
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+}
+
 /* Animations corresponding to the original styles */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -56,7 +94,7 @@ body {
 @keyframes fadeLeft {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(24px);
   }
   to {
     opacity: 1;
@@ -66,8 +104,8 @@ body {
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .7s ease, transform .7s ease;
+  transform: translateY(20px);
+  transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1), transform .6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.visible {
@@ -88,19 +126,19 @@ body {
 }
 
 .micmag-gradient-btn {
-  background: linear-gradient(135deg, #1a6b3c, #d32f2f, #1e3a5f, #1a6b3c) !important;
-  background-size: 400% 400% !important;
-  animation: micmagGradientShift 30s ease-in-out infinite !important;
+  background: linear-gradient(135deg, #1a2c5b, #c9a84c, #8b1a1a, #1a2c5b) !important;
+  background-size: 300% 300% !important;
+  animation: micmagGradientShift 20s ease-in-out infinite !important;
 }
 
 .animated-gradient-bg {
-  background: linear-gradient(-45deg, #78350f, #d32f2f, #ea6c00, #b45309, #d32f2f);
+  background: linear-gradient(-45deg, #0d1629, #1a2c5b, #253d7a, #8b1a1a, #0d1629);
   background-size: 400% 400%;
   animation: micmagGradientShift 15s ease infinite;
 }
 
 .animated-gradient-text {
-  background: linear-gradient(-45deg, #78350f, #d32f2f, #ea6c00, #b45309);
+  background: linear-gradient(-45deg, #f0d898, #c9a84c, #ea6c00, #f0d898);
   background-size: 300% 300%;
   animation: micmagGradientShift 8s ease infinite;
   -webkit-background-clip: text;
@@ -108,18 +146,26 @@ body {
   color: transparent;
 }
 
+/* Glassmorphism Classes */
 .glass-premium {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .glass-premium-dark {
-  background: rgba(28, 25, 23, 0.85);
+  background: rgba(13, 22, 41, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-studio {
+  background: rgba(10, 17, 34, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.2);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -131,7 +177,8 @@ body {
 }
 
 .bg-brand-blue {
-  background-color: var(--color-brand-charcoal) !important;
+  background-color: var(--color-brand-navy) !important;
 }
+
 
 
