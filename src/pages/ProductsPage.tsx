@@ -17,6 +17,7 @@ import { CAPLUX_PRODUCTS } from '../data/capluxProducts';
 import { openWhatsApp } from '../utils/whatsapp';
 import { usePageMeta } from '../utils/usePageMeta';
 import ProductDetailModal, { OrderLineItem } from '../components/ProductDetailModal';
+import SmoothImage from '../components/SmoothImage';
 
 // Unified format for catalog products
 interface StandardProduct {
@@ -402,14 +403,14 @@ export default function ProductsPage() {
                   >
                     
                     {/* Visual Asset Section */}
-                    <div className="relative h-48 bg-neutral-50 border-b border-neutral-100 overflow-hidden flex items-center justify-center p-4">
-                      <img
+                    <div className="relative h-48 bg-neutral-50 border-b border-neutral-100 overflow-hidden flex items-center justify-center p-3">
+                      <SmoothImage
                         src={p.image}
+                        fallbackSrc={p.fallback}
                         alt={p.name}
-                        onError={(e) => {
-                          e.currentTarget.src = p.fallback;
-                        }}
                         className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        containerClassName="w-full h-full flex items-center justify-center"
+                        skeletonClassName="bg-neutral-200/50"
                         referrerPolicy="no-referrer"
                       />
                       
@@ -543,14 +544,13 @@ export default function ProductsPage() {
                         key={item.lineId} 
                         className="bg-neutral-50 border border-neutral-200 p-4 rounded-lg flex gap-4 items-start text-left relative"
                       >
-                        <div className="w-12 h-12 bg-white rounded border border-neutral-200 overflow-hidden shrink-0 flex items-center justify-center p-1.5">
-                          <img
+                        <div className="w-12 h-12 bg-white rounded border border-neutral-200 overflow-hidden shrink-0 flex items-center justify-center p-1">
+                          <SmoothImage
                             src={item.product.image}
+                            fallbackSrc={item.product.fallback}
                             alt={item.product.name}
-                            onError={(e) => {
-                              e.currentTarget.src = item.product.fallback;
-                            }}
                             className="max-h-full max-w-full object-contain"
+                            containerClassName="w-full h-full flex items-center justify-center"
                           />
                         </div>
                         

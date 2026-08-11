@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { ShoppingBag, Eye, Droplets, Ruler, Tag } from 'lucide-react';
+import SmoothImage from '../SmoothImage';
 
 export interface ShowroomProduct {
   id: string;
@@ -48,7 +49,6 @@ const BRAND_CONFIG = {
 };
 
 export default function ShowroomCard({ product, index, onAddToBasket, onViewDetail }: ShowroomCardProps) {
-  const [imgSrc, setImgSrc] = useState(product.image);
   const [isHovered, setIsHovered] = useState(false);
   const cfg = BRAND_CONFIG[product.brand];
 
@@ -69,13 +69,15 @@ export default function ShowroomCard({ product, index, onAddToBasket, onViewDeta
         transform: isHovered ? 'translateY(-6px) perspective(1000px) rotateX(1deg)' : 'none',
       }}
     >
-      {/* Image area */}
-      <div className="relative h-52 overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
-        <img
-          src={imgSrc}
+      {/* Image area with smooth loading */}
+      <div className="relative h-52 overflow-hidden bg-black/20">
+        <SmoothImage
+          src={product.image}
+          fallbackSrc={product.fallback}
           alt={product.name}
-          onError={() => setImgSrc(product.fallback)}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          containerClassName="w-full h-full"
+          skeletonClassName="bg-white/10"
         />
 
         {/* Overlay on hover */}

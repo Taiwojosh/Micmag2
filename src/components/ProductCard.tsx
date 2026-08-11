@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
-import { FileText, Search } from 'lucide-react';
-
-interface Product {
-  icon?: string;
-  name: string;
-  desc: string;
-  tag: string;
-  coverage?: string;
-  image: string;
-  fallback: string;
-  tdsSpec?: any;
-}
+import React from 'react';
+import SmoothImage from './SmoothImage';
 
 interface ProductCardProps {
-  key?: React.Key;
-  product: Product;
+  product: {
+    name: string;
+    image: string;
+    fallback: string;
+    description?: string;
+    tag?: string;
+  };
   brand: 'sandtex' | 'micmag' | 'caplux';
-  onWhatsApp: (name: string) => void;
-  onQuote: (name: string) => void;
-  onViewTDS?: (product: any) => void;
+  onWhatsApp: (productName: string) => void;
   onViewDetails: (product: any) => void;
 }
 
@@ -27,26 +18,8 @@ export default function ProductCard({
   product,
   brand,
   onWhatsApp,
-  onQuote,
-  onViewTDS,
-  onViewDetails
+  onViewDetails,
 }: ProductCardProps) {
-  const [imgSrc, setImgSrc] = useState(product.image);
-  const [hasError, setHasError] = useState(false);
-
-  // Sync image source if product changes
-  useEffect(() => {
-    setImgSrc(product.image);
-    setHasError(false);
-  }, [product.image]);
-
-  const handleImageError = () => {
-    if (!hasError) {
-      setImgSrc(product.fallback);
-      setHasError(true);
-    }
-  };
-
   const isSandtex = brand === 'sandtex' || brand === 'caplux';
 
   // Shadow color based on brand
@@ -63,16 +36,18 @@ export default function ProductCard({
       id={`product-${product.name.replace(/\s+/g, '-').toLowerCase()}`}
     >
       <div>
-        {/* Product Image Frame */}
-        <div className="relative h-48 w-full border-2 border-brand-charcoal rounded-xl overflow-hidden bg-white mb-4 mt-2">
-          <img
-            src={imgSrc}
+        {/* Product Image Frame with Smooth Loading */}
+        <div className="relative h-48 w-full border-2 border-brand-charcoal rounded-xl overflow-hidden bg-neutral-50 mb-4 mt-2">
+          <SmoothImage
+            src={product.image}
+            fallbackSrc={product.fallback}
             alt={product.name}
-            onError={handleImageError}
             referrerPolicy="no-referrer"
             className={`w-full h-full transition-transform duration-500 hover:scale-105 ${
               isSandtex ? 'object-contain p-2' : 'object-cover'
             }`}
+            containerClassName="w-full h-full"
+            skeletonClassName="bg-neutral-200/60"
           />
         </div>
 

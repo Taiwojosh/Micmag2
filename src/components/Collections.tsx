@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Skeleton from './Skeleton';
 import { Palette, X, Flame, Shield, Droplet, Timer, BookOpen, AlertCircle, MessageSquare, Lock } from 'lucide-react';
 import ProductCard from './ProductCard';
+import SmoothImage from './SmoothImage';
 import { CAPLUX_PRODUCTS } from '../data/capluxProducts';
 import { PAINT_PRODUCTS, FITTINGS_PRODUCTS } from '../data/productsData';
 import ProductDetailModal from './ProductDetailModal';
@@ -378,10 +379,12 @@ export default function Collections() {
                     </div>
 
                     <div className="relative h-48 w-full border-2 border-brand-charcoal rounded-xl overflow-hidden bg-white mb-4">
-                      <img
+                      <SmoothImage
                         src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800"
                         alt="Interior Design Consultation"
                         className="w-full h-full object-cover"
+                        containerClassName="w-full h-full"
+                        skeletonClassName="bg-neutral-200/60"
                       />
                     </div>
 
@@ -446,10 +449,11 @@ export default function Collections() {
                     </div>
 
                     <div className="relative h-48 w-full border-2 border-dashed border-[#a8a29e] rounded-xl overflow-hidden bg-neutral-50 mb-4 flex items-center justify-center">
-                      <img
+                      <SmoothImage
                         src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=800"
                         alt="Coming Soon Carpentry"
                         className="w-full h-full object-cover filter grayscale opacity-60"
+                        containerClassName="w-full h-full"
                       />
                     </div>
 

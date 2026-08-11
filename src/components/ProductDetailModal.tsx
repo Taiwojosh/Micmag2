@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { X, Check, Minus, Plus } from 'lucide-react';
 import { openWhatsApp } from '../utils/whatsapp';
+import SmoothImage from './SmoothImage';
 
 // ─── Color Palette ───────────────────────────────────────────────────────────
 
@@ -261,12 +262,13 @@ export default function ProductDetailModal({
 
           {/* Product Image + Name */}
           <div className="flex gap-4 items-start">
-            <div className="w-20 h-20 shrink-0 bg-neutral-50 border border-neutral-200 rounded-xl overflow-hidden flex items-center justify-center p-2">
-              <img
+            <div className="w-20 h-20 shrink-0 bg-neutral-50 border border-neutral-200 rounded-xl overflow-hidden flex items-center justify-center p-1">
+              <SmoothImage
                 src={images[0]}
+                fallbackSrc={item.fallback}
                 alt={item.name}
                 className="max-h-full max-w-full object-contain"
-                onError={(e) => { e.currentTarget.src = item.fallback; }}
+                containerClassName="w-full h-full flex items-center justify-center"
               />
             </div>
             <div className="flex-1 min-w-0">
