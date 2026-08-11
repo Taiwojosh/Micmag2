@@ -16,13 +16,60 @@ const isValidPasscode = (code: unknown): boolean =>
 
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ── In-Memory Rate Limiting (per IP, max 5 submissions per 10 minutes) ────────
+const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
+
+function isRateLimited(ip: string, maxRequests = 5, windowMs = 10 * 60 * 1000): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || entry.expiresAt < now) {
+    rateLimitMap.set(ip, { count: 1, expiresAt: now + windowMs });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > maxRequests;
+}
+
+/** Sanitize input strings: strip dangerous characters, tags and enforce max length */
+function sanitizeInput(val: unknown, maxLength = 255): string {
+  if (typeof val !== 'string') return '';
+  return val
+    .replace(/[<>]/g, '') // strip direct html tag brackets
+    .trim()
+    .slice(0, maxLength);
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_REGEX = /^[+0-9\s\-().]{7,25}$/;
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Set security response headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
-  // ── POST /api/leads ── Submit a new lead (public — no passcode required) ────
+  // ── POST /api/leads ── Submit a new lead (public) ─────────────────────────
   if (req.method === 'POST') {
-    const { customerName, customerEmail, contactNumber, inquiryType, targetBranch, message } =
-      req.body ?? {};
+    const clientIp =
+      (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() ||
+      req.socket.remoteAddress ||
+      'unknown';
+
+    if (isRateLimited(clientIp, 5, 10 * 60 * 1000)) {
+      return res.status(429).json({
+        error: 'Too many requests. Please wait a few minutes before submitting another inquiry.',
+      });
+    }
+
+    const raw = req.body ?? {};
+    const customerName = sanitizeInput(raw.customerName, 100);
+    const customerEmail = sanitizeInput(raw.customerEmail, 150);
+    const contactNumber = sanitizeInput(raw.contactNumber, 30);
+    const inquiryType = sanitizeInput(raw.inquiryType, 50) || 'General';
+    const targetBranch = sanitizeInput(raw.targetBranch, 100);
+    const message = sanitizeInput(raw.message, 2000);
 
     if (!customerName || !contactNumber || !targetBranch) {
       return res.status(400).json({
@@ -30,9 +77,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
+    if (customerEmail && !EMAIL_REGEX.test(customerEmail)) {
+      return res.status(400).json({ error: 'Please provide a valid email address.' });
+    }
+
+    if (!PHONE_REGEX.test(contactNumber)) {
+      return res.status(400).json({ error: 'Please provide a valid phone number.' });
+    }
+
     if (!webhookUrl) {
       console.warn('GOOGLE_SHEETS_WEBHOOK_URL is not set. Lead not forwarded to Google Sheets.');
-      // Still return success so the user's form submission doesn't break
       return res.status(201).json({ success: true });
     }
 
@@ -40,11 +94,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       id: Date.now().toString(),
       submittedAt: new Date().toISOString(),
       customerName,
-      customerEmail: customerEmail || '',
+      customerEmail,
       contactNumber,
-      inquiryType: inquiryType || 'General',
+      inquiryType,
       targetBranch,
-      message: message || '',
+      message,
     };
 
     try {
@@ -55,16 +109,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
 
       if (!gsRes.ok) {
-        const text = await gsRes.text();
-        console.error('Google Sheets webhook error:', gsRes.status, text);
         return res.status(502).json({
           error: 'Lead forwarding to Google Sheets failed. Please try again.',
         });
       }
 
       return res.status(201).json({ success: true, lead: newLead });
-    } catch (err: any) {
-      console.error('Failed to reach Google Sheets webhook:', err.message);
+    } catch {
       return res.status(502).json({ error: 'Could not reach Google Sheets. Please try again.' });
     }
   }

@@ -31,7 +31,40 @@ async function startServer() {
   const isValidPasscode = (code: unknown): boolean =>
     typeof code === 'string' && VALID_PASSCODES.has(code);
 
-  app.use(express.json());
+  // Security: disable Express signature and limit payload size
+  app.disable('x-powered-by');
+  app.use(express.json({ limit: '50kb' }));
+
+  // Security Headers Middleware
+  app.use((_req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+    next();
+  });
+
+  // In-Memory Rate Limiting
+  const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
+  function isRateLimited(ip: string, maxRequests = 5, windowMs = 10 * 60 * 1000): boolean {
+    const now = Date.now();
+    const entry = rateLimitMap.get(ip);
+    if (!entry || entry.expiresAt < now) {
+      rateLimitMap.set(ip, { count: 1, expiresAt: now + windowMs });
+      return false;
+    }
+    entry.count += 1;
+    return entry.count > maxRequests;
+  }
+
+  function sanitizeInput(val: unknown, maxLength = 255): string {
+    if (typeof val !== 'string') return '';
+    return val.replace(/[<>]/g, '').trim().slice(0, maxLength);
+  }
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const PHONE_REGEX = /^[+0-9\s\-().]{7,25}$/;
 
   // API Route FIRST for Lead Submission
   const LEADS_FILE = path.join(process.cwd(), 'leads.json');
@@ -43,10 +76,31 @@ async function startServer() {
 
   app.post("/api/leads", (req, res) => {
     try {
-      const { customerName, customerEmail, contactNumber, inquiryType, targetBranch, message } = req.body;
+      const clientIp = req.ip || req.socket.remoteAddress || 'unknown';
+      if (isRateLimited(clientIp, 5, 10 * 60 * 1000)) {
+        return res.status(429).json({
+          error: "Too many requests. Please wait a few minutes before submitting another inquiry."
+        });
+      }
+
+      const raw = req.body ?? {};
+      const customerName = sanitizeInput(raw.customerName, 100);
+      const customerEmail = sanitizeInput(raw.customerEmail, 150);
+      const contactNumber = sanitizeInput(raw.contactNumber, 30);
+      const inquiryType = sanitizeInput(raw.inquiryType, 50) || 'General';
+      const targetBranch = sanitizeInput(raw.targetBranch, 100);
+      const message = sanitizeInput(raw.message, 2000);
 
       if (!customerName || !contactNumber || !targetBranch) {
         return res.status(400).json({ error: "Missing required fields: customerName, contactNumber, targetBranch" });
+      }
+
+      if (customerEmail && !EMAIL_REGEX.test(customerEmail)) {
+        return res.status(400).json({ error: "Please provide a valid email address." });
+      }
+
+      if (!PHONE_REGEX.test(contactNumber)) {
+        return res.status(400).json({ error: "Please provide a valid phone number." });
       }
 
       const rawLeads = fs.readFileSync(LEADS_FILE, 'utf8');
@@ -55,11 +109,11 @@ async function startServer() {
       const newLead = {
         id: Date.now().toString(),
         customerName,
-        customerEmail: customerEmail || "",
+        customerEmail,
         contactNumber,
         inquiryType,
         targetBranch,
-        message: message || "",
+        message,
         status: "New",
         note: "",
         submittedAt: new Date().toISOString()
@@ -74,16 +128,7 @@ async function startServer() {
         fetch(googleSheetsUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            id: newLead.id,
-            submittedAt: newLead.submittedAt,
-            customerName: newLead.customerName,
-            customerEmail: newLead.customerEmail,
-            contactNumber: newLead.contactNumber,
-            inquiryType: newLead.inquiryType,
-            targetBranch: newLead.targetBranch,
-            message: newLead.message
-          })
+          body: JSON.stringify(newLead)
         })
           .then(() => console.log("Lead forwarded to Google Sheets successfully."))
           .catch(err => console.error("Google Sheets forwarding failed gracefully:", err.message));
@@ -92,8 +137,7 @@ async function startServer() {
       }
 
       res.status(201).json({ success: true, lead: newLead });
-    } catch (e) {
-      console.error("Error saving lead:", e);
+    } catch {
       res.status(500).json({ error: "Internal Server Error" });
     }
   });
