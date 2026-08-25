@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Profile | MICMAG Homes &amp; Fittings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2c5b;
+      --navy-deep: #0d1629;
+      --navy-dark: #070d1a;
+      --crimson: #8b1a1a;
+      --gold: #c9a84c;
+      --gold-light: #f0d898;
+      --gold-deep: #96762c;
+      --sand: #f4ede2;
+      --cream: #faf7f2;
+      --white: #ffffff;
+      --charcoal: #111827;
+      --gray-mid: #4b5563;
+      --gray-light: #f3f4f6;
+      --border: #e6dcce;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f172a;
+      color: var(--charcoal);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Floating Controls Bar (Web Only) ── */
+    .controls-bar {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: rgba(13, 22, 41, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--navy-deep);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: var(--gold-light);
+    }
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #ffffff;
+    }
+
+    /* ── Document Container & Paginated Sheets ── */
+    .document-wrapper {
+      max-width: 900px;
+      margin: 40px auto 80px;
+      padding: 0 16px;
+    }
+
+    .doc-page {
+      background: var(--white);
+      min-height: 1180px;
+      margin-bottom: 36px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* Running Headers & Footers */
+    .page-header {
+      padding: 24px 44px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--sand);
+      background: #ffffff;
+    }
+    .page-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .page-header-logo {
+      height: 38px;
+      width: auto;
+    }
+    .page-header-text {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .page-header-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--crimson);
+    }
+    .page-header-contact {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gray-mid);
+      text-align: right;
+    }
+
+    .page-footer {
+      padding: 16px 44px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--sand);
+      font-size: 10px;
+      color: var(--gray-mid);
+      background: #ffffff;
+    }
+    .page-footer-links {
+      display: flex;
+      gap: 16px;
+      font-weight: 600;
+    }
+    .page-footer-num {
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--sand);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .page-content {
+      padding: 40px 48px;
+      flex: 1;
+    }
+
+    /* ── Typography Scale ── */
+    h1.page-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .title-accent-bar {
+      width: 56px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--crimson), var(--gold));
+      margin-bottom: 24px;
+      border-radius: 2px;
+    }
+    .lead-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gray-mid);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    p {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    /* ── COVER PAGE (Page 1) ── */
+    .cover-page {
+      background: linear-gradient(145deg, #070d1a 0%, #1a2c5b 55%, #0d1629 100%);
+      color: #ffffff;
+      padding: 56px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      padding-bottom: 20px;
+    }
+    .cover-logo-img {
+      height: 90px;
+      width: auto;
+      filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.6));
+    }
+    .cover-tagline-top {
+      text-align: right;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .cover-hero-center {
+      text-align: center;
+      padding: 40px 0;
+    }
+    .cover-motto {
+      font-size: 14px;
+      font-style: italic;
+      letter-spacing: 0.15em;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .cover-main-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .cover-main-title span {
+      background: linear-gradient(135deg, #ffffff 0%, var(--gold-light) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cover-badge-banner {
+      display: inline-block;
+      margin: 28px auto 0;
+      background: rgba(201, 168, 76, 0.15);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      padding: 10px 32px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .cover-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .cover-pillar-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .cover-pillar-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .cover-pillar-sub {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .cover-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(201, 168, 76, 0.3);
+      padding-top: 20px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .cover-footer a { color: var(--gold-light); text-decoration: none; font-weight: 700; }
+
+    /* ── Table of Contents Grid (Page 2) ── */
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+      margin-top: 20px;
+    }
+    .toc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+    .toc-item:hover {
+      background: #ffffff;
+      border-color: var(--gold);
+      transform: translateX(4px);
+    }
+    .toc-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--gold-deep);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .toc-text h4 {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .toc-text p {
+      font-size: 10.5px;
+      color: var(--gray-mid);
+      margin-bottom: 0;
+      line-height: 1.3;
+    }
+
+    /* ── Callout / Highlight Cards ── */
+    .callout-box {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin: 20px 0;
+      border-left: 5px solid var(--gold);
+    }
+    .callout-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+    .callout-box p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 12.5px;
+      margin-bottom: 0;
+    }
+
+    .quote-box {
+      background: var(--cream);
+      border-left: 4px solid var(--crimson);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+      font-style: italic;
+      color: var(--navy);
+      font-size: 13.5px;
+    }
+
+    /* ── Service & Product Cards Grid ── */
+    .feature-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .feature-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--navy);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+    .feature-card.gold { border-top-color: var(--gold); }
+    .feature-card.crimson { border-top-color: var(--crimson); }
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .feature-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .feature-desc {
+      font-size: 11.5px;
+      color: var(--gray-mid);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* ── Process Steps List ── */
+    .process-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .process-step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 12px 18px;
+      border-radius: 8px;
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      flex: 1;
+    }
+
+    /* ── Team Grid ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 24px 0;
+    }
+    .team-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .team-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      flex-shrink: 0;
+      border: 2px solid var(--gold);
+    }
+    .team-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .team-role {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--crimson);
+    }
+
+    /* ── Locations Card ── */
+    .locations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 24px 0;
+    }
+    .loc-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      border-left: 4px solid var(--gold);
+    }
+    .loc-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .loc-address {
+      font-size: 12px;
+      color: #374151;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .loc-phone {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--crimson);
+    }
+
+    /* ── Print Styles ── */
+    @media print {
+      body { background: #ffffff; }
+      .controls-bar { display: none !important; }
+      .document-wrapper { margin: 0; padding: 0; max-width: 100%; }
+      .doc-page {
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        page-break-after: always;
+        min-height: 100vh;
+        height: 100vh;
+      }
+      .cover-page {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-content { padding: 28px 24px; }
+      .page-header, .page-footer { padding-left: 24px; padding-right: 24px; }
+      .feature-grid-3, .feature-grid-2, .team-grid, .locations-grid, .toc-grid, .cover-pillars {
+        grid-template-columns: 1fr;
+      }
+      .controls-bar {
+        bottom: 16px;
+        top: auto;
+        right: 50%;
+        transform: translateX(50%);
+        width: calc(100% - 32px);
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Floating Actions Bar (Web View) ── -->
+  <div class="controls-bar">
+    <button class="btn-action btn-primary" onclick="window.print()">
+      🖨️ Print / Save as PDF
+    </button>
+    <a href="https://wa.me/2347052940445?text=Hello%20Micmag,%20I%20am%20reviewing%20your%20Company%20Profile%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="btn-action btn-whatsapp">
+      💬 WhatsApp Inquiry
+    </a>
+    <a href="/" class="btn-action btn-secondary">
+      🌐 Back to Website
+    </a>
+  </div>
+
+  <div class="document-wrapper">
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 1: COVER PAGE
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page cover-page" id="page-1">
+      <div class="cover-top">
+        <img src="./Logo.png" alt="Micmag Homes &amp; Fittings Logo" class="cover-logo-img" />
+        <div class="cover-tagline-top">
+          Building Materials<br />
+          Interior Finishing<br />
+          Interior Solutions
+        </div>
+      </div>
+
+      <div class="cover-hero-center">
+        <div class="cover-motto">Building Excellence... Finishing with Perfection</div>
+        <h1 class="cover-main-title">
+          MICMAG HOMES &amp; <span>FITTINGS</span>
+        </h1>
+        <div class="cover-badge-banner">
+          CORPORATE COMPANY PROFILE
+        </h1>
+      </div>
+
+      <div class="cover-pillars">
+        <div class="cover-pillar-card">
+          <div class="cover-pillar-title">Premium Supply</div>
+          <div class="cover-pillar-sub">Sandtex, Caplux, Sanitary Ware &amp; Fittings</div>
+        </div>
+        <div class="cover-pillar-card">
+          <div class="cover-pillar-title">Turnkey Fit-Out</div>
+          <div class="cover-pillar-sub">Kitchens, Wardrobes, Joinery &amp; Screeding</div>
+        </div>
+        <div class="cover-pillar-card">
+          <div class="cover-pillar-title">Project Delivery</div>
+          <div class="cover-pillar-sub">Residential, Commercial &amp; Institutions</div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <div>📍 Lagos Head Office: 12 Oduduwa Rd, Oworonshoki &nbsp;|&nbsp; 📍 Lekki: Km 46 Lekki-Epe Exp.</div>
+        <div>🌐 <a href="https://micmaghomes.com">www.micmaghomes.com</a> &nbsp;|&nbsp; 📞 07052940445</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 2: TABLE OF CONTENTS
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-2">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">Corporate Profile</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Table of Contents</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">A comprehensive corporate profile built for clients, developers, and project partners.</p>
+
+        <div class="toc-grid">
+          <a href="#page-3" class="toc-item">
+            <div class="toc-num">01</div>
+            <div class="toc-text">
+              <h4>About MICMAG Homes &amp; Fittings</h4>
+              <p>Company background &amp; corporate positioning</p>
+            </div>
+          </a>
+          <a href="#page-4" class="toc-item">
+            <div class="toc-num">02</div>
+            <div class="toc-text">
+              <h4>Managing Director's Statement</h4>
+              <p>Executive address from Mrs. Ajike Fakande</p>
+            </div>
+          </a>
+          <a href="#page-5" class="toc-item">
+            <div class="toc-num">03</div>
+            <div class="toc-text">
+              <h4>Our Story &amp; Growth</h4>
+              <p>Founding vision &amp; capability evolution</p>
+            </div>
+          </a>
+          <a href="#page-6" class="toc-item">
+            <div class="toc-num">04</div>
+            <div class="toc-text">
+              <h4>Vision, Mission &amp; Core Values</h4>
+              <p>Guiding principles &amp; quality standards</p>
+            </div>
+          </a>
+          <a href="#page-7" class="toc-item">
+            <div class="toc-num">05</div>
+            <div class="toc-text">
+              <h4>Our Services &amp; Capabilities</h4>
+              <p>Turnkey interior &amp; finishing solutions</p>
+            </div>
+          </a>
+          <a href="#page-8" class="toc-item">
+            <div class="toc-num">06</div>
+            <div class="toc-text">
+              <h4>Product Categories</h4>
+              <p>Paints, sanitary ware, cabinetry &amp; tiles</p>
+            </div>
+          </a>
+          <a href="#page-9" class="toc-item">
+            <div class="toc-num">07</div>
+            <div class="toc-text">
+              <h4>Industries We Serve</h4>
+              <p>Residential, commercial &amp; public sectors</p>
+            </div>
+          </a>
+          <a href="#page-10" class="toc-item">
+            <div class="toc-num">08</div>
+            <div class="toc-text">
+              <h4>Why Choose MICMAG?</h4>
+              <p>8 key value propositions &amp; advantages</p>
+            </div>
+          </a>
+          <a href="#page-11" class="toc-item">
+            <div class="toc-num">09</div>
+            <div class="toc-text">
+              <h4>Our 10-Step Project Process</h4>
+              <p>From consultation to handover &amp; aftercare</p>
+            </div>
+          </a>
+          <a href="#page-12" class="toc-item">
+            <div class="toc-num">10</div>
+            <div class="toc-text">
+              <h4>Quality &amp; Service Controls</h4>
+              <p>Standardized inspection &amp; warranty policy</p>
+            </div>
+          </a>
+          <a href="#page-13" class="toc-item">
+            <div class="toc-num">11</div>
+            <div class="toc-text">
+              <h4>Business &amp; Partnership Model</h4>
+              <p>Framework for developers &amp; contractors</p>
+            </div>
+          </a>
+          <a href="#page-14" class="toc-item">
+            <div class="toc-num">12</div>
+            <div class="toc-text">
+              <h4>Digital Showroom &amp; Visualizer</h4>
+              <p>Online discovery &amp; paint simulation technology</p>
+            </div>
+          </a>
+          <a href="#page-15" class="toc-item">
+            <div class="toc-num">13</div>
+            <div class="toc-text">
+              <h4>Projects &amp; Case Studies</h4>
+              <p>Selected track record &amp; project proofs</p>
+            </div>
+          </a>
+          <a href="#page-16" class="toc-item">
+            <div class="toc-num">14</div>
+            <div class="toc-text">
+              <h4>Management &amp; Contact Desks</h4>
+              <p>Leadership team, branch locations &amp; direct contacts</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links">
+          <span>MICMAG Homes &amp; Fittings</span>
+          <span>Corporate Profile</span>
+        </div>
+        <div class="page-footer-num">Page 2 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 3: ABOUT US
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-3">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">01 About Us</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">About Us</h1>
+        <div class="title-accent-bar"></div>
+
+        <p>
+          <strong>MICMAG Homes &amp; Fittings</strong> is a premier Nigerian interior finishing and building materials
+          company focused on deliverable quality products, professional workmanship, and complete customer satisfaction.
+        </p>
+
+        <p>
+          The company provides building materials, interior finishing products, and turnkey fit-out solutions for residential,
+          commercial, and institutional projects across Nigeria. Our stated offerings include direct product supply, architectural
+          procurement, professional installation, and end-to-end project management.
+        </p>
+
+        <p>
+          MICMAG serves a diverse client portfolio including homeowners, architects, property developers, building contractors,
+          corporate organizations, hospitality operators, schools, religious organizations, and public institutions.
+        </p>
+
+        <div class="callout-box">
+          <h3>Strategic Corporate Positioning</h3>
+          <p>
+            A dependable, project-oriented partner that combines direct authentic product access with practical interior
+            and finishing execution under one trusted roof.
+          </p>
+        </div>
+
+        <div class="feature-grid-3">
+          <div class="feature-card">
+            <div class="feature-title">Authentic Sourcing</div>
+            <div class="feature-desc">Official dealer of Sandtex paints, Caplux primers, and certified sanitary fittings.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">Precision Execution</div>
+            <div class="feature-desc">Experienced technical teams handling screeding, joinery, and installation.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">Nationwide Delivery</div>
+            <div class="feature-desc">Serving projects in Lagos, Abuja, Port Harcourt, and emerging real estate corridors.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 3 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 4: MANAGING DIRECTOR'S STATEMENT
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-4">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">02 Executive Message</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">A Message from the Managing Director</h1>
+        <div class="title-accent-bar"></div>
+
+        <div class="quote-box">
+          "At MICMAG Homes &amp; Fittings, we believe that every building deserves a finish that reflects quality,
+          elegance, and lasting value. This belief continues to inspire everything we do — from the products we supply
+          to the relationships we build with our clients."
+        </div>
+
+        <p><strong>Welcome to MICMAG Homes &amp; Fittings.</strong></p>
+
+        <p>
+          Since our establishment, we have remained committed to providing premium building materials, innovative interior
+          solutions, and professional installation services that transform ideas into exceptional spaces. Whether serving
+          homeowners, property developers, architects, hotels, corporate organizations, or public institutions, our focus is always
+          on delivering excellence with integrity and professionalism.
+        </p>
+
+        <p>
+          Our reputation is built on trust, quality craftsmanship, timely project delivery, and a genuine commitment to customer
+          satisfaction. We understand that every project is unique, which is why we work closely with our clients to provide
+          tailored solutions that meet their vision, budget, and expectations.
+        </p>
+
+        <p>
+          As we look to the future, our aspiration is to become one of Nigeria's most respected providers of building materials
+          and interior finishing solutions. We will continue investing in innovation, strengthening our partnerships, and
+          improving our services to create lasting value for every client we serve.
+        </p>
+
+        <p style="margin-top: 24px; font-weight: 700; color: var(--navy);">
+          Mrs. Ajike Fakande<br />
+          <span style="font-size: 12px; font-weight: 600; color: var(--crimson);">Managing Director / Chief Executive Officer</span>
+        </p>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 4 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 5: OUR STORY
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-5">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">03 Our Story</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Our Story &amp; Growth</h1>
+        <div class="title-accent-bar"></div>
+
+        <p>
+          <strong>MICMAG Homes &amp; Fittings</strong> was established with a clear vision: to provide Nigerians with quality
+          building materials and interior finishing solutions that combine beauty, functionality, and long-term durability.
+        </p>
+
+        <p>
+          Recognizing the widespread need for reliable products and professional installation services in the Nigerian building
+          sector, the company was built to bridge the gap between quality products and practical on-site project execution.
+        </p>
+
+        <p>
+          Over time, MICMAG has expanded its scope beyond basic retail product supply into full turnkey interior solutions,
+          procurement, custom cabinetry, joinery, and nationwide project technical supervision.
+        </p>
+
+        <div class="callout-box" style="background: linear-gradient(135deg, #101c38, #1a2c5b);">
+          <h3>Evolution of Capabilities</h3>
+          <p>
+            • Phase 1: Authorized dealership &amp; bulk supply of Sandtex paints &amp; Caplux chemical prep systems.<br />
+            • Phase 2: Introduction of premium sanitary ware, luxury bathroom fittings, and designer tiling.<br />
+            • Phase 3: Launch of full-service interior design, custom joinery, and digital showroom visualizer tools.
+          </p>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 5 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 6: VISION, MISSION & VALUES
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-6">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">04 Foundation</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Vision, Mission &amp; Core Values</h1>
+        <div class="title-accent-bar"></div>
+
+        <div class="feature-grid-2">
+          <div class="callout-box" style="margin:0; border-left-color: var(--gold);">
+            <h3>VISION</h3>
+            <p>
+              To become Nigeria's most trusted and preferred provider of premium building materials and interior finishing
+              solutions through excellence, innovation, and exceptional customer service.
+            </p>
+          </div>
+          <div class="callout-box" style="margin:0; border-left-color: var(--crimson);">
+            <h3>MISSION</h3>
+            <p>
+              To deliver superior building products and interior solutions that combine quality, functionality, and beauty
+              while creating lasting value through professionalism, integrity, and continuous improvement.
+            </p>
+          </div>
+        </div>
+
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin: 32px 0 16px;">
+          Our Core Values
+        </h3>
+
+        <div class="feature-grid-3">
+          <div class="feature-card">
+            <div class="feature-title">Integrity</div>
+            <div class="feature-desc">Honesty, transparency, and accountability in every commercial transaction.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">Quality</div>
+            <div class="feature-desc">Delivering tested products and verified workmanship that meet rigorous standards.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">Innovation</div>
+            <div class="feature-desc">Leveraging modern digital tools, 3D visualization, and advanced coating technologies.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Customer First</div>
+            <div class="feature-desc">Putting client expectations and project milestones at the center of delivery.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">Professionalism</div>
+            <div class="feature-desc">Competence, punctuality, and technical excellence in project execution.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">Teamwork</div>
+            <div class="feature-desc">Seamless collaboration between architects, artisans, and project owners.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 6 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 7: SERVICES
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-7">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">05 Services</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Our Services &amp; Capabilities</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">End-to-end solutions spanning consultation, procurement, fabrication, and installation.</p>
+
+        <div class="feature-grid-2">
+          <div class="feature-card">
+            <div class="feature-title">🎨 Interior Design &amp; Space Planning</div>
+            <div class="feature-desc">Concept schematics, 3D color visualizer palettes, and functional space layout optimization.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">🏢 Office Fit-Out Solutions</div>
+            <div class="feature-desc">Corporate boardrooms, executive office suites, acoustics, partitions, and durable finishes.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">🍳 Kitchen Solutions</div>
+            <div class="feature-desc">Modular &amp; custom cabinetry, waterfall quartz islands, accessories, and stainless sinks.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">🚪 Wardrobe Systems</div>
+            <div class="feature-desc">Walk-in closets, sliding glass doors, built-in wardrobes, and custom joinery storage.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">🚿 Bathroom &amp; Sanitary Solutions</div>
+            <div class="feature-desc">Water closets, vanity units, frameless shower cubicles, soaking tubs, and brass mixers.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">🏗️ Building Materials Supply</div>
+            <div class="feature-desc">Direct distribution of Sandtex paints, Caplux primers, screeding putties, and tiles.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 7 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 8: PRODUCTS
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-8">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">06 Product Lines</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Our Product Portfolio</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">High-grade architectural materials sourced for beauty, longevity, and climate resilience.</p>
+
+        <div class="feature-grid-3">
+          <div class="feature-card">
+            <div class="feature-title">Water Closets</div>
+            <div class="feature-desc">Dual-flush, rimless, wall-hung, and back-to-wall ceramic toilets.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">Wash Hand Basins</div>
+            <div class="feature-desc">Countertop vessel basins, vanity under-mounts, and pedestal sinks.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">Shower Cubicles</div>
+            <div class="feature-desc">Toughened safety glass enclosures with brushed brass or black hardware.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Bathtubs</div>
+            <div class="feature-desc">Freestanding acrylic soaking tubs and built-in whirlpool spa units.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">Bathroom Cabinets</div>
+            <div class="feature-desc">Moisture-resistant floating vanities with LED smart anti-fog mirrors.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">Kitchen Sinks</div>
+            <div class="feature-desc">Heavy-gauge stainless steel and black composite granite kitchen basins.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Kitchen Cabinets</div>
+            <div class="feature-desc">High-gloss acrylic, matte lacquered, and marine-ply cabinetry.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">Wardrobes</div>
+            <div class="feature-desc">Custom walk-in and sliding systems with internal smart LED lighting.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">Tiles &amp; Paints</div>
+            <div class="feature-desc">Porcelain floor tiles, Sandtex Matt/Silk paints, and Caplux screeding.</div>
+          </div>
+        </div>
+
+        <div class="callout-box" style="background: var(--cream); border-left-color: var(--navy); color: var(--charcoal);">
+          <h3 style="color: var(--navy);">Extended Catalogue Note</h3>
+          <p style="color: var(--gray-mid);">
+            This profile lists representative categories. For SKU-level specifications, color charts, and yields, please visit
+            our interactive catalog at <strong>www.micmaghomes.com/collections</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 8 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 9: INDUSTRIES WE SERVE
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-9">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">07 Sectors</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Industries We Serve</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">Delivering tailored finishing packages across private, commercial, and institutional sectors.</p>
+
+        <div class="feature-grid-2">
+          <div class="feature-card">
+            <div class="feature-title">🏡 Residential Homes &amp; Villas</div>
+            <div class="feature-desc">Bespoke interior fit-outs, luxury sanitary ware, and durable exterior paint shields.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">🏢 Luxury Apartments &amp; Estates</div>
+            <div class="feature-desc">Volume supply of Sandtex Trade paints, standard sanitary packs, and uniform cabinetry.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">🏗️ Property Developers</div>
+            <div class="feature-desc">Structured bulk pricing, scheduled phased deliveries, and on-site technical support.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">🏨 Hotels &amp; Hospitality</div>
+            <div class="feature-desc">High-traffic washable wall finishes, luxury guestroom bathrooms, and reception fit-outs.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">🏥 Hospitals &amp; Healthcare Facilities</div>
+            <div class="feature-desc">Hygienic, anti-bacterial biocidal wall treatments and touchless sanitary hardware.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">🏫 Schools &amp; Educational Institutions</div>
+            <div class="feature-desc">Heavy-duty scuff-resistant paint coatings and durable public restroom fixtures.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 9 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 10: WHY CHOOSE MICMAG
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-10">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">08 Value Pillars</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Why Choose MICMAG?</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">The competitive advantages that make us Nigeria's dependable finishing partner.</p>
+
+        <div class="feature-grid-2">
+          <div class="feature-card">
+            <div class="feature-title">1. Premium Quality Products</div>
+            <div class="feature-desc">100% genuine factory-certified paints and international-standard sanitary ware.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">2. Competitive Pricing</div>
+            <div class="feature-desc">Direct-from-distributor pricing with tiered volume discounts for developers.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">3. Professional Installation</div>
+            <div class="feature-desc">Trained craftsmen ensuring flawless screeding, precise tiling, and plumbing.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">4. Experienced Technical Team</div>
+            <div class="feature-desc">Over a decade of combined experience in surface diagnostics and coatings.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">5. Timely Project Delivery</div>
+            <div class="feature-desc">Milestone-based project management to keep your construction on schedule.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">6. Reliable After-Sales Support</div>
+            <div class="feature-desc">Warranty coverage, touch-up batch matching, and responsive maintenance.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">7. Customized Design Solutions</div>
+            <div class="feature-desc">Tailored cabinetry, color consulting, and bespoke joinery dimensions.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">8. One-Stop Finishing Partner</div>
+            <div class="feature-desc">Save time and eliminate vendor conflicts with full exterior-to-interior coverage.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 10 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 11: PROJECT PROCESS
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-11">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">09 Methodology</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Our 10-Step Project Process</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">From initial concept conversation to final inspection and after-sales support.</p>
+
+        <div class="process-timeline">
+          <div class="process-step"><div class="step-num">01</div><div class="step-title">Initial Consultation &amp; Scope Discovery</div></div>
+          <div class="process-step"><div class="step-num">02</div><div class="step-title">Site Inspection &amp; Precision Laser Measurement</div></div>
+          <div class="process-step"><div class="step-num">03</div><div class="step-title">Architectural Design, 3D Visuals &amp; Color Scheme Planning</div></div>
+          <div class="process-step"><div class="step-num">04</div><div class="step-title">Itemized Commercial Proposal &amp; Milestone Quotation</div></div>
+          <div class="process-step"><div class="step-num">05</div><div class="step-title">Procurement &amp; Batch Quality Verification</div></div>
+          <div class="process-step"><div class="step-num">06</div><div class="step-title">Off-Site Joinery &amp; Cabinetry Manufacturing</div></div>
+          <div class="process-step"><div class="step-num">07</div><div class="step-title">Professional On-Site Installation &amp; Paint Application</div></div>
+          <div class="process-step"><div class="step-num">08</div><div class="step-title">Quality Assurance &amp; Snag-List Resolution</div></div>
+          <div class="process-step"><div class="step-num">09</div><div class="step-title">Formal Client Handover &amp; Sign-Off</div></div>
+          <div class="process-step"><div class="step-num">10</div><div class="step-title">Ongoing After-Sales Care &amp; Maintenance Support</div></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 11 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 12: QUALITY & SERVICE COMMITMENT
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-12">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">10 QA &amp; Standards</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Quality, Safety &amp; Service Commitment</h1>
+        <div class="title-accent-bar"></div>
+
+        <p>
+          MICMAG Homes &amp; Fittings operationalizes its commitment to excellence through documented quotation terms,
+          approved technical specifications, site records, and systematic quality audits before project sign-off.
+        </p>
+
+        <div class="feature-grid-2" style="margin-top: 24px;">
+          <div class="callout-box" style="margin: 0; background: var(--cream); color: var(--charcoal); border-left-color: var(--navy);">
+            <h3 style="color: var(--navy);">QUALITY CONTROLS</h3>
+            <p style="color: #374151; font-size: 12px; line-height: 1.8;">
+              • Batch verification before dispatch &amp; installation<br />
+              • Substrate moisture &amp; alkalinity testing<br />
+              • Standardized installation checklists<br />
+              • Formal snag / punch-list inspection<br />
+              • Documented client sign-off at handover
+            </p>
+          </div>
+
+          <div class="callout-box" style="margin: 0; background: var(--cream); color: var(--charcoal); border-left-color: var(--gold-deep);">
+            <h3 style="color: var(--navy);">SERVICE CONTROLS</h3>
+            <p style="color: #374151; font-size: 12px; line-height: 1.8;">
+              • Clear itemized quotation &amp; scope definition<br />
+              • Agreed delivery &amp; installation milestones<br />
+              • Dedicated project manager &amp; escalation desk<br />
+              • Structured after-sales follow-up schedule<br />
+              • Manufacturer warranty documentation
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 12 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 13: BUSINESS & PARTNERSHIP MODEL
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-13">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">11 Partnerships</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Business &amp; Partnership Model</h1>
+        <div class="title-accent-bar"></div>
+
+        <p>
+          MICMAG is structured to work directly with B2B organizations and construction professionals who need reliable,
+          repeat access to premium building products and turnkey project support.
+        </p>
+
+        <div class="feature-grid-2" style="margin-top: 24px;">
+          <div class="feature-card">
+            <div class="feature-title">PARTNER TYPES</div>
+            <p class="feature-desc" style="line-height: 1.8;">
+              • Architects &amp; Interior Designers<br />
+              • Property Developers &amp; Real Estate Funds<br />
+              • Civil &amp; Building Contractors<br />
+              • Hospitality &amp; Hotel Chains<br />
+              • Corporate Facilities Managers<br />
+              • Educational &amp; Public Institutions
+            </p>
+          </div>
+
+          <div class="feature-card gold">
+            <div class="feature-title">ENGAGEMENT TYPES</div>
+            <p class="feature-desc" style="line-height: 1.8;">
+              • Direct wholesale product supply<br />
+              • Bulk project procurement<br />
+              • Turnkey interior fit-out contracts<br />
+              • Custom architectural joinery<br />
+              • Installation &amp; coating subcontracts<br />
+              • Retainer sourcing &amp; repeat supply
+            </p>
+          </div>
+        </div>
+
+        <div class="callout-box">
+          <h3>Commercial Objective</h3>
+          <p>
+            Moving beyond one-off retail transactions toward enduring, long-term business partnerships and enterprise-level
+            development supply agreements.
+          </p>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 13 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 14: DIGITAL SHOWROOM
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-14">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">12 Digital Asset</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Digital Showroom &amp; Visualizer</h1>
+        <div class="title-accent-bar"></div>
+
+        <p>
+          The <strong>MICMAG Digital Showroom</strong> is our online product-discovery platform allowing clients and architects
+          to simulate real Sandtex paint colors, test lighting modes, and assemble inquiry baskets before placing orders.
+        </p>
+
+        <div class="callout-box" style="background: linear-gradient(135deg, #070d1a, #1a2c5b);">
+          <h3>Interactive Customer Experience Journey</h3>
+          <p style="font-size: 13px; font-weight: 700; color: var(--gold-light);">
+            HOME / CATEGORY &nbsp;→&nbsp; 3D ROOM VISUALIZER &nbsp;→&nbsp; SPEC SHEET &nbsp;→&nbsp; WHATSAPP DIRECT
+          </p>
+        </div>
+
+        <div class="feature-grid-2">
+          <div class="feature-card">
+            <div class="feature-title">🎨 Real-Time 3D Room Visualizer</div>
+            <div class="feature-desc">Test paint shades across 5 architectural room types under daylight, warm glow, and twilight modes.</div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">📊 Paint Yield Calculator</div>
+            <div class="feature-desc">Instantly calculate exact liters and coat requirements based on wall dimensions.</div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">📄 Digital Spec Card Exporter</div>
+            <div class="feature-desc">Download and share curated palettes and technical sheets directly with project managers.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">💬 Instant WhatsApp Procurement</div>
+            <div class="feature-desc">Seamless one-tap submission from visualizer to MICMAG desk for prompt quotes.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com/showroom</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 14 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 15: PORTFOLIO & CASE STUDIES
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-15">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">13 Track Record</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Selected Project Portfolio</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">Visual proof of completed works and delivered finishing packages.</p>
+
+        <div class="feature-grid-3">
+          <div class="feature-card">
+            <div class="feature-title">Luxury Villa Fit-Out</div>
+            <div class="feature-desc">
+              <strong>Location:</strong> Ikoyi, Lagos<br />
+              <strong>Scope:</strong> Full Sandtex Silk wall coating, master bathroom sanitary fit-out &amp; custom walk-in wardrobe joinery.
+            </div>
+          </div>
+          <div class="feature-card gold">
+            <div class="feature-title">Residential Estate Exterior</div>
+            <div class="feature-desc">
+              <strong>Location:</strong> Lekki Phase 1, Lagos<br />
+              <strong>Scope:</strong> 24-Unit duplex facade protection with Sandtex Matt &amp; Caplux Alkali Resisting Primer systems.
+            </div>
+          </div>
+          <div class="feature-card crimson">
+            <div class="feature-title">Corporate Headquarters</div>
+            <div class="feature-desc">
+              <strong>Location:</strong> Victoria Island, Lagos<br />
+              <strong>Scope:</strong> Acoustic ceiling finishes, modern executive restroom suites &amp; frameless glass partitions.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-box" style="margin-top: 24px;">
+          <h3>Confidentiality &amp; Client Standards</h3>
+          <p>
+            Full photographic case study dossiers, project bill of quantities (BOQ), and client reference contacts are available
+            upon request during formal tender evaluations.
+          </p>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 15 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 16: MANAGEMENT & LEADERSHIP
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-16">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">14 Leadership</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Management &amp; Organisational Capability</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">Experienced leadership driving excellence, client relations, and technical execution.</p>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">AF</div>
+            <div>
+              <div class="team-name">Mrs. Ajike Fakande</div>
+              <div class="team-role">Managing Director / CEO</div>
+              <p style="font-size: 11px; margin-top: 4px; color: var(--gray-mid); margin-bottom: 0;">Strategic direction, corporate partnerships &amp; quality governance.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">BA</div>
+            <div>
+              <div class="team-name">Miss Bola Aribo</div>
+              <div class="team-role">Business Development &amp; Client Relations</div>
+              <p style="font-size: 11px; margin-top: 4px; color: var(--gray-mid); margin-bottom: 0;">Enterprise accounts, tender proposals &amp; developer relations.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">KM</div>
+            <div>
+              <div class="team-name">Miss Kosiso M.</div>
+              <div class="team-role">Operations &amp; Administration</div>
+              <p style="font-size: 11px; margin-top: 4px; color: var(--gray-mid); margin-bottom: 0;">Supply chain coordination, logistics &amp; inventory fulfillment.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">NF</div>
+            <div>
+              <div class="team-name">Mr. Nicholas Fabian</div>
+              <div class="team-role">Projects &amp; Technical Services</div>
+              <p style="font-size: 11px; margin-top: 4px; color: var(--gray-mid); margin-bottom: 0;">On-site quality supervision, joinery precision &amp; coating diagnostics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 16 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 17: LOCATIONS & CONTACT
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page" id="page-17">
+      <div class="page-header">
+        <div class="page-header-brand">
+          <img src="./Logo.png" alt="Logo" class="page-header-logo" />
+          <div>
+            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-tag">15 Contact Desks</div>
+          </div>
+        </div>
+        <div class="page-header-contact">www.micmaghomes.com<br />07052940445</div>
+      </div>
+
+      <div class="page-content">
+        <h1 class="page-title">Locations &amp; Contact Desks</h1>
+        <div class="title-accent-bar"></div>
+        <p class="lead-subtitle">Visit our showrooms or reach our project desks for prompt consultation and site visits.</p>
+
+        <div class="locations-grid">
+          <div class="loc-card">
+            <div class="loc-title">📍 Head Office — Oworonshoki</div>
+            <div class="loc-address">
+              12, Oduduwa Road, Lafarge Cement Building, Car Wash Bus Stop, Oworonshoki, Lagos, Nigeria.
+            </div>
+            <div class="loc-phone">
+              📞 07052940445<br />
+              📞 08056965188
+            </div>
+          </div>
+
+          <div class="loc-card">
+            <div class="loc-title">📍 Lekki Office — Sangotedo</div>
+            <div class="loc-address">
+              KM 46 Lekki-Epe Expressway, Hot Bread Bus Stop, Sangotedo, Lagos, Nigeria.
+            </div>
+            <div class="loc-phone">
+              📞 08107144064<br />
+              📞 07067924965
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-box">
+          <h3>Direct Electronic Desks</h3>
+          <p>
+            • Corporate Email: <a href="mailto:micmaghomesfittings@gmail.com" style="color:var(--gold-light);">micmaghomesfittings@gmail.com</a><br />
+            • Web Portal: <a href="https://micmaghomes.com" style="color:var(--gold-light);">www.micmaghomes.com</a><br />
+            • WhatsApp Desk: <a href="https://wa.me/2347052940445" style="color:var(--gold-light);">+234 705 294 0445</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-links"><span>www.micmaghomes.com</span><span>07052940445 | 08056965188</span></div>
+        <div class="page-footer-num">Page 17 of 18</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════
+         PAGE 18: BACK COVER
+         ══════════════════════════════════════════════════════════════════════ -->
+    <div class="doc-page cover-page" id="page-18" style="text-align: center; justify-content: center; min-height: 1180px;">
+      <div style="max-width: 600px; margin: 0 auto; padding: 40px 0;">
+        <img src="./Logo.png" alt="Micmag Logo" style="height: 110px; width: auto; margin-bottom: 24px; filter: drop-shadow(0 6px 20px rgba(0,0,0,0.6));" />
+        
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px;">
+          MICMAG HOMES &amp; FITTINGS
+        </div>
+
+        <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 42px; font-weight: 900; line-height: 1.2; color: #ffffff; margin-bottom: 20px;">
+          LET'S BUILD SOMETHING <span style="background: linear-gradient(135deg, #fff 0%, var(--gold-light) 50%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EXCEPTIONAL.</span>
+        </h1>
+
+        <div style="width: 80px; height: 4px; background: var(--gold); margin: 0 auto 28px; border-radius: 2px;"></div>
+
+        <p style="font-size: 15px; font-style: italic; color: rgba(255,255,255,0.85); margin-bottom: 36px;">
+          "Building Excellence... Finishing with Perfection"
+        </p>
+
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; padding: 24px; text-align: center; font-size: 13px; line-height: 1.8;">
+          <div style="font-weight: 700; color: var(--gold-light); font-size: 14px; margin-bottom: 6px;">MICMAG HOMES &amp; FITTINGS</div>
+          <div>🌐 <a href="https://micmaghomes.com" style="color: #ffffff; text-decoration: none; font-weight: 600;">www.micmaghomes.com</a></div>
+          <div>✉ <a href="mailto:micmaghomesfittings@gmail.com" style="color: #ffffff; text-decoration: none;">micmaghomesfittings@gmail.com</a></div>
+          <div style="margin-top: 8px; color: var(--gold-light); font-weight: 700;">
+            📞 07052940445 &nbsp;|&nbsp; 08056965188 &nbsp;|&nbsp; 08107144064
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -69,6 +69,12 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <a href="/company-profile.html" target="_blank" rel="noopener noreferrer" className="hover:text-white transition duration-200 flex items-center gap-1.5 text-amber-300 font-semibold">
+                    <span>Corporate Profile (PDF)</span>
+                    <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-white text-black">DOC</span>
+                  </a>
+                </li>
+                <li>
                   <Link to="/team" className="hover:text-white transition duration-200">
                     Technical &amp; Leadership Team
                   </Link>
