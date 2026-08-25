@@ -217,25 +217,43 @@
       overflow: hidden;
       border: 1px solid var(--border);
       position: relative;
-      background: #f1f5f9;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e8edf5 100%);
     }
     .img-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: opacity 0.5s ease, transform 0.6s ease;
+    }
+    .img-frame img[loading="lazy"] {
+      opacity: 0;
+    }
+    .img-frame img.loaded {
+      opacity: 1;
     }
     .img-caption {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
       color: #ffffff;
-      padding: 8px 12px;
+      padding: 10px 14px 8px;
       font-size: 10px;
       font-weight: 600;
+      letter-spacing: 0.02em;
     }
+
+    /* ── Consistent Image Height Tiers ── */
+    /* Tier 1 — Full-width spotlight image (single column) */
+    .img-h-spotlight { height: 200px; }
+    /* Tier 2 — Half-width paired image */
+    .img-h-half      { height: 160px; }
+    /* Tier 3 — Grid/collage thumbnail */
+    .img-h-thumb     { height: 120px; }
+    /* Tier 4 — Product card internal image */
+    .img-h-product   { height: 130px; }
 
     /* ── COVER PAGE (Page 1) ── */
     .cover-page {
@@ -484,36 +502,40 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s ease;
     }
     .product-img-frame {
-      height: 110px;
+      height: 130px;
       width: 100%;
-      background: #f8fafc;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2f8 100%);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px;
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
     }
     .product-img-frame img {
       max-height: 100%;
       max-width: 100%;
       object-fit: contain;
+      transition: opacity 0.5s ease;
     }
     .product-card-body {
-      padding: 10px;
+      padding: 10px 12px;
       flex: 1;
     }
     .product-card-title {
       font-size: 11.5px;
       font-weight: 800;
       color: var(--navy);
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
     .product-card-desc {
-      font-size: 10px;
+      font-size: 10.5px;
       color: var(--gray-mid);
-      line-height: 1.35;
+      line-height: 1.45;
       margin-bottom: 0;
     }
 
@@ -681,6 +703,21 @@
 </head>
 <body>
 
+  <script>
+    /* Progressive image reveal: fire .loaded class after each image loads */
+    document.addEventListener('DOMContentLoaded', function () {
+      var imgs = document.querySelectorAll('.img-frame img[loading="lazy"], .product-img-frame img[loading="lazy"]');
+      imgs.forEach(function (img) {
+        if (img.complete && img.naturalHeight !== 0) {
+          img.classList.add('loaded');
+        } else {
+          img.addEventListener('load', function () { img.classList.add('loaded'); });
+          img.addEventListener('error', function () { img.classList.add('loaded'); });
+        }
+      });
+    });
+  </script>
+
   <!-- ── Floating Controls Bar (Web View) ── -->
   <div class="controls-bar">
     <button class="btn-action btn-primary" onclick="window.print()">
@@ -724,7 +761,7 @@
 
       <!-- Hero Architectural Image -->
       <div class="cover-hero-image-frame img-frame">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" alt="Luxury Architectural Finishing by Micmag" />
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" alt="Luxury Architectural Finishing by Micmag" loading="eager" decoding="async" />
         <div class="img-caption">Architectural Facade &amp; Luxury Interior Fit-Out Excellence</div>
       </div>
 
@@ -870,8 +907,8 @@
           </a>
         </div>
 
-        <div class="img-frame" style="height: 190px; margin-top: 20px;">
-          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1000" alt="Executive Interior Craftsmanship" />
+        <div class="img-frame img-h-spotlight" style="margin-top: 20px;">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1000" alt="Executive Interior Craftsmanship" loading="lazy" decoding="async" />
           <div class="img-caption">Bespoke Architectural Living Environments Crafted by MICMAG</div>
         </div>
       </div>
@@ -909,17 +946,17 @@
           company focused on deliverable quality products, professional workmanship, and complete customer satisfaction.
         </p>
 
+        <!-- Image Showcase -->
+        <div class="img-frame img-h-spotlight" style="margin: 14px 0;">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Showroom &amp; Material Selection Center" loading="lazy" decoding="async" />
+          <div class="img-caption">MICMAG Materials Selection Center &amp; Quality Finishing Suite</div>
+        </div>
+
         <p>
           The company provides building materials, interior finishing products, and turnkey fit-out solutions for residential,
           commercial, and institutional projects across Nigeria. Our stated offerings include direct product supply, architectural
           procurement, professional installation, and end-to-end project management.
         </p>
-
-        <!-- Image Showcase -->
-        <div class="img-frame" style="height: 240px; margin: 14px 0;">
-          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Showroom &amp; Material Selection Center" />
-          <div class="img-caption">MICMAG Materials Selection Center &amp; Quality Finishing Suite</div>
-        </div>
 
         <p>
           MICMAG serves a diverse client portfolio including homeowners, architects, property developers, building contractors,
@@ -977,7 +1014,7 @@
 
         <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 14px;">
           <div class="img-frame" style="width: 140px; height: 160px; flex-shrink: 0; border: 2px solid var(--gold);">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Mrs. Ajike Fakande — Managing Director / CEO" />
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Mrs. Ajike Fakande — Managing Director / CEO" loading="eager" decoding="async" />
             <div class="img-caption" style="font-size: 8.5px; text-align: center;">Mrs. Ajike Fakande</div>
           </div>
           <div class="quote-box" style="margin: 0; flex: 1;">
@@ -1054,12 +1091,12 @@
 
         <!-- Visual Milestone Image Grid -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0;">
-          <div class="img-frame" style="height: 180px;">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600" alt="Construction &amp; Finishing Materials" />
+          <div class="img-frame img-h-half">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600" alt="Construction &amp; Finishing Materials" loading="lazy" decoding="async" />
             <div class="img-caption">Building Material Sourcing &amp; Procurement</div>
           </div>
-          <div class="img-frame" style="height: 180px;">
-            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=600" alt="Luxury Interior Craftsmanship" />
+          <div class="img-frame img-h-half">
+            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=600" alt="Luxury Interior Craftsmanship" loading="lazy" decoding="async" />
             <div class="img-caption">Precision Interior Fit-Out &amp; Styling</div>
           </div>
         </div>
@@ -1152,8 +1189,8 @@
           </div>
         </div>
 
-        <div class="img-frame" style="height: 140px; margin-top: 12px;">
-          <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Craftsmanship" />
+        <div class="img-frame img-h-half" style="margin-top: 12px;">
+          <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Craftsmanship" loading="lazy" decoding="async" />
           <div class="img-caption">Excellence in Material Integrity &amp; Finishing Craftsmanship</div>
         </div>
       </div>
@@ -1186,20 +1223,20 @@
 
         <!-- 4-Image Service Collage -->
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px;">
-          <div class="img-frame" style="height: 120px;">
-            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=400" alt="Kitchen Solutions" />
+          <div class="img-frame img-h-thumb">
+            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=400" alt="Kitchen Solutions" loading="lazy" decoding="async" />
             <div class="img-caption" style="font-size: 8px;">Kitchen Fit-Out</div>
           </div>
-          <div class="img-frame" style="height: 120px;">
-            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=400" alt="Wardrobe Joinery" />
+          <div class="img-frame img-h-thumb">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=400" alt="Wardrobe Joinery" loading="lazy" decoding="async" />
             <div class="img-caption" style="font-size: 8px;">Custom Wardrobes</div>
           </div>
-          <div class="img-frame" style="height: 120px;">
-            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400" alt="Bathroom Sanitary" />
+          <div class="img-frame img-h-thumb">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400" alt="Bathroom Sanitary" loading="lazy" decoding="async" />
             <div class="img-caption" style="font-size: 8px;">Bathroom Sanitary</div>
           </div>
-          <div class="img-frame" style="height: 120px;">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Office Fit-Out" />
+          <div class="img-frame img-h-thumb">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Office Fit-Out" loading="lazy" decoding="async" />
             <div class="img-caption" style="font-size: 8px;">Corporate Office</div>
           </div>
         </div>
@@ -1262,7 +1299,7 @@
         <div class="feature-grid-3">
           <div class="product-img-card">
             <div class="product-img-frame">
-              <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=300" alt="Water Closets" />
+              <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=300" alt="Water Closets" loading="lazy" decoding="async" />
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Water Closets &amp; Basins</div>
@@ -1272,7 +1309,7 @@
 
           <div class="product-img-card">
             <div class="product-img-frame">
-              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=300" alt="Shower Cubicles" />
+              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=300" alt="Shower Cubicles" loading="lazy" decoding="async" />
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Shower Cubicles &amp; Tubs</div>
@@ -1282,7 +1319,7 @@
 
           <div class="product-img-card">
             <div class="product-img-frame">
-              <img src="./satin1.png" alt="Sandtex Satin" />
+              <img src="./satin1.png" alt="Sandtex Satin" loading="lazy" decoding="async" />
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Sandtex Satin &amp; Silk</div>
@@ -1292,7 +1329,7 @@
 
           <div class="product-img-card">
             <div class="product-img-frame">
-              <img src="./Sandtex MATT.png" alt="Sandtex Matt" />
+              <img src="./Sandtex MATT.png" alt="Sandtex Matt" loading="lazy" decoding="async" />
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Sandtex Exterior Matt</div>
@@ -1302,7 +1339,7 @@
 
           <div class="product-img-card">
             <div class="product-img-frame">
-              <img src="./Caplux Undercoat.png" alt="Caplux Undercoat" />
+              <img src="./Caplux Undercoat.png" alt="Caplux Undercoat" loading="lazy" decoding="async" />
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Caplux Primers &amp; Putty</div>
@@ -1312,7 +1349,7 @@
 
           <div class="product-img-card">
             <div class="product-img-frame">
-              <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=300" alt="Kitchens &amp; Wardrobes" />
+              <img src="./Sandtex GLOSS.png" alt="Sandtex Gloss" loading="lazy" decoding="async" />
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Kitchens &amp; Wardrobes</div>
@@ -1358,16 +1395,16 @@
 
         <!-- Industry Visual Collage -->
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px;">
-          <div class="img-frame" style="height: 110px;">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" alt="Residential" />
+          <div class="img-frame img-h-thumb">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" alt="Residential" loading="lazy" decoding="async" />
             <div class="img-caption" style="font-size: 8px;">Luxury Residential</div>
           </div>
-          <div class="img-frame" style="height: 110px;">
-            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=400" alt="Hospitality" />
+          <div class="img-frame img-h-thumb">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=400" alt="Hospitality" loading="lazy" decoding="async" />
             <div class="img-caption" style="font-size: 8px;">Hotels &amp; Resorts</div>
           </div>
-          <div class="img-frame" style="height: 110px;">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Corporate Offices" />
+          <div class="img-frame img-h-thumb">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Corporate Offices" loading="lazy" decoding="async" />
             <div class="img-caption" style="font-size: 8px;">Corporate Towers</div>
           </div>
         </div>
@@ -1461,8 +1498,8 @@
           </div>
         </div>
 
-        <div class="img-frame" style="height: 140px; margin-top: 10px;">
-          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1000" alt="Finished Luxury Estate by Micmag" />
+        <div class="img-frame img-h-half" style="margin-top: 10px;">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1000" alt="Finished Luxury Estate by Micmag" loading="lazy" decoding="async" />
           <div class="img-caption">End-to-End Architectural Supply &amp; Execution Reliability</div>
         </div>
       </div>
@@ -1504,6 +1541,25 @@
           <div class="process-step"><div class="step-num">08</div><div class="step-title">Quality Assurance &amp; Snag-List Resolution</div></div>
           <div class="process-step"><div class="step-num">09</div><div class="step-title">Formal Client Handover &amp; Sign-Off</div></div>
           <div class="process-step"><div class="step-num">10</div><div class="step-title">Ongoing After-Sales Care &amp; Maintenance Support</div></div>
+        </div>
+
+        <!-- Process Key Stats Row -->
+        <div class="feature-grid-3" style="margin-top: 18px;">
+          <div class="feature-card gold" style="text-align: center;">
+            <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--gold-deep); line-height: 1;">10</div>
+            <div class="feature-title" style="margin-top: 4px;">Structured Steps</div>
+            <div class="feature-desc">From brief to client sign-off.</div>
+          </div>
+          <div class="feature-card" style="text-align: center;">
+            <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--navy); line-height: 1;">48h</div>
+            <div class="feature-title" style="margin-top: 4px;">Quotation Turnaround</div>
+            <div class="feature-desc">Itemized BOQ delivered in 48 hours.</div>
+          </div>
+          <div class="feature-card crimson" style="text-align: center;">
+            <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1;">100%</div>
+            <div class="feature-title" style="margin-top: 4px;">Documented Handover</div>
+            <div class="feature-desc">Every project formally signed off.</div>
+          </div>
         </div>
       </div>
 
@@ -1561,8 +1617,8 @@
           </div>
         </div>
 
-        <div class="img-frame" style="height: 180px; margin-top: 16px;">
-          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1000" alt="Technical Quality Inspection" />
+        <div class="img-frame img-h-spotlight" style="margin-top: 16px;">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1000" alt="Technical Quality Inspection" loading="lazy" decoding="async" />
           <div class="img-caption">Systematic Quality Verification &amp; On-Site Workmanship Standards</div>
         </div>
       </div>
@@ -1623,8 +1679,8 @@
           </div>
         </div>
 
-        <div class="img-frame" style="height: 160px; margin: 12px 0;">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000" alt="B2B Development Project Partnership" />
+        <div class="img-frame img-h-half" style="margin: 12px 0;">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000" alt="B2B Development Project Partnership" loading="lazy" decoding="async" />
           <div class="img-caption">Multi-Unit Development Finishing Supply Partnerships</div>
         </div>
 
@@ -1668,8 +1724,8 @@
         </p>
 
         <!-- Digital Showroom Screenshot Visual -->
-        <div class="img-frame" style="height: 220px; margin: 12px 0;">
-          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Interactive 3D Digital Showroom" />
+        <div class="img-frame img-h-spotlight" style="margin: 12px 0;">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Interactive 3D Digital Showroom" loading="lazy" decoding="async" />
           <div class="img-caption">Interactive 3D Room Color Visualizer &amp; Paint Yield Simulator</div>
         </div>
 
@@ -1721,40 +1777,40 @@
 
         <div class="feature-grid-3">
           <div class="product-img-card">
-            <div class="img-frame" style="height: 150px; border-radius: 0; border: none;">
-              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=400" alt="Ikoyi Luxury Villa" />
+            <div class="img-frame img-h-product" style="border-radius: 8px 8px 0 0;">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=400" alt="Ikoyi Luxury Villa" loading="lazy" decoding="async" />
+              <div class="img-caption" style="font-size: 8.5px;">Ikoyi, Lagos</div>
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Luxury Villa Fit-Out</div>
               <div class="product-card-desc">
-                <strong>Location:</strong> Ikoyi, Lagos<br />
                 <strong>Scope:</strong> Full Sandtex Silk coating, sanitary suite fit-out &amp; custom walk-in wardrobe joinery.
               </div>
             </div>
           </div>
 
           <div class="product-img-card">
-            <div class="img-frame" style="height: 150px; border-radius: 0; border: none;">
-              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" alt="Lekki Phase 1 Estate" />
+            <div class="img-frame img-h-product" style="border-radius: 8px 8px 0 0;">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" alt="Lekki Phase 1 Estate" loading="lazy" decoding="async" />
+              <div class="img-caption" style="font-size: 8.5px;">Lekki Phase 1, Lagos</div>
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Residential Estate Facade</div>
               <div class="product-card-desc">
-                <strong>Location:</strong> Lekki Phase 1, Lagos<br />
-                <strong>Scope:</strong> 24-Unit duplex facade protection with Sandtex Matt &amp; Caplux Alkali Resisting Primer.
+                <strong>Scope:</strong> 24-Unit duplex facade with Sandtex Matt &amp; Caplux Alkali Resisting Primer.
               </div>
             </div>
           </div>
 
           <div class="product-img-card">
-            <div class="img-frame" style="height: 150px; border-radius: 0; border: none;">
-              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Victoria Island Corporate HQ" />
+            <div class="img-frame img-h-product" style="border-radius: 8px 8px 0 0;">
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Victoria Island Corporate HQ" loading="lazy" decoding="async" />
+              <div class="img-caption" style="font-size: 8.5px;">Victoria Island, Lagos</div>
             </div>
             <div class="product-card-body">
               <div class="product-card-title">Corporate Headquarters</div>
               <div class="product-card-desc">
-                <strong>Location:</strong> Victoria Island, Lagos<br />
-                <strong>Scope:</strong> Acoustic ceiling finishes, modern executive restroom suites &amp; glass partitions.
+                <strong>Scope:</strong> Acoustic ceiling finishes, executive restroom suites &amp; glass partitions.
               </div>
             </div>
           </div>
@@ -1797,8 +1853,8 @@
 
         <div class="team-grid">
           <div class="team-card">
-            <div class="img-frame" style="width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold);">
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Mrs. Ajike Fakande" />
+            <div class="img-frame" style="width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold); overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Mrs. Ajike Fakande" loading="lazy" decoding="async" style="border-radius: 50%;" />
             </div>
             <div>
               <div class="team-name">Mrs. Ajike Fakande</div>
@@ -1808,8 +1864,8 @@
           </div>
 
           <div class="team-card">
-            <div class="img-frame" style="width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold);">
-              <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=80&w=200" alt="Miss Bola Aribo" />
+            <div class="img-frame" style="width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold); overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=80&w=200" alt="Miss Bola Aribo" loading="lazy" decoding="async" style="border-radius: 50%;" />
             </div>
             <div>
               <div class="team-name">Miss Bola Aribo</div>
@@ -1819,8 +1875,8 @@
           </div>
 
           <div class="team-card">
-            <div class="img-frame" style="width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold);">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Miss Kosiso M." />
+            <div class="img-frame" style="width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold); overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Miss Kosiso M." loading="lazy" decoding="async" style="border-radius: 50%;" />
             </div>
             <div>
               <div class="team-name">Miss Kosiso M.</div>
@@ -1830,8 +1886,8 @@
           </div>
 
           <div class="team-card">
-            <div class="img-frame" style="width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold);">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Mr. Nicholas Fabian" />
+            <div class="img-frame" style="width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold); overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Mr. Nicholas Fabian" loading="lazy" decoding="async" style="border-radius: 50%;" />
             </div>
             <div>
               <div class="team-name">Mr. Nicholas Fabian</div>
@@ -1841,8 +1897,8 @@
           </div>
         </div>
 
-        <div class="img-frame" style="height: 160px; margin-top: 14px;">
-          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Executive Management &amp; Technical Team" />
+        <div class="img-frame img-h-half" style="margin-top: 14px;">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Executive Management &amp; Technical Team" loading="lazy" decoding="async" />
           <div class="img-caption">Professional Collaboration &amp; Client-Centric Delivery</div>
         </div>
       </div>
@@ -1875,12 +1931,12 @@
 
         <!-- Location Images -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
-          <div class="img-frame" style="height: 150px;">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=500" alt="Oworonshoki Store" />
+          <div class="img-frame img-h-half">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=500" alt="Oworonshoki Store" loading="lazy" decoding="async" />
             <div class="img-caption">Oworonshoki Main Store &amp; Warehouse</div>
           </div>
-          <div class="img-frame" style="height: 150px;">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=500" alt="Lekki Sangotedo Showroom" />
+          <div class="img-frame img-h-half">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=500" alt="Lekki Sangotedo Showroom" loading="lazy" decoding="async" />
             <div class="img-caption">Lekki-Epe Expressway Showroom</div>
           </div>
         </div>

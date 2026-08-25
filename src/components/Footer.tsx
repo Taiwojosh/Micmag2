@@ -41,8 +41,8 @@ export default function Footer() {
               </p>
 
               {/* Verified Badge */}
-              <div className="inline-flex items-center gap-2 bg-neutral-900/60 border border-neutral-800 p-2 px-3 rounded text-[11px] text-brand-yellow font-mono">
-                <ShieldCheck className="w-4 h-4 text-brand-yellow" /> Authentic Sourcing Guarantee
+              <div className="inline-flex items-center gap-2 bg-neutral-900/60 border border-neutral-800 p-2 px-3 rounded text-[11px] text-brand-gold-light font-mono">
+                <ShieldCheck className="w-4 h-4 text-brand-gold-light" /> Authentic Sourcing Guarantee
               </div>
             </div>
 

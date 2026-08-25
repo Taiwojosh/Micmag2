@@ -38,17 +38,23 @@ export default function SmoothImage({
       className={`relative overflow-hidden ${containerClassName}`}
       style={aspectRatio ? { aspectRatio } : undefined}
     >
-      {/* Shimmer skeleton placeholder */}
+      {/* Travelling shimmer skeleton placeholder (Facebook/Airbnb style) */}
       {!isLoaded && (
         <div
-          className={`absolute inset-0 z-0 animate-pulse bg-gradient-to-r from-neutral-800/40 via-neutral-700/20 to-neutral-800/40 ${skeletonClassName}`}
-          style={{
-            backgroundSize: '200% 100%',
-          }}
-        />
+          className={`absolute inset-0 z-0 overflow-hidden ${skeletonClassName}`}
+          style={{ background: 'hsl(210 15% 93%)' }}
+        >
+          <div
+            className="absolute inset-y-0 w-1/2 animate-[shimmer_1.6s_ease-in-out_infinite]"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%)',
+              left: '-50%',
+            }}
+          />
+        </div>
       )}
 
-      {/* Actual image with smooth fade-in and subtle zoom/unblur */}
+      {/* Actual image with smooth fade-in and subtle blur-up */}
       <img
         src={currentSrc}
         alt={alt}
@@ -56,16 +62,19 @@ export default function SmoothImage({
         decoding="async"
         onLoad={() => setIsLoaded(true)}
         onError={handleError}
+        style={{ willChange: 'opacity, transform' }}
         className={`w-full h-full transition-all duration-700 ease-out ${
-          isLoaded ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-98 blur-sm'
+          isLoaded
+            ? 'opacity-100 scale-100 blur-none'
+            : 'opacity-0 scale-[1.02] blur-[3px]'
         } ${className}`}
         {...props}
       />
 
-      {/* Graceful fallback state */}
+      {/* Graceful error fallback */}
       {hasError && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-900/80 text-white/40 p-4 text-center">
-          <svg className="w-8 h-8 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-100 text-neutral-400 p-4 text-center">
+          <svg className="w-8 h-8 mb-2 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           <span className="text-[10px] font-mono uppercase tracking-wider">{alt}</span>

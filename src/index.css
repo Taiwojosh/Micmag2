@@ -79,6 +79,12 @@ body {
   box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
 }
 
+/* Travelling shimmer for SmoothImage skeleton placeholders */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
 /* Animations corresponding to the original styles */
 @keyframes fadeUp {
   from {
