@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Profile | MICMAG Homes &amp; Fittings</title>
+  <title>MICMAG Homes &amp; Fittings — Corporate Company Profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -24,14 +24,14 @@
       --charcoal: #111827;
       --gray-mid: #4b5563;
       --gray-light: #f3f4f6;
-      --border: #e6dcce;
+      --border: #e2d7c7;
     }
 
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0f172a;
+      background: #0b1329;
       color: var(--charcoal);
-      line-height: 1.6;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -40,22 +40,22 @@
       position: fixed;
       top: 16px;
       right: 20px;
-      z-index: 999;
+      z-index: 9999;
       display: flex;
       gap: 10px;
       align-items: center;
-      background: rgba(13, 22, 41, 0.92);
+      background: rgba(13, 22, 41, 0.94);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(201, 168, 76, 0.35);
-      padding: 8px 14px;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      padding: 8px 16px;
       border-radius: 9999px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
     }
     .btn-action {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 16px;
+      padding: 8px 16px;
       border-radius: 9999px;
       font-size: 11.5px;
       font-weight: 700;
@@ -75,20 +75,16 @@
       box-shadow: 0 4px 16px rgba(201, 168, 76, 0.4);
     }
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.16);
-      color: var(--gold-light);
     }
     .btn-whatsapp {
       background: linear-gradient(135deg, #25d366, #128c7e);
       color: #ffffff;
     }
 
-    /* ── Document Container & Paginated Sheets ── */
+    /* ── Document Container ── */
     .document-wrapper {
       max-width: 900px;
       margin: 40px auto 80px;
@@ -97,7 +93,9 @@
 
     .doc-page {
       background: var(--white);
-      min-height: 1180px;
+      width: 100%;
+      height: 1220px;
+      max-height: 1220px;
       margin-bottom: 36px;
       border-radius: 6px;
       overflow: hidden;
@@ -106,16 +104,19 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      page-break-after: always;
+      break-after: page;
     }
 
     /* Running Headers & Footers */
     .page-header {
-      padding: 24px 44px 16px;
+      padding: 20px 44px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 2px solid var(--sand);
       background: #ffffff;
+      flex-shrink: 0;
     }
     .page-header-brand {
       display: flex;
@@ -148,7 +149,7 @@
     }
 
     .page-footer {
-      padding: 16px 44px 20px;
+      padding: 14px 44px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -156,6 +157,7 @@
       font-size: 10px;
       color: var(--gray-mid);
       background: #ffffff;
+      flex-shrink: 0;
     }
     .page-footer-links {
       display: flex;
@@ -166,51 +168,80 @@
       font-weight: 700;
       color: var(--navy);
       background: var(--sand);
-      padding: 2px 8px;
+      padding: 2px 10px;
       border-radius: 4px;
     }
 
     .page-content {
-      padding: 40px 48px;
+      padding: 32px 44px;
       flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── Typography Scale ── */
     h1.page-title {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
       color: var(--navy);
       line-height: 1.15;
       letter-spacing: -0.01em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .title-accent-bar {
-      width: 56px;
-      height: 5px;
+      width: 54px;
+      height: 4px;
       background: linear-gradient(90deg, var(--crimson), var(--gold));
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       border-radius: 2px;
     }
     .lead-subtitle {
-      font-size: 15px;
+      font-size: 13.5px;
       font-weight: 500;
       color: var(--gray-mid);
-      margin-bottom: 28px;
-      line-height: 1.5;
+      margin-bottom: 20px;
+      line-height: 1.45;
     }
     p {
-      font-size: 13.5px;
+      font-size: 12.5px;
       color: #374151;
-      line-height: 1.7;
-      margin-bottom: 16px;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    /* ── Images & Visual Panels ── */
+    .img-frame {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      background: #f1f5f9;
+    }
+    .img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      color: #ffffff;
+      padding: 8px 12px;
+      font-size: 10px;
+      font-weight: 600;
     }
 
     /* ── COVER PAGE (Page 1) ── */
     .cover-page {
-      background: linear-gradient(145deg, #070d1a 0%, #1a2c5b 55%, #0d1629 100%);
+      background: linear-gradient(145deg, #060b17 0%, #1a2c5b 55%, #0d1629 100%);
       color: #ffffff;
-      padding: 56px 52px;
+      padding: 48px 48px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -220,37 +251,38 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(201, 168, 76, 0.3);
-      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+      padding-bottom: 16px;
     }
     .cover-logo-img {
-      height: 90px;
+      height: 84px;
       width: auto;
       filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.6));
     }
     .cover-tagline-top {
       text-align: right;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold-light);
+      line-height: 1.5;
     }
     .cover-hero-center {
       text-align: center;
-      padding: 40px 0;
+      padding: 20px 0;
     }
     .cover-motto {
-      font-size: 14px;
+      font-size: 13px;
       font-style: italic;
       letter-spacing: 0.15em;
       color: var(--gold-light);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-transform: uppercase;
     }
     .cover-main-title {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 46px;
+      font-size: 42px;
       font-weight: 900;
       letter-spacing: 0.04em;
       line-height: 1.1;
@@ -265,51 +297,60 @@
     }
     .cover-badge-banner {
       display: inline-block;
-      margin: 28px auto 0;
+      margin: 20px auto 0;
       background: rgba(201, 168, 76, 0.15);
-      border: 1px solid rgba(201, 168, 76, 0.4);
-      padding: 10px 32px;
+      border: 1px solid rgba(201, 168, 76, 0.45);
+      padding: 8px 28px;
       border-radius: 9999px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold-light);
+    }
+    .cover-hero-image-frame {
+      height: 280px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(201, 168, 76, 0.4);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+      margin: 20px 0;
     }
     .cover-pillars {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 36px;
-      padding-top: 28px;
+      gap: 14px;
+      margin-top: 10px;
+      padding-top: 18px;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
     }
     .cover-pillar-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      padding: 16px;
+      padding: 12px;
       text-align: center;
     }
     .cover-pillar-title {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
       color: var(--gold-light);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
     .cover-pillar-sub {
-      font-size: 10.5px;
+      font-size: 10px;
       color: rgba(255, 255, 255, 0.7);
     }
     .cover-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(201, 168, 76, 0.3);
-      padding-top: 20px;
-      font-size: 11px;
+      border-top: 1px solid rgba(201, 168, 76, 0.35);
+      padding-top: 16px;
+      font-size: 10.5px;
       color: rgba(255, 255, 255, 0.75);
     }
     .cover-footer a { color: var(--gold-light); text-decoration: none; font-weight: 700; }
@@ -318,14 +359,14 @@
     .toc-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px 24px;
-      margin-top: 20px;
+      gap: 10px 20px;
+      margin-top: 14px;
     }
     .toc-item {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 12px;
-      padding: 10px 14px;
+      padding: 9px 12px;
       border-radius: 8px;
       background: var(--cream);
       border: 1px solid var(--border);
@@ -336,17 +377,17 @@
     .toc-item:hover {
       background: #ffffff;
       border-color: var(--gold);
-      transform: translateX(4px);
+      transform: translateX(3px);
     }
     .toc-num {
       font-family: 'Playfair Display', serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--gold-deep);
       background: #ffffff;
       border: 1px solid var(--border);
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -354,15 +395,15 @@
       flex-shrink: 0;
     }
     .toc-text h4 {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--navy);
     }
     .toc-text p {
-      font-size: 10.5px;
+      font-size: 10px;
       color: var(--gray-mid);
       margin-bottom: 0;
-      line-height: 1.3;
+      line-height: 1.2;
     }
 
     /* ── Callout / Highlight Cards ── */
@@ -370,70 +411,109 @@
       background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
       color: #ffffff;
       border-radius: 8px;
-      padding: 24px 28px;
-      margin: 20px 0;
+      padding: 18px 22px;
+      margin: 16px 0;
       border-left: 5px solid var(--gold);
     }
     .callout-box h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 18px;
+      font-size: 16px;
       color: var(--gold-light);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .callout-box p {
       color: rgba(255, 255, 255, 0.9);
-      font-size: 12.5px;
+      font-size: 12px;
       margin-bottom: 0;
+      line-height: 1.55;
     }
 
     .quote-box {
       background: var(--cream);
       border-left: 4px solid var(--crimson);
-      padding: 20px 24px;
+      padding: 16px 20px;
       border-radius: 0 8px 8px 0;
-      margin: 24px 0;
+      margin: 16px 0;
       font-style: italic;
       color: var(--navy);
-      font-size: 13.5px;
+      font-size: 12.5px;
+      line-height: 1.6;
     }
 
-    /* ── Service & Product Cards Grid ── */
+    /* ── Grids ── */
     .feature-grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin: 20px 0;
+      gap: 12px;
+      margin: 14px 0;
     }
     .feature-grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin: 20px 0;
+      gap: 14px;
+      margin: 14px 0;
     }
     .feature-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-top: 3px solid var(--navy);
       border-radius: 8px;
-      padding: 18px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      padding: 14px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
     }
     .feature-card.gold { border-top-color: var(--gold); }
     .feature-card.crimson { border-top-color: var(--crimson); }
-    .feature-icon {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
     .feature-title {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 800;
       color: var(--navy);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .feature-desc {
-      font-size: 11.5px;
+      font-size: 11px;
       color: var(--gray-mid);
-      line-height: 1.5;
+      line-height: 1.45;
+      margin-bottom: 0;
+    }
+
+    /* ── Product Showcase Cards with Images ── */
+    .product-img-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-img-frame {
+      height: 110px;
+      width: 100%;
+      background: #f8fafc;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+    .product-img-frame img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    .product-card-body {
+      padding: 10px;
+      flex: 1;
+    }
+    .product-card-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .product-card-desc {
+      font-size: 10px;
+      color: var(--gray-mid);
+      line-height: 1.35;
       margin-bottom: 0;
     }
 
@@ -441,25 +521,25 @@
     .process-timeline {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin: 20px 0;
+      gap: 8px;
+      margin: 12px 0;
     }
     .process-step {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       background: var(--cream);
       border: 1px solid var(--border);
-      padding: 12px 18px;
+      padding: 9px 14px;
       border-radius: 8px;
     }
     .step-num {
-      width: 32px;
-      height: 32px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       background: var(--navy);
       color: var(--gold-light);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       display: flex;
       align-items: center;
@@ -467,7 +547,7 @@
       flex-shrink: 0;
     }
     .step-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--navy);
       flex: 1;
@@ -477,16 +557,16 @@
     .team-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin: 24px 0;
+      gap: 14px;
+      margin: 16px 0;
     }
     .team-card {
       background: var(--cream);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 20px;
+      padding: 14px;
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
     }
     .team-avatar {
@@ -504,12 +584,12 @@
       border: 2px solid var(--gold);
     }
     .team-name {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--navy);
     }
     .team-role {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--crimson);
     }
@@ -518,48 +598,63 @@
     .locations-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin: 24px 0;
+      gap: 16px;
+      margin: 16px 0;
     }
     .loc-card {
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 22px;
+      padding: 16px;
       border-left: 4px solid var(--gold);
     }
     .loc-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       color: var(--navy);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .loc-address {
-      font-size: 12px;
+      font-size: 11.5px;
       color: #374151;
-      margin-bottom: 12px;
-      line-height: 1.5;
+      margin-bottom: 8px;
+      line-height: 1.4;
     }
     .loc-phone {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--crimson);
     }
 
     /* ── Print Styles ── */
     @media print {
-      body { background: #ffffff; }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      body {
+        background: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
       .controls-bar { display: none !important; }
-      .document-wrapper { margin: 0; padding: 0; max-width: 100%; }
+      .document-wrapper {
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+        width: 100%;
+      }
       .doc-page {
         margin: 0;
         border-radius: 0;
         box-shadow: none;
         page-break-after: always;
-        min-height: 100vh;
+        break-after: page;
         height: 100vh;
+        max-height: 100vh;
+        width: 100vw;
       }
       .cover-page {
         -webkit-print-color-adjust: exact;
@@ -568,8 +663,8 @@
     }
 
     @media (max-width: 768px) {
-      .page-content { padding: 28px 24px; }
-      .page-header, .page-footer { padding-left: 24px; padding-right: 24px; }
+      .page-content { padding: 24px 20px; }
+      .page-header, .page-footer { padding-left: 20px; padding-right: 20px; }
       .feature-grid-3, .feature-grid-2, .team-grid, .locations-grid, .toc-grid, .cover-pillars {
         grid-template-columns: 1fr;
       }
@@ -586,16 +681,19 @@
 </head>
 <body>
 
-  <!-- ── Floating Actions Bar (Web View) ── -->
+  <!-- ── Floating Controls Bar (Web View) ── -->
   <div class="controls-bar">
     <button class="btn-action btn-primary" onclick="window.print()">
-      🖨️ Print / Save as PDF
+      🖨️ Print / Save PDF
     </button>
+    <a href="/MICMAG_Company_Profile.pdf" download="MICMAG_Company_Profile.pdf" class="btn-action btn-secondary" style="background: rgba(201, 168, 76, 0.2); color: var(--gold-light); border-color: rgba(201,168,76,0.4);">
+      📥 Download PDF
+    </a>
     <a href="https://wa.me/2347052940445?text=Hello%20Micmag,%20I%20am%20reviewing%20your%20Company%20Profile%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="btn-action btn-whatsapp">
-      💬 WhatsApp Inquiry
+      💬 WhatsApp
     </a>
     <a href="/" class="btn-action btn-secondary">
-      🌐 Back to Website
+      🌐 Website
     </a>
   </div>
 
@@ -621,7 +719,13 @@
         </h1>
         <div class="cover-badge-banner">
           CORPORATE COMPANY PROFILE
-        </h1>
+        </div>
+      </div>
+
+      <!-- Hero Architectural Image -->
+      <div class="cover-hero-image-frame img-frame">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" alt="Luxury Architectural Finishing by Micmag" />
+        <div class="img-caption">Architectural Facade &amp; Luxury Interior Fit-Out Excellence</div>
       </div>
 
       <div class="cover-pillars">
@@ -640,7 +744,7 @@
       </div>
 
       <div class="cover-footer">
-        <div>📍 Lagos Head Office: 12 Oduduwa Rd, Oworonshoki &nbsp;|&nbsp; 📍 Lekki: Km 46 Lekki-Epe Exp.</div>
+        <div>📍 Lagos HQ: 12 Oduduwa Rd, Oworonshoki &nbsp;|&nbsp; 📍 Lekki: Km 46 Lekki-Epe Exp.</div>
         <div>🌐 <a href="https://micmaghomes.com">www.micmaghomes.com</a> &nbsp;|&nbsp; 📞 07052940445</div>
       </div>
     </div>
@@ -653,7 +757,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">Corporate Profile</div>
           </div>
         </div>
@@ -765,6 +869,11 @@
             </div>
           </a>
         </div>
+
+        <div class="img-frame" style="height: 190px; margin-top: 20px;">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1000" alt="Executive Interior Craftsmanship" />
+          <div class="img-caption">Bespoke Architectural Living Environments Crafted by MICMAG</div>
+        </div>
       </div>
 
       <div class="page-footer">
@@ -784,7 +893,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">01 About Us</div>
           </div>
         </div>
@@ -805,6 +914,12 @@
           commercial, and institutional projects across Nigeria. Our stated offerings include direct product supply, architectural
           procurement, professional installation, and end-to-end project management.
         </p>
+
+        <!-- Image Showcase -->
+        <div class="img-frame" style="height: 240px; margin: 14px 0;">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Showroom &amp; Material Selection Center" />
+          <div class="img-caption">MICMAG Materials Selection Center &amp; Quality Finishing Suite</div>
+        </div>
 
         <p>
           MICMAG serves a diverse client portfolio including homeowners, architects, property developers, building contractors,
@@ -849,7 +964,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">02 Executive Message</div>
           </div>
         </div>
@@ -860,10 +975,16 @@
         <h1 class="page-title">A Message from the Managing Director</h1>
         <div class="title-accent-bar"></div>
 
-        <div class="quote-box">
-          "At MICMAG Homes &amp; Fittings, we believe that every building deserves a finish that reflects quality,
-          elegance, and lasting value. This belief continues to inspire everything we do — from the products we supply
-          to the relationships we build with our clients."
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 14px;">
+          <div class="img-frame" style="width: 140px; height: 160px; flex-shrink: 0; border: 2px solid var(--gold);">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Mrs. Ajike Fakande — Managing Director / CEO" />
+            <div class="img-caption" style="font-size: 8.5px; text-align: center;">Mrs. Ajike Fakande</div>
+          </div>
+          <div class="quote-box" style="margin: 0; flex: 1;">
+            "At MICMAG Homes &amp; Fittings, we believe that every building deserves a finish that reflects quality,
+            elegance, and lasting value. This belief continues to inspire everything we do — from the products we supply
+            to the relationships we build with our clients."
+          </div>
         </div>
 
         <p><strong>Welcome to MICMAG Homes &amp; Fittings.</strong></p>
@@ -887,10 +1008,13 @@
           improving our services to create lasting value for every client we serve.
         </p>
 
-        <p style="margin-top: 24px; font-weight: 700; color: var(--navy);">
-          Mrs. Ajike Fakande<br />
-          <span style="font-size: 12px; font-weight: 600; color: var(--crimson);">Managing Director / Chief Executive Officer</span>
-        </p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border);">
+          <div>
+            <p style="margin-bottom: 2px; font-size: 14px; font-weight: 800; color: var(--navy);">Mrs. Ajike Fakande</p>
+            <p style="font-size: 11px; font-weight: 700; color: var(--crimson); margin-bottom: 0;">Managing Director / Chief Executive Officer</p>
+          </div>
+          <img src="./Logo.png" alt="Seal" style="height: 48px; opacity: 0.85;" />
+        </div>
       </div>
 
       <div class="page-footer">
@@ -907,7 +1031,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">03 Our Story</div>
           </div>
         </div>
@@ -928,6 +1052,18 @@
           sector, the company was built to bridge the gap between quality products and practical on-site project execution.
         </p>
 
+        <!-- Visual Milestone Image Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0;">
+          <div class="img-frame" style="height: 180px;">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600" alt="Construction &amp; Finishing Materials" />
+            <div class="img-caption">Building Material Sourcing &amp; Procurement</div>
+          </div>
+          <div class="img-frame" style="height: 180px;">
+            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=600" alt="Luxury Interior Craftsmanship" />
+            <div class="img-caption">Precision Interior Fit-Out &amp; Styling</div>
+          </div>
+        </div>
+
         <p>
           Over time, MICMAG has expanded its scope beyond basic retail product supply into full turnkey interior solutions,
           procurement, custom cabinetry, joinery, and nationwide project technical supervision.
@@ -936,9 +1072,9 @@
         <div class="callout-box" style="background: linear-gradient(135deg, #101c38, #1a2c5b);">
           <h3>Evolution of Capabilities</h3>
           <p>
-            • Phase 1: Authorized dealership &amp; bulk supply of Sandtex paints &amp; Caplux chemical prep systems.<br />
-            • Phase 2: Introduction of premium sanitary ware, luxury bathroom fittings, and designer tiling.<br />
-            • Phase 3: Launch of full-service interior design, custom joinery, and digital showroom visualizer tools.
+            • <strong>Phase 1:</strong> Authorized dealership &amp; bulk supply of Sandtex paints &amp; Caplux chemical prep systems.<br />
+            • <strong>Phase 2:</strong> Introduction of premium sanitary ware, luxury bathroom fittings, and designer tiling.<br />
+            • <strong>Phase 3:</strong> Launch of full-service interior design, custom joinery, and digital showroom visualizer tools.
           </p>
         </div>
       </div>
@@ -957,7 +1093,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">04 Foundation</div>
           </div>
         </div>
@@ -985,35 +1121,40 @@
           </div>
         </div>
 
-        <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin: 32px 0 16px;">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin: 20px 0 10px;">
           Our Core Values
         </h3>
 
         <div class="feature-grid-3">
           <div class="feature-card">
-            <div class="feature-title">Integrity</div>
+            <div class="feature-title">💎 Integrity</div>
             <div class="feature-desc">Honesty, transparency, and accountability in every commercial transaction.</div>
           </div>
           <div class="feature-card gold">
-            <div class="feature-title">Quality</div>
+            <div class="feature-title">⭐ Quality</div>
             <div class="feature-desc">Delivering tested products and verified workmanship that meet rigorous standards.</div>
           </div>
           <div class="feature-card crimson">
-            <div class="feature-title">Innovation</div>
+            <div class="feature-title">🚀 Innovation</div>
             <div class="feature-desc">Leveraging modern digital tools, 3D visualization, and advanced coating technologies.</div>
           </div>
           <div class="feature-card">
-            <div class="feature-title">Customer First</div>
+            <div class="feature-title">🤝 Customer First</div>
             <div class="feature-desc">Putting client expectations and project milestones at the center of delivery.</div>
           </div>
           <div class="feature-card gold">
-            <div class="feature-title">Professionalism</div>
+            <div class="feature-title">🎯 Professionalism</div>
             <div class="feature-desc">Competence, punctuality, and technical excellence in project execution.</div>
           </div>
           <div class="feature-card crimson">
-            <div class="feature-title">Teamwork</div>
+            <div class="feature-title">👥 Teamwork</div>
             <div class="feature-desc">Seamless collaboration between architects, artisans, and project owners.</div>
           </div>
+        </div>
+
+        <div class="img-frame" style="height: 140px; margin-top: 12px;">
+          <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Craftsmanship" />
+          <div class="img-caption">Excellence in Material Integrity &amp; Finishing Craftsmanship</div>
         </div>
       </div>
 
@@ -1031,7 +1172,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">05 Services</div>
           </div>
         </div>
@@ -1042,6 +1183,26 @@
         <h1 class="page-title">Our Services &amp; Capabilities</h1>
         <div class="title-accent-bar"></div>
         <p class="lead-subtitle">End-to-end solutions spanning consultation, procurement, fabrication, and installation.</p>
+
+        <!-- 4-Image Service Collage -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px;">
+          <div class="img-frame" style="height: 120px;">
+            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=400" alt="Kitchen Solutions" />
+            <div class="img-caption" style="font-size: 8px;">Kitchen Fit-Out</div>
+          </div>
+          <div class="img-frame" style="height: 120px;">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=400" alt="Wardrobe Joinery" />
+            <div class="img-caption" style="font-size: 8px;">Custom Wardrobes</div>
+          </div>
+          <div class="img-frame" style="height: 120px;">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400" alt="Bathroom Sanitary" />
+            <div class="img-caption" style="font-size: 8px;">Bathroom Sanitary</div>
+          </div>
+          <div class="img-frame" style="height: 120px;">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Office Fit-Out" />
+            <div class="img-caption" style="font-size: 8px;">Corporate Office</div>
+          </div>
+        </div>
 
         <div class="feature-grid-2">
           <div class="feature-card">
@@ -1085,7 +1246,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">06 Product Lines</div>
           </div>
         </div>
@@ -1097,48 +1258,72 @@
         <div class="title-accent-bar"></div>
         <p class="lead-subtitle">High-grade architectural materials sourced for beauty, longevity, and climate resilience.</p>
 
+        <!-- Product Image Cards Grid -->
         <div class="feature-grid-3">
-          <div class="feature-card">
-            <div class="feature-title">Water Closets</div>
-            <div class="feature-desc">Dual-flush, rimless, wall-hung, and back-to-wall ceramic toilets.</div>
+          <div class="product-img-card">
+            <div class="product-img-frame">
+              <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=300" alt="Water Closets" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Water Closets &amp; Basins</div>
+              <div class="product-card-desc">Dual-flush, rimless, wall-hung, and luxury pedestal sinks.</div>
+            </div>
           </div>
-          <div class="feature-card gold">
-            <div class="feature-title">Wash Hand Basins</div>
-            <div class="feature-desc">Countertop vessel basins, vanity under-mounts, and pedestal sinks.</div>
+
+          <div class="product-img-card">
+            <div class="product-img-frame">
+              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=300" alt="Shower Cubicles" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Shower Cubicles &amp; Tubs</div>
+              <div class="product-card-desc">Toughened safety glass enclosures and freestanding acrylic tubs.</div>
+            </div>
           </div>
-          <div class="feature-card crimson">
-            <div class="feature-title">Shower Cubicles</div>
-            <div class="feature-desc">Toughened safety glass enclosures with brushed brass or black hardware.</div>
+
+          <div class="product-img-card">
+            <div class="product-img-frame">
+              <img src="./satin1.png" alt="Sandtex Satin" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Sandtex Satin &amp; Silk</div>
+              <div class="product-card-desc">Premium washable semi-gloss coating for walls and ceilings.</div>
+            </div>
           </div>
-          <div class="feature-card">
-            <div class="feature-title">Bathtubs</div>
-            <div class="feature-desc">Freestanding acrylic soaking tubs and built-in whirlpool spa units.</div>
+
+          <div class="product-img-card">
+            <div class="product-img-frame">
+              <img src="./Sandtex MATT.png" alt="Sandtex Matt" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Sandtex Exterior Matt</div>
+              <div class="product-card-desc">Heavy-duty weather-shield protection for building facades.</div>
+            </div>
           </div>
-          <div class="feature-card gold">
-            <div class="feature-title">Bathroom Cabinets</div>
-            <div class="feature-desc">Moisture-resistant floating vanities with LED smart anti-fog mirrors.</div>
+
+          <div class="product-img-card">
+            <div class="product-img-frame">
+              <img src="./Caplux Undercoat.png" alt="Caplux Undercoat" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Caplux Primers &amp; Putty</div>
+              <div class="product-card-desc">Alkali-resistant primers and screeding fillers for smooth walls.</div>
+            </div>
           </div>
-          <div class="feature-card crimson">
-            <div class="feature-title">Kitchen Sinks</div>
-            <div class="feature-desc">Heavy-gauge stainless steel and black composite granite kitchen basins.</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-title">Kitchen Cabinets</div>
-            <div class="feature-desc">High-gloss acrylic, matte lacquered, and marine-ply cabinetry.</div>
-          </div>
-          <div class="feature-card gold">
-            <div class="feature-title">Wardrobes</div>
-            <div class="feature-desc">Custom walk-in and sliding systems with internal smart LED lighting.</div>
-          </div>
-          <div class="feature-card crimson">
-            <div class="feature-title">Tiles &amp; Paints</div>
-            <div class="feature-desc">Porcelain floor tiles, Sandtex Matt/Silk paints, and Caplux screeding.</div>
+
+          <div class="product-img-card">
+            <div class="product-img-frame">
+              <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=300" alt="Kitchens &amp; Wardrobes" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Kitchens &amp; Wardrobes</div>
+              <div class="product-card-desc">Custom joinery, marine-ply cabinets, and walk-in systems.</div>
+            </div>
           </div>
         </div>
 
-        <div class="callout-box" style="background: var(--cream); border-left-color: var(--navy); color: var(--charcoal);">
-          <h3 style="color: var(--navy);">Extended Catalogue Note</h3>
-          <p style="color: var(--gray-mid);">
+        <div class="callout-box" style="background: var(--cream); border-left-color: var(--navy); color: var(--charcoal); margin-top: 10px;">
+          <h3 style="color: var(--navy); font-size: 14px;">Extended Catalogue Note</h3>
+          <p style="color: var(--gray-mid); font-size: 11px;">
             This profile lists representative categories. For SKU-level specifications, color charts, and yields, please visit
             our interactive catalog at <strong>www.micmaghomes.com/collections</strong>.
           </p>
@@ -1159,7 +1344,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">07 Sectors</div>
           </div>
         </div>
@@ -1170,6 +1355,22 @@
         <h1 class="page-title">Industries We Serve</h1>
         <div class="title-accent-bar"></div>
         <p class="lead-subtitle">Delivering tailored finishing packages across private, commercial, and institutional sectors.</p>
+
+        <!-- Industry Visual Collage -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px;">
+          <div class="img-frame" style="height: 110px;">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" alt="Residential" />
+            <div class="img-caption" style="font-size: 8px;">Luxury Residential</div>
+          </div>
+          <div class="img-frame" style="height: 110px;">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=400" alt="Hospitality" />
+            <div class="img-caption" style="font-size: 8px;">Hotels &amp; Resorts</div>
+          </div>
+          <div class="img-frame" style="height: 110px;">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Corporate Offices" />
+            <div class="img-caption" style="font-size: 8px;">Corporate Towers</div>
+          </div>
+        </div>
 
         <div class="feature-grid-2">
           <div class="feature-card">
@@ -1213,7 +1414,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">08 Value Pillars</div>
           </div>
         </div>
@@ -1259,6 +1460,11 @@
             <div class="feature-desc">Save time and eliminate vendor conflicts with full exterior-to-interior coverage.</div>
           </div>
         </div>
+
+        <div class="img-frame" style="height: 140px; margin-top: 10px;">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1000" alt="Finished Luxury Estate by Micmag" />
+          <div class="img-caption">End-to-End Architectural Supply &amp; Execution Reliability</div>
+        </div>
       </div>
 
       <div class="page-footer">
@@ -1275,7 +1481,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">09 Methodology</div>
           </div>
         </div>
@@ -1315,7 +1521,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">10 QA &amp; Standards</div>
           </div>
         </div>
@@ -1331,10 +1537,10 @@
           approved technical specifications, site records, and systematic quality audits before project sign-off.
         </p>
 
-        <div class="feature-grid-2" style="margin-top: 24px;">
+        <div class="feature-grid-2" style="margin-top: 14px;">
           <div class="callout-box" style="margin: 0; background: var(--cream); color: var(--charcoal); border-left-color: var(--navy);">
             <h3 style="color: var(--navy);">QUALITY CONTROLS</h3>
-            <p style="color: #374151; font-size: 12px; line-height: 1.8;">
+            <p style="color: #374151; font-size: 11.5px; line-height: 1.7;">
               • Batch verification before dispatch &amp; installation<br />
               • Substrate moisture &amp; alkalinity testing<br />
               • Standardized installation checklists<br />
@@ -1345,7 +1551,7 @@
 
           <div class="callout-box" style="margin: 0; background: var(--cream); color: var(--charcoal); border-left-color: var(--gold-deep);">
             <h3 style="color: var(--navy);">SERVICE CONTROLS</h3>
-            <p style="color: #374151; font-size: 12px; line-height: 1.8;">
+            <p style="color: #374151; font-size: 11.5px; line-height: 1.7;">
               • Clear itemized quotation &amp; scope definition<br />
               • Agreed delivery &amp; installation milestones<br />
               • Dedicated project manager &amp; escalation desk<br />
@@ -1353,6 +1559,11 @@
               • Manufacturer warranty documentation
             </p>
           </div>
+        </div>
+
+        <div class="img-frame" style="height: 180px; margin-top: 16px;">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1000" alt="Technical Quality Inspection" />
+          <div class="img-caption">Systematic Quality Verification &amp; On-Site Workmanship Standards</div>
         </div>
       </div>
 
@@ -1370,7 +1581,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">11 Partnerships</div>
           </div>
         </div>
@@ -1386,10 +1597,10 @@
           repeat access to premium building products and turnkey project support.
         </p>
 
-        <div class="feature-grid-2" style="margin-top: 24px;">
+        <div class="feature-grid-2" style="margin-top: 14px;">
           <div class="feature-card">
             <div class="feature-title">PARTNER TYPES</div>
-            <p class="feature-desc" style="line-height: 1.8;">
+            <p class="feature-desc" style="line-height: 1.7;">
               • Architects &amp; Interior Designers<br />
               • Property Developers &amp; Real Estate Funds<br />
               • Civil &amp; Building Contractors<br />
@@ -1401,7 +1612,7 @@
 
           <div class="feature-card gold">
             <div class="feature-title">ENGAGEMENT TYPES</div>
-            <p class="feature-desc" style="line-height: 1.8;">
+            <p class="feature-desc" style="line-height: 1.7;">
               • Direct wholesale product supply<br />
               • Bulk project procurement<br />
               • Turnkey interior fit-out contracts<br />
@@ -1412,7 +1623,12 @@
           </div>
         </div>
 
-        <div class="callout-box">
+        <div class="img-frame" style="height: 160px; margin: 12px 0;">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000" alt="B2B Development Project Partnership" />
+          <div class="img-caption">Multi-Unit Development Finishing Supply Partnerships</div>
+        </div>
+
+        <div class="callout-box" style="margin: 0;">
           <h3>Commercial Objective</h3>
           <p>
             Moving beyond one-off retail transactions toward enduring, long-term business partnerships and enterprise-level
@@ -1435,7 +1651,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">12 Digital Asset</div>
           </div>
         </div>
@@ -1451,11 +1667,10 @@
           to simulate real Sandtex paint colors, test lighting modes, and assemble inquiry baskets before placing orders.
         </p>
 
-        <div class="callout-box" style="background: linear-gradient(135deg, #070d1a, #1a2c5b);">
-          <h3>Interactive Customer Experience Journey</h3>
-          <p style="font-size: 13px; font-weight: 700; color: var(--gold-light);">
-            HOME / CATEGORY &nbsp;→&nbsp; 3D ROOM VISUALIZER &nbsp;→&nbsp; SPEC SHEET &nbsp;→&nbsp; WHATSAPP DIRECT
-          </p>
+        <!-- Digital Showroom Screenshot Visual -->
+        <div class="img-frame" style="height: 220px; margin: 12px 0;">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Interactive 3D Digital Showroom" />
+          <div class="img-caption">Interactive 3D Room Color Visualizer &amp; Paint Yield Simulator</div>
         </div>
 
         <div class="feature-grid-2">
@@ -1492,7 +1707,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">13 Track Record</div>
           </div>
         </div>
@@ -1502,33 +1717,50 @@
       <div class="page-content">
         <h1 class="page-title">Selected Project Portfolio</h1>
         <div class="title-accent-bar"></div>
-        <p class="lead-subtitle">Visual proof of completed works and delivered finishing packages.</p>
+        <p class="lead-subtitle">Visual proof of completed works and delivered finishing packages across Lagos &amp; Nigeria.</p>
 
         <div class="feature-grid-3">
-          <div class="feature-card">
-            <div class="feature-title">Luxury Villa Fit-Out</div>
-            <div class="feature-desc">
-              <strong>Location:</strong> Ikoyi, Lagos<br />
-              <strong>Scope:</strong> Full Sandtex Silk wall coating, master bathroom sanitary fit-out &amp; custom walk-in wardrobe joinery.
+          <div class="product-img-card">
+            <div class="img-frame" style="height: 150px; border-radius: 0; border: none;">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=400" alt="Ikoyi Luxury Villa" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Luxury Villa Fit-Out</div>
+              <div class="product-card-desc">
+                <strong>Location:</strong> Ikoyi, Lagos<br />
+                <strong>Scope:</strong> Full Sandtex Silk coating, sanitary suite fit-out &amp; custom walk-in wardrobe joinery.
+              </div>
             </div>
           </div>
-          <div class="feature-card gold">
-            <div class="feature-title">Residential Estate Exterior</div>
-            <div class="feature-desc">
-              <strong>Location:</strong> Lekki Phase 1, Lagos<br />
-              <strong>Scope:</strong> 24-Unit duplex facade protection with Sandtex Matt &amp; Caplux Alkali Resisting Primer systems.
+
+          <div class="product-img-card">
+            <div class="img-frame" style="height: 150px; border-radius: 0; border: none;">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" alt="Lekki Phase 1 Estate" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Residential Estate Facade</div>
+              <div class="product-card-desc">
+                <strong>Location:</strong> Lekki Phase 1, Lagos<br />
+                <strong>Scope:</strong> 24-Unit duplex facade protection with Sandtex Matt &amp; Caplux Alkali Resisting Primer.
+              </div>
             </div>
           </div>
-          <div class="feature-card crimson">
-            <div class="feature-title">Corporate Headquarters</div>
-            <div class="feature-desc">
-              <strong>Location:</strong> Victoria Island, Lagos<br />
-              <strong>Scope:</strong> Acoustic ceiling finishes, modern executive restroom suites &amp; frameless glass partitions.
+
+          <div class="product-img-card">
+            <div class="img-frame" style="height: 150px; border-radius: 0; border: none;">
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" alt="Victoria Island Corporate HQ" />
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-title">Corporate Headquarters</div>
+              <div class="product-card-desc">
+                <strong>Location:</strong> Victoria Island, Lagos<br />
+                <strong>Scope:</strong> Acoustic ceiling finishes, modern executive restroom suites &amp; glass partitions.
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="callout-box" style="margin-top: 24px;">
+        <div class="callout-box" style="margin-top: 14px;">
           <h3>Confidentiality &amp; Client Standards</h3>
           <p>
             Full photographic case study dossiers, project bill of quantities (BOQ), and client reference contacts are available
@@ -1551,7 +1783,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">14 Leadership</div>
           </div>
         </div>
@@ -1565,40 +1797,53 @@
 
         <div class="team-grid">
           <div class="team-card">
-            <div class="team-avatar">AF</div>
+            <div class="img-frame" style="width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold);">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Mrs. Ajike Fakande" />
+            </div>
             <div>
               <div class="team-name">Mrs. Ajike Fakande</div>
               <div class="team-role">Managing Director / CEO</div>
-              <p style="font-size: 11px; margin-top: 4px; color: var(--gray-mid); margin-bottom: 0;">Strategic direction, corporate partnerships &amp; quality governance.</p>
+              <p style="font-size: 10.5px; margin-top: 3px; color: var(--gray-mid); margin-bottom: 0;">Strategic direction, corporate partnerships &amp; quality governance.</p>
             </div>
           </div>
 
           <div class="team-card">
-            <div class="team-avatar">BA</div>
+            <div class="img-frame" style="width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold);">
+              <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=80&w=200" alt="Miss Bola Aribo" />
+            </div>
             <div>
               <div class="team-name">Miss Bola Aribo</div>
               <div class="team-role">Business Development &amp; Client Relations</div>
-              <p style="font-size: 11px; margin-top: 4px; color: var(--gray-mid); margin-bottom: 0;">Enterprise accounts, tender proposals &amp; developer relations.</p>
+              <p style="font-size: 10.5px; margin-top: 3px; color: var(--gray-mid); margin-bottom: 0;">Enterprise accounts, tender proposals &amp; developer relations.</p>
             </div>
           </div>
 
           <div class="team-card">
-            <div class="team-avatar">KM</div>
+            <div class="img-frame" style="width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold);">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Miss Kosiso M." />
+            </div>
             <div>
               <div class="team-name">Miss Kosiso M.</div>
               <div class="team-role">Operations &amp; Administration</div>
-              <p style="font-size: 11px; margin-top: 4px; color: var(--gray-mid); margin-bottom: 0;">Supply chain coordination, logistics &amp; inventory fulfillment.</p>
+              <p style="font-size: 10.5px; margin-top: 3px; color: var(--gray-mid); margin-bottom: 0;">Supply chain coordination, logistics &amp; inventory fulfillment.</p>
             </div>
           </div>
 
           <div class="team-card">
-            <div class="team-avatar">NF</div>
+            <div class="img-frame" style="width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold);">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Mr. Nicholas Fabian" />
+            </div>
             <div>
               <div class="team-name">Mr. Nicholas Fabian</div>
               <div class="team-role">Projects &amp; Technical Services</div>
-              <p style="font-size: 11px; margin-top: 4px; color: var(--gray-mid); margin-bottom: 0;">On-site quality supervision, joinery precision &amp; coating diagnostics.</p>
+              <p style="font-size: 10.5px; margin-top: 3px; color: var(--gray-mid); margin-bottom: 0;">On-site quality supervision, joinery precision &amp; coating diagnostics.</p>
             </div>
           </div>
+        </div>
+
+        <div class="img-frame" style="height: 160px; margin-top: 14px;">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" alt="MICMAG Executive Management &amp; Technical Team" />
+          <div class="img-caption">Professional Collaboration &amp; Client-Centric Delivery</div>
         </div>
       </div>
 
@@ -1616,7 +1861,7 @@
         <div class="page-header-brand">
           <img src="./Logo.png" alt="Logo" class="page-header-logo" />
           <div>
-            <div class="page-header-brand">MICMAG HOMES &amp; FITTINGS</div>
+            <div class="page-header-text">MICMAG HOMES &amp; FITTINGS</div>
             <div class="page-header-tag">15 Contact Desks</div>
           </div>
         </div>
@@ -1627,6 +1872,18 @@
         <h1 class="page-title">Locations &amp; Contact Desks</h1>
         <div class="title-accent-bar"></div>
         <p class="lead-subtitle">Visit our showrooms or reach our project desks for prompt consultation and site visits.</p>
+
+        <!-- Location Images -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div class="img-frame" style="height: 150px;">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=500" alt="Oworonshoki Store" />
+            <div class="img-caption">Oworonshoki Main Store &amp; Warehouse</div>
+          </div>
+          <div class="img-frame" style="height: 150px;">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=500" alt="Lekki Sangotedo Showroom" />
+            <div class="img-caption">Lekki-Epe Expressway Showroom</div>
+          </div>
+        </div>
 
         <div class="locations-grid">
           <div class="loc-card">
@@ -1652,7 +1909,7 @@
           </div>
         </div>
 
-        <div class="callout-box">
+        <div class="callout-box" style="margin-top: 12px;">
           <h3>Direct Electronic Desks</h3>
           <p>
             • Corporate Email: <a href="mailto:micmaghomesfittings@gmail.com" style="color:var(--gold-light);">micmaghomesfittings@gmail.com</a><br />
@@ -1671,31 +1928,38 @@
     <!-- ══════════════════════════════════════════════════════════════════════
          PAGE 18: BACK COVER
          ══════════════════════════════════════════════════════════════════════ -->
-    <div class="doc-page cover-page" id="page-18" style="text-align: center; justify-content: center; min-height: 1180px;">
-      <div style="max-width: 600px; margin: 0 auto; padding: 40px 0;">
-        <img src="./Logo.png" alt="Micmag Logo" style="height: 110px; width: auto; margin-bottom: 24px; filter: drop-shadow(0 6px 20px rgba(0,0,0,0.6));" />
-        
-        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px;">
+    <div class="doc-page cover-page" id="page-18" style="text-align: center; justify-content: space-between; padding: 48px 48px;">
+      <div style="display: flex; justify-content: center;">
+        <img src="./Logo.png" alt="Micmag Logo" style="height: 90px; width: auto; filter: drop-shadow(0 6px 20px rgba(0,0,0,0.6));" />
+      </div>
+
+      <div style="max-width: 680px; margin: 0 auto;">
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 8px;">
           MICMAG HOMES &amp; FITTINGS
         </div>
 
-        <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 42px; font-weight: 900; line-height: 1.2; color: #ffffff; margin-bottom: 20px;">
+        <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 38px; font-weight: 900; line-height: 1.15; color: #ffffff; margin-bottom: 14px;">
           LET'S BUILD SOMETHING <span style="background: linear-gradient(135deg, #fff 0%, var(--gold-light) 50%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EXCEPTIONAL.</span>
         </h1>
 
-        <div style="width: 80px; height: 4px; background: var(--gold); margin: 0 auto 28px; border-radius: 2px;"></div>
+        <div style="width: 70px; height: 3.5px; background: var(--gold); margin: 0 auto 16px; border-radius: 2px;"></div>
 
-        <p style="font-size: 15px; font-style: italic; color: rgba(255,255,255,0.85); margin-bottom: 36px;">
+        <!-- Closing Luxury Finished Space Photo -->
+        <div class="img-frame" style="height: 240px; border: 2px solid rgba(201,168,76,0.4); box-shadow: 0 16px 40px rgba(0,0,0,0.6); margin-bottom: 18px;">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1000" alt="Completed Luxury Architecture by Micmag" />
+          <div class="img-caption" style="text-align: center;">End-to-End Turnkey Building Materials &amp; Interior Finishing</div>
+        </div>
+
+        <p style="font-size: 13.5px; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 18px;">
           "Building Excellence... Finishing with Perfection"
         </p>
+      </div>
 
-        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; padding: 24px; text-align: center; font-size: 13px; line-height: 1.8;">
-          <div style="font-weight: 700; color: var(--gold-light); font-size: 14px; margin-bottom: 6px;">MICMAG HOMES &amp; FITTINGS</div>
-          <div>🌐 <a href="https://micmaghomes.com" style="color: #ffffff; text-decoration: none; font-weight: 600;">www.micmaghomes.com</a></div>
-          <div>✉ <a href="mailto:micmaghomesfittings@gmail.com" style="color: #ffffff; text-decoration: none;">micmaghomesfittings@gmail.com</a></div>
-          <div style="margin-top: 8px; color: var(--gold-light); font-weight: 700;">
-            📞 07052940445 &nbsp;|&nbsp; 08056965188 &nbsp;|&nbsp; 08107144064
-          </div>
+      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.35); border-radius: 12px; padding: 18px; text-align: center; font-size: 12px; line-height: 1.7; max-width: 680px; margin: 0 auto; width: 100%;">
+        <div style="font-weight: 700; color: var(--gold-light); font-size: 13px; margin-bottom: 4px;">MICMAG HOMES &amp; FITTINGS NIGERIA</div>
+        <div>🌐 <a href="https://micmaghomes.com" style="color: #ffffff; text-decoration: none; font-weight: 600;">www.micmaghomes.com</a> &nbsp;|&nbsp; ✉ <a href="mailto:micmaghomesfittings@gmail.com" style="color: #ffffff; text-decoration: none;">micmaghomesfittings@gmail.com</a></div>
+        <div style="margin-top: 4px; color: var(--gold-light); font-weight: 700;">
+          📞 07052940445 &nbsp;|&nbsp; 08056965188 &nbsp;|&nbsp; 08107144064
         </div>
       </div>
     </div>
