@@ -106,7 +106,7 @@ export default function RoomCanvas({
       }`}
     >
       {/* ── Top Architectural Controls Bar ── */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5 bg-[#0a1122]/95 backdrop-blur-xl border-b border-white/10 z-20">
+      <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 px-3 sm:px-5 py-2.5 sm:py-3.5 bg-[#0a1122]/95 backdrop-blur-xl border-b border-white/10 z-20">
         {/* Surface Quick-Target indicator */}
         <div className="flex items-center gap-2.5">
           <span className="text-[11px] font-semibold text-white/50 uppercase tracking-widest hidden sm:inline">

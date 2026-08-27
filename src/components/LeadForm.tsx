@@ -204,7 +204,7 @@ export default function LeadForm() {
             </h3>
             
             {success && (
-              <div className="bg-brand-yellow/10 border border-[#FF6B00]/40 text-brand-charcoal rounded-[4px] p-4 text-xs font-semibold flex items-start gap-2.5">
+              <div className="bg-amber-50 border border-amber-300 text-brand-charcoal rounded-lg p-4 text-xs font-semibold flex items-start gap-2.5">
                 <CheckCircle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                 <div>
                   <h5 className="font-bold">Inquiry Broadcast Complete</h5>

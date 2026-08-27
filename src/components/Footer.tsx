@@ -145,7 +145,7 @@ export default function Footer() {
       {/* Floating WhatsApp Action Button */}
       <button
         onClick={() => openWhatsApp('2347052940445')}
-        className="fixed bottom-8 right-8 z-[90] bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-400/40 cursor-pointer"
+        className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-[90] bg-[#25D366] text-white w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-400/40 cursor-pointer"
         title="Chat on WhatsApp"
       >
         <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white" fill="currentColor">

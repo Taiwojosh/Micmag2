@@ -205,7 +205,7 @@ export default function Hero() {
           {/* Headline */}
           <motion.h1
             variants={fadeUpVariant}
-            className="font-serif text-5xl sm:text-6xl lg:text-[72px] leading-[0.95] font-black text-brand-charcoal tracking-tight drop-shadow-sm"
+            className="font-serif text-4xl sm:text-6xl lg:text-[72px] leading-[0.98] sm:leading-[0.95] font-black text-brand-charcoal tracking-tight drop-shadow-sm"
           >
             Prestige <br />
             <span className="text-micmag-red italic font-light tracking-normal">Interiors.</span><br />
@@ -224,7 +224,7 @@ export default function Hero() {
           {/* Elegant CTAs */}
           <motion.div
             variants={fadeUpVariant}
-            className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto pt-4"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-5 w-full sm:w-auto pt-2 sm:pt-4"
           >
             <Link
               to="/contact"
@@ -252,7 +252,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           onMouseEnter={() => setIsHoveringGrid(true)}
           onMouseLeave={() => setIsHoveringGrid(false)}
-          className="lg:col-span-6 relative h-[500px] sm:h-[600px] w-full mt-10 lg:mt-0 cursor-default"
+          className="lg:col-span-6 relative h-[380px] sm:h-[500px] lg:h-[600px] w-full mt-6 lg:mt-0 cursor-default"
         >
           {/* Main Arched Image (Interior shot cycling) */}
           <div className="absolute right-0 top-0 w-[80%] h-[90%] rounded-t-[200px] rounded-b-[40px] overflow-hidden shadow-2xl border-4 border-white bg-neutral-100">
