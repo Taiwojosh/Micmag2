@@ -4,6 +4,15 @@
  * On desktop, it falls back to the official API route which launches the desktop/web client directly.
  */
 export function openWhatsApp(phone: string, text: string = "") {
+  // Report conversion to Google Ads if configured
+  if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+    try {
+      (window as any).gtag_report_conversion();
+    } catch {
+      // Ignore if analytics blocked by user ad-blocker
+    }
+  }
+
   // Clean phone number: remove any non-digit characters
   const cleanPhone = phone.replace(/\D/g, '');
   const encodedText = encodeURIComponent(text);
