@@ -177,6 +177,7 @@ export default function Header() {
     { name: 'Home', href: '/' },
     { name: 'Products', href: '/collections' },
     { name: 'Showroom', href: '/showroom', badge: 'NEW' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Locations', href: '/#locations' },
   ];
 
