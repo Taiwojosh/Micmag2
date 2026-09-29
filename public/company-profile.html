@@ -10,21 +10,48 @@
 
     gtag('config', 'AW-18467626918');
   </script>
-  <!-- Event snippet for Purchase conversion page -->
+  <!-- Event snippet for WhatsApp Enquiry (1) conversion page
+  In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
   <script>
+    var lastWhatsAppConversionTime = 0;
     function gtag_report_conversion(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
+      var now = Date.now ? Date.now() : new Date().getTime();
+      // Prevent rapid duplicate clicks from firing multiple conversion events
+      if (now - lastWhatsAppConversionTime < 1000) {
+        if (typeof(url) != 'undefined' && url) {
           window.location = url;
         }
+        return false;
+      }
+      lastWhatsAppConversionTime = now;
+
+      var callbackCalled = false;
+      var callback = function () {
+        if (!callbackCalled) {
+          callbackCalled = true;
+          if (typeof(url) != 'undefined' && url) {
+            window.location = url;
+          }
+        }
       };
-      gtag('event', 'conversion', {
-          'send_to': 'AW-18467626918/coMhCIrqqYodEKa_huZE',
-          'value': 1.0,
-          'currency': 'NGN',
-          'transaction_id': '',
-          'event_callback': callback
-      });
+
+      // Safety fallback: ensure destination is reached within 500ms if gtag fails or is blocked
+      setTimeout(callback, 500);
+
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+              'send_to': 'AW-18467626918/EuzlCI7AtYodEKa_huZE',
+              'value': 1.0,
+              'currency': 'USD',
+              'event_callback': callback
+          });
+        } else {
+          callback();
+        }
+      } catch (e) {
+        callback();
+      }
       return false;
     }
   </script>
@@ -862,7 +889,7 @@
     <a href="/MICMAG_Company_Profile.pdf" download="MICMAG_Company_Profile.pdf" class="btn-action btn-secondary" style="background: rgba(201, 168, 76, 0.2); color: var(--gold-light); border-color: rgba(201,168,76,0.4);">
       📥 Download PDF
     </a>
-    <a href="https://wa.me/2347052940445?text=Hello%20Micmag,%20I%20am%20reviewing%20your%20Company%20Profile%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="btn-action btn-whatsapp">
+    <a href="https://wa.me/2347052940445?text=Hello%20Micmag,%20I%20am%20reviewing%20your%20Company%20Profile%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="btn-action btn-whatsapp" onclick="return gtag_report_conversion('https://wa.me/2347052940445?text=Hello%20Micmag,%20I%20am%20reviewing%20your%20Company%20Profile%20and%20would%20like%20to%20discuss%20a%20project.');">
       💬 WhatsApp
     </a>
     <a href="/" class="btn-action btn-secondary">
@@ -2092,7 +2119,7 @@
           <p>
             • Corporate Email: <a href="mailto:micmaghomesfittings@gmail.com" style="color:var(--gold-light);">micmaghomesfittings@gmail.com</a><br />
             • Web Portal: <a href="https://micmaghomes.com" style="color:var(--gold-light);">www.micmaghomes.com</a><br />
-            • WhatsApp Desk: <a href="https://wa.me/2347052940445" style="color:var(--gold-light);">+234 705 294 0445</a>
+            • WhatsApp Desk: <a href="https://wa.me/2347052940445" style="color:var(--gold-light);" onclick="return gtag_report_conversion('https://wa.me/2347052940445');">+234 705 294 0445</a>
           </p>
         </div>
       </div>

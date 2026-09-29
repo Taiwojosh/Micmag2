@@ -532,7 +532,7 @@ export default function AdminPage() {
                               whileTap={{ scale: 0.95 }}
                               onClick={() => {
                                 const text = `Hello ${lead.customerName}! This is Micmag Homes & Fittings support. In response to your request for: ${lead.inquiryType}`;
-                                openWhatsApp(lead.contactNumber, text);
+                                openWhatsApp(lead.contactNumber, text, false);
                               }}
                               className="text-xs font-bold text-green-700 bg-green-50 hover:bg-green-100 border border-green-150 flex items-center gap-1 transition-colors duration-200 px-2.5 py-1 rounded cursor-pointer"
                             >

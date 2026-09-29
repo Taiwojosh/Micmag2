@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, ChevronDown } from 'lucide-react';
+import { openWhatsApp } from '../../utils/whatsapp';
 
 interface ShowroomHeroProps {
   onEnter: () => void;
@@ -165,6 +166,10 @@ export default function ShowroomHero({ onEnter }: ShowroomHeroProps) {
             href="https://wa.me/2347052940445"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault();
+              openWhatsApp('2347052940445');
+            }}
             className="px-10 py-4 rounded-full font-semibold text-sm uppercase tracking-widest border transition-all duration-300 hover:bg-white/10"
             style={{ borderColor: 'rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.8)' }}
           >

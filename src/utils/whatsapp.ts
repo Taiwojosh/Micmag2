@@ -3,13 +3,20 @@
  * On mobile devices, this uses the native `whatsapp://` protocol to instantly launch the app.
  * On desktop, it falls back to the official API route which launches the desktop/web client directly.
  */
-export function openWhatsApp(phone: string, text: string = "") {
-  // Report conversion to Google Ads if configured
-  if (typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
-    try {
-      (window as any).gtag_report_conversion();
-    } catch {
-      // Ignore if analytics blocked by user ad-blocker
+let lastConversionTimestamp = 0;
+
+export function openWhatsApp(phone: string, text: string = "", trackConversion: boolean = true) {
+  // Report conversion to Google Ads if configured and this is a customer inquiry
+  if (trackConversion && typeof window !== 'undefined' && typeof (window as any).gtag_report_conversion === 'function') {
+    const now = Date.now();
+    // Guard against duplicate rapid invocation from a single click event
+    if (now - lastConversionTimestamp > 1000) {
+      lastConversionTimestamp = now;
+      try {
+        (window as any).gtag_report_conversion();
+      } catch {
+        // Ignore if analytics blocked by user ad-blocker
+      }
     }
   }
 

@@ -363,6 +363,13 @@ export default function ShowroomPage() {
                 href="https://wa.me/2347052940445?text=Hi%20Micmag!%20I%20tested%20colors%20on%20your%20Digital%20Showroom%20and%20would%20like%20to%20book%20a%20site%20visit."
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openWhatsApp(
+                    '2347052940445',
+                    'Hi Micmag! I tested colors on your Digital Showroom and would like to book a site visit.'
+                  );
+                }}
                 className="flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest text-white shadow-xl transition-all hover:scale-105"
                 style={{ background: 'linear-gradient(135deg, #25d366 0%, #128c7e 100%)' }}
               >
