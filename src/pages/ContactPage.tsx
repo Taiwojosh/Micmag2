@@ -29,7 +29,7 @@ const offices: OfficeBranch[] = [
   {
     id: 'lekki-phase1',
     name: 'Lekki Phase 1 Store',
-    address: '33 Adebayo Doherty street, (SEDONA ISLAND) OPPOSITE MONTY, Lekki Phase 1, LAGOS',
+    address: '33B Adebayo Doherty (Sedona Island, Opposite Monty, Off Admiralty Way), Lekki Phase 1, Lagos',
     openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
     phone: '+234 705 294 0445',
     tag: 'Island Experience Store',
