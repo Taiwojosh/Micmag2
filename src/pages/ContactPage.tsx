@@ -27,6 +27,16 @@ const offices: OfficeBranch[] = [
     services: ['Architectural Color Consulting', ' Textured Finishes Display', 'Professional Custom Tinting', 'On-Site Technical Inspections']
   },
   {
+    id: 'lekki-phase1',
+    name: 'Lekki Phase 1 Store',
+    address: '33 Adebayo Doherty street, (SEDONA ISLAND) OPPOSITE MONTY, Lekki Phase 1, LAGOS',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
+    phone: '+234 705 294 0445',
+    tag: 'Island Experience Store',
+    customGoogleMapsUrl: 'https://maps.app.goo.gl/zuinFae865xgAyeV8?g_st=aw',
+    services: ['Architectural Color Studio', 'Sandtex Textured Finishes Display', 'Ideal Standard Consultations', 'Express Island Site Delivery']
+  },
+  {
     id: 'sangotedo',
     name: 'Sangotedo Outlet',
     address: 'KM 46, Lekki-Epe expressway, opposite hot bread, sangotedo Lagos',
@@ -83,7 +93,7 @@ const springTransition = { type: "spring", stiffness: 100, damping: 15 };
 export default function ContactPage() {
   usePageMeta({
     title: 'Contact Us',
-    description: 'Get in touch with Micmag Homes & Fittings. Visit our Lagos stores in Oworonshoki, Sangotedo, and Alakija, or reach us by phone and WhatsApp.',
+    description: 'Get in touch with Micmag Homes & Fittings. Visit our Lagos stores in Oworonshoki, Lekki Phase 1, Sangotedo, and Alakija, or reach us by phone and WhatsApp.',
     ogTitle: 'Contact Micmag Homes & Fittings | Lagos Paint & Fittings Stores',
   });
   return (
@@ -163,7 +173,7 @@ export default function ContactPage() {
                     <span>{office.phone}</span>
                   </a>
 
-                  {office.id === 'oworonshoki' && (
+                  {office.customGoogleMapsUrl && office.customGoogleMapsUrl !== 'https://www.google.com/maps' && (
                     <a
                       href={office.customGoogleMapsUrl}
                       target="_blank"

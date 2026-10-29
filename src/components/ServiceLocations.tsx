@@ -34,6 +34,22 @@ const BRANCHES = [
     micmagActive: true
   },
   {
+    id: 'lekki-phase1',
+    name: 'Lekki Phase 1 Store',
+    node: 'Sedona Island Outlet',
+    address: '33 Adebayo Doherty street, (SEDONA ISLAND) OPPOSITE MONTY, Lekki Phase 1, LAGOS',
+    openingHours: 'Mon-Fri: 8:00 AM - 5:00 PM, Sat: 9:00 AM - 3:00 PM',
+    phone: '+234 705 294 0445',
+    tag: 'Island Experience Store',
+    services: ['Architectural Color Studio', 'Sandtex Textured Finishes Display', 'Ideal Standard Consultations', 'Express Island Site Delivery'],
+    coordinates: '6.4475° N, 3.4800° E',
+    lat: 6.4475,
+    lng: 3.4800,
+    customGoogleMapsUrl: 'https://maps.app.goo.gl/zuinFae865xgAyeV8?g_st=aw',
+    accentColor: '#c9a84c',
+    micmagActive: true
+  },
+  {
     id: 'sangotedo',
     name: 'Sangotedo Island Store',
     node: 'Lekki Island Store',
@@ -124,7 +140,7 @@ export default function ServiceLocations() {
   // Filter logic
   const filteredBranches = BRANCHES.filter(b => {
     if (activeTab === 'island') {
-      return b.id === 'sangotedo' || b.id === 'ogombo' || b.id === 'bogije';
+      return b.id === 'lekki-phase1' || b.id === 'sangotedo' || b.id === 'ogombo' || b.id === 'bogije';
     }
     if (activeTab === 'mainland') {
       return b.id === 'oworonshoki' || b.id === 'alakija' || b.id === 'ikorodu';
@@ -166,7 +182,7 @@ export default function ServiceLocations() {
               All Branches ({BRANCHES.length})
             </button>
             <button
-              onClick={() => { setActiveTab('island'); setSelectedBranch(BRANCHES.find(b => b.id === 'sangotedo')!); }}
+              onClick={() => { setActiveTab('island'); setSelectedBranch(BRANCHES.find(b => b.id === 'lekki-phase1')!); }}
               className={`whitespace-nowrap px-3.5 py-2 text-[11px] font-bold uppercase rounded-[2px] tracking-wider cursor-pointer transition-colors ${activeTab === 'island' ? 'bg-micmag-red text-white shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/5'}`}
             >
               Island Branches

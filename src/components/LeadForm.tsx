@@ -6,6 +6,7 @@ import { openWhatsApp } from '../utils/whatsapp';
 
 const BRANCHES = [
   'Oworonshoki (Headquarters Depot)',
+  'Lekki Phase 1 (Sedona Island Store)',
   'Sangotedo (Island Store)',
   'Alakija Store',
   'Ikorodu Store',

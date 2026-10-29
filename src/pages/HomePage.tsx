@@ -19,7 +19,7 @@ export default function HomePage() {
     description:
       'Micmag Homes & Fittings is Lagos\u2019 authorized Sandtex and Caplux dealer. ' +
       'Shop climate-proof exterior paints, interior emulsions, and industrial primers. ' +
-      'Stores in Oworonshoki, Sangotedo, Alakija, Ikorodu, Ogombo & Bogije.',
+      'Stores in Oworonshoki, Lekki Phase 1, Sangotedo, Alakija, Ikorodu, Ogombo & Bogije.',
     ogTitle: 'Micmag Homes & Fittings | Sandtex Paints Nigeria',
   });
   useEffect(() => {

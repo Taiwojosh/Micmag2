@@ -133,7 +133,7 @@ export default function Footer() {
               {/* Physical Address Footnote */}
               <div className="pt-2 border-t border-neutral-800/60 text-[11px] text-white flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
-                <p>Offices in Oworonshoki (HQ), Sangotedo, Alakija, Ikorodu, Ogombo, and Bogije.</p>
+                <p>Offices in Oworonshoki (HQ), Lekki Phase 1, Sangotedo, Alakija, Ikorodu, Ogombo, and Bogije.</p>
               </div>
 
             </div>
