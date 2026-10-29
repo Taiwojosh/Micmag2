@@ -345,10 +345,45 @@ export const BLOG_POSTS: BlogPost[] = [
   }
 ];
 
-export function getBlogPostBySlug(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((p) => p.slug === slug);
+export function getStoredCustomArticles(): BlogPost[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = localStorage.getItem('micmag_custom_articles');
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
 }
 
-export function getRelatedBlogPosts(currentId: string, limit = 2): BlogPost[] {
-  return BLOG_POSTS.filter((p) => p.id !== currentId).slice(0, limit);
+export function saveStoredCustomArticles(articles: BlogPost[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem('micmag_custom_articles', JSON.stringify(articles));
+  } catch (e) {
+    console.error('Failed to save articles to localStorage', e);
+  }
+}
+
+export function getAllBlogPosts(customArticles: BlogPost[] = []): BlogPost[] {
+  const stored = getStoredCustomArticles();
+  const mergedCustom = [...customArticles];
+  stored.forEach((st) => {
+    if (!mergedCustom.some((c) => c.id === st.id)) {
+      mergedCustom.push(st);
+    }
+  });
+
+  const customIds = new Set(mergedCustom.map((a) => a.id));
+  const uniqueSeed = BLOG_POSTS.filter((a) => !customIds.has(a.id));
+  return [...mergedCustom, ...uniqueSeed];
+}
+
+export function getBlogPostBySlug(slug: string, customArticles: BlogPost[] = []): BlogPost | undefined {
+  const all = getAllBlogPosts(customArticles);
+  return all.find((p) => p.slug === slug);
+}
+
+export function getRelatedBlogPosts(currentId: string, limit = 2, customArticles: BlogPost[] = []): BlogPost[] {
+  const all = getAllBlogPosts(customArticles);
+  return all.filter((p) => p.id !== currentId).slice(0, limit);
 }

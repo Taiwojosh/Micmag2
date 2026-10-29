@@ -223,6 +223,124 @@ async function startServer() {
     }
   });
 
+  // ── Articles / Journal API ──────────────────────────────────────────
+  const ARTICLES_FILE = path.join(process.cwd(), 'articles.json');
+  if (!fs.existsSync(ARTICLES_FILE)) {
+    fs.writeFileSync(ARTICLES_FILE, JSON.stringify([], null, 2), 'utf8');
+  }
+
+  // GET /api/articles - Public endpoint
+  app.get("/api/articles", (_req, res) => {
+    try {
+      if (!fs.existsSync(ARTICLES_FILE)) return res.json([]);
+      const raw = fs.readFileSync(ARTICLES_FILE, 'utf8');
+      res.json(JSON.parse(raw));
+    } catch (e) {
+      console.error("Error reading articles:", e);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  // POST /api/articles - Admin protected
+  app.post("/api/articles", (req, res) => {
+    try {
+      const passcode = req.headers["x-admin-passcode"];
+      if (!isValidPasscode(passcode)) {
+        return res.status(401).json({ error: "Invalid admin passcode." });
+      }
+
+      const body = req.body ?? {};
+      const title = sanitizeInput(body.title, 200);
+      const subtitle = sanitizeInput(body.subtitle, 300);
+      const excerpt = sanitizeInput(body.excerpt, 500);
+      const category = sanitizeInput(body.category, 50) || 'Paint Systems';
+      const coverImage = typeof body.coverImage === 'string' && body.coverImage.trim()
+        ? body.coverImage.trim()
+        : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+      const readTime = sanitizeInput(body.readTime, 30) || '5 min read';
+      const content = typeof body.content === 'string' ? body.content.trim() : '';
+
+      if (!title || !excerpt) {
+        return res.status(400).json({ error: "Title and excerpt are required." });
+      }
+
+      const slug = title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '') || `post-${Date.now()}`;
+
+      const raw = fs.existsSync(ARTICLES_FILE) ? fs.readFileSync(ARTICLES_FILE, 'utf8') : '[]';
+      const articles = JSON.parse(raw);
+
+      const newArticle = {
+        id: `custom-${Date.now()}`,
+        slug,
+        title,
+        subtitle: subtitle || excerpt,
+        excerpt,
+        category,
+        coverImage,
+        coverImageAlt: title,
+        author: {
+          name: sanitizeInput(body.authorName, 100) || 'Micmag Editorial Desk',
+          role: sanitizeInput(body.authorRole, 100) || 'Technical Specialist, Micmag Homes',
+          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200'
+        },
+        publishedAt: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+        updatedAt: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+        readTime,
+        tags: [category, 'Micmag Homes', 'Lagos Construction'],
+        metaDescription: excerpt,
+        sections: [
+          {
+            heading: title,
+            paragraphs: content ? content.split('\n\n').filter(Boolean) : [excerpt]
+          }
+        ],
+        faqs: [],
+        relatedProducts: [
+          {
+            name: 'Sandtex Matt Emulsion',
+            category: 'Interior Architectural',
+            image: '/Sandtex MATT.png',
+            summary: 'Deep non-reflective luxury finish with superior micro-pores for flawless walls.'
+          }
+        ]
+      };
+
+      articles.unshift(newArticle);
+      fs.writeFileSync(ARTICLES_FILE, JSON.stringify(articles, null, 2), 'utf8');
+      res.status(201).json({ success: true, article: newArticle });
+    } catch (e) {
+      console.error("Error creating article:", e);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  // DELETE /api/articles/:id - Admin protected
+  app.delete("/api/articles/:id", (req, res) => {
+    try {
+      const { id } = req.params;
+      const passcode = req.headers["x-admin-passcode"];
+      if (!isValidPasscode(passcode)) {
+        return res.status(401).json({ error: "Invalid admin passcode." });
+      }
+
+      if (!fs.existsSync(ARTICLES_FILE)) {
+        return res.status(404).json({ error: "No articles data exists." });
+      }
+
+      const raw = fs.readFileSync(ARTICLES_FILE, 'utf8');
+      const articles = JSON.parse(raw);
+      const filtered = articles.filter((a: any) => a.id !== id);
+      fs.writeFileSync(ARTICLES_FILE, JSON.stringify(filtered, null, 2), 'utf8');
+      res.json({ success: true });
+    } catch (e) {
+      console.error("Error deleting article:", e);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
   // Serve static files / Vite middleware
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

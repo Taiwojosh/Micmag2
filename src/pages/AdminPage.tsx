@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { openWhatsApp } from '../utils/whatsapp';
 import { usePageMeta } from '../utils/usePageMeta';
+import { getAllBlogPosts, getStoredCustomArticles, saveStoredCustomArticles, BlogPost } from '../data/blogPosts';
 import { 
   Users, 
   Search, 
@@ -19,7 +20,14 @@ import {
   Calendar,
   Layers,
   ArrowRight,
-  Mail
+  Mail,
+  BookOpen,
+  Plus,
+  ExternalLink,
+  Share2,
+  FileText,
+  Sparkles,
+  X
 } from 'lucide-react';
 
 interface Lead {
@@ -59,6 +67,113 @@ export default function AdminPage() {
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
   const [activeNoteText, setActiveNoteText] = useState('');
 
+  // Tab switcher: 'leads' | 'articles'
+  const [adminTab, setAdminTab] = useState<'leads' | 'articles'>('leads');
+  const [articles, setArticles] = useState<BlogPost[]>(() => getAllBlogPosts());
+  const [showNewArticleModal, setShowNewArticleModal] = useState(false);
+  const [articleTitle, setArticleTitle] = useState('');
+  const [articleSubtitle, setArticleSubtitle] = useState('');
+  const [articleExcerpt, setArticleExcerpt] = useState('');
+  const [articleCategory, setArticleCategory] = useState<'Cost & Estimating' | 'Paint Systems' | 'Sanitary Ware' | 'Authenticity Guides'>('Paint Systems');
+  const [articleContent, setArticleContent] = useState('');
+  const [articleCover, setArticleCover] = useState('');
+  const [articleReadTime, setArticleReadTime] = useState('5 min read');
+  const [articleAuthor, setArticleAuthor] = useState('Micmag Editorial Desk');
+  const [savingArticle, setSavingArticle] = useState(false);
+
+  const fetchArticles = async () => {
+    try {
+      const res = await fetch('/api/articles');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          saveStoredCustomArticles(data);
+          setArticles(getAllBlogPosts(data));
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching articles:', err);
+    }
+  };
+
+  const handleCreateArticle = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!articleTitle.trim() || !articleExcerpt.trim()) {
+      alert('Please provide a title and summary excerpt.');
+      return;
+    }
+    setSavingArticle(true);
+    try {
+      const res = await fetch('/api/articles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-passcode': passcode
+        },
+        body: JSON.stringify({
+          title: articleTitle,
+          subtitle: articleSubtitle,
+          excerpt: articleExcerpt,
+          category: articleCategory,
+          content: articleContent,
+          coverImage: articleCover,
+          readTime: articleReadTime,
+          authorName: articleAuthor,
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const updated = getAllBlogPosts([data.article, ...articles.filter(a => a.id.startsWith('custom-'))]);
+        saveStoredCustomArticles([data.article, ...getStoredCustomArticles()]);
+        setArticles(updated);
+        setShowNewArticleModal(false);
+        setArticleTitle('');
+        setArticleSubtitle('');
+        setArticleExcerpt('');
+        setArticleContent('');
+        setArticleCover('');
+        alert('Article published successfully! It is now live on the blog and homepage.');
+      } else {
+        alert('Failed to publish article. Check passcode.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error publishing article.');
+    } finally {
+      setSavingArticle(false);
+    }
+  };
+
+  const handleDeleteArticle = async (id: string) => {
+    if (!id.startsWith('custom-')) {
+      alert('Default core foundation guides cannot be deleted.');
+      return;
+    }
+    if (!window.confirm('Are you sure you want to delete this custom article?')) return;
+    try {
+      const res = await fetch(`/api/articles/${id}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-passcode': passcode }
+      });
+      if (res.ok) {
+        const filtered = getStoredCustomArticles().filter(a => a.id !== id);
+        saveStoredCustomArticles(filtered);
+        setArticles(getAllBlogPosts(filtered));
+      } else {
+        alert('Failed to delete article.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error deleting article.');
+    }
+  };
+
+  const shareToBroadcast = (post: BlogPost) => {
+    const url = `https://micmaghomes.com/blog/${post.slug}`;
+    const text = `*New Architectural Guide from Micmag Homes & Fittings* 🏛️\n\n"${post.title}"\n\n${post.excerpt}\n\n👉 Read the complete breakdown here:\n${url}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
   // Automatically check sessionStorage for stored passcode on mount
   useEffect(() => {
     const savedPasscode = sessionStorage.getItem('micmag_admin_passcode');
@@ -85,6 +200,7 @@ export default function AdminPage() {
       setLeads(data);
       setPasscode(codeToVerify);
       setIsAuthenticated(true);
+      fetchArticles();
       // sessionStorage auto-clears when the tab is closed (safer than localStorage)
       sessionStorage.setItem('micmag_admin_passcode', codeToVerify);
     } catch (err: any) {
@@ -329,6 +445,33 @@ export default function AdminPage() {
           </div>
         </div>
 
+        {/* Navigation Tabs */}
+        <div className="flex border-b border-brand-sand/20 mb-8 gap-2">
+          <button
+            onClick={() => setAdminTab('leads')}
+            className={`pb-3 px-4 font-semibold text-xs uppercase tracking-wider transition-all duration-150 flex items-center gap-2 border-b-2 cursor-pointer ${
+              adminTab === 'leads'
+                ? 'border-brand-red text-brand-charcoal font-bold'
+                : 'border-transparent text-brand-mid hover:text-brand-charcoal'
+            }`}
+          >
+            <Users className="w-4 h-4" /> Leads Pipeline ({leads.length})
+          </button>
+          <button
+            onClick={() => setAdminTab('articles')}
+            className={`pb-3 px-4 font-semibold text-xs uppercase tracking-wider transition-all duration-150 flex items-center gap-2 border-b-2 cursor-pointer ${
+              adminTab === 'articles'
+                ? 'border-brand-red text-brand-charcoal font-bold'
+                : 'border-transparent text-brand-mid hover:text-brand-charcoal'
+            }`}
+          >
+            <BookOpen className="w-4 h-4" /> Journal & Blog Manager ({articles.length})
+          </button>
+        </div>
+
+        {/* TAB 1: LEADS PIPELINE */}
+        {adminTab === 'leads' && (
+          <div>
         {/* Stats KPIs Rows */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-left">
           <motion.div 
@@ -671,6 +814,347 @@ export default function AdminPage() {
             </motion.div>
           )}
         </motion.div>
+          </div>
+        )}
+
+        {/* TAB 2: JOURNAL & BLOG MANAGER */}
+        {adminTab === 'articles' && (
+          <div className="text-left">
+            {/* Top Toolbar */}
+            <div className="bg-white border border-brand-sand/15 p-6 rounded mb-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="bg-[#c9a84c]/15 text-[#9a7b2c] font-bold text-[10px] tracking-wider uppercase px-2 py-0.5 rounded">
+                    SEO & Content Engine
+                  </span>
+                  <span className="text-xs text-brand-mid font-light">
+                    {articles.length} Guides Active
+                  </span>
+                </div>
+                <h3 className="font-serif text-xl font-bold text-brand-charcoal">
+                  Architectural Journal & Technical Guides
+                </h3>
+                <p className="text-xs text-brand-mid font-light mt-1 max-w-xl">
+                  Publish specifications, paint coverage estimators, and luxury sanitary reviews. All posts appear on the Homepage journal and product catalog automatically.
+                </p>
+              </div>
+
+              <motion.button
+                onClick={() => setShowNewArticleModal(true)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="bg-[#c9a84c] hover:bg-[#b59339] text-[#0d1629] font-bold text-xs uppercase tracking-wider px-5 py-3 rounded shadow flex items-center gap-2 cursor-pointer whitespace-nowrap"
+              >
+                <Plus className="w-4 h-4" /> Publish New Guide
+              </motion.button>
+            </div>
+
+            {/* Articles Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {articles.map((post) => {
+                const isCustom = post.id.startsWith('custom-');
+                return (
+                  <motion.div
+                    key={post.id}
+                    layout
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white border border-brand-sand/20 rounded overflow-hidden flex flex-col shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    {/* Cover Preview */}
+                    <div className="relative h-44 bg-neutral-900 overflow-hidden">
+                      <img
+                        src={post.coverImage}
+                        alt={post.title}
+                        className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80';
+                        }}
+                      />
+                      <div className="absolute top-3 left-3 flex gap-1.5">
+                        <span className="bg-[#0d1629]/90 text-white font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded backdrop-blur-sm">
+                          {post.category}
+                        </span>
+                        {isCustom && (
+                          <span className="bg-[#c9a84c] text-[#0d1629] font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded">
+                            Custom
+                          </span>
+                        )}
+                      </div>
+                      <div className="absolute bottom-2 right-3 text-white/80 text-[10px] font-mono bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs">
+                        {post.readTime}
+                      </div>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-5 flex-1 flex flex-col">
+                      <div className="flex items-center gap-2 text-[10px] text-brand-mid font-mono mb-2">
+                        <span>{post.date}</span>
+                        <span>•</span>
+                        <span>{post.author.name}</span>
+                      </div>
+
+                      <h4 className="font-serif text-base font-bold text-brand-charcoal mb-2 line-clamp-2 leading-snug">
+                        {post.title}
+                      </h4>
+
+                      <p className="text-xs text-brand-mid font-light line-clamp-3 mb-4 leading-relaxed flex-1">
+                        {post.excerpt}
+                      </p>
+
+                      {/* Card Actions */}
+                      <div className="pt-3 border-t border-brand-sand/15 flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <a
+                            href={`/blog/${post.slug}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-charcoal hover:text-brand-red transition-colors py-1 px-2 rounded hover:bg-neutral-100"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" /> View Live
+                          </a>
+
+                          <button
+                            onClick={() => shareToBroadcast(post)}
+                            title="Generate and open 1-click WhatsApp broadcast link"
+                            className="inline-flex items-center gap-1 text-[11px] font-bold text-[#25D366] hover:text-[#1da851] transition-colors py-1 px-2 rounded hover:bg-[#25D366]/10 cursor-pointer"
+                          >
+                            <Share2 className="w-3.5 h-3.5" /> Broadcast
+                          </button>
+                        </div>
+
+                        {isCustom ? (
+                          <button
+                            onClick={() => handleDeleteArticle(post.id)}
+                            title="Delete this custom post"
+                            className="text-brand-red/60 hover:text-brand-red p-1.5 rounded hover:bg-brand-red/10 transition-colors cursor-pointer"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        ) : (
+                          <span className="text-[9px] uppercase tracking-wider text-brand-mid/60 font-semibold">
+                            Core Guide
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Empty State */}
+            {articles.length === 0 && (
+              <div className="bg-white border border-brand-sand/15 rounded py-16 px-4 text-center">
+                <BookOpen className="w-10 h-10 text-brand-mid mx-auto mb-3 opacity-60" />
+                <h4 className="font-serif text-lg font-bold text-brand-charcoal">No Articles Loaded</h4>
+                <p className="text-xs text-brand-mid font-light mt-1">Click "Publish New Guide" above to create your first article.</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* MODAL: PUBLISH NEW ARTICLE */}
+        <AnimatePresence>
+          {showNewArticleModal && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto"
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="bg-white rounded-lg border border-brand-sand/20 max-w-2xl w-full p-6 shadow-2xl my-8 text-left max-h-[90vh] overflow-y-auto"
+              >
+                <div className="flex items-center justify-between border-b border-brand-sand/15 pb-4 mb-5">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-[#c9a84c]" />
+                    <div>
+                      <h3 className="font-serif text-lg font-bold text-brand-charcoal">
+                        Publish New Architectural Guide
+                      </h3>
+                      <p className="text-[11px] text-brand-mid font-light">
+                        Articles go live instantly on the Homepage, Blog archive, and Product catalog.
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setShowNewArticleModal(false)}
+                    className="p-1 rounded text-brand-mid hover:text-brand-charcoal hover:bg-neutral-100 transition-colors cursor-pointer"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <form onSubmit={handleCreateArticle} className="space-y-4">
+                  <div>
+                    <label className="block text-[11px] uppercase font-bold tracking-wider text-brand-charcoal mb-1">
+                      Article Title *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. 5 Signs of Fake Sandtex Paint in Lagos Markets (2026 Verification Guide)"
+                      value={articleTitle}
+                      onChange={(e) => setArticleTitle(e.target.value)}
+                      className="w-full bg-brand-cream/60 border border-brand-sand/30 p-2.5 rounded text-xs text-brand-charcoal focus:outline-none focus:border-brand-charcoal"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] uppercase font-bold tracking-wider text-brand-charcoal mb-1">
+                      Subtitle / Hook
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Protect your development investment against counterfeit batches and low-resin adulterations."
+                      value={articleSubtitle}
+                      onChange={(e) => setArticleSubtitle(e.target.value)}
+                      className="w-full bg-brand-cream/60 border border-brand-sand/30 p-2.5 rounded text-xs text-brand-charcoal focus:outline-none focus:border-brand-charcoal"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[11px] uppercase font-bold tracking-wider text-brand-charcoal mb-1">
+                        Category
+                      </label>
+                      <select
+                        value={articleCategory}
+                        onChange={(e) => setArticleCategory(e.target.value as any)}
+                        className="w-full bg-brand-cream/60 border border-brand-sand/30 p-2.5 rounded text-xs text-brand-charcoal focus:outline-none focus:border-brand-charcoal"
+                      >
+                        <option value="Cost & Estimating">Cost & Estimating</option>
+                        <option value="Paint Systems">Paint Systems</option>
+                        <option value="Sanitary Ware">Sanitary Ware</option>
+                        <option value="Authenticity Guides">Authenticity Guides</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] uppercase font-bold tracking-wider text-brand-charcoal mb-1">
+                        Read Time
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 6 min read"
+                        value={articleReadTime}
+                        onChange={(e) => setArticleReadTime(e.target.value)}
+                        className="w-full bg-brand-cream/60 border border-brand-sand/30 p-2.5 rounded text-xs text-brand-charcoal focus:outline-none focus:border-brand-charcoal"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] uppercase font-bold tracking-wider text-brand-charcoal mb-1">
+                      Cover Image URL
+                    </label>
+                    <input
+                      type="url"
+                      placeholder="https://images.unsplash.com/..."
+                      value={articleCover}
+                      onChange={(e) => setArticleCover(e.target.value)}
+                      className="w-full bg-brand-cream/60 border border-brand-sand/30 p-2.5 rounded text-xs text-brand-charcoal focus:outline-none focus:border-brand-charcoal mb-1.5"
+                    />
+                    <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-brand-mid font-light">
+                      <span>Presets:</span>
+                      <button
+                        type="button"
+                        onClick={() => setArticleCover('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=80')}
+                        className="px-2 py-0.5 rounded bg-brand-cream border border-brand-sand/20 hover:border-brand-charcoal cursor-pointer"
+                      >
+                        🎨 Paint Drums
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setArticleCover('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80')}
+                        className="px-2 py-0.5 rounded bg-brand-cream border border-brand-sand/20 hover:border-brand-charcoal cursor-pointer"
+                      >
+                        🚿 Luxury Sanitary
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setArticleCover('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80')}
+                        className="px-2 py-0.5 rounded bg-brand-cream border border-brand-sand/20 hover:border-brand-charcoal cursor-pointer"
+                      >
+                        🏛️ Duplex Architecture
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] uppercase font-bold tracking-wider text-brand-charcoal mb-1">
+                      Excerpt / Summary *
+                    </label>
+                    <textarea
+                      required
+                      rows={2}
+                      placeholder="Short summary that appears on cards, social shares, and WhatsApp broadcast messages..."
+                      value={articleExcerpt}
+                      onChange={(e) => setArticleExcerpt(e.target.value)}
+                      className="w-full bg-brand-cream/60 border border-brand-sand/30 p-2.5 rounded text-xs text-brand-charcoal focus:outline-none focus:border-brand-charcoal"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] uppercase font-bold tracking-wider text-brand-charcoal mb-1">
+                      Full Article Body *
+                    </label>
+                    <p className="text-[10px] text-brand-mid font-light mb-1">
+                      Separate paragraphs with an empty blank line. Markdown headers like `### Heading` and bullet lists `- Item` are supported.
+                    </p>
+                    <textarea
+                      required
+                      rows={7}
+                      placeholder="Write your in-depth architectural or product guide here..."
+                      value={articleContent}
+                      onChange={(e) => setArticleContent(e.target.value)}
+                      className="w-full bg-brand-cream/60 border border-brand-sand/30 p-2.5 rounded text-xs text-brand-charcoal focus:outline-none focus:border-brand-charcoal font-mono"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] uppercase font-bold tracking-wider text-brand-charcoal mb-1">
+                      Author Attribution
+                    </label>
+                    <input
+                      type="text"
+                      value={articleAuthor}
+                      onChange={(e) => setArticleAuthor(e.target.value)}
+                      className="w-full bg-brand-cream/60 border border-brand-sand/30 p-2.5 rounded text-xs text-brand-charcoal focus:outline-none focus:border-brand-charcoal"
+                    />
+                  </div>
+
+                  <div className="pt-3 border-t border-brand-sand/15 flex items-center justify-end gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowNewArticleModal(false)}
+                      className="px-4 py-2 text-xs font-semibold text-brand-mid hover:text-brand-charcoal transition-colors cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={savingArticle}
+                      className="bg-[#c9a84c] hover:bg-[#b59339] text-[#0d1629] font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded shadow flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                    >
+                      {savingArticle ? (
+                        <span>Publishing...</span>
+                      ) : (
+                        <>
+                          <Sparkles className="w-3.5 h-3.5" /> Publish to Live Site
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Info Guide Guide for Owner */}
         <motion.div 

@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Search, Clock, Calendar, ArrowRight, BookOpen, ShieldCheck, Sparkles, MessageCircle, Calculator } from 'lucide-react';
-import { BLOG_POSTS, BlogPost } from '../data/blogPosts';
+import { getAllBlogPosts, saveStoredCustomArticles, BlogPost } from '../data/blogPosts';
 import { usePageMeta } from '../utils/usePageMeta';
 import { openWhatsApp } from '../utils/whatsapp';
 
@@ -17,6 +17,7 @@ const CATEGORIES = [
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All Articles');
   const [searchQuery, setSearchQuery] = useState('');
+  const [articles, setArticles] = useState<BlogPost[]>(() => getAllBlogPosts());
 
   usePageMeta({
     title: 'Architectural Journal & Guides',
@@ -24,8 +25,23 @@ export default function BlogPage() {
     ogTitle: 'Micmag Architectural Journal — Paint & Sanitary Ware Guides Nigeria',
   });
 
+  // Fetch custom articles from server if available
+  useEffect(() => {
+    fetch('/api/articles')
+      .then((res) => (res.ok ? res.json() : []))
+      .then((custom: BlogPost[]) => {
+        if (Array.isArray(custom) && custom.length > 0) {
+          saveStoredCustomArticles(custom);
+          setArticles(getAllBlogPosts(custom));
+        }
+      })
+      .catch(() => {
+        // Fallback to local stored articles
+      });
+  }, []);
+
   const filteredPosts = useMemo(() => {
-    return BLOG_POSTS.filter((post) => {
+    return articles.filter((post) => {
       const matchesCategory =
         selectedCategory === 'All Articles' || post.category === selectedCategory;
       const matchesSearch =
@@ -35,9 +51,9 @@ export default function BlogPage() {
         post.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [articles, selectedCategory, searchQuery]);
 
-  const featuredPost = BLOG_POSTS[0];
+  const featuredPost = articles[0];
 
   const handleConsultantClick = () => {
     openWhatsApp(

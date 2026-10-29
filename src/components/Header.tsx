@@ -154,6 +154,7 @@ export default function Header() {
         '#about': 'about',
         '#core-values': 'core-values',
         '#locations': 'service-locations',
+        '#journal': 'architectural-journal',
       };
       const targetId = hashIdMap[targetHash];
       if (targetId) {

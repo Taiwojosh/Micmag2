@@ -16,7 +16,7 @@ import {
   ExternalLink,
   BookOpen
 } from 'lucide-react';
-import { getBlogPostBySlug, getRelatedBlogPosts } from '../data/blogPosts';
+import { getBlogPostBySlug, getRelatedBlogPosts, BlogPost } from '../data/blogPosts';
 import { usePageMeta } from '../utils/usePageMeta';
 import { openWhatsApp } from '../utils/whatsapp';
 
@@ -26,9 +26,19 @@ export default function BlogPostPage() {
   const [copied, setCopied] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [readingProgress, setReadingProgress] = useState(0);
+  const [customArticles, setCustomArticles] = useState<BlogPost[]>([]);
 
-  const post = slug ? getBlogPostBySlug(slug) : undefined;
-  const relatedPosts = post ? getRelatedBlogPosts(post.id, 2) : [];
+  useEffect(() => {
+    fetch('/api/articles')
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: BlogPost[]) => {
+        if (Array.isArray(data)) setCustomArticles(data);
+      })
+      .catch(() => {});
+  }, []);
+
+  const post = slug ? getBlogPostBySlug(slug, customArticles) : undefined;
+  const relatedPosts = post ? getRelatedBlogPosts(post.id, 2, customArticles) : [];
 
   usePageMeta({
     title: post ? post.title : 'Article Not Found',

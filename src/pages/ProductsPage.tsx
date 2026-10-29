@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Search, 
@@ -10,7 +11,10 @@ import {
   Info, 
   PhoneCall, 
   Database,
-  MapPin
+  MapPin,
+  Sparkles,
+  ArrowRight,
+  BookOpen
 } from 'lucide-react';
 import { PAINT_PRODUCTS, FITTINGS_PRODUCTS, PaintProduct, FittingProduct } from '../data/productsData';
 import { CAPLUX_PRODUCTS } from '../data/capluxProducts';
@@ -355,6 +359,40 @@ export default function ProductsPage() {
               </select>
             </div>
 
+            {/* Architectural Intelligence Guides Widget */}
+            <div className="bg-gradient-to-br from-[#0d1629] to-[#1a2c5b] text-white p-5 rounded-lg space-y-3.5 shadow-md border border-amber-500/20">
+              <div className="flex items-center gap-2 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider">
+                <BookOpen size={13} />
+                <span>Builder Intelligence</span>
+              </div>
+              <h4 className="font-serif font-bold text-sm text-white leading-snug">
+                Architectural Coverage &amp; Material Guides
+              </h4>
+              <p className="text-[11px] text-slate-300 leading-relaxed font-light">
+                Calculate duplex drum requirements and spot fake Sandtex formulations before ordering.
+              </p>
+              <div className="space-y-2 pt-2 border-t border-white/10 text-xs">
+                <Link
+                  to="/blog/sandtex-paint-guide-nigeria-drum-coverage-cost"
+                  className="block text-amber-300 hover:text-white transition-colors font-medium text-[11px]"
+                >
+                  • Sandtex Drum Coverage Math &rarr;
+                </Link>
+                <Link
+                  to="/blog/how-to-spot-fake-sandtex-paint-lagos"
+                  className="block text-amber-300 hover:text-white transition-colors font-medium text-[11px]"
+                >
+                  • Spot Fake vs Original Paint &rarr;
+                </Link>
+                <Link
+                  to="/blog/ideal-standard-sanitary-ware-nigeria-guide"
+                  className="block text-amber-300 hover:text-white transition-colors font-medium text-[11px]"
+                >
+                  • Ideal Standard Water Specs &rarr;
+                </Link>
+              </div>
+            </div>
+
           </div>
 
           {/* Product Cards Grid Area */}
@@ -378,6 +416,38 @@ export default function ProductsPage() {
                   <span>Clear All Filters</span>
                 </button>
               )}
+            </div>
+
+            {/* Contextual Architectural Guide Callout */}
+            <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-[#0d1629] via-[#1a2c5b] to-[#0d1629] text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md border border-amber-500/25">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                  <Sparkles size={18} />
+                </div>
+                <div>
+                  <p className="text-xs sm:text-sm font-bold text-white">
+                    {selectedBrand === 'micmag'
+                      ? 'Specifying Luxury Sanitary Ware for a Project?'
+                      : 'Calculating 20L Drums for a Duplex or Building?'}
+                  </p>
+                  <p className="text-[11px] text-slate-300 font-light mt-0.5">
+                    {selectedBrand === 'micmag'
+                      ? 'Learn why top Nigerian architects choose Ideal Standard vitreous china against hard borehole water.'
+                      : 'See verified spread rates, screeding primer advice, and dye-lot batch rules in our guide.'}
+                  </p>
+                </div>
+              </div>
+              <Link
+                to={
+                  selectedBrand === 'micmag'
+                    ? '/blog/ideal-standard-sanitary-ware-nigeria-guide'
+                    : '/blog/sandtex-paint-guide-nigeria-drum-coverage-cost'
+                }
+                className="whitespace-nowrap px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 shadow"
+              >
+                <span>Read Guide</span>
+                <ArrowRight size={13} />
+              </Link>
             </div>
 
             {/* E-commerce grid */}

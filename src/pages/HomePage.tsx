@@ -10,6 +10,7 @@ import FAQ from '../components/FAQ';
 import Testimonials from '../components/Testimonials';
 import ServiceLocations from '../components/ServiceLocations';
 import LeadForm from '../components/LeadForm';
+import JournalSection from '../components/JournalSection';
 
 export default function HomePage() {
   const { hash } = useLocation();
@@ -28,6 +29,7 @@ export default function HomePage() {
       '#core-values': 'core-values',
       '#why': 'why',
       '#locations': 'service-locations',
+      '#journal': 'architectural-journal',
     };
 
     const targetId = hashIdMap[hash];
@@ -62,6 +64,7 @@ export default function HomePage() {
       <About />
       <CoreValues />
       <WhyMicmag />
+      <JournalSection />
       <FAQ />
       <Testimonials />
       <ServiceLocations />
