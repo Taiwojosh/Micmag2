@@ -99,55 +99,6 @@ export const PAINT_PRODUCTS: PaintProduct[] = [
     }
   },
   {
-    name: 'Sandtex Select VME 20L',
-    desc: 'Premium ready-mix matt finish with outstanding hiding power, durability, and color retention. Suitable for beautiful smooth finishes on interior and exterior walls and ceilings.',
-    tag: 'Interior & Exterior Matt',
-    coverage: '8 m²/L per coat',
-    image: './Sandtex select VME.png',
-    fallback: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800',
-    tdsSpec: {
-      title: 'SANDTEX SELECT VINYL MATT EMULSION PAINT',
-      description: 'Sandtex Select Vinyl Matt Emulsion Paint is a ready-mix premium matt finish for walls, facades and ceilings with outstanding standing hiding power and color retention properties. It has an excellent flow and gives a smooth, highly durable finish.',
-      typicalUses: [
-        'Suitable for Interior and Exterior use',
-        'Can be applied on cement plaster, stucco filler, concrete, asbestos cement sheeting, and rendered block work'
-      ],
-      keyBenefits: [
-        'Good Opacity & Standing Hiding Power',
-        'Good Spreading Rate & High Yield efficiency',
-        'Ideal for Long Term Exposure to elements',
-        'Good Scrub Resistance (ultra-cleanable)',
-        'Superior Durable Paint Film'
-      ],
-      composition: {
-        pigment: 'Lightfast Non-Lead Pigments',
-        binder: 'Acrylic Copolymer Emulsion',
-        solvent: 'Water'
-      },
-      packSize: '20L (Ready-mix)',
-      finish: 'Smooth Matt',
-      volumeSolids: '30-40%',
-      theoreticalCoverage: '8 m²/L per coat',
-      dryingInfo: {
-        touchDry: '10-20 min',
-        hardDry: '1-2 hrs',
-        opacity: '2 coats'
-      },
-      applicationInfo: {
-        method: 'Stir well before use. Apply by brush or medium roller. Ensure color accuracy checks on-site prior to application.',
-        coverage: '8 sq.m per litre per coat can be achieved under normal conditions.'
-      },
-      thinning: {
-        brushRoller: 'Stir well. Do not thin.',
-        spray: 'Thin 4 parts paint with 1 part clean water'
-      },
-      safetyStorage: {
-        storage: 'Store in a cool, dry, well-ventilated place protected from moisture, away from sources of heat, ignition and direct sunlight. Store upright.',
-        careline: 'CAP Careline Helpline: 08159493070 or email careline@capplc.com'
-      }
-    }
-  },
-  {
     name: 'Sandtex Satin 20L/4L',
     desc: 'Elite satin delivering an ultra-wipeable, super-spreading reflective coating. Highly scrub-resistant, washable formulation perfectly engineered for premium corridors, lobbies, and active rooms.',
     tag: 'Interior Silk',

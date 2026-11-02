@@ -47,7 +47,6 @@ const HERO_BACKGROUND_MEDIA = [
 
 const SANDTEX_SLIDES = [
   { name: "Sandtex Satin 20L/4L", tag: "Interior & Exterior Semi-Gloss", image: "./satin1.png" },
-  { name: "Sandtex Select VME 20L", tag: "Interior & Exterior Matt", image: "./Sandtex select VME.png" },
   { name: "Sandtex Matt 20L", tag: "Ultimate Exterior Shield", image: "./Sandtex MATT.png" },
   { name: "Sandtex Trade Smooth 20L", tag: "Professional Elite Masonry", image: "./Sandtex Trade Smooth.png" },
   { name: "Sandtex VME 20L/4L", tag: "Interior Contract Classic", image: "./Sandtex VME.png" },

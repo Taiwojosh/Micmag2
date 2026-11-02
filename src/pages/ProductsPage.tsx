@@ -234,35 +234,6 @@ export default function ProductsPage() {
   return (
     <div className="pt-24 min-h-screen bg-brand-cream relative">
       
-      {/* Banner / Header */}
-      <div className="relative text-white py-16 px-5 md:px-[5%] overflow-hidden border-b border-neutral-900 bg-neutral-950">
-        <div className="absolute inset-0 animated-gradient-bg opacity-25 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-          <div className="space-y-3 text-left">
-            <span className="text-amber-500 text-xs font-bold tracking-[0.25em] uppercase flex items-center gap-1.5">
-              <ShoppingBag className="w-4 h-4 text-amber-500" />
-              Trade Portal
-            </span>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-none">
-             Catalogue
-            </h1>
-            <p className="max-w-xl text-neutral-300 text-xs sm:text-sm leading-relaxed font-light">
-              Add products directly to your technical cart, estimate overall building coverage, and export your itemized list straight to our central distribution desk.
-            </p>
-          </div>
-          
-          {/* Quick Basket Summary Button */}
-          <button
-            onClick={() => setIsCartOpen(true)}
-            className="self-start md:self-center bg-white text-micmag-blue-deep px-6 py-4 rounded-full font-bold uppercase text-[11px] tracking-wider shadow-lg hover:bg-neutral-100 transition-all flex items-center gap-2.5 cursor-pointer shrink-0"
-          >
-            <ShoppingBag className="w-4 h-4 text-brand-red" />
-            <span>My Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)})</span>
-          </button>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-5 md:px-[5%] py-8 md:py-12">
             {/* Inline Brand Chips — Mobile-first, shown on all screen sizes */}
         <div className="flex flex-wrap gap-2 mb-6 px-0">
