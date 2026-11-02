@@ -59,7 +59,7 @@ export default function BlogPostPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Structured Data injection for Article Schema
+  // Structured Data injection for Article Schema, FAQPage Schema & Breadcrumbs
   useEffect(() => {
     if (!post) return;
     const scriptId = 'blog-article-schema';
@@ -70,26 +70,80 @@ export default function BlogPostPage() {
       script.type = 'application/ld+json';
       document.head.appendChild(script);
     }
+
+    const postUrl = `https://micmaghomes.com/blog/${post.slug}`;
+
+    const schemaGraph: any[] = [
+      {
+        '@type': 'Article',
+        '@id': `${postUrl}#article`,
+        headline: post.title,
+        description: post.metaDescription,
+        image: post.coverImage,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': postUrl,
+        },
+        author: {
+          '@type': 'Person',
+          name: post.author.name,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Micmag Homes & Fittings',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://micmaghomes.com/Logo.png',
+          },
+        },
+        datePublished: post.publishedAt,
+        dateModified: post.updatedAt,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${postUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://micmaghomes.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Architectural Journal',
+            item: 'https://micmaghomes.com/blog',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: post.title,
+            item: postUrl,
+          },
+        ],
+      },
+    ];
+
+    // Inject FAQPage schema if FAQs exist
+    if (post.faqs && post.faqs.length > 0) {
+      schemaGraph.push({
+        '@type': 'FAQPage',
+        '@id': `${postUrl}#faq`,
+        mainEntity: post.faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.answer,
+          },
+        })),
+      });
+    }
+
     script.text = JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: post.title,
-      description: post.metaDescription,
-      image: post.coverImage,
-      author: {
-        '@type': 'Person',
-        name: post.author.name,
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'Micmag Homes & Fittings',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://micmaghomes.com/Logo.png',
-        },
-      },
-      datePublished: post.publishedAt,
-      dateModified: post.updatedAt,
+      '@graph': schemaGraph,
     });
 
     return () => {

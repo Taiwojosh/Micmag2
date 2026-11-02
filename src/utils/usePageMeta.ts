@@ -5,15 +5,17 @@ interface PageMeta {
   description: string;
   ogTitle?: string;
   ogDescription?: string;
+  canonical?: string;
 }
 
 const BASE_TITLE = 'Micmag Homes & Fittings';
+const BASE_URL = 'https://micmaghomes.com';
 
 /**
- * Dynamically updates document <title> and key meta tags per page.
+ * Dynamically updates document <title>, key meta tags, and canonical URL per page.
  * Falls back to base title/description if values are not supplied.
  */
-export function usePageMeta({ title, description, ogTitle, ogDescription }: PageMeta) {
+export function usePageMeta({ title, description, ogTitle, ogDescription, canonical }: PageMeta) {
   useEffect(() => {
     // Update title
     document.title = `${title} | ${BASE_TITLE}`;
@@ -38,9 +40,20 @@ export function usePageMeta({ title, description, ogTitle, ogDescription }: Page
     let twitterDescEl = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]');
     if (twitterDescEl) twitterDescEl.setAttribute('content', ogDescription ?? description);
 
-    // Restore base title on unmount
+    // Update or create canonical link tag
+    const targetCanonical = canonical ?? `${BASE_URL}${window.location.pathname}`;
+    let canonicalEl = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonicalEl) {
+      canonicalEl = document.createElement('link');
+      canonicalEl.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalEl);
+    }
+    canonicalEl.setAttribute('href', targetCanonical);
+
+    // Restore base title and canonical on unmount
     return () => {
       document.title = `${BASE_TITLE} | Luxury Sandtex Paints & Ideal Standard Sanitary Ware Nigeria`;
+      if (canonicalEl) canonicalEl.setAttribute('href', BASE_URL);
     };
-  }, [title, description, ogTitle, ogDescription]);
+  }, [title, description, ogTitle, ogDescription, canonical]);
 }

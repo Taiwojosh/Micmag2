@@ -231,6 +231,60 @@ export default function ProductsPage() {
     openWhatsApp('2347052940445', text);
   };
 
+  // Structured Data injection for Products Catalog (ItemList Schema)
+  useEffect(() => {
+    const scriptId = 'products-itemlist-schema';
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+
+    const items = unifiedCatalog.slice(0, 20).map((p, index) => {
+      let brandName = 'Sandtex';
+      if (p.brand === 'caplux') brandName = 'Caplux';
+      else if (p.brand === 'micmag') brandName = 'Ideal Standard';
+
+      return {
+        '@type': 'Product',
+        position: index + 1,
+        name: p.name,
+        description: p.desc,
+        image: p.image ? `https://micmaghomes.com${p.image.replace(/^\./, '')}` : 'https://micmaghomes.com/Logo.png',
+        brand: {
+          '@type': 'Brand',
+          name: brandName,
+        },
+        offers: {
+          '@type': 'Offer',
+          url: 'https://micmaghomes.com/collections',
+          priceCurrency: 'NGN',
+          availability: 'https://schema.org/InStock',
+          seller: {
+            '@type': 'Organization',
+            name: 'Micmag Homes & Fittings',
+          },
+        },
+      };
+    });
+
+    script.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Micmag Homes & Fittings — Building Materials & Paints Catalog',
+      description: 'Authorized Lagos distributor for Sandtex Paints, Caplux Wall Primers, and Ideal Standard Sanitary Ware.',
+      numberOfItems: unifiedCatalog.length,
+      itemListElement: items,
+    });
+
+    return () => {
+      const existing = document.getElementById(scriptId);
+      if (existing) existing.remove();
+    };
+  }, [unifiedCatalog]);
+
   return (
     <div className="pt-24 min-h-screen bg-brand-cream relative">
       
