@@ -1,6 +1,22 @@
 User-agent: *
 Allow: /
 
+# Explicitly allow AI Search and Assistant Bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 # Block admin portal from indexing
 Disallow: /admin
 

@@ -223,3 +223,4 @@ export function getColorsByGroup(group: SandtexColorGroup): SandtexColor[] {
 export function findSandtexColorByName(name: string): SandtexColor | undefined {
   return SANDTEX_COLORS.find((c) => c.name.toLowerCase() === name.toLowerCase());
 }
+
