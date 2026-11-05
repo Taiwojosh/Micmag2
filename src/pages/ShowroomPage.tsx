@@ -20,6 +20,7 @@ import RoomCanvas from '../components/showroom/RoomCanvas';
 import ColorStudio from '../components/showroom/ColorStudio';
 import PaintCalculatorModal from '../components/showroom/PaintCalculatorModal';
 import PaletteSnapshotModal from '../components/showroom/PaletteSnapshotModal';
+import DigitalColorChart from '../components/DigitalColorChart';
 import {
   ROOM_TYPES,
   DESIGNER_HARMONIES,
@@ -178,6 +179,14 @@ export default function ShowroomPage() {
 
           {/* Quick CTA button */}
           <div className="flex items-center gap-3 self-center sm:self-start lg:self-end flex-wrap">
+            <a
+              href="/Sandtex_Colour_Chart.pdf"
+              download="Sandtex_Colour_Chart_Micmag.pdf"
+              className="flex items-center gap-2 px-4 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider bg-amber-500 hover:bg-amber-400 text-neutral-950 transition-all shadow-md cursor-pointer shrink-0"
+              title="Download official Sandtex Colour Chart (PDF)"
+            >
+              <Download size={14} /> Download PDF Chart
+            </a>
             <button
               onClick={() => setIsSnapshotOpen(true)}
               className="flex items-center gap-2 px-4 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider bg-white/10 hover:bg-white/15 border border-white/15 text-white transition-all shadow-md"
@@ -298,6 +307,16 @@ export default function ShowroomPage() {
             />
           </div>
         </div>
+      </section>
+
+      {/* ── Official Sandtex 120-Colour Interactive Chart ── */}
+      <section id="sandtex-color-chart" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <DigitalColorChart
+          onSelectColorForShowroom={(hex) => {
+            handleApplyColor(activeSurface, hex);
+            window.scrollTo({ top: 150, behavior: 'smooth' });
+          }}
+        />
       </section>
 
       {/* ── 3-Step Professional Painting Process ── */}

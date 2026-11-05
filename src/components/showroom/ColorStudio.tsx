@@ -15,6 +15,7 @@ import {
   FileText,
   Layers,
   Wand2,
+  Download,
 } from 'lucide-react';
 import {
   SANDTEX_PALETTE,
@@ -24,6 +25,11 @@ import {
   type ColorHarmony,
   type SurfaceKey,
 } from '../../data/showroomData';
+import { 
+  SANDTEX_COLOR_GROUPS, 
+  SandtexColorGroup, 
+  SANDTEX_COLORS 
+} from '../../data/sandtexColors';
 import { generateHarmoniesFromBase, findClosestSandtexColor } from '../../utils/colorTheory';
 import { openWhatsApp } from '../../utils/whatsapp';
 
@@ -59,7 +65,7 @@ export default function ColorStudio({
   onOpenSnapshot,
 }: ColorStudioProps) {
   const [tab, setTab] = useState<TabMode>('swatches');
-  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [selectedGroup, setSelectedGroup] = useState<SandtexColorGroup>('Blues');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [customHex, setCustomHex] = useState<string>(colors[activeSurface]);
   const [brightnessOffset, setBrightnessOffset] = useState<number>(0);
@@ -126,18 +132,21 @@ export default function ColorStudio({
     return generateHarmoniesFromBase(colors[activeSurface]);
   }, [colors, activeSurface]);
 
-  // Filter swatches
+  // Filter swatches: 2-tier interaction
+  // If searching: search across all 120 colors; otherwise show the 20 shades of the selected group
   const filteredSwatches = useMemo(() => {
-    return SANDTEX_PALETTE.filter((s) => {
-      const matchCat = categoryFilter === 'all' || s.category === categoryFilter;
-      const matchSearch =
-        searchQuery.trim() === '' ||
-        s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        s.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        s.desc.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchCat && matchSearch;
-    });
-  }, [categoryFilter, searchQuery]);
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      return SANDTEX_PALETTE.filter((s) => {
+        return (
+          s.name.toLowerCase().includes(q) ||
+          s.code.toLowerCase().includes(q) ||
+          s.category.toLowerCase().includes(q)
+        );
+      });
+    }
+    return SANDTEX_PALETTE.filter((s) => s.category === selectedGroup);
+  }, [selectedGroup, searchQuery]);
 
   // Handle custom tint slider
   const handleBrightnessChange = (val: number) => {
@@ -150,38 +159,40 @@ export default function ColorStudio({
       r = Math.min(255, Math.max(0, r));
       g = Math.min(255, Math.max(0, g));
       b = Math.min(255, Math.max(0, b));
-      const newHex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
-      onApplyColor(activeSurface, newHex);
+      const adjusted = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+      onApplyColor(activeSurface, adjusted);
     } catch {
       // fallback
     }
   };
 
+  // Inquire active palette on WhatsApp
   const handleWhatsAppInquiry = () => {
     const activeInfo = SURFACES.find((s) => s.key === activeSurface);
     const text =
-      `🎨 *Micmag Digital Showroom — Paint Inquiry*\n\n` +
-      `Hello Micmag! I am customizing colors for my *${roomName}*:\n\n` +
-      `• *Main Wall:* ${colors.mainWall} (${findClosestSandtexColor(colors.mainWall).name})\n` +
-      `• *Accent Feature Wall:* ${colors.accentWall} (${findClosestSandtexColor(colors.accentWall).name})\n` +
-      `• *Ceiling:* ${colors.ceiling} (${findClosestSandtexColor(colors.ceiling).name})\n` +
-      `• *Trim & Mouldings:* ${colors.trim} (${findClosestSandtexColor(colors.trim).name})\n` +
-      `• *Accents:* ${colors.accents}\n\n` +
-      `📌 *Selected Topcoat:* ${activeSwatch.name} (${activeSwatch.code}) for ${activeInfo?.label}\n` +
-      `• Recommended Finish: ${activeInfo?.recommendedFinish}\n\n` +
+      `*MICMAG DIGITAL SHOWROOM SPECIFICATION*\n` +
+      `===================================\n` +
+      `Room Type: ${roomName}\n\n` +
+      `🎨 *Paint Palette Spec:*\n` +
+      `• Main Wall: ${findClosestSandtexColor(colors.mainWall).name} (${colors.mainWall})\n` +
+      `• Accent Feature: ${findClosestSandtexColor(colors.accentWall).name} (${colors.accentWall})\n` +
+      `• Ceiling: ${findClosestSandtexColor(colors.ceiling).name} (${colors.ceiling})\n` +
+      `• Mouldings/Trim: ${findClosestSandtexColor(colors.trim).name} (${colors.trim})\n\n` +
+      `📋 *Active Focus:* ${activeSwatch.name} (${activeSwatch.code}) for ${activeInfo?.label}\n` +
+      `  Recommended Finish: ${activeInfo?.recommendedFinish}\n\n` +
       `Could you please confirm availability and provide a direct quote for supply/application?`;
 
     openWhatsApp('2347052940445', text);
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#0d1629] rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
-      {/* ── Studio Navigation Tabs ── */}
+    <div className="bg-[#0b1329] border border-white/10 rounded-3xl overflow-hidden flex flex-col h-full shadow-2xl text-left select-none">
+      {/* ── Studio Tabs Header ── */}
       <div className="flex items-center justify-between p-2 bg-[#09101f] border-b border-white/10">
         <div className="flex gap-1 p-1 bg-black/40 rounded-2xl w-full">
           <button
             onClick={() => setTab('swatches')}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               tab === 'swatches'
                 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
                 : 'text-white/60 hover:text-white'
@@ -192,7 +203,7 @@ export default function ColorStudio({
           </button>
           <button
             onClick={() => setTab('harmonies')}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               tab === 'harmonies'
                 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
                 : 'text-white/60 hover:text-white'
@@ -203,7 +214,7 @@ export default function ColorStudio({
           </button>
           <button
             onClick={() => setTab('mixer')}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               tab === 'mixer'
                 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
                 : 'text-white/60 hover:text-white'
@@ -214,7 +225,7 @@ export default function ColorStudio({
           </button>
           <button
             onClick={() => setTab('saved')}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all relative ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all relative cursor-pointer ${
               tab === 'saved'
                 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
                 : 'text-white/60 hover:text-white'
@@ -232,82 +243,131 @@ export default function ColorStudio({
       </div>
 
       {/* ── Tab Content Body ── */}
-      <div className="flex-1 overflow-y-auto p-5 space-y-5 no-scrollbar">
-        {/* TAB 1: CURATED SWATCHES */}
+      <div className="flex-1 overflow-y-auto p-4 md:p-5 space-y-5 no-scrollbar">
+        {/* TAB 1: CURATED SWATCHES (2-Tier Official Sandtex Palette) */}
         {tab === 'swatches' && (
           <div className="space-y-4">
-            {/* Search and Category Filter */}
-            <div className="space-y-2.5">
-              <div className="relative">
+            {/* Search and PDF Download Bar */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <div className="relative flex-1">
                 <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40" />
                 <input
                   type="text"
-                  placeholder="Search colors by name, code or mood..."
+                  placeholder="Search 120 colors (e.g. Lekki Red, Navy Blue)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-white/40 focus:outline-none focus:border-amber-400/70"
+                  className="w-full pl-9 pr-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-white/40 focus:outline-none focus:border-amber-400/70"
                 />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-xs"
+                  >
+                    ✕
+                  </button>
+                )}
               </div>
 
-              {/* Category Pills */}
-              <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar">
-                {[
-                  { id: 'all', label: 'All (28)' },
-                  { id: 'earth', label: 'Warm Earth' },
-                  { id: 'green', label: 'Botanical Greens' },
-                  { id: 'blue', label: 'Coastal Blues' },
-                  { id: 'neutral', label: 'Whites & Creams' },
-                  { id: 'grey', label: 'Architectural Greys' },
-                  { id: 'spice', label: 'Luxury Spices' },
-                ].map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setCategoryFilter(cat.id)}
-                    className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                      categoryFilter === cat.id
-                        ? 'bg-white/20 text-white border border-white/30'
-                        : 'bg-white/5 text-white/50 hover:text-white/80'
-                    }`}
-                  >
-                    {cat.label}
-                  </button>
-                ))}
-              </div>
+              {/* Download PDF Quick Action */}
+              <a
+                href="/Sandtex_Colour_Chart.pdf"
+                download="Sandtex_Colour_Chart_Micmag.pdf"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-[11px] font-bold tracking-wide transition-colors whitespace-nowrap cursor-pointer shrink-0"
+                title="Download the full official Sandtex Colour Chart PDF"
+              >
+                <Download size={13} />
+                <span>PDF Chart</span>
+              </a>
             </div>
 
-            {/* Color Swatches Grid */}
-            <div className="grid grid-cols-4 sm:grid-cols-6 gap-2.5">
-              {filteredSwatches.map((swatch) => {
-                const isSelected = colors[activeSurface].toLowerCase() === swatch.hex.toLowerCase();
-                return (
-                  <motion.button
-                    key={swatch.id}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => onApplyColor(activeSurface, swatch.hex)}
-                    className={`group relative flex flex-col items-center p-2 rounded-2xl border transition-all text-center ${
-                      isSelected
-                        ? 'bg-white/15 border-amber-400 shadow-md shadow-amber-500/20'
-                        : 'bg-white/5 border-white/10 hover:border-white/25'
-                    }`}
-                  >
-                    {/* Circle Swatch */}
-                    <div
-                      className="relative w-11 h-11 rounded-xl shadow-inner border border-white/20 mb-1.5 transition-transform group-hover:scale-105"
-                      style={{ backgroundColor: swatch.hex }}
+            {/* ── TIER 1: The 6 Main Color Groups ── */}
+            {!searchQuery && (
+              <div className="space-y-1.5">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-white/40 block font-semibold">
+                  Step 1: Choose Colour Group
+                </span>
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+                  {SANDTEX_COLOR_GROUPS.map((grp) => {
+                    const isSelected = selectedGroup === grp.group;
+                    return (
+                      <button
+                        key={grp.group}
+                        onClick={() => setSelectedGroup(grp.group)}
+                        className={`p-2 rounded-xl border flex flex-col items-center text-center transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-amber-500/20 border-amber-400 text-amber-300 shadow-sm ring-1 ring-amber-400/50'
+                            : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:border-white/20'
+                        }`}
+                      >
+                        <div
+                          className="w-4 h-4 rounded-full border border-white/20 mb-1 shadow-sm"
+                          style={{ backgroundColor: grp.sampleHex }}
+                        />
+                        <span className="text-[11px] font-bold truncate w-full leading-tight">
+                          {grp.label}
+                        </span>
+                        <span className="text-[9px] text-white/40 font-mono">
+                          {grp.count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* ── TIER 2: The 20 Shades Grid ── */}
+            <div className="space-y-1.5 pt-1">
+              <div className="flex items-center justify-between text-[11px] text-white/60">
+                <span className="font-semibold text-white">
+                  {searchQuery ? `Search Results (${filteredSwatches.length})` : `${selectedGroup} Shades (${filteredSwatches.length})`}
+                </span>
+                <span className="text-[10px] text-white/40 font-light">Click to apply to {SURFACES.find(s => s.key === activeSurface)?.label}</span>
+              </div>
+
+              <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 max-h-[280px] overflow-y-auto pr-1">
+                {filteredSwatches.map((swatch) => {
+                  const isSelected = colors[activeSurface].toLowerCase() === swatch.hex.toLowerCase();
+                  return (
+                    <motion.button
+                      key={swatch.id}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => onApplyColor(activeSurface, swatch.hex)}
+                      className={`group relative flex flex-col items-center p-2 rounded-xl border transition-all text-center cursor-pointer ${
+                        isSelected
+                          ? 'bg-white/20 border-amber-400 shadow-md shadow-amber-500/20 ring-1 ring-amber-400'
+                          : 'bg-white/5 border-white/10 hover:border-white/25 hover:bg-white/10'
+                      }`}
                     >
-                      {isSelected && (
-                        <div className="absolute inset-0 flex items-center justify-center text-white drop-shadow">
-                          <Check size={14} strokeWidth={3} />
-                        </div>
-                      )}
-                    </div>
-                    {/* Name & Code */}
-                    <span className="text-[11px] font-bold text-white truncate w-full">{swatch.name}</span>
-                    <span className="text-[9px] text-white/40 font-mono uppercase">{swatch.code}</span>
-                  </motion.button>
-                );
-              })}
+                      {/* Swatch Square */}
+                      <div
+                        className="relative w-full aspect-square rounded-lg shadow-inner border border-white/20 mb-1.5 transition-transform"
+                        style={{ backgroundColor: swatch.hex }}
+                      >
+                        {isSelected && (
+                          <div className="absolute inset-0 flex items-center justify-center text-white drop-shadow">
+                            <Check size={14} strokeWidth={3} />
+                          </div>
+                        )}
+                      </div>
+                      {/* Name & Code */}
+                      <span className="text-[10.5px] font-bold text-white truncate w-full leading-tight">
+                        {swatch.name}
+                      </span>
+                      <span className="text-[8.5px] text-white/40 font-mono uppercase mt-0.5">
+                        {swatch.code}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+
+              {filteredSwatches.length === 0 && (
+                <div className="py-8 text-center text-white/40 text-xs">
+                  No Sandtex colors found matching "{searchQuery}".
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -329,93 +389,77 @@ export default function ColorStudio({
                 {Object.entries(dynamicHarmonies).map(([key, h]) => (
                   <button
                     key={key}
-                    onClick={() =>
-                      onApplyHarmony({
-                        id: key,
-                        name: h.name,
-                        tagline: 'Scientific Color Harmony',
-                        description: '',
-                        mainWall: h.mainWall,
-                        accentWall: h.accentWall,
-                        ceiling: h.ceiling,
-                        trim: h.trim,
-                        accents: h.accents,
-                        tags: [],
-                      })
-                    }
-                    className="flex flex-col p-2.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 hover:border-amber-400/50 text-left transition-all group"
+                    onClick={() => {
+                      onApplyColor('mainWall', h.mainWall);
+                      onApplyColor('accentWall', h.accentWall);
+                      onApplyColor('ceiling', h.ceiling);
+                      onApplyColor('trim', h.trim);
+                      onApplyColor('accents', h.accents);
+                    }}
+                    className="p-3 rounded-xl bg-black/40 border border-white/10 hover:border-amber-400 text-left transition-all group cursor-pointer"
                   >
-                    <span className="text-xs font-bold text-white group-hover:text-amber-300 truncate">
-                      {h.name}
-                    </span>
-                    <div className="flex gap-1.5 mt-2 h-4 w-full rounded overflow-hidden">
-                      <div className="flex-1" style={{ backgroundColor: h.mainWall }} title="Main Wall" />
-                      <div className="flex-1" style={{ backgroundColor: h.accentWall }} title="Accent Wall" />
-                      <div className="flex-1" style={{ backgroundColor: h.ceiling }} title="Ceiling" />
-                      <div className="flex-1" style={{ backgroundColor: h.trim }} title="Trim" />
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-white group-hover:text-amber-300 capitalize">
+                        {key} Scheme
+                      </span>
+                      <span className="text-[9px] font-mono text-amber-400/80 uppercase">Apply All</span>
+                    </div>
+                    {/* Harmony Swatches Preview */}
+                    <div className="flex gap-1 h-3 rounded overflow-hidden border border-white/10">
+                      <div className="flex-1" style={{ backgroundColor: h.mainWall }} />
+                      <div className="flex-1" style={{ backgroundColor: h.accentWall }} />
+                      <div className="flex-1" style={{ backgroundColor: h.ceiling }} />
+                      <div className="flex-1" style={{ backgroundColor: h.trim }} />
+                      <div className="flex-1" style={{ backgroundColor: h.accents }} />
                     </div>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Curated Pre-set Themes */}
+            {/* Curated Nigerian Palettes */}
             <div className="space-y-3">
-              <span className="text-xs font-bold text-white/60 uppercase tracking-widest block">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-white/40 block font-semibold">
                 Curated Nigerian Luxury Palettes
               </span>
 
               {DESIGNER_HARMONIES.map((harmony) => (
                 <motion.div
                   key={harmony.id}
-                  whileHover={{ y: -2 }}
-                  className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all"
+                  whileHover={{ scale: 1.01 }}
+                  className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/60 transition-all space-y-3"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-2.5">
+                  <div className="flex items-start justify-between">
                     <div>
-                      <h4 className="text-sm font-bold text-white font-serif">{harmony.name}</h4>
-                      <p className="text-xs text-amber-300/90 font-medium">{harmony.tagline}</p>
+                      <h4 className="font-serif text-sm font-bold text-white">{harmony.name}</h4>
+                      <p className="text-[11px] text-amber-400 font-medium">{harmony.tagline}</p>
                     </div>
                     <button
                       onClick={() => onApplyHarmony(harmony)}
-                      className="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-black hover:bg-amber-400 transition-all flex items-center gap-1 shadow-sm"
+                      className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer shrink-0"
                     >
-                      <Sparkles size={12} /> Apply Mix
+                      Apply Palette
                     </button>
                   </div>
 
-                  <p className="text-xs text-white/50 leading-relaxed mb-3">{harmony.description}</p>
+                  <p className="text-xs text-white/60 leading-relaxed">{harmony.description}</p>
 
-                  {/* 4-part Color Strip */}
-                  <div className="flex items-center gap-2 p-2 rounded-xl bg-black/30 border border-white/5">
-                    <div className="flex-1 flex flex-col items-center">
-                      <div
-                        className="w-full h-6 rounded-lg border border-white/20"
-                        style={{ backgroundColor: harmony.mainWall }}
-                      />
-                      <span className="text-[9px] text-white/40 mt-1">Main (60%)</span>
-                    </div>
-                    <div className="flex-1 flex flex-col items-center">
-                      <div
-                        className="w-full h-6 rounded-lg border border-white/20"
-                        style={{ backgroundColor: harmony.accentWall }}
-                      />
-                      <span className="text-[9px] text-white/40 mt-1">Accent (30%)</span>
-                    </div>
-                    <div className="flex-1 flex flex-col items-center">
-                      <div
-                        className="w-full h-6 rounded-lg border border-white/20"
-                        style={{ backgroundColor: harmony.ceiling }}
-                      />
-                      <span className="text-[9px] text-white/40 mt-1">Ceiling</span>
-                    </div>
-                    <div className="flex-1 flex flex-col items-center">
-                      <div
-                        className="w-full h-6 rounded-lg border border-white/20"
-                        style={{ backgroundColor: harmony.trim }}
-                      />
-                      <span className="text-[9px] text-white/40 mt-1">Trim (10%)</span>
-                    </div>
+                  {/* 5-Color Swatch Preview Bar */}
+                  <div className="grid grid-cols-5 gap-1.5 h-6 rounded-lg overflow-hidden border border-white/10">
+                    <div style={{ backgroundColor: harmony.mainWall }} title="Main Wall" />
+                    <div style={{ backgroundColor: harmony.accentWall }} title="Accent Wall" />
+                    <div style={{ backgroundColor: harmony.ceiling }} title="Ceiling" />
+                    <div style={{ backgroundColor: harmony.trim }} title="Trim" />
+                    <div style={{ backgroundColor: harmony.accents }} title="Accents" />
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex gap-1.5">
+                    {harmony.tags.map((t) => (
+                      <span key={t} className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/5 text-white/60">
+                        #{t}
+                      </span>
+                    ))}
                   </div>
                 </motion.div>
               ))}
@@ -423,150 +467,134 @@ export default function ColorStudio({
           </div>
         )}
 
-        {/* TAB 3: COLOR MIXER */}
+        {/* TAB 3: CUSTOM TINT MIXER */}
         {tab === 'mixer' && (
-          <div className="space-y-4">
-            <p className="text-xs text-white/60 leading-relaxed">
-              Mix custom shades, adjust brightness, or paste an exact architect hex code for on-site matching.
-            </p>
-
+          <div className="space-y-5">
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-4">
-              {/* Color input + Hex field */}
-              <div className="flex items-center gap-3">
-                <input
-                  type="color"
-                  value={colors[activeSurface]}
-                  onChange={(e) => {
-                    setCustomHex(e.target.value);
-                    onApplyColor(activeSurface, e.target.value);
-                  }}
-                  className="w-14 h-14 rounded-2xl border-2 border-white/20 cursor-pointer bg-transparent"
-                />
-                <div className="flex-1">
-                  <label className="text-[10px] text-white/50 uppercase tracking-widest font-mono block mb-1">
-                    Hex Color Code
-                  </label>
-                  <input
-                    type="text"
-                    value={colors[activeSurface]}
-                    onChange={(e) => onApplyColor(activeSurface, e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-amber-400"
-                  />
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-bold text-white">Tone Adjustment</h4>
+                  <p className="text-xs text-white/50">Tune saturation and brightness of your active paint</p>
                 </div>
+                <div
+                  className="w-8 h-8 rounded-xl border border-white/20 shadow-inner"
+                  style={{ backgroundColor: colors[activeSurface] }}
+                />
               </div>
 
-              {/* Tint / Brightness slider */}
-              <div className="space-y-1.5">
+              {/* Tint / Shade Slider */}
+              <div className="space-y-2">
                 <div className="flex justify-between text-xs text-white/70">
-                  <span>Tone / Lightness Shift</span>
-                  <span className="font-mono">{brightnessOffset > 0 ? `+${brightnessOffset}` : brightnessOffset}</span>
+                  <span>Deep / Shade</span>
+                  <span className="font-mono text-amber-400">
+                    {brightnessOffset > 0 ? `+${brightnessOffset}` : brightnessOffset}
+                  </span>
+                  <span>Light / Tint</span>
                 </div>
                 <input
                   type="range"
                   min="-60"
                   max="60"
                   value={brightnessOffset}
-                  onChange={(e) => handleBrightnessChange(Number(e.target.value))}
+                  onChange={(e) => handleBrightnessChange(parseInt(e.target.value))}
                   className="w-full accent-amber-400 cursor-pointer"
                 />
               </div>
 
-              {/* Closest Sandtex Match Badge */}
-              <div className="p-3 rounded-xl bg-black/30 border border-white/10 flex items-center justify-between text-xs">
-                <span className="text-white/60">Closest Sandtex Standard:</span>
-                <span className="font-bold text-amber-300">
-                  {findClosestSandtexColor(colors[activeSurface]).name}
-                </span>
-              </div>
+              {/* Reset to Original Swatch */}
+              <button
+                onClick={() => {
+                  setBrightnessOffset(0);
+                  onApplyColor(activeSurface, activeSwatch.hex);
+                }}
+                className="w-full py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-white/70 transition-all cursor-pointer"
+              >
+                Reset to Authentic Swatch ({activeSwatch.hex})
+              </button>
             </div>
           </div>
         )}
 
-        {/* TAB 4: SAVED RECIPES */}
+        {/* TAB 4: SAVED CLIENT PALETTES */}
         {tab === 'saved' && (
           <div className="space-y-4">
-            {/* Save current recipe box */}
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-              <label className="text-xs font-bold text-white/70 block">Save Current Room Colors</label>
+            {/* Save Current Recipe Input */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-white/40 block font-semibold">
+                Save Current 5-Color Scheme
+              </span>
               <div className="flex gap-2">
                 <input
                   type="text"
-                  placeholder={`e.g. ${roomName} Scheme A`}
+                  placeholder="Scheme name (e.g. Master Bedroom Option A)..."
                   value={recipeNameInput}
                   onChange={(e) => setRecipeNameInput(e.target.value)}
-                  className="flex-1 px-3 py-2 rounded-xl bg-black/40 border border-white/15 text-xs text-white placeholder-white/40 focus:outline-none focus:border-amber-400"
+                  className="flex-1 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-white/40 focus:outline-none focus:border-amber-400"
                 />
                 <button
                   onClick={handleSaveRecipe}
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black hover:bg-amber-400 transition-all flex items-center gap-1.5"
+                  className="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition-all cursor-pointer shrink-0"
                 >
-                  <BookmarkCheck size={14} /> Save
+                  Save
                 </button>
               </div>
               {showSaveToast && (
-                <p className="text-xs text-emerald-400 font-semibold animate-pulse">
-                  ✓ Recipe saved to your collection!
-                </p>
+                <span className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
+                  <BookmarkCheck size={13} /> Scheme saved successfully!
+                </span>
               )}
             </div>
 
-            {/* Saved list */}
-            {savedRecipes.length === 0 ? (
-              <div className="p-8 text-center text-white/40 text-xs">
-                <Bookmark size={24} className="mx-auto mb-2 opacity-30" />
-                <p>No saved recipes yet. Design your room and save it for future reference!</p>
-              </div>
-            ) : (
-              <div className="space-y-2.5">
-                {savedRecipes.map((recipe) => (
+            {/* List Saved Recipes */}
+            <div className="space-y-2.5">
+              {savedRecipes.length === 0 ? (
+                <div className="py-8 text-center text-white/40 text-xs">
+                  No schemes saved yet. Mix your colors and save your favorites above!
+                </div>
+              ) : (
+                savedRecipes.map((recipe) => (
                   <div
                     key={recipe.id}
                     onClick={() => {
-                      onApplyHarmony({
-                        id: recipe.id,
-                        name: recipe.name,
-                        tagline: recipe.roomName,
-                        description: '',
-                        mainWall: recipe.colors.mainWall,
-                        accentWall: recipe.colors.accentWall,
-                        ceiling: recipe.colors.ceiling,
-                        trim: recipe.colors.trim,
-                        accents: recipe.colors.accents,
-                        tags: [],
+                      Object.entries(recipe.colors).forEach(([surface, hex]) => {
+                        onApplyColor(surface as SurfaceKey, hex);
                       });
                     }}
-                    className="p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-amber-400/40 transition-all cursor-pointer flex items-center justify-between gap-3 group"
+                    className="p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/50 transition-all cursor-pointer group"
                   >
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        <h5 className="text-xs font-bold text-white truncate">{recipe.name}</h5>
-                        <span className="text-[10px] text-white/40">{recipe.date}</span>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="text-xs font-bold text-white group-hover:text-amber-300">
+                          {recipe.name}
+                        </h4>
+                        <span className="text-[10px] text-white/40 font-mono">
+                          {recipe.roomName} • {recipe.date}
+                        </span>
                       </div>
-                      {/* Swatches preview */}
-                      <div className="flex gap-1.5 mt-2 h-4 w-32 rounded overflow-hidden border border-white/10">
-                        <div className="flex-1" style={{ backgroundColor: recipe.colors.mainWall }} />
-                        <div className="flex-1" style={{ backgroundColor: recipe.colors.accentWall }} />
-                        <div className="flex-1" style={{ backgroundColor: recipe.colors.ceiling }} />
-                        <div className="flex-1" style={{ backgroundColor: recipe.colors.trim }} />
-                      </div>
+                      <button
+                        onClick={(e) => handleDeleteRecipe(recipe.id, e)}
+                        className="p-1.5 rounded-lg text-white/30 hover:text-red-400 hover:bg-white/5 transition-all"
+                      >
+                        <Trash2 size={13} />
+                      </button>
                     </div>
 
-                    <button
-                      onClick={(e) => handleDeleteRecipe(recipe.id, e)}
-                      className="p-2 rounded-lg text-white/30 hover:text-red-400 hover:bg-red-500/10 transition-colors"
-                      title="Delete recipe"
-                    >
-                      <Trash2 size={14} />
-                    </button>
+                    {/* Swatches preview */}
+                    <div className="flex gap-1.5 mt-2 h-4 w-32 rounded overflow-hidden border border-white/10">
+                      <div className="flex-1" style={{ backgroundColor: recipe.colors.mainWall }} />
+                      <div className="flex-1" style={{ backgroundColor: recipe.colors.accentWall }} />
+                      <div className="flex-1" style={{ backgroundColor: recipe.colors.ceiling }} />
+                      <div className="flex-1" style={{ backgroundColor: recipe.colors.trim }} />
+                    </div>
                   </div>
-                ))}
-              </div>
-            )}
+                ))
+              )}
+            </div>
           </div>
         )}
 
-        {/* ── Active Paint Specification Card ── */}
-        <div className="p-4 rounded-2xl bg-[#09101f] border border-amber-500/20 shadow-lg space-y-3">
+        {/* ── Active Swatch Quick Info Bar ── */}
+        <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2.5 text-left">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-center gap-3">
               <div
@@ -578,7 +606,7 @@ export default function ColorStudio({
                   {SURFACES.find((s) => s.key === activeSurface)?.label} Spec
                 </span>
                 <h4 className="text-sm font-bold text-white leading-tight">{activeSwatch.name}</h4>
-                <p className="text-[10px] text-white/50 font-mono">{activeSwatch.code}</p>
+                <p className="text-[10px] text-white/50 font-mono">{activeSwatch.code} • {activeSwatch.category} Family</p>
               </div>
             </div>
 
@@ -586,14 +614,14 @@ export default function ColorStudio({
               <button
                 onClick={onOpenSnapshot}
                 title="Export Specification Card"
-                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-amber-300 font-semibold transition-all"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-amber-300 font-semibold transition-all cursor-pointer"
               >
                 <FileText size={14} />
               </button>
               <button
                 onClick={onOpenCalculator}
                 title="Paint Calculator"
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-amber-300 font-semibold transition-all"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-amber-300 font-semibold transition-all cursor-pointer"
               >
                 <Calculator size={13} />
                 <span className="hidden sm:inline">Calc</span>
@@ -620,7 +648,7 @@ export default function ColorStudio({
       <div className="p-4 bg-[#09101f] border-t border-white/10 space-y-2">
         <button
           onClick={handleWhatsAppInquiry}
-          className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-widest text-white shadow-lg transition-all hover:brightness-110 active:scale-[0.99]"
+          className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-widest text-white shadow-lg transition-all hover:brightness-110 active:scale-[0.99] cursor-pointer"
           style={{ background: 'linear-gradient(135deg, #25d366 0%, #128c7e 100%)' }}
         >
           <MessageCircle size={16} />

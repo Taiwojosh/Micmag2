@@ -21,6 +21,7 @@ import { CAPLUX_PRODUCTS } from '../data/capluxProducts';
 import { openWhatsApp } from '../utils/whatsapp';
 import { usePageMeta } from '../utils/usePageMeta';
 import ProductDetailModal, { OrderLineItem } from '../components/ProductDetailModal';
+import DigitalColorChart from '../components/DigitalColorChart';
 import SmoothImage from '../components/SmoothImage';
 
 // Unified format for catalog products
@@ -68,6 +69,7 @@ export default function ProductsPage() {
   
   // Mobile Filter Drawer State (search only)
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [showColorChart, setShowColorChart] = useState(false);
 
   // Compile unified catalog
   const unifiedCatalog = useMemo(() => {
@@ -290,27 +292,60 @@ export default function ProductsPage() {
       
       <div className="max-w-7xl mx-auto px-5 md:px-[5%] py-8 md:py-12">
             {/* Inline Brand Chips — Mobile-first, shown on all screen sizes */}
-        <div className="flex flex-wrap gap-2 mb-6 px-0">
-          {[
-            { id: 'all', label: 'All Products', color: 'bg-neutral-700' },
-            { id: 'sandtex', label: 'Sandtex Paint', color: 'bg-micmag-red' },
-            { id: 'caplux', label: 'Caplux Prep', color: 'bg-amber-600' },
-            { id: 'micmag', label: 'Sanitary & Fittings', color: 'bg-micmag-blue' },
-          ].map(b => (
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 px-0">
+          <div className="flex flex-wrap gap-2">
+            {[
+              { id: 'all', label: 'All Products', color: 'bg-neutral-700' },
+              { id: 'sandtex', label: 'Sandtex Paint', color: 'bg-micmag-red' },
+              { id: 'caplux', label: 'Caplux Prep', color: 'bg-amber-600' },
+              { id: 'micmag', label: 'Sanitary & Fittings', color: 'bg-micmag-blue' },
+            ].map(b => (
+              <button
+                key={b.id}
+                onClick={() => setSelectedBrand(b.id as any)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                  selectedBrand === b.id
+                    ? `${b.color} text-white border-transparent shadow-sm`
+                    : 'bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400'
+                }`}
+              >
+                <span className={`w-2 h-2 rounded-full ${b.color} shrink-0 ${selectedBrand === b.id ? 'bg-white/60' : ''}`} />
+                {b.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Color Chart Actions */}
+          <div className="flex flex-wrap items-center gap-2">
             <button
-              key={b.id}
-              onClick={() => setSelectedBrand(b.id as any)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-all cursor-pointer ${
-                selectedBrand === b.id
-                  ? `${b.color} text-white border-transparent shadow-sm`
-                  : 'bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400'
+              onClick={() => setShowColorChart(!showColorChart)}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                showColorChart
+                  ? 'bg-amber-500 text-neutral-950 border-amber-500 shadow-sm'
+                  : 'bg-white text-neutral-700 border-neutral-300 hover:border-neutral-400'
               }`}
             >
-              <span className={`w-2 h-2 rounded-full ${b.color} shrink-0 ${selectedBrand === b.id ? 'bg-white/60' : ''}`} />
-              {b.label}
+              <span>🎨 {showColorChart ? 'Hide Colour Chart' : 'View 120 Sandtex Colours'}</span>
             </button>
-          ))}
+
+            <a
+              href="/Sandtex_Colour_Chart.pdf"
+              download="Sandtex_Colour_Chart_Micmag.pdf"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500 hover:bg-amber-400 text-neutral-950 shadow-sm transition-all cursor-pointer shrink-0"
+              title="Download official Sandtex Colour Chart (PDF)"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download PDF Chart</span>
+            </a>
+          </div>
         </div>
+
+        {/* Expandable Digital Color Chart View */}
+        {showColorChart && (
+          <div className="mb-10 text-left">
+            <DigitalColorChart />
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
@@ -331,6 +366,34 @@ export default function ProductsPage() {
                   className="w-full bg-neutral-50 border border-neutral-200 rounded-md py-2.5 pl-10 pr-4 text-xs font-sans text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-neutral-400"
                 />
                 <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3" />
+              </div>
+            </div>
+
+            {/* Official Sandtex Colour Chart Download Card */}
+            <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 text-white border border-neutral-800 p-5 rounded-2xl space-y-3 shadow-md">
+              <div className="flex items-center gap-2 text-amber-400 text-[10px] font-mono font-bold uppercase tracking-wider">
+                <span>🎨 120 Factory Colors</span>
+              </div>
+              <h4 className="font-serif text-sm font-bold text-white">
+                Official Sandtex Colour Chart
+              </h4>
+              <p className="text-[11px] text-neutral-400 font-light leading-relaxed">
+                Download the official CAP Plc color chart covering all 6 color groups (Blues, Greens, Neutrals, Oranges, Reds, Yellows).
+              </p>
+              <div className="pt-1 flex flex-col gap-2">
+                <button
+                  onClick={() => setShowColorChart(true)}
+                  className="w-full text-center py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold uppercase tracking-wider border border-white/10 transition-colors cursor-pointer"
+                >
+                  Explore Interactive Chart
+                </button>
+                <a
+                  href="/Sandtex_Colour_Chart.pdf"
+                  download="Sandtex_Colour_Chart_Micmag.pdf"
+                  className="w-full text-center py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 text-[11px] font-bold uppercase tracking-wider transition-colors shadow flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <Download className="w-3.5 h-3.5" /> Download Chart (PDF)
+                </a>
               </div>
             </div>
 
