@@ -18,6 +18,57 @@ const ShowroomPage = lazy(() => import('./pages/ShowroomPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Unhandled UI error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-[60vh] flex flex-col items-center justify-center px-5 py-24 text-center">
+          <h2 className="font-serif text-2xl font-bold text-brand-charcoal mb-2">Something went wrong</h2>
+          <p className="text-xs text-neutral-500 max-w-sm mb-6 leading-relaxed">
+            We encountered an unexpected error while loading this page. Please try refreshing or return to the catalog.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={() => window.location.reload()}
+              className="px-5 py-2.5 rounded-full bg-brand-red text-white text-xs font-bold uppercase tracking-wider shadow cursor-pointer hover:brightness-110"
+            >
+              Refresh Page
+            </button>
+            <a
+              href="/"
+              className="px-5 py-2.5 rounded-full border border-neutral-300 text-neutral-700 text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-white"
+            >
+              Back to Home
+            </a>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 function AppLayout() {
   const brandStyles = {
     '--color-brand-red': '#b45309', // Micmag luxury amber core
@@ -33,28 +84,30 @@ function AppLayout() {
       <Header />
       
       <main>
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest animate-pulse">Loading…</span>
-          </div>
-        }>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<Navigate to="/#about" replace />} />
-            <Route path="/core-values" element={<Navigate to="/#core-values" replace />} />
-            <Route path="/why" element={<Navigate to="/#why" replace />} />
-            <Route path="/locations" element={<Navigate to="/#locations" replace />} />
-            <Route path="/collections" element={<ProductsPage />} />
-            <Route path="/showroom" element={<ShowroomPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/specifications" element={<CapSpecificationsPage />} />
-            <Route path="/team" element={<TeamPage />} />
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+              <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest animate-pulse">Loading…</span>
+            </div>
+          }>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<Navigate to="/#about" replace />} />
+              <Route path="/core-values" element={<Navigate to="/#core-values" replace />} />
+              <Route path="/why" element={<Navigate to="/#why" replace />} />
+              <Route path="/locations" element={<Navigate to="/#locations" replace />} />
+              <Route path="/collections" element={<ProductsPage />} />
+              <Route path="/showroom" element={<ShowroomPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/specifications" element={<CapSpecificationsPage />} />
+              <Route path="/team" element={<TeamPage />} />
+              <Route path="/admin" element={<AdminPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
       </main>
       
       <Footer />

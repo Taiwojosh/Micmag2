@@ -14,7 +14,8 @@ import {
   MapPin,
   Sparkles,
   ArrowRight,
-  BookOpen
+  BookOpen,
+  Download
 } from 'lucide-react';
 import { PAINT_PRODUCTS, FITTINGS_PRODUCTS, PaintProduct, FittingProduct } from '../data/productsData';
 import { CAPLUX_PRODUCTS } from '../data/capluxProducts';

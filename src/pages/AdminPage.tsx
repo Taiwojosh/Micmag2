@@ -889,7 +889,7 @@ export default function AdminPage() {
                     {/* Card Content */}
                     <div className="p-5 flex-1 flex flex-col">
                       <div className="flex items-center gap-2 text-[10px] text-brand-mid font-mono mb-2">
-                        <span>{post.date}</span>
+                        <span>{post.publishedAt || (post as any).date}</span>
                         <span>•</span>
                         <span>{post.author.name}</span>
                       </div>
